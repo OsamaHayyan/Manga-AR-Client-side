@@ -1,0 +1,161 @@
+.container {
+  background-color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  flex: 1;
+  z-index: 4;
+  box-shadow: -2px -1px 4px 0px #606060;
+  padding: 20px 40px;
+  backdrop-filter: blur(5px);
+}
+
+.container > nav {
+  align-items: flex-start;
+}
+
+.tap,
+.expand {
+  border: 0 !important;
+}
+
+.expand {
+  position: absolute;
+  right: 0;
+}
+
+.expand > button {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.expand > button > span {
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.chapters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
+  max-height: 11rem;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+.chapters > .chapters_child:nth-child(1),
+.chapters > .chapters_child:nth-child(2),
+.chapters > .chapters_child:nth-child(3),
+.chapters > .chapters_child:nth-child(4),
+.chapters > .chapters_child:nth-child(5),
+.chapters > .chapters_child:nth-child(6),
+.chapters > .chapters_child:nth-child(7),
+.chapters > .chapters_child:nth-child(8) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 0 calc((100% / 4) - 10px);
+  transform: unset;
+}
+
+.chapters_child {
+  padding: 15px;
+  border-radius: 10px;
+  margin: 5px;
+  background-color: #99999938;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1 0 calc((100% / 4) - 10px);
+  min-width: 0;
+  transform: scaleY(0);
+  transition: all 0.2s;
+  user-select: none;
+  cursor: pointer;
+  max-height: 80px;
+}
+
+.chapters_child:active {
+  background-color: whitesmoke;
+}
+
+.chapters_child_top,
+.chapters_child_bottom {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.chapters_child_top {
+  margin-bottom: 10px;
+}
+
+.chapters_child_top > h3 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.chapters_child_bottom > *,
+.chapters_child_bottom > * > p {
+  font-size: 1.1vw;
+  color: #999;
+}
+.chapters_child_top > h3:first-child,
+.chapters_child_bottom > div:first-child {
+  margin-right: 10px;
+}
+
+.chapters_child_top > h3:nth-child(2),
+.chapters_child_bottom > h3:nth-child(2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    border-radius: unset;
+    box-shadow: -2px -1px 12px 3px #000000;
+  }
+
+  .expand > button > span {
+    display: none;
+  }
+
+  .chapters {
+    max-height: 47rem;
+  }
+
+  .chapters > .chapters_child:nth-child(1),
+  .chapters > .chapters_child:nth-child(2),
+  .chapters > .chapters_child:nth-child(3),
+  .chapters > .chapters_child:nth-child(4),
+  .chapters > .chapters_child:nth-child(5),
+  .chapters > .chapters_child:nth-child(6),
+  .chapters > .chapters_child:nth-child(7),
+  .chapters > .chapters_child:nth-child(8) {
+    flex: 1 0 calc((100% / 1) - 10px);
+  }
+
+  .chapters_child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+    background: #f1f1f1;
+    border-radius: 10px;
+    flex: 1 0 calc((100% / 1) - 10px);
+    margin: 5px;
+    background-color: #f8f8f8;
+    min-width: 0;
+  }
+
+  .chapters_child_top > h3,
+  .chapters_child_bottom > *,
+  .chapters_child_bottom > * > p {
+    font-size: 16px;
+  }
+}

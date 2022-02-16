@@ -1,0 +1,64 @@
+<Tabs
+defaultActiveKey="chapter"
+id="taps"
+className="mb-3 taps-container"
+>
+<Tab eventKey="chapter" title="Chapters" tabClassName={chapter.tap}>
+  <div
+    className={chapter.chapters}
+    style={expand ? { maxHeight: "600px" } : null}
+  >
+    {Array(20)
+      .fill(0)
+      .map((m) => (
+        <div
+          key={Math.random().toString()}
+          className={`${chapter.chapters_child} ${
+            expand ? chapter.chapters_child_visiable : null
+          }`}
+        >
+          <div className={chapter.chapters_child_top}>
+            <h3>Ch.1240</h3>
+            <h3>NameNameName Name Name</h3>
+          </div>
+          <div className={chapter.chapters_child_bottom}>
+            <div className="d-flex flex-row align-items-center">
+              <TiCalendar
+                color="#999"
+                size="16px"
+                style={{ marginRight: "5px" }}
+              />
+              <p>2021-02-18</p>
+            </div>
+            <div className="d-flex flex-row align-items-center">
+              <TiEye
+                color="#999"
+                size="16px"
+                style={{ marginRight: "5px" }}
+              />
+              <p>
+                <Abbreviate_Numbers number={12345} />
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+  </div>
+</Tab>
+<Tab eventKey="comment" title="Comments" tabClassName={chapter.tap}>
+  <h1>Comments</h1>
+</Tab>
+<Tab
+  title={
+    <>
+      <button onClick={handleExpand}>
+        <span className={chapter.expandLable}>
+          {expand ? "Hide" : "Show"}
+        </span>
+        <Expand expand={expand} size={"20px"} />
+      </button>
+    </>
+  }
+  tabClassName={chapter.expand}
+></Tab>
+</Tabs>
