@@ -1,6 +1,7 @@
 import { useRouter } from "next/dist/client/router";
 import React, { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
+import CheckData from "../components/check_data";
 import MangaCard from "../components/library/manga_card";
 import Pagenation from "../components/library/pagenation";
 import Sorte from "../components/library/sorte";
@@ -28,17 +29,6 @@ export default function Library({
     setManga(mangaData);
   };
 
-  const CheckData = () => {
-    if (DataExist) {
-      return (
-        <Spinner animation="border" role="status" style={{ margin: "30px" }}>
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      );
-    }
-    return <h1>Data Not Found</h1>;
-  };
-
   useEffect(() => {
     if ((catId || order || page) && page <= pageMount) handleSubmet();
   }, [catId, order, page, pageMount]);
@@ -57,7 +47,11 @@ export default function Library({
             handleOrder={setOrder}
             handlePage={setPage}
           />
-          {manga.length === 0 ? <CheckData /> : <MangaCard manga={manga} />}
+          {manga.length === 0 ? (
+            <CheckData DataExist={DataExist} />
+          ) : (
+            <MangaCard manga={manga} />
+          )}
           <Pagenation page={page} mangaPages={pageMount} handlePage={setPage} />
         </div>
       )}
