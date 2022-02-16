@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import Image from "next/image";
 import * as manga_card from "./manga_card.module.css";
 import { Container } from "react-bootstrap";
+import { Pagination } from "@mui/material";
 import overLay from "../../public/images/img_overlay.png";
 import load from "../../public/images/placeholder-avatar.jpg";
 import { TiEye } from "react-icons/ti";
 
-export default function MangaCard({ manga }) {
+export default function MangaCard({ manga, newsData }) {
   const [hover, setHover] = useState(false);
   const [id, setId] = useState("");
   const checkHover = (id) => {
@@ -19,10 +20,11 @@ export default function MangaCard({ manga }) {
   const onLeave = () => {
     setHover(false);
   };
-  return (
-    <Container fluid className={manga_card.container}>
-      {!manga.message &&
-        manga.map((m) => (
+
+  const MangaData = () => {
+    if (manga) {
+      if (!manga.message) {
+        let data = manga.map((m) => (
           <div
             key={m._id}
             className={manga_card.child}
@@ -54,7 +56,30 @@ export default function MangaCard({ manga }) {
               </div>
             </div>
           </div>
-        ))}
+        ));
+        return data;
+      }
+    } else if (newsData) {
+      let data = newsData.map((news) => (
+        <div key={news._id} className={manga_card.child}>
+          <Image
+            id={news._id}
+            src={`http://localhost:8080/${news.poster}`}
+            layout="fill"
+            className={manga_card.cardImage}
+          />
+          <div key={news._id + "child"} className={manga_card.cardData}>
+            <h3 className={manga_card.cardTitle}>{news.title}</h3>
+          </div>
+        </div>
+      ));
+
+      return data;
+    }
+  };
+  return (
+    <Container fluid className={manga_card.container}>
+      <MangaData />
     </Container>
   );
 }
