@@ -1,20 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+import MangaCard from "../components/library/manga_card";
+import { Pagination } from "@mui/material";
+import CheckData from "../components/check_data";
 
-export default function News() {
-  return <div>News</div>;
+export default function News({ newsData, newsPages, DataExist }) {
+  const [page, setPage] = useState(1);
+  return (
+    <div>
+      {newsData?.length == 0 ? (
+        <CheckData DataExist={DataExist} />
+      ) : (
+        <MangaCard newsData={newsData} newsPages={newsPages} />
+      )}
+      <Pagination count={newsPages} />
+    </div>
+  );
 }
 
 export async function getServerSideProps(context) {
   try {
     let DataExist = true;
-    const news = await fetch("http://localhost:8080/news/");
-    const newsData = await news.json();
+    const newsData = await fetch("http://localhost:8080/news/");
+    const { news, newsPages } = await newsData.json();
 
-    if (newsData.length == 0) {
+    if (news.length == 0) {
       DataExist = false;
     }
     return {
-      props: { newsData }, // will be passed to the page component as props
+      props: { newsData: news, newsPages, DataExist }, // will be passed to the page component as props
     };
   } catch (error) {
     console.log(error);
