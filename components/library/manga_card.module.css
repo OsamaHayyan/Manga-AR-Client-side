@@ -8,10 +8,10 @@
 
 .child {
   position: relative !important;
-  height: 264px;
-  width: 180px;
-  max-width: 200px;
-  min-width: 100px;
+  height: 24vw;
+  min-width: 165px;
+  min-height: 237px;
+  flex: 0 0 calc(20% - 50px);
   box-shadow: rgb(0 0 0 / 20%) 0px 0px 3px 2px;
   border-radius: 3px;
   margin: 25px;
@@ -93,4 +93,15 @@
   padding: 5px 0;
   border-top: 1px solid rgba(194, 194, 194, 0.521);
   width: 100%;
+}
+
+@media only screen and (max-width: 412px) {
+  .container {
+    padding: 0;
+    justify-content: space-around;
+  }
+
+  .child {
+    margin: 25px 0px;
+  }
 }
