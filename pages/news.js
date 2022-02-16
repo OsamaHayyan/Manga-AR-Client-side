@@ -4,7 +4,6 @@ import { Pagination } from "@mui/material";
 import CheckData from "../components/check_data";
 
 export default function News({ newsData, newsPages, DataExist }) {
-  const [page, setPage] = useState(1);
   return (
     <div>
       {newsData?.length == 0 ? (
