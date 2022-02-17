@@ -31,10 +31,9 @@ export default function MangaCard({ manga, newsData }) {
             // onMouseEnter={() => checkHover(m._id)}
             // onMouseLeave={() => onLeave()}
           >
-            <Image
+            <img
               id={m._id}
               src={`http://localhost:8080/${m.image}`}
-              layout="fill"
               className={manga_card.cardImage}
             />
             {/* <Image
@@ -62,10 +61,9 @@ export default function MangaCard({ manga, newsData }) {
     } else if (newsData) {
       let data = newsData.map((news) => (
         <div key={news._id} className={manga_card.child}>
-          <Image
+          <img
             id={news._id}
             src={`http://localhost:8080/${news.poster}`}
-            layout="fill"
             className={manga_card.cardImage}
           />
           <div key={news._id + "child"} className={manga_card.cardData}>
