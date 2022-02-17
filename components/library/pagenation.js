@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import { Container } from "react-bootstrap";
 import * as pagenation from "./pagenation.module.css";
 
-export default function Pagenation({ handlePage, mangaPages }) {
+export default function Pagenation({ handlePage, mangaPages, sort }) {
   const router = useRouter();
   const page = useRef(1);
   if (!router.query.page) {
