@@ -39,10 +39,12 @@ export default function Library({
 
   useEffect(() => {
     if (sort.catId || sort.order || sort.page) handleSubmet();
+    window.onload = (e) => {
+      return router.replace("/library");
+    };
+    return () => (window.onload = null);
   }, [sort.catId, sort.order, sort.page, sort.pageMount]);
 
-  console.log(manga.length == 0);
-  // console.log(manga);
   return (
     <>
       {FetchError ? (
