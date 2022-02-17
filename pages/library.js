@@ -23,19 +23,22 @@ export default function Library({
   });
   const [manga, setManga] = useState(mangaData);
   const handleSubmet = async () => {
-    const url = `http://localhost:8080/mangas/?catId=${sort.catId}&orderBy=${sort.order}&page=${sort.page}`;
-    const mangas = await fetch(url);
-    let { mangaData, mangaPages, message } = await mangas.json();
-    if (message) return;
-    setSort({ ...sort, pageMount: mangaPages });
-    console.log(mangaData);
-    setManga(mangaData);
-    console.log(manga);
+    try {
+      const url = `http://localhost:8080/mangas/?catId=${sort.catId}&orderBy=${sort.order}&page=${sort.page}`;
+      const mangas = await fetch(url);
+      let { mangaData, mangaPages, message } = await mangas.json();
+      if (message) return;
+      setSort({ ...sort, pageMount: mangaPages });
+      console.log(mangaData);
+      setManga(mangaData);
+      console.log(manga);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    if ((sort.catId || sort.order || sort.page) && sort.page <= sort.pageMount)
-      handleSubmet();
+    if (sort.catId || sort.order || sort.page) handleSubmet();
   }, [sort.catId, sort.order, sort.page, sort.pageMount]);
 
   console.log(manga.length == 0);
@@ -46,7 +49,12 @@ export default function Library({
         <h1>{FetchError}</h1>
       ) : (
         <div className={library.library}>
-          <Sorte catData={catData} handleSort={setSort} sort={sort} />
+          <Sorte
+            catData={catData}
+            handleSort={setSort}
+            sort={sort}
+            handleSubmet={handleSubmet}
+          />
           {manga.length == 0 ? (
             <CheckData DataExist={DataExist} />
           ) : (
