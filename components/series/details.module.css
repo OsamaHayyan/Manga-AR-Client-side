@@ -10,17 +10,17 @@
 }
 
 .col1 {
-  flex: 0 0 250px;
+  flex: 0 0 20rem;
 }
 .col2 {
   margin-left: 20px;
-  flex: 600px 0 0;
+  flex: 0 0 50%;
 }
 
 .image {
   max-width: 100%;
   min-width: 100%;
-  height: 267px;
+  height: 25rem;
   box-shadow: 2px 2px 7px 0px;
   object-fit: cover;
 }
