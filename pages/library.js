@@ -63,7 +63,7 @@ export default function Library({
             <MangaCard manga={manga} />
           )}
           <Pagenation
-            page={sort.page}
+            pageNum={sort.page}
             mangaPages={sort.pageMount}
             handlePage={setSort}
             sort={sort}
