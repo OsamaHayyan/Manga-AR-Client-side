@@ -7,21 +7,21 @@ export default function Sorte({
   handleOrder,
   catData,
   handlePage,
+  handleSort,
+  sort,
 }) {
   const [idSort, setIdSort] = useState("");
   const [idCat, setIdCat] = useState("");
   const router = useRouter();
   const handleClickSort = (id) => {
-    handlePage(1);
     router.replace("/library");
     setIdSort(id);
-    handleOrder(id);
+    handleSort({ ...sort, page: 1, order: id });
   };
   const handleClickCat = (id) => {
     router.replace("/library");
-    handlePage(1);
     setIdCat(id);
-    handleCatId(id);
+    handleSort({ ...sort, page: 1, catId: id });
   };
 
   return (

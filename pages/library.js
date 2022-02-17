@@ -15,44 +15,49 @@ export default function Library({
   FetchError,
 }) {
   const router = useRouter();
-  const [catId, setCatId] = useState("");
-  const [order, setOrder] = useState("");
-  const [page, setPage] = useState(1);
-  const [pageMount, setPageMount] = useState(AllPages);
+  const [sort, setSort] = useState({
+    catId: "",
+    order: "",
+    page: 1,
+    pageMount: AllPages,
+  });
   const [manga, setManga] = useState(mangaData);
   const handleSubmet = async () => {
-    const url = `http://localhost:8080/mangas/?catId=${catId}&orderBy=${order}&page=${page}`;
+    const url = `http://localhost:8080/mangas/?catId=${sort.catId}&orderBy=${sort.order}&page=${sort.page}`;
     const mangas = await fetch(url);
-    const { mangaData, mangaPages, message } = await mangas.json();
+    let { mangaData, mangaPages, message } = await mangas.json();
     if (message) return;
-    setPageMount(mangaPages);
+    setSort({ ...sort, pageMount: mangaPages });
+    console.log(mangaData);
     setManga(mangaData);
+    console.log(manga);
   };
 
   useEffect(() => {
-    if ((catId || order || page) && page <= pageMount) handleSubmet();
-  }, [catId, order, page, pageMount]);
+    if ((sort.catId || sort.order || sort.page) && sort.page <= sort.pageMount)
+      handleSubmet();
+  }, [sort.catId, sort.order, sort.page, sort.pageMount]);
 
-  {
-  }
+  console.log(manga.length == 0);
+  // console.log(manga);
   return (
     <>
       {FetchError ? (
         <h1>{FetchError}</h1>
       ) : (
         <div className={library.library}>
-          <Sorte
-            catData={catData}
-            handleCatId={setCatId}
-            handleOrder={setOrder}
-            handlePage={setPage}
-          />
-          {manga.length === 0 ? (
+          <Sorte catData={catData} handleSort={setSort} sort={sort} />
+          {manga.length == 0 ? (
             <CheckData DataExist={DataExist} />
           ) : (
             <MangaCard manga={manga} />
           )}
-          <Pagenation page={page} mangaPages={pageMount} handlePage={setPage} />
+          <Pagenation
+            page={sort.page}
+            mangaPages={sort.pageMount}
+            handlePage={setSort}
+            sort={sort}
+          />
         </div>
       )}
     </>

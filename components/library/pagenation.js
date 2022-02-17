@@ -16,7 +16,7 @@ export default function Pagenation({ handlePage, mangaPages }) {
     e.preventDefault();
     if (page.current >= mangaPages) return;
     page.current++;
-    handlePage(page.current);
+    handlePage({ ...sort, page: page.current });
     router.push(`/library?page=${page.current}`);
   };
 
@@ -25,7 +25,7 @@ export default function Pagenation({ handlePage, mangaPages }) {
     if (page.current === 1) return false;
     // if (!router.query.page) return (page.current = 1);
     page.current--;
-    handlePage(page.current);
+    handlePage({ ...sort, page: page.current });
     router.push(`/library?page=${page.current}`);
   };
   return (
