@@ -2,14 +2,7 @@ import { useRouter } from "next/dist/client/router";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import * as sorte from "./sorte.module.css";
-export default function Sorte({
-  handleCatId,
-  handleOrder,
-  catData,
-  handlePage,
-  handleSort,
-  sort,
-}) {
+export default function Sorte({ catData, handleSubmet, handleSort, sort }) {
   const [idSort, setIdSort] = useState("");
   const [idCat, setIdCat] = useState("");
   const router = useRouter();
