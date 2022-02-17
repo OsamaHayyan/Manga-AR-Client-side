@@ -92,7 +92,7 @@ export default function Details() {
           {/* Auther && Story */}
           <div
             className={`d-flex flex-column align-items-left ${details.authContainer}`}
-            style={expand ? { maxHeight: "160px" } : null}
+            style={expand ? { maxHeight: "15rem" } : null}
           >
             <div
               className={`d-flex flex-row justify-start mb-1 ${details.auth_date_container}`}
