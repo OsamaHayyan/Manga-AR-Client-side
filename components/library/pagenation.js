@@ -19,6 +19,7 @@ export default function Pagenation({ handlePage, mangaPages, sort, page }) {
     handlePage({ ...sort, page: page - 1 });
     router.replace(`/library?page=${page}`);
   };
+
   return (
     <>
       <div className={pagenation.container}>
