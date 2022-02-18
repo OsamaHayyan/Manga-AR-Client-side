@@ -8,21 +8,14 @@ import { FaArrowAltCircleUp } from "react-icons/fa";
 import { animateScroll } from "react-scroll";
 import Favorite from "../../../components/series/favorite";
 
-export default function Manga({ chapter }) {
+export default function Manga({ chapter, DataExist }) {
   const [hide, setHide] = useState(true);
   const bannar = "/images/banner.jpg";
-
   return (
     <div
       className="d-flex flex-column"
       style={{ height: "100%", position: "relative" }}
     >
-      {/* <span className={manga.overlay}></span> */}
-      {/* <Image
-        src={bannar ? bannar : "/images/default_bannar.jpg"}
-        className={manga.image}
-      /> */}
-
       <div
         className={manga.image}
         style={
@@ -31,7 +24,7 @@ export default function Manga({ chapter }) {
             : { backgroundImage: "url(/images/default_bannar.jpg)" }
         }
       ></div>
-      <Details />
+      <Details chapter={chapter} />
       <Favorite />
       <Chapters handleHide={setHide} hide={hide} />
       <FaArrowAltCircleUp
