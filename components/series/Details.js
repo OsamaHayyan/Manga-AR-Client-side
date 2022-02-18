@@ -14,7 +14,7 @@ import { animateScroll, Element, Link } from "react-scroll";
 import Abbreviate_Numbers from "../abbreviate_numbers";
 import Expand from "../expand";
 
-export default function Details() {
+export default function Details({ chapter }) {
   let category = ["Action", "Comedy", "Echi", "Action", "Comedy", "Echi"];
 
   const [expand, setExpand] = useState(false);
@@ -30,22 +30,26 @@ export default function Details() {
     <Container fluid className={details.container}>
       <Row xs="auto" className={details.row}>
         <Col className={details.col1}>
-          <Image src="/images/manga.jpg" rounded className={details.image} />
+          <Image
+            src={`http://localhost:8080/${chapter.image}`}
+            rounded
+            className={details.image}
+          />
         </Col>
         <Col
           className={`d-flex flex-column justify-content-start ${details.col2}`}
         >
           {/* Head */}
           <div className={details.head}>
-            <div className={details.title}>Manga Title</div>
-            <p className={details.status}>On Going</p>
+            <div className={details.title}>{chapter.title}</div>
+            <p className={details.status}>{chapter.status}</p>
           </div>
 
           {/* Category */}
           <div className="d-flex flex-row align-items-center flex-wrap mb-1">
-            {category.map((c) => (
-              <p key={Math.random().toString()} className={details.category}>
-                {c}
+            {chapter.category.map((c) => (
+              <p key={c._id} className={details.category}>
+                {c.category}
               </p>
             ))}
           </div>
@@ -60,7 +64,7 @@ export default function Details() {
             >
               <TiEye size="20px" color="#ff5b3b" />
               <p>
-                <Abbreviate_Numbers number={1234} />
+                <Abbreviate_Numbers number={chapter.views} />
               </p>
             </div>
             <div
@@ -82,10 +86,10 @@ export default function Details() {
                   />
                 }
                 onChange={(rate) => handleRate(rate)}
-                value={2.6}
+                value={chapter.rate}
                 classNames={details.starRate}
               />
-              <p>3.3</p>
+              <p>{chapter.rate}</p>
             </div>
           </div>
 
@@ -99,12 +103,12 @@ export default function Details() {
             >
               <p className={details.auther}>
                 <TiPen color="#ff5b3b" style={{ marginRight: "5px" }} />
-                Auther: Auther Name
+                Auther: {chapter.auther ? chapter.auther : "unavailable"}
               </p>
 
               <p className={details.date}>
                 <TiCalendar color="#ff5b3b" style={{ marginRight: "5px" }} />
-                Published date: 2018
+                Published date: {chapter.date}
               </p>
 
               <Expand
@@ -122,17 +126,7 @@ export default function Details() {
             >
               <p className={details.story}>
                 <FaBookOpen color="#ff5b3b" style={{ marginRight: "5px" }} />
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
-                quis dolor earum similique ipsam! Quibusdam illum quo, ipsa,
-                necessitatibus ratione voluptas ullam est, in fugit deleniti
-                nemo magnam odio? Iure. Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Libero quis dolor earum similique ipsam!
-                Quibusdam illum quo, ipsa, necessitatibus ratione voluptas ullam
-                est, in fugit deleniti nemo magnam odio? Iure. Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Libero quis dolor earum
-                similique ipsam! Quibusdam illum quo, ipsa, necessitatibus
-                ratione voluptas ullam est, in fugit deleniti nemo magnam odio?
-                Iure.
+                {chapter.story}
               </p>
             </Element>
           </div>
