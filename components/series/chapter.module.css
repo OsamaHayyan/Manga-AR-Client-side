@@ -100,7 +100,7 @@
 
 .chapters_child_bottom > *,
 .chapters_child_bottom > * > p {
-  font-size: 1.1vw;
+  font-size: 16px;
   color: #999;
 }
 .chapters_child_top > h3:first-child,
