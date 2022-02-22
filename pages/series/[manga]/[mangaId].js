@@ -8,7 +8,7 @@ import { FaArrowAltCircleUp } from "react-icons/fa";
 import { animateScroll } from "react-scroll";
 import Favorite from "../../../components/series/favorite";
 
-export default function Manga({ chapter, DataExist }) {
+export default function Manga({ mangaData, DataExist }) {
   const [hide, setHide] = useState(true);
   const bannar = "/images/banner.jpg";
   return (
@@ -24,9 +24,13 @@ export default function Manga({ chapter, DataExist }) {
             : { backgroundImage: "url(/images/default_bannar.jpg)" }
         }
       ></div>
-      <Details chapter={{ ...chapter, chapters: null }} />
+      <Details manga={{ ...mangaData, chapters: null }} />
       <Favorite />
-      <Chapters handleHide={setHide} hide={hide} chapters={chapter.chapters} />
+      <Chapters
+        handleHide={setHide}
+        hide={hide}
+        chapters={mangaData.chapters}
+      />
       <FaArrowAltCircleUp
         size="50px"
         color="#ff5b3b"
@@ -41,17 +45,17 @@ export default function Manga({ chapter, DataExist }) {
 export async function getServerSideProps(context) {
   try {
     let DataExist = true;
-    const chapter = await fetch(
-      "http://localhost:8080/mangas/manga/620d75900b812cc56875e40b"
+    const manga = await fetch(
+      "http://localhost:8080/mangas/manga/620d758d0b812cc56875e403"
     );
-    const chapterData = await chapter.json();
+    const mangaData = await manga.json();
 
-    if (chapter.message) {
+    if (manga.message) {
       DataExist = false;
     }
 
     return {
-      props: { chapter: chapterData, DataExist }, // will be passed to the page component as props
+      props: { mangaData: mangaData, DataExist }, // will be passed to the page component as props
     };
   } catch (error) {
     console.log(error);
