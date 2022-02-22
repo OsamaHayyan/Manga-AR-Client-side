@@ -40,38 +40,42 @@ export default function Chapters({ handleHide, hide, chapters }) {
                 : null
             }
           >
-            {chapters.map((chr) => (
-              <div
-                key={chr._id}
-                className={chapter.chapters_child}
-                style={expand ? { transform: "scaleY(1)" } : null}
-              >
-                <div className={chapter.chapters_child_top}>
-                  <h3>Ch.{chr.chapterNum}</h3>
-                  <h3>{chr.name}</h3>
-                </div>
-                <div className={chapter.chapters_child_bottom}>
-                  <div className="d-flex flex-row align-items-center">
-                    <TiCalendar
-                      color="#999"
-                      size="16px"
-                      style={{ marginRight: "5px" }}
-                    />
-                    <p>{chr.date}</p>
+            {!chapters ? (
+              <h1>No Chapters yet</h1>
+            ) : (
+              chapters.map((chr) => (
+                <div
+                  key={chr._id}
+                  className={chapter.chapters_child}
+                  style={expand ? { transform: "scaleY(1)" } : null}
+                >
+                  <div className={chapter.chapters_child_top}>
+                    <h3>Ch.{chr.chapterNum}</h3>
+                    <h3>{chr.name}</h3>
                   </div>
-                  <div className="d-flex flex-row align-items-center">
-                    <TiEye
-                      color="#999"
-                      size="16px"
-                      style={{ marginRight: "5px" }}
-                    />
-                    <p>
-                      <Abbreviate_Numbers number={chr.views} />
-                    </p>
+                  <div className={chapter.chapters_child_bottom}>
+                    <div className="d-flex flex-row align-items-center">
+                      <TiCalendar
+                        color="#999"
+                        size="16px"
+                        style={{ marginRight: "5px" }}
+                      />
+                      <p>{chr.date}</p>
+                    </div>
+                    <div className="d-flex flex-row align-items-center">
+                      <TiEye
+                        color="#999"
+                        size="16px"
+                        style={{ marginRight: "5px" }}
+                      />
+                      <p>
+                        <Abbreviate_Numbers number={chr.views} />
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
 
             {/* {Array(20)
               .fill(0)
