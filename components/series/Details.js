@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import { Col, Container, Image, Row } from "react-bootstrap";
+import axios from "axios";
+
 import * as details from "./details.module.css";
 import {
   TiEye,
