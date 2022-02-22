@@ -24,9 +24,9 @@ export default function Manga({ chapter, DataExist }) {
             : { backgroundImage: "url(/images/default_bannar.jpg)" }
         }
       ></div>
-      <Details chapter={chapter} />
+      <Details chapter={{ ...chapter, chapters: null }} />
       <Favorite />
-      <Chapters handleHide={setHide} hide={hide} />
+      <Chapters handleHide={setHide} hide={hide} chapters={chapter.chapters} />
       <FaArrowAltCircleUp
         size="50px"
         color="#ff5b3b"

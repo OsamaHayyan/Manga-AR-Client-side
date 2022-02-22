@@ -6,7 +6,7 @@ import Abbreviate_Numbers from "../abbreviate_numbers";
 import Expand from "../expand";
 import * as chapter from "./chapter.module.css";
 
-export default function Chapters({ handleHide, hide }) {
+export default function Chapters({ handleHide, hide, chapters }) {
   let arr = [];
   let i = 0;
   while (arr.length < 100) {
@@ -40,15 +40,15 @@ export default function Chapters({ handleHide, hide }) {
                 : null
             }
           >
-            {arr.map((m) => (
+            {chapters.map((chr) => (
               <div
-                key={m}
+                key={chr._id}
                 className={chapter.chapters_child}
                 style={expand ? { transform: "scaleY(1)" } : null}
               >
                 <div className={chapter.chapters_child_top}>
-                  <h3>Ch.1240</h3>
-                  <h3>NameNameName Name Name</h3>
+                  <h3>Ch.{chr.chapterNum}</h3>
+                  <h3>{chr.name}</h3>
                 </div>
                 <div className={chapter.chapters_child_bottom}>
                   <div className="d-flex flex-row align-items-center">
@@ -57,7 +57,7 @@ export default function Chapters({ handleHide, hide }) {
                       size="16px"
                       style={{ marginRight: "5px" }}
                     />
-                    <p>2021-02-18</p>
+                    <p>{chr.date}</p>
                   </div>
                   <div className="d-flex flex-row align-items-center">
                     <TiEye
@@ -66,7 +66,7 @@ export default function Chapters({ handleHide, hide }) {
                       style={{ marginRight: "5px" }}
                     />
                     <p>
-                      <Abbreviate_Numbers number={12345} />
+                      <Abbreviate_Numbers number={chr.views} />
                     </p>
                   </div>
                 </div>
