@@ -15,13 +15,20 @@ import { FaArrowCircleDown, FaArrowCircleUp, FaBookOpen } from "react-icons/fa";
 import { animateScroll, Element, Link } from "react-scroll";
 import Abbreviate_Numbers from "../abbreviate_numbers";
 import Expand from "../expand";
+import { useRouter } from "next/dist/client/router";
 
-export default function Details({ chapter }) {
-  let category = ["Action", "Comedy", "Echi", "Action", "Comedy", "Echi"];
-
+export default function Details({ manga }) {
+  const router = useRouter();
+  const [mangaData, setManga] = useState(manga);
   const [expand, setExpand] = useState(false);
-  const handleRate = (rate) => {
-    console.log(rate);
+  const handleRate = async (rate) => {
+    const mangaId = router.query.mangaId;
+    const { data } = await axios.post(
+      `http://localhost:8080/mangas/rate/${mangaId}`,
+      { rate: rate }
+    );
+    console.log(data);
+    setManga({ ...mangaData, rate: data });
   };
 
   const handleStory = () => {
@@ -33,7 +40,7 @@ export default function Details({ chapter }) {
       <Row xs="auto" className={details.row}>
         <Col className={details.col1}>
           <Image
-            src={`http://localhost:8080/${chapter.image}`}
+            src={`http://localhost:8080/${mangaData.image}`}
             rounded
             className={details.image}
           />
@@ -43,13 +50,13 @@ export default function Details({ chapter }) {
         >
           {/* Head */}
           <div className={details.head}>
-            <div className={details.title}>{chapter.title}</div>
-            <p className={details.status}>{chapter.status}</p>
+            <div className={details.title}>{mangaData.title}</div>
+            <p className={details.status}>{mangaData.status}</p>
           </div>
 
           {/* Category */}
           <div className="d-flex flex-row align-items-center flex-wrap mb-1">
-            {chapter.category.map((c) => (
+            {mangaData.category.map((c) => (
               <p key={c._id} className={details.category}>
                 {c.category}
               </p>
@@ -66,7 +73,7 @@ export default function Details({ chapter }) {
             >
               <TiEye size="20px" color="#ff5b3b" />
               <p>
-                <Abbreviate_Numbers number={chapter.views} />
+                <Abbreviate_Numbers number={mangaData.views} />
               </p>
             </div>
             <div
@@ -88,10 +95,10 @@ export default function Details({ chapter }) {
                   />
                 }
                 onChange={(rate) => handleRate(rate)}
-                value={chapter.rate}
+                value={mangaData.rate}
                 classNames={details.starRate}
               />
-              <p>{chapter.rate}</p>
+              <p>{mangaData.rate}</p>
             </div>
           </div>
 
@@ -105,12 +112,12 @@ export default function Details({ chapter }) {
             >
               <p className={details.auther}>
                 <TiPen color="#ff5b3b" style={{ marginRight: "5px" }} />
-                Auther: {chapter.auther ? chapter.auther : "unavailable"}
+                Auther: {mangaData.auther ? mangaData.auther : "unavailable"}
               </p>
 
               <p className={details.date}>
                 <TiCalendar color="#ff5b3b" style={{ marginRight: "5px" }} />
-                Published date: {chapter.date}
+                Published date: {mangaData.date}
               </p>
 
               <Expand
@@ -128,7 +135,7 @@ export default function Details({ chapter }) {
             >
               <p className={details.story}>
                 <FaBookOpen color="#ff5b3b" style={{ marginRight: "5px" }} />
-                {chapter.story}
+                {mangaData.story}
               </p>
             </Element>
           </div>
