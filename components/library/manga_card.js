@@ -6,19 +6,13 @@ import { Pagination } from "@mui/material";
 import overLay from "../../public/images/img_overlay.png";
 import load from "../../public/images/placeholder-avatar.jpg";
 import { TiEye } from "react-icons/ti";
+import { useRouter } from "next/dist/client/router";
 
 export default function MangaCard({ manga, newsData }) {
-  const [hover, setHover] = useState(false);
-  const [id, setId] = useState("");
-  const checkHover = (id) => {
-    setHover(true);
-    setId(id);
-    console.log(hover);
-    console.log("osama");
-  };
+  const router = useRouter();
 
-  const onLeave = () => {
-    setHover(false);
+  const handleNavigation = (_id, title) => {
+    return router.push(`series/${title}/${_id}`);
   };
 
   const MangaData = () => {
@@ -28,19 +22,14 @@ export default function MangaCard({ manga, newsData }) {
           <div
             key={m._id}
             className={manga_card.child}
-            // onMouseEnter={() => checkHover(m._id)}
-            // onMouseLeave={() => onLeave()}
+            onClick={() => handleNavigation(m._id, m.title)}
           >
             <img
               id={m._id}
               src={`http://localhost:8080/${m.image}`}
               className={manga_card.cardImage}
             />
-            {/* <Image
-              src={overLay}
-              layout="fill"
-              className={manga_card.cardOverlay}
-            /> */}
+
             <div key={m._id + "child"} className={manga_card.cardData}>
               <h3 className={manga_card.cardTitle}>{m.title}</h3>
               <div className={manga_card.cardViews}>
