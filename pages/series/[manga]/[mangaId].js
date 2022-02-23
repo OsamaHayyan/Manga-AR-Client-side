@@ -8,6 +8,7 @@ import Details from "../../../components/series/Details";
 import { FaArrowAltCircleUp } from "react-icons/fa";
 import { animateScroll } from "react-scroll";
 import Favorite from "../../../components/series/favorite";
+import axios from "axios";
 
 export default function Manga({
   mangaData,
@@ -56,30 +57,48 @@ export default function Manga({
 
 export async function getServerSideProps(context) {
   try {
-    let DataExist = true;
-    let errorMessage;
-    const manga = await fetch(
-      "http://localhost:8080/mangas/manga/620d758d0b812cc56s875e403"
+    const DataExist = true;
+    const { data } = await axios.get(
+      "http://localhost:8080/mangas/manga/620d758d0b812cc56875e403"
     );
-    const mangaData = await manga.json();
-
-    if (mangaData.message) {
-      DataExist = false;
-      mangaData.data.forEach((d) => (errorMessage = d.msg));
-    }
-    console.log(mangaData);
+    const mangaData = await data;
     return {
       props: {
         mangaData: mangaData,
         DataExist,
-        statusCode: mangaData.statusCode,
-        errorMessage,
       }, // will be passed to the page component as props
     };
   } catch (error) {
-    console.log(error);
-    return {
-      props: { FetchError: "Fetch Error" },
-    };
+    const DataExist = false;
+    let errorMessage;
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      error.response.data.data.forEach((d) => (errorMessage = d.msg));
+      return {
+        props: { statusCode: error.response.status, errorMessage, DataExist },
+      };
+    } else if (error.request) {
+      // The request was made but no response was received
+      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+      // http.ClientRequest in node.js
+      return {
+        props: {
+          statusCode: 500,
+          errorMessage: "Server deosn't responsed, Please try again later",
+          DataExist,
+        },
+      };
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.log("Error", error.message);
+      return {
+        props: {
+          statusCode: 500,
+          errorMessage: "Please try again later",
+          DataExist,
+        },
+      };
+    }
   }
 }

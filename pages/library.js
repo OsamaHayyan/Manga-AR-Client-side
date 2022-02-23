@@ -1,18 +1,22 @@
 import { useRouter } from "next/dist/client/router";
 import React, { useEffect, useState } from "react";
+import Error from "next/error";
+
 import { Spinner } from "react-bootstrap";
 import CheckData from "../components/check_data";
 import MangaCard from "../components/library/manga_card";
 import Pagenation from "../components/library/pagenation";
 import Sorte from "../components/library/sorte";
 import * as library from "../styles/library.module.css";
+import axios from "axios";
 
 export default function Library({
   mangaData,
   AllPages,
   catData,
   DataExist,
-  FetchError,
+  statusCode,
+  errorMessage,
 }) {
   const router = useRouter();
   const [sort, setSort] = useState({
@@ -47,8 +51,8 @@ export default function Library({
 
   return (
     <>
-      {FetchError ? (
-        <h1>{FetchError}</h1>
+      {!DataExist ? (
+        <Error statusCode={statusCode} title={errorMessage} />
       ) : (
         <div className={library.library}>
           <Sorte
@@ -76,22 +80,46 @@ export default function Library({
 
 export async function getServerSideProps(context) {
   try {
-    let DataExist = true;
-    const manga = await fetch("http://localhost:8080/mangas/");
-    const category = await fetch("http://localhost:8080/category/get-cat/");
-    const { mangaData, mangaPages } = await manga.json();
-    const catData = await category.json();
+    const DataExist = true;
+    const manga = await axios("http://localhost:8080/mangas/");
+    const category = await axios("http://localhost:8080/category/get-cat/");
+    const { mangaData, mangaPages } = await manga.data;
+    const catData = await category.data;
 
-    if (mangaData.length == 0) {
-      DataExist = false;
-    }
     return {
       props: { mangaData, AllPages: mangaPages, catData, DataExist }, // will be passed to the page component as props
     };
   } catch (error) {
-    console.log(error);
-    return {
-      props: { FetchError: "Fetch Error" },
-    };
+    const DataExist = false;
+    let errorMessage;
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      error.response.data.data.forEach((d) => (errorMessage = d.msg));
+      return {
+        props: { statusCode: error.response.status, errorMessage, DataExist },
+      };
+    } else if (error.request) {
+      // The request was made but no response was received
+      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+      // http.ClientRequest in node.js
+      return {
+        props: {
+          statusCode: 500,
+          errorMessage: "Server deosn't responsed, Please try again later",
+          DataExist,
+        },
+      };
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.log("Error", error.message);
+      return {
+        props: {
+          statusCode: 500,
+          errorMessage: "Please try again later",
+          DataExist,
+        },
+      };
+    }
   }
 }
