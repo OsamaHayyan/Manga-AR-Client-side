@@ -9,6 +9,7 @@ import { FaArrowAltCircleUp } from "react-icons/fa";
 import { animateScroll } from "react-scroll";
 import Favorite from "../../../components/series/favorite";
 import axios from "axios";
+import { useRouter } from "next/dist/client/router";
 
 export default function Manga({
   mangaData,
@@ -57,11 +58,21 @@ export default function Manga({
 
 export async function getServerSideProps(context) {
   try {
+    const { manga, mangaId } = context.query;
     const DataExist = true;
     const { data } = await axios.get(
-      "http://localhost:8080/mangas/manga/620d758d0b812cc56875e403"
+      `http://localhost:8080/mangas/manga/${mangaId}`
     );
     const mangaData = await data;
+    if (mangaData.title != manga) {
+      return {
+        props: {
+          statusCode: 404,
+          errorMessage: "Manga Not Found",
+          DataExist: false,
+        },
+      };
+    }
     return {
       props: {
         mangaData: mangaData,
