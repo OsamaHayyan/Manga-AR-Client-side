@@ -4,6 +4,7 @@ import { Pagination } from "@mui/material";
 import CheckData from "../components/check_data";
 import axios from "axios";
 import Error from "next/error";
+import * as newsStyle from "../styles/news.module.css";
 
 const CheckAvilability = ({ statusCode, errorMessage }) => {
   if (statusCode) {
@@ -19,13 +20,20 @@ export default function News({
   statusCode,
 }) {
   return (
-    <div>
+    <div className={newsStyle.container}>
       {!DataExist ? (
-        <CheckAvilability statusCode={statusCode} errorMessage={errorMessage} />
+        <div className={newsStyle.newsData} style={{ margin: "auto" }}>
+          <CheckAvilability
+            statusCode={statusCode}
+            errorMessage={errorMessage}
+          />
+        </div>
       ) : (
-        <MangaCard newsData={newsData} newsPages={newsPages} />
+        <div className={newsStyle.newsData}>
+          <MangaCard newsData={newsData} newsPages={newsPages} />
+        </div>
       )}
-      <Pagination count={newsPages} />
+      <Pagination count={newsPages} className={newsStyle.pagenation} />
     </div>
   );
 }
