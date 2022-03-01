@@ -2,7 +2,6 @@ import { useRouter } from "next/dist/client/router";
 import React, { useEffect, useState } from "react";
 import Error from "next/error";
 
-import { Spinner } from "react-bootstrap";
 import CheckData from "../components/check_data";
 import MangaCard from "../components/library/manga_card";
 import Pagenation from "../components/library/pagenation";
