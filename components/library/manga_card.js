@@ -1,10 +1,6 @@
-import React, { useState } from "react";
-import Image from "next/image";
+import React from "react";
 import * as manga_card from "./manga_card.module.css";
 import { Container } from "react-bootstrap";
-import { Pagination } from "@mui/material";
-import overLay from "../../public/images/img_overlay.png";
-import load from "../../public/images/placeholder-avatar.jpg";
 import { TiEye } from "react-icons/ti";
 import { useRouter } from "next/dist/client/router";
 
@@ -57,6 +53,8 @@ export default function MangaCard({ manga, newsData }) {
           />
           <div key={news._id + "child"} className={manga_card.cardData}>
             <h3 className={manga_card.cardTitle}>{news.title}</h3>
+
+            <p className={manga_card.newsTopic}>{news.topic}</p>
           </div>
         </div>
       ));
