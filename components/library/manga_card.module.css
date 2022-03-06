@@ -68,7 +68,8 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
-  height: 50%;
+  height: 70%;
+  min-height: 50%;
   width: 100%;
   background-image: linear-gradient(
     to bottom,
@@ -87,9 +88,13 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  word-break: break-all;
+  word-break: break-word;
   height: fit-content;
-  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   transition: all 0.2s;
 }
 
@@ -104,12 +109,14 @@
 }
 
 .newsTopic {
+  font-size: small;
   color: #dddddd;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 600px) {
