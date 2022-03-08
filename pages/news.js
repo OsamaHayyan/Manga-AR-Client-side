@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MangaCard from "../components/library/manga_card";
-import { Pagination, PaginationItem } from "@mui/material";
+import { CircularProgress, Pagination, PaginationItem } from "@mui/material";
 import CheckData from "../components/check_data";
 import axios from "axios";
 import Error from "next/error";
@@ -24,13 +24,15 @@ export default function News({
   const [dataAvaliable, setCheckData] = useState(DataExist);
   const [news, setNews] = useState(newsData);
   const [error, setErrors] = useState({ errorMessage, statusCode });
+  const [loading, setLoading] = useState(false);
   console.log("osama");
   const handlePagenation = async (event, page) => {
     try {
+      setLoading(true);
       let DataExist = true;
       const { data } = await axios(`http://localhost:8080/news?page=${page}`);
       const { news, newsPages } = await data;
-
+      setLoading(false);
       if (newsPages == 0 || news.length == 0) {
         DataExist = false;
       }
@@ -82,13 +84,26 @@ export default function News({
         </div>
       ) : (
         <div className={newsStyle.newsData}>
-          <MangaCard newsData={news} newsPages={newsPages} />
+          {!loading ? (
+            <MangaCard newsData={news} newsPages={newsPages} />
+          ) : (
+            <CircularProgress
+              style={{
+                margin: "auto",
+                position: "absolute",
+                top: "50%",
+                left: 0,
+                right: 0,
+              }}
+            />
+          )}
         </div>
       )}
       <Pagination
         count={10}
         className={newsStyle.pagenation}
         onChange={handlePagenation}
+        disabled={loading}
       />
     </div>
   );
