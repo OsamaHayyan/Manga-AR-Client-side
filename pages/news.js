@@ -31,7 +31,7 @@ export default function News({
       const { data } = await axios(`http://localhost:8080/news?page=${page}`);
       const { news, newsPages } = await data;
 
-      if (newsPages == 0) {
+      if (newsPages == 0 || news.length == 0) {
         DataExist = false;
       }
       console.log(news);
@@ -100,7 +100,7 @@ export async function getServerSideProps(context) {
     const { data } = await axios("http://localhost:8080/news/");
     const { news, newsPages } = await data;
 
-    if (newsPages == 0) {
+    if (newsPages == 0 || news.length == 0) {
       DataExist = false;
     }
     return {
