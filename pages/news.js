@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MangaCard from "../components/library/manga_card";
 import { CircularProgress, Pagination, PaginationItem } from "@mui/material";
 import CheckData from "../components/check_data";
@@ -25,7 +25,7 @@ export default function News({
   const [news, setNews] = useState(newsData);
   const [error, setErrors] = useState({ errorMessage, statusCode });
   const [loading, setLoading] = useState(false);
-  console.log("osama");
+  const [windowWidth, setWindow] = useState("");
   const handlePagenation = async (event, page) => {
     try {
       setLoading(true);
@@ -73,6 +73,10 @@ export default function News({
     }
   };
 
+  useEffect(() => {
+    setWindow(window.innerWidth);
+  }, []);
+
   return (
     <div className={newsStyle.container}>
       {!dataAvaliable ? (
@@ -88,19 +92,20 @@ export default function News({
             <MangaCard newsData={news} newsPages={newsPages} />
           ) : (
             <CircularProgress
+              size={60}
               style={{
                 margin: "auto",
                 position: "absolute",
-                top: "50%",
-                left: 0,
-                right: 0,
+                inset: 0,
               }}
             />
           )}
         </div>
       )}
       <Pagination
-        count={10}
+        size={windowWidth < 720 ? "medium" : "large"}
+        count={newsPages}
+        siblingCount={windowWidth < 720 ? 0 : 1}
         className={newsStyle.pagenation}
         onChange={handlePagenation}
         disabled={loading}
