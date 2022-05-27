@@ -1,0 +1,61 @@
+.navbarContainer > *,
+.navbarContainer > * > * {
+  display: inline-block;
+}
+
+.navbarContainer {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  box-shadow: 0 2px 5px 3px rgb(0 0 0 / 39%);
+  -webkit-box-shadow: 0 2px 5px 3px rgb(0 0 0 / 39%);
+  -moz-box-shadow: 0 2px 5px 3px rgb(0 0 0 / 39%);
+  z-index: 0;
+}
+
+.leftSide {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoName {
+  font-size: 30px;
+  font-weight: 500;
+  vertical-align: middle;
+  padding: 0 10px;
+}
+
+.logoImageWarpper {
+  width: 110px;
+  height: auto;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.logoImageWarpper > span {
+  vertical-align: middle !important;
+}
+.navItemsContainer {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem {
+  display: inline-block;
+  padding: 5px 10px;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+.navItem:hover,
+.navItem:active {
+  background-color: #e4e4e4;
+  border-radius: 100px;
+}
