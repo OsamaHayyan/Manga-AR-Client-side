@@ -13,7 +13,7 @@
   box-shadow: 0 2px 5px 3px rgb(0 0 0 / 39%);
   -webkit-box-shadow: 0 2px 5px 3px rgb(0 0 0 / 39%);
   -moz-box-shadow: 0 2px 5px 3px rgb(0 0 0 / 39%);
-  z-index: 0;
+  z-index: 10;
 }
 
 .leftSide {
@@ -71,6 +71,7 @@
   border-radius: 15px;
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -87,4 +88,40 @@
   box-shadow: 0 2px 3px 0px rgb(0 0 0 / 39%);
   -webkit-box-shadow: 0 2px 3px 0px rgb(0 0 0 / 39%);
   -moz-box-shadow: 0 2px 3px 0px rgb(0 0 0 / 39%);
+}
+
+.userOption {
+  list-style-type: none;
+  background-color: white;
+  width: 100%;
+  border-radius: 10px;
+  margin: 0;
+  padding: 8px 0;
+  position: absolute;
+  top: 110%;
+  box-shadow: 0 2px 3px 0px rgb(0 0 0 / 39%);
+  -webkit-box-shadow: 0 2px 3px 0px rgb(0 0 0 / 39%);
+  -moz-box-shadow: 0 2px 3px 0px rgb(0 0 0 / 39%);
+  opacity: 0;
+  visibility: hidden;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+.userOptionClicked {
+  opacity: 1;
+  visibility: visible;
+}
+
+.userOption > li {
+  padding: 6px 16px;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+.userOption > li:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.userOption > li:active {
+  background-color: rgba(0, 0, 0, 0.329);
 }

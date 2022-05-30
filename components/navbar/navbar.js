@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import * as navbarStyle from "./navbar.module.css";
 import * as logo from "../../public/images/logo.png";
 import * as userImage from "../../public/images/placeholder-avatar.jpg";
 import Image from "next/image";
 import Link from "next/link";
+import { ClickAwayListener } from "@mui/material";
+
 const Logo = ({ logoImage }) => {
   if (logoImage) {
     return (
@@ -26,15 +28,43 @@ const Logo = ({ logoImage }) => {
 };
 
 const Login = ({ login, username, profileImage }) => {
+  let [loginClicked, setLogin] = useState(false);
+
   const logging = login ? (
-    <div className={navbarStyle.rightSide}>
-      <img
-        src={
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQwWMJbZoZ26ZyYB8M-1e7OLBVUWXRLNSO6A&usqp=CAU"
-        }
-      />
-      <p>{username}</p>
-    </div>
+    <ClickAwayListener onClickAway={() => setLogin(false)}>
+      <div
+        className={navbarStyle.rightSide}
+        onClick={() => setLogin(!loginClicked)}
+      >
+        <img
+          src={
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQwWMJbZoZ26ZyYB8M-1e7OLBVUWXRLNSO6A&usqp=CAU"
+          }
+        />
+        <p>{username}</p>
+        <ul
+          className={`${navbarStyle.userOption} ${
+            loginClicked ? navbarStyle.userOptionClicked : null
+          }`}
+        >
+          <li>
+            <Link href="#">
+              <a>Profile</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="#">
+              <a>Dashboard</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="#">
+              <a>Logout</a>
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </ClickAwayListener>
   ) : (
     <p className={navbarStyle.rightSide}>Login</p>
   );
