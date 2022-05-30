@@ -1,7 +1,7 @@
 import React from "react";
-import { AppBar } from "@mui/material";
 import * as navbarStyle from "./navbar.module.css";
-import * as image from "../../public/images/logo.png";
+import * as logo from "../../public/images/logo.png";
+import * as userImage from "../../public/images/placeholder-avatar.jpg";
 import Image from "next/image";
 import Link from "next/link";
 const Logo = ({ logoImage }) => {
@@ -24,11 +24,27 @@ const Logo = ({ logoImage }) => {
     </h2>
   );
 };
+
+const Login = ({ login, username, profileImage }) => {
+  const logging = login ? (
+    <div className={navbarStyle.rightSide}>
+      <img
+        src={
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQwWMJbZoZ26ZyYB8M-1e7OLBVUWXRLNSO6A&usqp=CAU"
+        }
+      />
+      <p>{username}</p>
+    </div>
+  ) : (
+    <p className={navbarStyle.rightSide}>Login</p>
+  );
+  return logging;
+};
 export default function Navbar() {
   return (
     <div className={navbarStyle.navbarContainer}>
       <div className={navbarStyle.leftSide}>
-        <Logo logoImage={image} />
+        <Logo logoImage={logo} />
         <ul className={navbarStyle.navItemsContainer}>
           <li className={navbarStyle.navItem}>
             <Link href="/">
@@ -47,7 +63,7 @@ export default function Navbar() {
           </li>
         </ul>
       </div>
-      <div className={navbarStyle.rightSide}>image</div>
+      <Login login={true} username={"osama hayyan"} profileImage={userImage} />
     </div>
   );
 }
