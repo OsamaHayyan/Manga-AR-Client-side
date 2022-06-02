@@ -1,61 +1,82 @@
 import { Button } from "@mui/material";
 import axios from "axios";
+import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
-import { Form } from "react-bootstrap";
 import validator from "validator";
 import * as userLogin from "../../styles/login.module.css";
 
 export default function Login() {
   const email = useRef("");
   const password = useRef("");
+  const router = useRouter();
 
   const [valid, setValid] = useState({
     emailValid: true,
     password: true,
   });
-  const handleSubmet = (e) => {
+  const [serverAccept, setServerAccept] = useState(true);
+  const handleSubmet = async (e) => {
     e.preventDefault();
 
-    let checkValidation = validation(
-      email.current.value,
-      password.current.value
-    );
-    if (!checkValidation) {
-      const formData = new FormData();
-      formData.append("email", email.current.value);
-      formData.append("password", password.current.value);
-
-      axios
-        .post("http://localhost:8080/user/signup", formData)
-        .then((result) => {
-          console.log(result);
-        })
-        .catch((error) => {
-          console.log(`error: ${error}`);
-        });
-      console.log("submeted");
-    } else {
-      console.log("not submitted");
+    try {
+      let checkValidation = await validation(
+        email.current.value,
+        password.current.value
+      );
+      if (!checkValidation) {
+        let res = await axios.post(
+          "http://localhost:8080/user/login",
+          {
+            email: email.current.value,
+            password: password.current.value,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        router.replace("/library");
+        console.log("submeted");
+      } else {
+        console.log("not submitted");
+      }
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        setServerAccept(false);
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error", error.message);
+      }
     }
   };
 
-  const validation = (email, password) => {
-    setValid({
-      ...valid,
-      emailValid: validator.isEmail(email),
-      password: validator.isStrongPassword(password, { minUppercase: 0 }),
-    });
+  const validation = async (email, password) => {
+    try {
+      setValid({
+        emailValid: validator.isEmail(email),
+        password: validator.isStrongPassword(password, { minUppercase: 0 }),
+      });
+      setServerAccept(true);
 
-    if (Object.values(valid).includes(false)) {
-      return true;
+      if (Object.values(valid).includes(false)) {
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.log("error: " + error);
     }
-    return false;
   };
 
   return (
     <>
-      {!valid.emailValid || !valid.password ? (
+      {!valid.emailValid || !valid.password || !serverAccept ? (
         <span className={userLogin.errorValidation}>
           Your email or password is incorrect
         </span>

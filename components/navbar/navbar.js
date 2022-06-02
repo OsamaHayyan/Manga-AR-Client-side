@@ -5,6 +5,7 @@ import * as userImage from "../../public/images/placeholder-avatar.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import { ClickAwayListener } from "@mui/material";
+import axios from "axios";
 
 const Logo = ({ logoImage }) => {
   if (logoImage) {
@@ -27,6 +28,14 @@ const Logo = ({ logoImage }) => {
   );
 };
 
+const handleLogout = async () => {
+  try {
+    let res = await axios.get("http://localhost:8080/user/logout");
+    console.log(res.data);
+  } catch (error) {
+    console.log(error.response.data);
+  }
+};
 const Login = ({ login, username, profileImage }) => {
   let [loginClicked, setLogin] = useState(false);
 
@@ -66,9 +75,17 @@ const Login = ({ login, username, profileImage }) => {
       </div>
     </ClickAwayListener>
   ) : (
-    <Link href="/user/login">
-      <p className={`${navbarStyle.rightSide} ${navbarStyle.login}`}>Login</p>
-    </Link>
+    <>
+      <Link href="/user/login">
+        <p className={`${navbarStyle.rightSide} ${navbarStyle.login}`}>Login</p>
+      </Link>
+      <p
+        className={`${navbarStyle.rightSide} ${navbarStyle.login}`}
+        onClick={handleLogout}
+      >
+        Logout
+      </p>
+    </>
   );
   return logging;
 };
