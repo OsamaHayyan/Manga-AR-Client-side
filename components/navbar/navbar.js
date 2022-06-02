@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ClickAwayListener } from "@mui/material";
 import axios from "axios";
+import Cookies from "universal-cookie";
 
 const Logo = ({ logoImage }) => {
   if (logoImage) {
@@ -30,10 +31,11 @@ const Logo = ({ logoImage }) => {
 
 const handleLogout = async () => {
   try {
+    const cookies = new Cookies();
     let res = await axios.get("http://localhost:8080/user/logout", {
       withCredentials: true,
     });
-    console.log(res.data);
+    cookies.remove("logged_in");
   } catch (error) {
     console.log(error.response.data);
   }

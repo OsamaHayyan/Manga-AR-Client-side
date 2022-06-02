@@ -2,15 +2,17 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import Cookies from "universal-cookie";
 import validator from "validator";
+
 import * as userLogin from "../../styles/login.module.css";
 
 export default function Login() {
   const email = useRef("");
   const password = useRef("");
   const router = useRouter();
-
+  const cookies = new Cookies();
   const [valid, setValid] = useState({
     emailValid: true,
     password: true,
@@ -25,7 +27,7 @@ export default function Login() {
         password.current.value
       );
       if (!checkValidation) {
-        let res = await axios.post(
+        await axios.post(
           "http://localhost:8080/user/login",
           {
             email: email.current.value,
@@ -35,6 +37,7 @@ export default function Login() {
             withCredentials: true,
           }
         );
+        cookies.set("logged_in", true);
         router.replace("/library");
         console.log("submeted");
       } else {
