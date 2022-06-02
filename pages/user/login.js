@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import axios from "axios";
+import Link from "next/link";
 import React, { useRef, useState } from "react";
 import { Form } from "react-bootstrap";
 import validator from "validator";
@@ -95,6 +96,12 @@ export default function Login() {
           >
             Login
           </Button>
+          <p className={userLogin.signupLink}>
+            Dont't have account?{" "}
+            <Link href="/user/signup">
+              <a style={{ color: "#0a58ca" }}>Sign up</a>
+            </Link>
+          </p>
         </div>
       </form>
     </>
