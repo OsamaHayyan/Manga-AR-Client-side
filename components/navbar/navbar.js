@@ -30,7 +30,9 @@ const Logo = ({ logoImage }) => {
 
 const handleLogout = async () => {
   try {
-    let res = await axios.get("http://localhost:8080/user/logout");
+    let res = await axios.get("http://localhost:8080/user/logout", {
+      withCredentials: true,
+    });
     console.log(res.data);
   } catch (error) {
     console.log(error.response.data);
