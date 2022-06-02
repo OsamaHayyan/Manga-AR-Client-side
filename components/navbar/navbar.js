@@ -66,7 +66,9 @@ const Login = ({ login, username, profileImage }) => {
       </div>
     </ClickAwayListener>
   ) : (
-    <p className={navbarStyle.rightSide}>Login</p>
+    <Link href="/user/login">
+      <p className={`${navbarStyle.rightSide} ${navbarStyle.login}`}>Login</p>
+    </Link>
   );
   return logging;
 };
@@ -93,7 +95,7 @@ export default function Navbar() {
           </li>
         </ul>
       </div>
-      <Login login={true} username={"osama hayyan"} profileImage={userImage} />
+      <Login login={false} username={"osama hayyan"} profileImage={userImage} />
     </div>
   );
 }
