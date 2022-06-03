@@ -8,7 +8,7 @@ import validator from "validator";
 
 import * as userLogin from "../../styles/login.module.css";
 
-export default function Login() {
+export default function Login({ handleLoginState }) {
   const email = useRef("");
   const password = useRef("");
   const router = useRouter();
@@ -37,8 +37,10 @@ export default function Login() {
             withCredentials: true,
           }
         );
-        cookies.set("logged_in", true);
-        router.replace("/library");
+        cookies.set("logged_in", "true");
+        await router.replace("/library");
+        handleLoginState(true);
+
         console.log("submeted");
       } else {
         console.log("not submitted");
