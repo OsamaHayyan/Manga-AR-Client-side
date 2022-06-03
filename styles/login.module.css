@@ -38,8 +38,8 @@
 }
 
 .submit {
-  margin: auto;
-  margin-top: 40px;
+  margin: auto !important;
+  margin-top: 40px !important;
   width: 80%;
 }
 
