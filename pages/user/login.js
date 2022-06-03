@@ -37,7 +37,10 @@ export default function Login({ handleLoginState }) {
             withCredentials: true,
           }
         );
-        cookies.set("logged_in", "true");
+        cookies.set("logged_in", "true", {
+          // expire in 3h
+          expires: new Date(Date.now() + 3 * (60 * 60 * 1000)),
+        });
         await router.replace("/library");
         handleLoginState(true);
 
