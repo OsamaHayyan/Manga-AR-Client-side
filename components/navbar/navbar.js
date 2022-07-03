@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ClickAwayListener } from "@mui/material";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Navbar({ checkLogin, handleLoginState }) {
   const cookies = new Cookies();
@@ -34,13 +35,31 @@ export default function Navbar({ checkLogin, handleLoginState }) {
 
   const handleLogout = async () => {
     try {
-      let res = await axios.get("http://localhost:8080/user/logout", {
+      cookies.remove("logged_in");
+      await handleLoginState(false);
+      await axios.get("http://localhost:8080/user/logout", {
         withCredentials: true,
       });
-      cookies.remove("logged_in");
-      handleLoginState(false);
     } catch (error) {
-      console.log(error.response.data);
+      cookies.set("logged_in", "true");
+      await handleLoginState(true);
+      toast.error("Can't logout try again, please!", {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      if (error.response) {
+        console.log(error.response.data);
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log("Error", error.message ? error.message : error);
+      }
     }
   };
 

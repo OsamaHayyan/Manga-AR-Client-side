@@ -1,8 +1,10 @@
 import "bootstrap/dist/css/bootstrap.css";
+import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import Cookies from "universal-cookie";
 import Navbar from "../components/navbar/navbar";
 import "../styles/globals.css";
+import { ToastContainer } from "react-toastify";
 
 function MyApp({ Component, pageProps }) {
   const cookies = new Cookies();
@@ -13,6 +15,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Navbar checkLogin={checkLogin} handleLoginState={setLogin} />
       <Component handleLoginState={setLogin} {...pageProps} />
+      <ToastContainer />
     </>
   );
 }
