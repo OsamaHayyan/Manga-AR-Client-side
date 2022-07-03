@@ -43,15 +43,7 @@ export default function Navbar({ checkLogin, handleLoginState }) {
     } catch (error) {
       cookies.set("logged_in", "true");
       await handleLoginState(true);
-      toast.error("Can't logout try again, please!", {
-        position: "bottom-right",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.error("Can't logout try again, please!");
 
       if (error.response) {
         console.log(error.response.data);

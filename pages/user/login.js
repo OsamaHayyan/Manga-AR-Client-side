@@ -3,6 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
 import Cookies from "universal-cookie";
 import validator from "validator";
 
@@ -45,24 +46,27 @@ export default function Login({ handleLoginState }) {
         });
         await router.replace("/library");
         handleLoginState(true);
-        setDisable(false);
         console.log("submeted");
       } else {
-        setDisable(false);
         console.log("not submitted");
       }
+      setDisable(false);
     } catch (error) {
+      setDisable(false);
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
+        toast.error("Your email or password is incorrect");
         setServerAccept(false);
       } else if (error.request) {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
         // http.ClientRequest in node.js
+        toast.error("Can't login try again, please!");
         console.log(error.request);
       } else {
         // Something happened in setting up the request that triggered an Error
+        toast.error("Can't login try again, please!");
         console.log("Error", error.message);
       }
     }
