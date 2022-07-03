@@ -18,10 +18,12 @@ export default function Login({ handleLoginState }) {
     password: true,
   });
   const [serverAccept, setServerAccept] = useState(true);
+  const [disable, setDisable] = useState(false);
   const handleSubmet = async (e) => {
     e.preventDefault();
 
     try {
+      setDisable(true);
       let checkValidation = await validation(
         email.current.value,
         password.current.value
@@ -43,9 +45,10 @@ export default function Login({ handleLoginState }) {
         });
         await router.replace("/library");
         handleLoginState(true);
-
+        setDisable(false);
         console.log("submeted");
       } else {
+        setDisable(false);
         console.log("not submitted");
       }
     } catch (error) {
@@ -118,6 +121,7 @@ export default function Login({ handleLoginState }) {
           />
 
           <Button
+            disabled={disable ? true : false}
             className={userLogin.submit}
             type="submit"
             variant="contained"
