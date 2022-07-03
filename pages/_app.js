@@ -2,20 +2,15 @@ import "bootstrap/dist/css/bootstrap.css";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import App from "next/app";
-import Navbar from "../components/navbar/navbar";
 import "../styles/globals.css";
 import Layout from "../components/layout";
-import { ToastContainer } from "react-toastify";
 
 function MyApp({ Component, pageProps, request }) {
-  console.log(request);
   const [checkLogin, setLogin] = useState(request);
   return (
-    <>
-      <Navbar checkLogin={checkLogin} handleLoginState={setLogin} />
+    <Layout checkLogin={checkLogin} setLogin={setLogin}>
       <Component handleLoginState={setLogin} {...pageProps} />
-      <ToastContainer />
-    </>
+    </Layout>
   );
 }
 
