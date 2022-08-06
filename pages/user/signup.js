@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { Form } from "react-bootstrap";
+import { toast } from "react-toastify";
 import validator from "validator";
 import * as userSignup from "../../styles/signup.module.css";
 export default function Signup() {
@@ -18,7 +19,7 @@ export default function Signup() {
     profileImage: true,
     profileImageData: null,
   });
-  const handleSubmet = (e) => {
+  const handleSubmet = async (e) => {
     e.preventDefault();
 
     let checkValidation = validation(
@@ -27,6 +28,7 @@ export default function Signup() {
       password.current.value,
       confirmPassword.current.value
     );
+
     if (!checkValidation) {
       const formData = new FormData();
       formData.append("username", username.current.value);
@@ -47,7 +49,21 @@ export default function Signup() {
           console.log(result);
         })
         .catch((error) => {
-          console.log(`error: ${error}`);
+          if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            error.response.data.data.forEach((data) => {
+              toast.error(data.msg);
+            });
+          } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+            // http.ClientRequest in node.js
+            toast.error("Can't Signup try again, please!");
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            toast.error("Can't Signup try again, please!");
+          }
         });
       console.log("submeted");
     } else {
@@ -56,15 +72,21 @@ export default function Signup() {
   };
 
   const validation = (username, email, password, confirmPassword) => {
-    setValid({
-      ...valid,
+    const dataValid = {
       usernameValid: validator.isLength(username, { min: 4, max: 15 }),
       emailValid: validator.isEmail(email),
       password: validator.isStrongPassword(password, { minUppercase: 0 }),
       confirmPassword: validator.equals(confirmPassword, password),
+    };
+    setValid({
+      ...valid,
+      usernameValid: dataValid.usernameValid,
+      emailValid: dataValid.emailValid,
+      password: dataValid.password,
+      confirmPassword: dataValid.confirmPassword,
     });
 
-    if (Object.values(valid).includes(false)) {
+    if (Object.values(dataValid).includes(false)) {
       return true;
     }
     return false;
