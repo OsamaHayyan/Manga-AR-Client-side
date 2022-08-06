@@ -4,6 +4,7 @@
 }
 
 .navbarContainer {
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,7 +14,10 @@
   box-shadow: 0 2px 5px 3px rgb(0 0 0 / 39%);
   -webkit-box-shadow: 0 2px 5px 3px rgb(0 0 0 / 39%);
   -moz-box-shadow: 0 2px 5px 3px rgb(0 0 0 / 39%);
-  z-index: 10;
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
 }
 
 .leftSide {
