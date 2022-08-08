@@ -15,9 +15,7 @@
   -webkit-box-shadow: 0 2px 5px 3px rgb(0 0 0 / 39%);
   -moz-box-shadow: 0 2px 5px 3px rgb(0 0 0 / 39%);
   position: relative;
-  top: 0;
-  right: 0;
-  left: 0;
+  z-index: 1000;
 }
 
 .leftSide {
