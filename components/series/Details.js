@@ -16,6 +16,7 @@ import { animateScroll, Element, Link } from "react-scroll";
 import Abbreviate_Numbers from "../abbreviate_numbers";
 import Expand from "../expand";
 import { useRouter } from "next/dist/client/router";
+import Favorite from "./favorite";
 
 export default function Details({ manga }) {
   const router = useRouter();
@@ -141,6 +142,7 @@ export default function Details({ manga }) {
           </div>
         </Col>
       </Row>
+      <Favorite />
     </Container>
   );
 }

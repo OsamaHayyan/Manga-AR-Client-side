@@ -35,7 +35,6 @@ export default function Manga({
             }
           ></div>
           <Details manga={{ ...mangaData, chapters: null }} />
-          <Favorite />
           <Chapters
             handleHide={setHide}
             hide={hide}

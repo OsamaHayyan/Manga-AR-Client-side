@@ -3,7 +3,9 @@
 }
 
 html,
-body {
+body,
+main {
+  height: 100%;
   padding: 0;
   margin: 0;
   /* font-family: "Changa One", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
