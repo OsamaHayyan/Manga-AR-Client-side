@@ -8,10 +8,11 @@ import { ClickAwayListener } from "@mui/material";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { toast, ToastContainer } from "react-toastify";
+import { useRouter } from "next/dist/client/router";
 
 export default function Navbar({ checkLogin, handleLoginState }) {
   const cookies = new Cookies();
-
+  const { pathname } = useRouter();
   const Logo = ({ logoImage }) => {
     if (logoImage) {
       return (
@@ -105,32 +106,77 @@ export default function Navbar({ checkLogin, handleLoginState }) {
   };
 
   return (
-    <div className={navbarStyle.navbarContainer}>
-      <div className={navbarStyle.leftSide}>
-        <Logo logoImage={logo} />
-        <ul className={navbarStyle.navItemsContainer}>
-          <li className={navbarStyle.navItem}>
+    <>
+      <div className={navbarStyle.navbarContainer}>
+        <div className={navbarStyle.leftSide}>
+          <Logo logoImage={logo} />
+          <ul className={navbarStyle.navItemsContainer}>
+            <li
+              className={`${navbarStyle.navItem} ${
+                pathname == "/" ? navbarStyle.navItemActive : ""
+              }`}
+            >
+              <Link href="/">
+                <a>Home</a>
+              </Link>
+            </li>
+            <li
+              className={`${navbarStyle.navItem} ${
+                pathname == "/library" ? navbarStyle.navItemActive : ""
+              }`}
+            >
+              <Link href="/library">
+                <a>library</a>
+              </Link>
+            </li>
+            <li
+              className={`${navbarStyle.navItem} ${
+                pathname == "/news" ? navbarStyle.navItemActive : ""
+              }`}
+            >
+              <Link href="/news">
+                <a>News</a>
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <Login
+          login={checkLogin}
+          username={"osama hayyan"}
+          profileImage={userImage}
+        />
+      </div>
+      <div className={navbarStyle.navbarContainerMobile}>
+        <ul className={navbarStyle.navItemsContainerMobile}>
+          <li
+            className={`${navbarStyle.navItem} ${
+              pathname == "/" ? navbarStyle.navItemActive : ""
+            }`}
+          >
             <Link href="/">
               <a>Home</a>
             </Link>
           </li>
-          <li className={navbarStyle.navItem}>
+          <li
+            className={`${navbarStyle.navItem} ${
+              pathname == "/library" ? navbarStyle.navItemActive : ""
+            }`}
+          >
             <Link href="/library">
               <a>library</a>
             </Link>
           </li>
-          <li className={navbarStyle.navItem}>
+          <li
+            className={`${navbarStyle.navItem} ${
+              pathname == "/news" ? navbarStyle.navItemActive : ""
+            }`}
+          >
             <Link href="/news">
               <a>News</a>
             </Link>
           </li>
         </ul>
       </div>
-      <Login
-        login={checkLogin}
-        username={"osama hayyan"}
-        profileImage={userImage}
-      />
-    </div>
+    </>
   );
 }

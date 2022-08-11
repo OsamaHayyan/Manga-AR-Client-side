@@ -54,3 +54,7 @@ p {
 .taps-container {
   position: relative;
 }
+
+a:hover {
+  color: inherit;
+}
