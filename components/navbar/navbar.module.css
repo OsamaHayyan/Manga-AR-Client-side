@@ -177,6 +177,14 @@
   height: 48px;
   width: 100%;
   margin: 5px;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 8px;
+}
+
+.result:hover,
+.result:active {
+  background-color: #8b8b8b7c;
+  cursor: pointer;
 }
 .resultImg {
   margin-right: 5px;
