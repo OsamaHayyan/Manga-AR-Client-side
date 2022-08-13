@@ -46,6 +46,11 @@ p {
   margin: 0;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 .taps-container > .active {
   border-bottom: 3px solid #ff5b3b !important;
   transition: unset;

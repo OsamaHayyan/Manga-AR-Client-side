@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as navbarStyle from "./navbar.module.css";
 import * as logo from "../../public/images/logo.png";
 import * as userImage from "../../public/images/placeholder-avatar.jpg";
@@ -8,11 +8,16 @@ import { ClickAwayListener } from "@mui/material";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { toast, ToastContainer } from "react-toastify";
+import { FaSearch } from "react-icons/fa";
+import { AiOutlineSearch } from "react-icons/ai";
+
 import { useRouter } from "next/dist/client/router";
 
 export default function Navbar({ checkLogin, handleLoginState }) {
   const cookies = new Cookies();
   const { pathname } = useRouter();
+  const [openResult, setResult] = useState(false);
+  const dropdown = useRef(null);
   const Logo = ({ logoImage }) => {
     if (logoImage) {
       return (
@@ -59,40 +64,49 @@ export default function Navbar({ checkLogin, handleLoginState }) {
   const Login = ({ login, username, profileImage }) => {
     let [loginClicked, setLogin] = useState(false);
     const logging = login ? (
-      <ClickAwayListener onClickAway={() => setLogin(false)}>
-        <div
-          className={navbarStyle.rightSide}
-          onClick={() => setLogin(!loginClicked)}
-        >
-          <img
-            src={
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQwWMJbZoZ26ZyYB8M-1e7OLBVUWXRLNSO6A&usqp=CAU"
-            }
-          />
-          <p>{username}</p>
-          <ul
-            className={`${navbarStyle.userOption} ${
-              loginClicked ? navbarStyle.userOptionClicked : null
-            }`}
+      <>
+        <ClickAwayListener onClickAway={() => setLogin(false)}>
+          <div
+            className={navbarStyle.rightSide}
+            onClick={() => setLogin(!loginClicked)}
           >
-            <li>
-              <Link href="#">
-                <a>Profile</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="#">
-                <a>Dashboard</a>
-              </Link>
-            </li>
-            <li onClick={handleLogout}>
-              <Link href="#">
-                <a>Logout</a>
-              </Link>
-            </li>
-          </ul>
+            <img
+              src={
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQwWMJbZoZ26ZyYB8M-1e7OLBVUWXRLNSO6A&usqp=CAU"
+              }
+            />
+            <p>{username}</p>
+            <ul
+              className={`${navbarStyle.userOption} ${
+                loginClicked ? navbarStyle.userOptionClicked : null
+              }`}
+            >
+              <li>
+                <Link href="#">
+                  <a>Profile</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="#">
+                  <a>Dashboard</a>
+                </Link>
+              </li>
+              <li onClick={handleLogout}>
+                <Link href="#">
+                  <a>Logout</a>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </ClickAwayListener>
+        <div className={navbarStyle.rightSideMobile}>
+          <FaSearch className={navbarStyle.searchMobile} />
+          <div className={navbarStyle.line}></div>
+          <div className={navbarStyle.profileMobile}>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQwWMJbZoZ26ZyYB8M-1e7OLBVUWXRLNSO6A&usqp=CAU" />
+          </div>
         </div>
-      </ClickAwayListener>
+      </>
     ) : (
       <>
         <Link href="/user/login">
@@ -104,6 +118,28 @@ export default function Navbar({ checkLogin, handleLoginState }) {
     );
     return logging;
   };
+
+  const handleSearch = (e) => {
+    //rest of code here
+    e.preventDefault();
+    const input = e.target.value;
+    if (input.length < 3) return setResult(false);
+    return setResult(true);
+  };
+
+  useEffect(() => {
+    if (openResult == false) return;
+
+    const handleClick = (e) => {
+      if (dropdown.current && !dropdown.current.contains(e.target)) {
+        setResult(false);
+      }
+    };
+    console.log("osama");
+    window.addEventListener("click", handleClick);
+    //cleanup
+    return () => window.removeEventListener("click", handleClick);
+  }, [openResult]);
 
   return (
     <>
@@ -140,12 +176,54 @@ export default function Navbar({ checkLogin, handleLoginState }) {
             </li>
           </ul>
         </div>
+        <div
+          className={navbarStyle.searchBar}
+          onInput={handleSearch}
+          ref={dropdown}
+        >
+          <input
+            className={navbarStyle.searchInput}
+            type={"search"}
+            placeholder="please type your manga name"
+          />
+          <div className={navbarStyle.searchIcon}>
+            <AiOutlineSearch />
+          </div>
+          <ul
+            className={`${navbarStyle.resultsContainer} `}
+            style={openResult ? { visibility: "visible", opacity: 1 } : {}}
+          >
+            <li className={navbarStyle.result}>
+              <img
+                className={navbarStyle.resultImg}
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQwWMJbZoZ26ZyYB8M-1e7OLBVUWXRLNSO6A&usqp=CAU"
+              />
+              <p>manga name</p>
+            </li>
+            <li className={navbarStyle.result}>
+              <img
+                className={navbarStyle.resultImg}
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQwWMJbZoZ26ZyYB8M-1e7OLBVUWXRLNSO6A&usqp=CAU"
+              />
+              <p>manga name</p>
+            </li>
+            <li className={navbarStyle.result}>
+              <img
+                className={navbarStyle.resultImg}
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQwWMJbZoZ26ZyYB8M-1e7OLBVUWXRLNSO6A&usqp=CAU"
+              />
+              <p>manga name</p>
+            </li>
+          </ul>
+        </div>
         <Login
           login={checkLogin}
           username={"osama hayyan"}
           profileImage={userImage}
         />
       </div>
+
+      {/* Mobile navbar design */}
       <div className={navbarStyle.navbarContainerMobile}>
         <ul className={navbarStyle.navItemsContainerMobile}>
           <li
