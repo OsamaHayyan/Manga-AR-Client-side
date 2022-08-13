@@ -149,6 +149,7 @@ export default function Navbar({ checkLogin, handleLoginState }) {
 
     const handleClick = (e) => {
       if (dropdown.current && !dropdown.current.contains(e.target)) {
+        dropdown.current.children[0].value = "";
         setResult(false);
       }
     };
