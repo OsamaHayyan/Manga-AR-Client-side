@@ -181,6 +181,8 @@
 .resultImg {
   margin-right: 5px;
   height: 100%;
+  width: 35px;
+  object-fit: cover;
   border-radius: 8px;
 }
 
