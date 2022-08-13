@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import axios from "axios";
@@ -35,6 +35,10 @@ export default function Details({ manga }) {
   const handleStory = () => {
     setExpand(!expand);
   };
+
+  useEffect(() => {
+    setManga(manga);
+  }, [manga]);
 
   return (
     <Container fluid className={details.container}>

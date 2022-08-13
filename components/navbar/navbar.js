@@ -15,7 +15,7 @@ import { useRouter } from "next/dist/client/router";
 
 export default function Navbar({ checkLogin, handleLoginState }) {
   const cookies = new Cookies();
-  const { pathname } = useRouter();
+  const { pathname, push } = useRouter();
   const [openResult, setResult] = useState(false);
   const [results, setResults] = useState("");
   const dropdown = useRef(null);
@@ -144,6 +144,15 @@ export default function Navbar({ checkLogin, handleLoginState }) {
     }
   };
 
+  const handleClickSearch = async (e, mangaId, title) => {
+    try {
+      setResult(false);
+      dropdown.current.children[0].value = "";
+      return push(`/series/${title}/${mangaId}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     if (openResult == false) return;
 
@@ -213,7 +222,11 @@ export default function Navbar({ checkLogin, handleLoginState }) {
           >
             {results &&
               results.map((manga) => (
-                <li key={manga.title} className={navbarStyle.result}>
+                <li
+                  key={manga.title}
+                  className={navbarStyle.result}
+                  onClick={(e) => handleClickSearch(e, manga._id, manga.title)}
+                >
                   <img
                     className={navbarStyle.resultImg}
                     src={`http://localhost:8080/${manga.image}`}
