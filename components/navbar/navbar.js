@@ -17,6 +17,7 @@ export default function Navbar({ checkLogin, handleLoginState }) {
   const cookies = new Cookies();
   const { pathname } = useRouter();
   const [openResult, setResult] = useState(false);
+  const [results, setResults] = useState("");
   const dropdown = useRef(null);
   const Logo = ({ logoImage }) => {
     if (logoImage) {
@@ -119,12 +120,28 @@ export default function Navbar({ checkLogin, handleLoginState }) {
     return logging;
   };
 
-  const handleSearch = (e) => {
-    //rest of code here
-    e.preventDefault();
-    const input = e.target.value;
-    if (input.length < 3) return setResult(false);
-    return setResult(true);
+  let timer;
+  const handleSearch = async (e) => {
+    try {
+      e.preventDefault();
+      clearTimeout(timer);
+      timer = setTimeout(async () => {
+        const input = e.target.value;
+        if (input.length < 3) return setResult(false);
+
+        const result = await (
+          await axios.post("http://localhost:8080/mangas/search-manga/", {
+            query: input,
+          })
+        ).data;
+
+        console.log(result);
+        setResults(result);
+        return setResult(true);
+      }, 300);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -183,7 +200,7 @@ export default function Navbar({ checkLogin, handleLoginState }) {
         >
           <input
             className={navbarStyle.searchInput}
-            type={"search"}
+            type={"text"}
             placeholder="please type your manga name"
           />
           <div className={navbarStyle.searchIcon}>
@@ -193,27 +210,16 @@ export default function Navbar({ checkLogin, handleLoginState }) {
             className={`${navbarStyle.resultsContainer} `}
             style={openResult ? { visibility: "visible", opacity: 1 } : {}}
           >
-            <li className={navbarStyle.result}>
-              <img
-                className={navbarStyle.resultImg}
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQwWMJbZoZ26ZyYB8M-1e7OLBVUWXRLNSO6A&usqp=CAU"
-              />
-              <p>manga name</p>
-            </li>
-            <li className={navbarStyle.result}>
-              <img
-                className={navbarStyle.resultImg}
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQwWMJbZoZ26ZyYB8M-1e7OLBVUWXRLNSO6A&usqp=CAU"
-              />
-              <p>manga name</p>
-            </li>
-            <li className={navbarStyle.result}>
-              <img
-                className={navbarStyle.resultImg}
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQwWMJbZoZ26ZyYB8M-1e7OLBVUWXRLNSO6A&usqp=CAU"
-              />
-              <p>manga name</p>
-            </li>
+            {results &&
+              results.map((manga) => (
+                <li key={manga.title} className={navbarStyle.result}>
+                  <img
+                    className={navbarStyle.resultImg}
+                    src={`http://localhost:8080/${manga.image}`}
+                  />
+                  <p>{manga.title}</p>
+                </li>
+              ))}
           </ul>
         </div>
         <Login
