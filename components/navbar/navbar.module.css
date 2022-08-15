@@ -205,6 +205,8 @@
   padding: 7px 17px;
   width: auto;
   height: auto;
+  cursor: pointer;
+  border-radius: 8px;
 }
 
 .userOption {

@@ -111,9 +111,7 @@ export default function Navbar({ checkLogin, handleLoginState }) {
     ) : (
       <>
         <Link href="/user/login">
-          <p className={`${navbarStyle.rightSide} ${navbarStyle.login}`}>
-            Login
-          </p>
+          <p className={` ${navbarStyle.login}`}>Login</p>
         </Link>
       </>
     );
