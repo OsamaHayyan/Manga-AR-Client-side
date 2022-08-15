@@ -101,7 +101,10 @@ export default function Navbar({ checkLogin, handleLoginState }) {
           </div>
         </ClickAwayListener>
         <div className={navbarStyle.rightSideMobile}>
-          <FaSearch className={navbarStyle.searchMobile} />
+          <FaSearch
+            className={navbarStyle.searchMobile}
+            onClick={() => push("/search")}
+          />
           <div className={navbarStyle.line}></div>
           <div className={navbarStyle.profileMobile}>
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQwWMJbZoZ26ZyYB8M-1e7OLBVUWXRLNSO6A&usqp=CAU" />
