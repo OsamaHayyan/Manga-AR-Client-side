@@ -44,9 +44,9 @@ export default function Login({ handleLoginState }) {
           // expire in 3h
           expires: new Date(Date.now() + 3 * (60 * 60 * 1000)),
         });
-        await router.replace("/library");
-        handleLoginState(true);
+        await handleLoginState(true);
         console.log("submeted");
+        router.replace("/library");
       } else {
         console.log("not submitted");
       }
