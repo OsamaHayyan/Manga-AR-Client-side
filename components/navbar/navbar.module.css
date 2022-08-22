@@ -246,7 +246,9 @@
 }
 
 .navbarContainerMobile,
-.rightSideMobile {
+.rightSideMobile,
+.searchMobileLogin,
+.lineLogin {
   display: none;
 }
 
@@ -315,7 +317,8 @@
     display: none;
   }
 
-  .rightSideMobile {
+  .rightSideMobile,
+  .rightSideMobileLogin {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -331,14 +334,18 @@
     max-height: 40px;
     border-radius: 50%;
   }
-  .line {
+  .line,
+  .lineLogin {
+    display: block;
     width: 0;
     height: 32px;
     border-right: 1px solid #303030;
     margin: 0 8px;
   }
 
-  .searchMobile {
+  .searchMobile,
+  .searchMobileLogin {
+    display: block;
     width: 20px;
     height: 20px;
   }

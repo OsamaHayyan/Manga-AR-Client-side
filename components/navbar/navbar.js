@@ -112,11 +112,16 @@ export default function Navbar({ checkLogin, handleLoginState }) {
         </div>
       </>
     ) : (
-      <>
+      <div className={navbarStyle.rightSideMobileLogin}>
+        <FaSearch
+          className={navbarStyle.searchMobileLogin}
+          onClick={() => push("/search")}
+        />
+        <div className={navbarStyle.lineLogin}></div>
         <Link href="/user/login">
           <p className={` ${navbarStyle.login}`}>Login</p>
         </Link>
-      </>
+      </div>
     );
     return logging;
   };
