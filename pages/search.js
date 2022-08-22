@@ -1,8 +1,10 @@
 import axios from "axios";
+import { useRouter } from "next/dist/client/router";
 import React, { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import * as searchStyle from "../styles/search.module.css";
 export default function Search() {
+  const { back } = useRouter();
   const [results, setResults] = useState([]);
   let timer;
   const handleSearch = async (e) => {
@@ -38,7 +40,9 @@ export default function Search() {
           />
         </div>
 
-        <p className={searchStyle.cancel}>cancel</p>
+        <p className={searchStyle.cancel} onClick={() => back()}>
+          Cancel
+        </p>
       </div>
       <ul className={searchStyle.searchList}>
         {results.map((manga) => (
