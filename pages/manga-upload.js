@@ -1,12 +1,5 @@
 import * as mangaUploadStyle from "../styles/mangaupload.module.css";
-import {
-  Autocomplete,
-  CircularProgress,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
+import { Autocomplete, CircularProgress, TextField } from "@mui/material";
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -18,6 +11,8 @@ const MangaUplouds = () => {
     status: ["on going", "finished", "stopped"],
   });
 
+  const [image, setImage] = useState("Upload");
+
   const [loading, setLoading] = useState(false);
   const handleAuthData = async () => {
     if (mangaData.authers.length != 0) return undefined;
@@ -27,11 +22,21 @@ const MangaUplouds = () => {
     setLoading(false);
   };
 
+  const handleImage = async (e) => {
+    setImage(e.target.files[0]);
+  };
+
   return (
     <>
       <div className={mangaUploadStyle.container}>
-        <form>
-          <TextField variant="standard" label="Title" placeholder=" " />
+        <form encType="multipart/form-data">
+          <TextField
+            variant="standard"
+            label="Title"
+            placeholder=" "
+            required
+            helperText={"Please add manga title"}
+          />
           <Autocomplete
             multiple
             loading
@@ -55,6 +60,8 @@ const MangaUplouds = () => {
                     </>
                   ),
                 }}
+                required
+                helperText={"please choose auhters"}
               />
             )}
           />
@@ -67,7 +74,7 @@ const MangaUplouds = () => {
               <TextField
                 {...params}
                 variant="standard"
-                label="Authers"
+                label="Categories"
                 InputProps={{
                   ...params.InputProps,
                   endAdornment: (
@@ -79,6 +86,8 @@ const MangaUplouds = () => {
                     </>
                   ),
                 }}
+                required
+                helperText={"please choose manga categories"}
               />
             )}
           />
@@ -91,7 +100,7 @@ const MangaUplouds = () => {
               <TextField
                 {...params}
                 variant="standard"
-                label="Authers"
+                label="Date"
                 InputProps={{
                   ...params.InputProps,
                   endAdornment: (
@@ -103,6 +112,8 @@ const MangaUplouds = () => {
                     </>
                   ),
                 }}
+                required
+                helperText={"please choose manga publish date"}
               />
             )}
           />
@@ -115,7 +126,7 @@ const MangaUplouds = () => {
               <TextField
                 {...params}
                 variant="standard"
-                label="Authers"
+                label="Status"
                 InputProps={{
                   ...params.InputProps,
                   endAdornment: (
@@ -127,9 +138,22 @@ const MangaUplouds = () => {
                     </>
                   ),
                 }}
+                error={false}
+                required
+                helperText={"please choose manga status"}
               />
             )}
           />
+          <div className="mb-3">
+            <label className="form-label">Manga Image</label>
+            <input
+              className="form-control"
+              type="file"
+              id="formFile"
+              required
+              onChange={handleImage}
+            />
+          </div>
         </form>
       </div>
     </>
