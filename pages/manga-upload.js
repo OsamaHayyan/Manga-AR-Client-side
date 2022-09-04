@@ -1,7 +1,13 @@
 import * as mangaUploadStyle from "../styles/mangaupload.module.css";
-import { Autocomplete, CircularProgress, TextField } from "@mui/material";
+import {
+  Autocomplete,
+  Button,
+  CircularProgress,
+  TextField,
+} from "@mui/material";
 import React, { useState } from "react";
 import axios from "axios";
+import { fontFamily } from "@mui/system";
 
 const MangaUplouds = () => {
   const [mangaData, setMangaData] = useState({
@@ -145,8 +151,20 @@ const MangaUplouds = () => {
             )}
           />
           <div className="mb-3">
-            <label className="form-label">Manga Image</label>
+            <label
+              className="form-label"
+              style={{
+                color: "rgba(0, 0, 0, 0.6)",
+                fontFamily: "Roboto,Helvetica,Arial,sans-serif",
+              }}
+            >
+              Manga Image *
+            </label>
             <input
+              style={{
+                color: "rgba(0, 0, 0, 0.6)",
+                fontFamily: "Roboto,Helvetica,Arial,sans-serif",
+              }}
               className="form-control"
               type="file"
               id="formFile"
@@ -154,6 +172,8 @@ const MangaUplouds = () => {
               onChange={handleImage}
             />
           </div>
+
+          <Button variant="outlined">Outlined</Button>
         </form>
       </div>
     </>
