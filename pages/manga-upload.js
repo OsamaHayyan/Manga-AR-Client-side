@@ -20,20 +20,44 @@ const MangaUplouds = () => {
 
   const [mangaData, setMangaData] = useState({
     authers: [],
-    categories: ["test1"],
+    categories: [],
     date: ["2992"],
     status: ["on going", "finished", "stopped"],
   });
 
   const [imageValidate, setImageValidate] = useState(null);
-
   const [loading, setLoading] = useState(false);
-  const handleAuthData = async () => {
-    if (mangaData.authers.length != 0) return undefined;
-    setLoading(true);
-    let authers = await (await axios.get("http://localhost:8080/test/")).data;
-    setMangaData({ ...mangaData, authers: authers });
-    setLoading(false);
+
+  const compare = (a, b) => {
+    if (a < b) return -1;
+    if (a > b) return 1;
+    return 0;
+  };
+  const handleData = async (id) => {
+    try {
+      if (id === "auther") {
+        if (mangaData.authers.length != 0) return undefined;
+        setLoading(true);
+        let data = await (
+          await axios.get("http://localhost:8080/authers/get-authers")
+        ).data.sort((a, b) => compare(a.autherName, b.autherName));
+        setMangaData({ ...mangaData, authers: data });
+      } else if (id === "category") {
+        if (mangaData.categories.length != 0) return undefined;
+        setLoading(true);
+        let data = await (
+          await axios.get("http://localhost:8080/category/get-cat/")
+        ).data.sort((a, b) => compare(a.category, b.category));
+        setMangaData({ ...mangaData, categories: data });
+      } else if (id === "date") {
+        let date = [];
+        for (let i = 1950; i <= new Date().getFullYear(); i++) {
+          date.unshift(i.toString());
+        }
+        setMangaData({ ...mangaData, date: date });
+      }
+      setLoading(false);
+    } catch (error) {}
   };
 
   const handleImage = async (e) => {
@@ -76,9 +100,10 @@ const MangaUplouds = () => {
                 multiple
                 loading
                 onChange={(_, value) => field.onChange(value)}
-                id="tags-standard"
+                id="auther"
                 options={mangaData.authers}
-                onOpen={handleAuthData}
+                getOptionLabel={(option) => option.autherName}
+                onOpen={(e) => handleData(e.target.id)}
                 onClose={() => setLoading(false)}
                 renderInput={(params) => (
                   <TextField
@@ -114,8 +139,11 @@ const MangaUplouds = () => {
                 multiple
                 loading
                 onChange={(_, value) => field.onChange(value)}
-                id="tags-standard"
+                onOpen={(e) => handleData(e.target.id)}
+                onClose={() => setLoading(false)}
+                id="category"
                 options={mangaData.categories}
+                getOptionLabel={(option) => option.category}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -148,9 +176,10 @@ const MangaUplouds = () => {
             rules={{ required: true }}
             render={({ field }) => (
               <Autocomplete
-                id="tags-standard"
+                id="date"
                 loading
                 onChange={(_, value) => field.onChange(value)}
+                onOpen={(e) => handleData(e.target.id)}
                 options={mangaData.date}
                 renderInput={(params) => (
                   <TextField
@@ -183,7 +212,7 @@ const MangaUplouds = () => {
             rules={{ required: true }}
             render={({ field }) => (
               <Autocomplete
-                id="tags-standard"
+                id="status"
                 loading
                 onChange={(_, value) => field.onChange(value)}
                 options={mangaData.status}
@@ -236,7 +265,10 @@ const MangaUplouds = () => {
               onChange={handleImage}
             />
             {errors.image != undefined || imageValidate != null ? (
-              <div class="invalid-feedback" style={{ display: "block" }}>
+              <div
+                className="invalid-feedback"
+                style={{ display: "block", fontSize: "0.75rem" }}
+              >
                 Please upload a valid image.
               </div>
             ) : null}
