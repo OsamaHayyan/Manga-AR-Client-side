@@ -332,7 +332,7 @@ const MangaUplouds = () => {
               Story *
             </label>
             <textarea
-              {...register("story", { required: true })}
+              {...register("story", { required: true, minLength: 10 })}
               style={{
                 fontFamily: "Roboto,Helvetica,Arial,sans-serif",
               }}
