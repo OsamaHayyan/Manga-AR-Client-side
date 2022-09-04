@@ -73,7 +73,21 @@ const MangaUplouds = () => {
     clearErrors("image");
   };
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      let formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("status", data.status);
+      formData.append("date", data.date);
+      formData.append("auther", data.auther);
+      formData.append("category", data.category);
+      formData.append("story", data.story);
+      formData.append("image", data.image[0]);
+      if (data.banner) formData.append("banner", data.banner[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
