@@ -7,17 +7,25 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import axios from "axios";
-import { fontFamily } from "@mui/system";
+import { Controller, useForm } from "react-hook-form";
 
 const MangaUplouds = () => {
+  const {
+    register,
+    clearErrors,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
+
   const [mangaData, setMangaData] = useState({
     authers: [],
-    categories: [],
-    date: [],
+    categories: ["test1"],
+    date: ["2992"],
     status: ["on going", "finished", "stopped"],
   });
 
-  const [image, setImage] = useState("Upload");
+  const [imageValidate, setImageValidate] = useState(null);
 
   const [loading, setLoading] = useState(false);
   const handleAuthData = async () => {
@@ -28,128 +36,172 @@ const MangaUplouds = () => {
     setLoading(false);
   };
 
-  const handleImage = async (e) => {
-    setImage(e.target.files[0]);
-  };
+  const handleImage = async (e) => {};
+
+  const onSubmit = (data) => console.log(data);
 
   return (
     <>
       <div className={mangaUploadStyle.container}>
-        <form encType="multipart/form-data">
+        <form
+          encType="multipart/form-data"
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+        >
           <TextField
+            {...register("title", { required: true })}
+            error={errors.title ? true : false}
             variant="standard"
             label="Title"
             placeholder=" "
-            required
-            helperText={"Please add manga title"}
+            helperText={errors.title ? "Please add manga title" : null}
           />
-          <Autocomplete
-            multiple
-            loading
-            id="tags-standard"
-            options={mangaData.authers}
-            onOpen={handleAuthData}
-            onClose={() => setLoading(false)}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                variant="standard"
-                label="Authers"
-                InputProps={{
-                  ...params.InputProps,
-                  endAdornment: (
-                    <>
-                      {loading ? (
-                        <CircularProgress color="inherit" size={20} />
-                      ) : null}
-                      {params.InputProps.endAdornment}
-                    </>
-                  ),
-                }}
-                required
-                helperText={"please choose auhters"}
-              />
-            )}
-          />
-          <Autocomplete
-            multiple
-            loading
-            id="tags-standard"
-            options={mangaData.categories}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                variant="standard"
-                label="Categories"
-                InputProps={{
-                  ...params.InputProps,
-                  endAdornment: (
-                    <>
-                      {loading ? (
-                        <CircularProgress color="inherit" size={20} />
-                      ) : null}
-                      {params.InputProps.endAdornment}
-                    </>
-                  ),
-                }}
-                required
-                helperText={"please choose manga categories"}
+          <Controller
+            name="auther"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Autocomplete
+                multiple
+                loading
+                onChange={(_, value) => field.onChange(value)}
+                id="tags-standard"
+                options={mangaData.authers}
+                onOpen={handleAuthData}
+                onClose={() => setLoading(false)}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    onChange={(e) => console.log(e)}
+                    error={errors.auther ? true : false}
+                    variant="standard"
+                    label="Authers"
+                    InputProps={{
+                      ...params.InputProps,
+                      endAdornment: (
+                        <>
+                          {loading ? (
+                            <CircularProgress color="inherit" size={20} />
+                          ) : null}
+                          {params.InputProps.endAdornment}
+                        </>
+                      ),
+                    }}
+                    helperText={errors.auther ? "please choose auhters" : null}
+                  />
+                )}
               />
             )}
           />
 
-          <Autocomplete
-            id="tags-standard"
-            loading
-            options={mangaData.date}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                variant="standard"
-                label="Date"
-                InputProps={{
-                  ...params.InputProps,
-                  endAdornment: (
-                    <>
-                      {loading ? (
-                        <CircularProgress color="inherit" size={20} />
-                      ) : null}
-                      {params.InputProps.endAdornment}
-                    </>
-                  ),
-                }}
-                required
-                helperText={"please choose manga publish date"}
+          <Controller
+            name="category"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Autocomplete
+                multiple
+                loading
+                onChange={(_, value) => field.onChange(value)}
+                id="tags-standard"
+                options={mangaData.categories}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    error={errors.category ? true : false}
+                    variant="standard"
+                    label="Categories"
+                    InputProps={{
+                      ...params.InputProps,
+                      endAdornment: (
+                        <>
+                          {loading ? (
+                            <CircularProgress color="inherit" size={20} />
+                          ) : null}
+                          {params.InputProps.endAdornment}
+                        </>
+                      ),
+                    }}
+                    helperText={
+                      errors.category ? "please choose manga categories" : null
+                    }
+                  />
+                )}
               />
             )}
           />
 
-          <Autocomplete
-            id="tags-standard"
-            loading
-            options={mangaData.status}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                variant="standard"
-                label="Status"
-                InputProps={{
-                  ...params.InputProps,
-                  endAdornment: (
-                    <>
-                      {loading ? (
-                        <CircularProgress color="inherit" size={20} />
-                      ) : null}
-                      {params.InputProps.endAdornment}
-                    </>
-                  ),
-                }}
-                error={false}
-                required
-                helperText={"please choose manga status"}
+          <Controller
+            name="date"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Autocomplete
+                id="tags-standard"
+                loading
+                onChange={(_, value) => field.onChange(value)}
+                options={mangaData.date}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    error={errors.date ? true : false}
+                    variant="standard"
+                    label="Date"
+                    InputProps={{
+                      ...params.InputProps,
+                      endAdornment: (
+                        <>
+                          {loading ? (
+                            <CircularProgress color="inherit" size={20} />
+                          ) : null}
+                          {params.InputProps.endAdornment}
+                        </>
+                      ),
+                    }}
+                    helperText={
+                      errors.date ? "please choose manga publish date" : null
+                    }
+                  />
+                )}
               />
             )}
           />
+          <Controller
+            name="status"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Autocomplete
+                id="tags-standard"
+                loading
+                onChange={(_, value) => field.onChange(value)}
+                options={mangaData.status}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    error={errors.status ? true : false}
+                    variant="standard"
+                    label="Status"
+                    InputProps={{
+                      ...params.InputProps,
+                      endAdornment: (
+                        <>
+                          {loading ? (
+                            <CircularProgress color="inherit" size={20} />
+                          ) : null}
+                          {params.InputProps.endAdornment}
+                        </>
+                      ),
+                    }}
+                    helperText={
+                      errors.status ? "please choose manga status" : null
+                    }
+                  />
+                )}
+              />
+            )}
+          />
+
           <div className="mb-3">
             <label
               className="form-label"
@@ -161,6 +213,7 @@ const MangaUplouds = () => {
               Manga Image *
             </label>
             <input
+              {...register("image", { required: true })}
               style={{
                 color: "rgba(0, 0, 0, 0.6)",
                 fontFamily: "Roboto,Helvetica,Arial,sans-serif",
@@ -168,12 +221,19 @@ const MangaUplouds = () => {
               className="form-control"
               type="file"
               id="formFile"
-              required
+              accept="image/*"
               onChange={handleImage}
             />
+            {errors.image != undefined ? (
+              <div class="invalid-feedback" style={{ display: "block" }}>
+                Please upload a valid image.
+              </div>
+            ) : null}
           </div>
 
-          <Button variant="outlined">Outlined</Button>
+          <Button variant="outlined" type="submit">
+            Submit
+          </Button>
         </form>
       </div>
     </>
