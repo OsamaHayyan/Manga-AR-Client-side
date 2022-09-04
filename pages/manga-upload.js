@@ -25,7 +25,10 @@ const MangaUplouds = () => {
     status: ["on going", "finished", "stopped"],
   });
 
-  const [imageValidate, setImageValidate] = useState(null);
+  const [imageValidate, setImageValidate] = useState({
+    image: null,
+    banner: null,
+  });
   const [loading, setLoading] = useState(false);
 
   const compare = (a, b) => {
@@ -67,9 +70,9 @@ const MangaUplouds = () => {
       (!file.type.includes("image") || file.size * Math.pow(10, -6) > 10)
     ) {
       e.target.value = null;
-      return setImageValidate(true);
+      return setImageValidate({ ...imageValidate, image: true });
     }
-    setImageValidate(null);
+    setImageValidate({ ...imageValidate, image: null });
     clearErrors("image");
   };
 
@@ -278,7 +281,7 @@ const MangaUplouds = () => {
               accept="image/*"
               onChange={handleImage}
             />
-            {errors.image != undefined || imageValidate != null ? (
+            {errors.image != undefined || imageValidate.image != null ? (
               <div
                 className="invalid-feedback"
                 style={{ display: "block", fontSize: "0.75rem" }}
@@ -287,7 +290,68 @@ const MangaUplouds = () => {
               </div>
             ) : null}
           </div>
-
+          <div className="mb-3">
+            <label
+              className="form-label"
+              style={{
+                color: "rgba(0, 0, 0, 0.6)",
+                fontFamily: "Roboto,Helvetica,Arial,sans-serif",
+              }}
+            >
+              Banner Image *
+            </label>
+            <input
+              {...register("banner")}
+              style={{
+                color: "rgba(0, 0, 0, 0.6)",
+                fontFamily: "Roboto,Helvetica,Arial,sans-serif",
+              }}
+              className="form-control"
+              type="file"
+              id="formFile"
+              accept="image/*"
+              onChange={handleImage}
+            />
+            {imageValidate.banner != null ? (
+              <div
+                className="invalid-feedback"
+                style={{ display: "block", fontSize: "0.75rem" }}
+              >
+                Please upload a valid image.
+              </div>
+            ) : null}
+          </div>
+          <div className="mb-3">
+            <label
+              className="form-label"
+              style={{
+                color: "rgba(0, 0, 0, 0.6)",
+                fontFamily: "Roboto,Helvetica,Arial,sans-serif",
+              }}
+            >
+              Story *
+            </label>
+            <textarea
+              {...register("story", { required: true })}
+              style={{
+                fontFamily: "Roboto,Helvetica,Arial,sans-serif",
+              }}
+              className="form-control"
+              id="story"
+              rows="3"
+            ></textarea>
+            {errors.story && (
+              <div
+                className="invalid-feedback"
+                style={{ display: "block", fontSize: "0.75rem" }}
+                onChange={() => {
+                  if (errors.story) clearErrors("story");
+                }}
+              >
+                Please add manga story.
+              </div>
+            )}
+          </div>
           <Button variant="outlined" type="submit">
             Submit
           </Button>
