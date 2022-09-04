@@ -82,11 +82,23 @@ const MangaUplouds = () => {
       formData.append("title", data.title);
       formData.append("status", data.status);
       formData.append("date", data.date);
-      formData.append("auther", data.auther);
-      formData.append("category", data.category);
+      data.auther.map((d) => {
+        formData.append("auther", d._id);
+      });
+      data.category.map((d) => {
+        formData.append("category", d._id);
+      });
+
       formData.append("story", data.story);
       formData.append("image", data.image[0]);
       if (data.banner) formData.append("banner", data.banner[0]);
+
+      await axios.post("http://localhost:8080/mangas/add", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        withCredentials: true,
+      });
     } catch (error) {
       console.log(error);
     }
