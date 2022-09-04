@@ -36,7 +36,18 @@ const MangaUplouds = () => {
     setLoading(false);
   };
 
-  const handleImage = async (e) => {};
+  const handleImage = async (e) => {
+    let file = e.target.files[0];
+    if (
+      file &&
+      (!file.type.includes("image") || file.size * Math.pow(10, -6) > 10)
+    ) {
+      e.target.value = null;
+      return setImageValidate(true);
+    }
+    setImageValidate(null);
+    clearErrors("image");
+  };
 
   const onSubmit = (data) => console.log(data);
 
@@ -224,7 +235,7 @@ const MangaUplouds = () => {
               accept="image/*"
               onChange={handleImage}
             />
-            {errors.image != undefined ? (
+            {errors.image != undefined || imageValidate != null ? (
               <div class="invalid-feedback" style={{ display: "block" }}>
                 Please upload a valid image.
               </div>
