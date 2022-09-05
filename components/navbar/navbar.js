@@ -24,11 +24,13 @@ export default function Navbar({ checkLogin, handleLoginState }) {
       return (
         <div className={navbarStyle.logoImageWarpper}>
           <Link href="/">
-            <Image
-              src={logoImage}
-              layout="intrinsic"
-              className={navbarStyle.logoImage}
-            />
+            <>
+              <Image
+                src={logoImage}
+                layout="intrinsic"
+                className={navbarStyle.logoImage}
+              />
+            </>
           </Link>
         </div>
       );
