@@ -1,12 +1,21 @@
 import { NextResponse } from "next/server";
+import jwt from "jsonwebtoken";
 
 export default function middleware(req) {
-  const { cookies, url } = req;
-  if (url.includes("/user/login" || "/user/signup")) {
-    const { logged_in } = cookies;
-    if (logged_in === "true") {
-      return NextResponse.redirect("/library");
+  let { cookies, url } = req;
+  let { superuser, admin } = cookies.access_token
+    ? jwt.decode(cookies.access_token)
+    : { superuser: false, admin: false };
+  if (url == "/manga-upload") {
+    if (superuser != true || admin != true) {
+      req.nextUrl.pathname = `/404`;
+      return NextResponse.rewrite(req.nextUrl);
     }
+  } else if (
+    cookies.access_token &&
+    url.includes("/user/login" || "/user/signup")
+  ) {
+    return NextResponse.redirect("/library");
   }
 
   return NextResponse.next();
