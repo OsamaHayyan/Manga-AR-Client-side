@@ -113,16 +113,16 @@ export default function Details({ manga }) {
             style={expand ? { maxHeight: "15rem" } : null}
           >
             <div
-              className={`d-flex flex-row justify-start mb-1 ${details.auth_date_container}`}
+              className={`d-flex flex-row justify-start ${details.auth_date_container}`}
             >
               <p className={details.auther}>
                 <TiPen color="#ff5b3b" style={{ marginRight: "5px" }} />
-                Auther: {mangaData.auther ? mangaData.auther : "unavailable"}
-              </p>
-
-              <p className={details.date}>
-                <TiCalendar color="#ff5b3b" style={{ marginRight: "5px" }} />
-                Published date: {mangaData.date}
+                Auther:{" "}
+                {mangaData.auther
+                  ? mangaData.auther
+                      .map((auther) => auther.autherName)
+                      .toString()
+                  : "unavailable"}
               </p>
 
               <Expand
@@ -133,6 +133,11 @@ export default function Details({ manga }) {
                 style={{ position: "absolute", right: "10px", top: 0 }}
               />
             </div>
+            <p className={details.date}>
+              <TiCalendar color="#ff5b3b" style={{ marginRight: "5px" }} />
+              Published date: {mangaData.date}
+            </p>
+
             <Element
               id="storyContainer"
               name="story"
