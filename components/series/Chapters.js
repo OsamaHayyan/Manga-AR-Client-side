@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Button, Container, Tab, Tabs } from "react-bootstrap";
+import { Button, Container, SSRProvider, Tab, Tabs } from "react-bootstrap";
 import { TiCalendar, TiEye } from "react-icons/ti";
 import { animateScroll } from "react-scroll";
 import Abbreviate_Numbers from "../abbreviate_numbers";
@@ -24,113 +24,79 @@ export default function Chapters({ handleHide, hide, chapters }) {
   useEffect(() => {}, [expand]);
   return (
     <Container fluid className={chapter.container}>
-      <Tabs
-        defaultActiveKey="chapter"
-        id="taps"
-        className="mb-3 taps-container"
-      >
-        <Tab eventKey="chapter" title="Chapters" tabClassName={chapter.tap}>
-          <div
-            className={chapter.chapters}
-            style={
-              expand && global.innerWidth > 800
-                ? { maxHeight: (100 / 4) * 100 }
-                : expand && global.innerWidth < 800
-                ? { maxHeight: 100 * 100 }
-                : null
-            }
-          >
-            {!chapters ? (
-              <h1>No Chapters yet</h1>
-            ) : (
-              chapters.map((chr) => (
-                <div
-                  key={chr._id}
-                  className={chapter.chapters_child}
-                  style={expand ? { transform: "scaleY(1)" } : null}
-                >
-                  <div className={chapter.chapters_child_top}>
-                    <h3>Ch.{chr.chapterNum}</h3>
-                    <h3>{chr.name}</h3>
-                  </div>
-                  <div className={chapter.chapters_child_bottom}>
-                    <div className="d-flex flex-row align-items-center">
-                      <TiCalendar
-                        color="#999"
-                        size="16px"
-                        style={{ marginRight: "5px" }}
-                      />
-                      <p>{chr.date}</p>
+      <SSRProvider>
+        <Tabs
+          defaultActiveKey="chapter"
+          id="taps"
+          className="mb-3 taps-container"
+        >
+          <Tab eventKey="chapter" title="Chapters" tabClassName={chapter.tap}>
+            <div
+              className={chapter.chapters}
+              style={
+                expand && global.innerWidth > 800
+                  ? { maxHeight: (100 / 4) * 100 }
+                  : expand && global.innerWidth < 800
+                  ? { maxHeight: 100 * 100 }
+                  : null
+              }
+            >
+              {chapters && chapters.length == 0 ? (
+                <h1>No Chapters yet</h1>
+              ) : (
+                chapters.map((chr) => (
+                  <div
+                    key={chr._id}
+                    className={chapter.chapters_child}
+                    style={expand ? { transform: "scaleY(1)" } : null}
+                  >
+                    <div className={chapter.chapters_child_top}>
+                      <h3>Ch.{chr.chapterNum}</h3>
+                      <h3>{chr.name}</h3>
                     </div>
-                    <div className="d-flex flex-row align-items-center">
-                      <TiEye
-                        color="#999"
-                        size="16px"
-                        style={{ marginRight: "5px" }}
-                      />
-                      <p>
-                        <Abbreviate_Numbers number={chr.views} />
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))
-            )}
-
-            {/* {Array(20)
-              .fill(0)
-              .map((m) => (
-                <div
-                  key={Math.random().toString()}
-                  className={`${chapter.chapters_child} ${
-                    expand ? chapter.chapters_child_visiable : null
-                  }`}
-                >
-                  <div className={chapter.chapters_child_top}>
-                    <h3>Ch.1240</h3>
-                    <h3>NameNameName Name Name</h3>
-                  </div>
-                  <div className={chapter.chapters_child_bottom}>
-                    <div className="d-flex flex-row align-items-center">
-                      <TiCalendar
-                        color="#999"
-                        size="16px"
-                        style={{ marginRight: "5px" }}
-                      />
-                      <p>2021-02-18</p>
-                    </div>
-                    <div className="d-flex flex-row align-items-center">
-                      <TiEye
-                        color="#999"
-                        size="16px"
-                        style={{ marginRight: "5px" }}
-                      />
-                      <p>
-                        <Abbreviate_Numbers number={12345} />
-                      </p>
+                    <div className={chapter.chapters_child_bottom}>
+                      <div className="d-flex flex-row align-items-center">
+                        <TiCalendar
+                          color="#999"
+                          size="16px"
+                          style={{ marginRight: "5px" }}
+                        />
+                        <p>{chr.date}</p>
+                      </div>
+                      <div className="d-flex flex-row align-items-center">
+                        <TiEye
+                          color="#999"
+                          size="16px"
+                          style={{ marginRight: "5px" }}
+                        />
+                        <p>
+                          <Abbreviate_Numbers number={chr.views} />
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))} */}
-          </div>
-        </Tab>
-        <Tab eventKey="comment" title="Comments" tabClassName={chapter.tap}>
-          <h1>Comments</h1>
-        </Tab>
-        <Tab
-          title={
-            <>
-              <button onClick={handleExpand}>
-                <span className={chapter.expandLable}>
-                  {expand ? "Hide" : "Show"}
+                ))
+              )}
+            </div>
+          </Tab>
+          <Tab eventKey="comment" title="Comments" tabClassName={chapter.tap}>
+            <h1>Comments</h1>
+          </Tab>
+          <Tab
+            title={
+              <>
+                <span onClick={handleExpand}>
+                  <span className={chapter.expandLable}>
+                    {expand ? "Hide" : "Show"}
+                  </span>
+                  <Expand expand={expand} size={"20px"} />
                 </span>
-                <Expand expand={expand} size={"20px"} />
-              </button>
-            </>
-          }
-          tabClassName={chapter.expand}
-        ></Tab>
-      </Tabs>
+              </>
+            }
+            tabClassName={chapter.expand}
+          ></Tab>
+        </Tabs>
+      </SSRProvider>
     </Container>
   );
 }
