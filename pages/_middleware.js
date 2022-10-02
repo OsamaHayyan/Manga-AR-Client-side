@@ -6,7 +6,7 @@ export default function middleware(req) {
   let { superuser, admin } = cookies.access_token
     ? jwt.decode(cookies.access_token)
     : { superuser: false, admin: false };
-  if (url == "/manga-upload") {
+  if (url == "/manga-upload" || url == "/chapter-upload") {
     if (superuser != true || admin != true) {
       req.nextUrl.pathname = `/404`;
       return NextResponse.rewrite(req.nextUrl);
