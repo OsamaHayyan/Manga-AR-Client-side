@@ -176,7 +176,7 @@ export default function ChapterUpload() {
             {...register("chapterNum", {
               required: true,
               validate: {
-                postive: (v) => parseInt(v) > 0,
+                postive: (v) => parseInt(v) >= 0,
                 isInt: (v) => !isNaN(v),
               },
             })}
