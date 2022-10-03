@@ -4,9 +4,11 @@ import { useState } from "react";
 import App from "next/app";
 import "../styles/globals.css";
 import Layout from "../components/layout";
+import Cookies from "universal-cookie";
 
 function MyApp({ Component, pageProps, request }) {
   const [checkLogin, setLogin] = useState(request);
+
   return (
     <Layout checkLogin={checkLogin} setLogin={setLogin}>
       <Component handleLoginState={setLogin} {...pageProps} />
@@ -19,8 +21,10 @@ MyApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext);
   //getInitialProps runs on both server-side and client-side.
   //For that reason you need to add a check before accessing things in appContext.ctx.req, as req will not be defined on the client.
-  const req =
-    (await appContext.ctx.req?.cookies["logged_in"]) === "true" ? true : false;
+  // console.log(await appContext.ctx.req?.cookies["access_token"]);
+  const req = (await appContext.ctx.req?.cookies["access_token"])
+    ? true
+    : false;
   return { ...appProps, request: req };
 };
 
