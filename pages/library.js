@@ -32,9 +32,7 @@ export default function Library({
       let { mangaData, mangaPages, message } = await mangas.json();
       if (message) return;
       setSort({ ...sort, pageMount: mangaPages });
-      console.log(mangaData);
       setManga(mangaData);
-      console.log(manga);
     } catch (error) {
       console.log(error);
     }
