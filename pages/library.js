@@ -8,6 +8,7 @@ import Pagenation from "../components/library/pagenation";
 import Sorte from "../components/library/sorte";
 import * as library from "../styles/library.module.css";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function Library({
   mangaData,
@@ -30,11 +31,11 @@ export default function Library({
       const url = `http://localhost:8080/mangas/?catId=${sort.catId}&orderBy=${sort.order}&page=${sort.page}`;
       const mangas = await fetch(url);
       let { mangaData, mangaPages, message } = await mangas.json();
-      if (message) return;
+      if (message) throw message;
       setSort({ ...sort, pageMount: mangaPages });
       setManga(mangaData);
     } catch (error) {
-      console.log(error);
+      toast.error("Sorry there was an error, try again later");
     }
   };
 
