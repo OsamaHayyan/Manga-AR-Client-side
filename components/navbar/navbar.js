@@ -177,7 +177,9 @@ export default function Navbar({ checkLogin, handleLoginState }) {
   }, [openResult]);
 
   return (
-    <>
+    <div
+      style={{ backgroundColor: "white", position: "relative", zIndex: 1000 }}
+    >
       <div className={navbarStyle.navbarContainer}>
         <div className={navbarStyle.leftSide}>
           <Logo logoImage={logo} />
@@ -283,6 +285,6 @@ export default function Navbar({ checkLogin, handleLoginState }) {
           </li>
         </ul>
       </div>
-    </>
+    </div>
   );
 }
