@@ -21,7 +21,6 @@ MyApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext);
   //getInitialProps runs on both server-side and client-side.
   //For that reason you need to add a check before accessing things in appContext.ctx.req, as req will not be defined on the client.
-  // console.log(await appContext.ctx.req?.cookies["access_token"]);
   const req = (await appContext.ctx.req?.cookies["access_token"])
     ? true
     : false;
