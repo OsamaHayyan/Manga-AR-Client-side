@@ -4,26 +4,22 @@ import * as jose from "jose";
 export default function middleware(req) {
   let { cookies, nextUrl } = req;
 
-  const { superuser, admin } = jose.decodeJwt(
-    cookies.get("access_token")?.value
-  );
+  const { superuser, admin } = cookies.has("access_token")
+    ? jose.decodeJwt(cookies.get("access_token")?.value)
+    : { superuser: null, admin: null };
 
   if (
     nextUrl.pathname.startsWith("/manga-upload") ||
     nextUrl.pathname.startsWith("/chapter-upload")
   ) {
     if (superuser != true || admin != true) {
-      req.nextUrl.pathname = `/404`;
-      return NextResponse.rewrite(req.nextUrl);
+      return NextResponse.rewrite(new URL("/404", nextUrl));
     }
-  } else if (
-    cookies.has("access_token") &&
-    nextUrl.pathname.startsWith("/user")
-  ) {
-    return NextResponse.redirect(new URL("/", req.url));
   }
 
-  return NextResponse.next();
+  if (cookies.has("access_token") && nextUrl.pathname.startsWith("/user")) {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
 }
 
 export const config = {
