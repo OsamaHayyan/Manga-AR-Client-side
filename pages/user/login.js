@@ -103,7 +103,12 @@ export default function Login({ handleLoginState }) {
         onSubmit={handleSubmet}
       >
         <div className={userLogin.container}>
-          <h1 style={{ marginBottom: "20px" }}>Login</h1>
+          <h1
+            style={{ marginBottom: "20px", textAlign: "center" }}
+            className={userLogin.loginHead}
+          >
+            LOGIN
+          </h1>
 
           <div className={userLogin.inputsContainer}>
             {/* <label htmlFor="email">Email:</label> */}
