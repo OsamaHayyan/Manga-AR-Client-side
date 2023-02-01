@@ -179,8 +179,8 @@ export default function Login({ handleLoginState }) {
           </Button>
           <p className={userLogin.signupLink}>
             Dont't have account?{" "}
-            <Link href="/user/signup">
-              <a style={{ color: "#0a58ca" }}>Sign up</a>
+            <Link href="/user/signup" style={{ color: "#0a58ca" }}>
+              Sign up
             </Link>
           </p>
         </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import * as navbarStyle from "./navbar.module.css";
 import * as logo from "../../public/images/logo.png";
 import * as userImage from "../../public/images/placeholder-avatar.jpg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { ClickAwayListener } from "@mui/material";
 import axios from "axios";
@@ -24,13 +24,11 @@ export default function Navbar({ checkLogin, handleLoginState }) {
       return (
         <div className={navbarStyle.logoImageWarpper}>
           <Link href="/">
-            <>
-              <Image
-                src={logoImage}
-                layout="intrinsic"
-                className={navbarStyle.logoImage}
-              />
-            </>
+            <Image
+              src={logoImage}
+              layout="intrinsic"
+              className={navbarStyle.logoImage}
+            />
           </Link>
         </div>
       );
@@ -85,19 +83,13 @@ export default function Navbar({ checkLogin, handleLoginState }) {
               }`}
             >
               <li>
-                <Link href="#">
-                  <a>Profile</a>
-                </Link>
+                <Link href="#">Profile</Link>
               </li>
               <li>
-                <Link href="#">
-                  <a>Dashboard</a>
-                </Link>
+                <Link href="#">Dashboard</Link>
               </li>
               <li onClick={handleLogout}>
-                <Link href="#">
-                  <a>Logout</a>
-                </Link>
+                <Link href="#">Logout</Link>
               </li>
             </ul>
           </div>
@@ -120,8 +112,8 @@ export default function Navbar({ checkLogin, handleLoginState }) {
           onClick={() => push("/search")}
         />
         <div className={navbarStyle.lineLogin}></div>
-        <Link href="/user/login">
-          <p className={` ${navbarStyle.login}`}>Login</p>
+        <Link href="/user/login" className={` ${navbarStyle.login}`}>
+          Login
         </Link>
       </div>
     );
@@ -189,27 +181,21 @@ export default function Navbar({ checkLogin, handleLoginState }) {
                 pathname == "/" ? navbarStyle.navItemActive : ""
               }`}
             >
-              <Link href="/">
-                <a>Home</a>
-              </Link>
+              <Link href="/">Home</Link>
             </li>
             <li
               className={`${navbarStyle.navItem} ${
                 pathname == "/library" ? navbarStyle.navItemActive : ""
               }`}
             >
-              <Link href="/library">
-                <a>library</a>
-              </Link>
+              <Link href="/library">library</Link>
             </li>
             <li
               className={`${navbarStyle.navItem} ${
                 pathname == "/news" ? navbarStyle.navItemActive : ""
               }`}
             >
-              <Link href="/news">
-                <a>News</a>
-              </Link>
+              <Link href="/news">News</Link>
             </li>
           </ul>
         </div>
@@ -261,27 +247,21 @@ export default function Navbar({ checkLogin, handleLoginState }) {
               pathname == "/" ? navbarStyle.navItemActive : ""
             }`}
           >
-            <Link href="/">
-              <a>Home</a>
-            </Link>
+            <Link href="/">Home</Link>
           </li>
           <li
             className={`${navbarStyle.navItem} ${
               pathname == "/library" ? navbarStyle.navItemActive : ""
             }`}
           >
-            <Link href="/library">
-              <a>library</a>
-            </Link>
+            <Link href="/library">library</Link>
           </li>
           <li
             className={`${navbarStyle.navItem} ${
               pathname == "/news" ? navbarStyle.navItemActive : ""
             }`}
           >
-            <Link href="/news">
-              <a>News</a>
-            </Link>
+            <Link href="/news">News</Link>
           </li>
         </ul>
       </div>

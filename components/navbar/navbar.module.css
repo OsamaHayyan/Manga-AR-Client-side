@@ -207,6 +207,7 @@
   height: auto;
   cursor: pointer;
   border-radius: 8px;
+  display: block;
 }
 
 .userOption {
