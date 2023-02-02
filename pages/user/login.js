@@ -175,15 +175,20 @@ export default function Login({ handleLoginState }) {
               />
             </div>
           </div>
-          <Button
-            disabled={disable ? true : false}
-            className={userLogin.submit}
-            type="submit"
-            variant="contained"
-            size="large"
+          <div
+            className="d-flex flex-row justify-content-between align-items-center"
+            style={{ marginTop: "120px", width: "100%" }}
           >
-            Login
-          </Button>
+            <p className={userLogin.forgotPw}>Forgot Password?</p>
+            <Button
+              disabled={disable ? true : false}
+              className={userLogin.submit}
+              type="submit"
+              variant="contained"
+            >
+              Login
+            </Button>
+          </div>
         </div>
       </form>
     </>

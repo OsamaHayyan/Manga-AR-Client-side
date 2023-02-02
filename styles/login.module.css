@@ -77,10 +77,26 @@
 }
 
 .submit {
-  margin-top: 40px !important;
-  width: 80%;
+  width: 171px;
+  height: 58px;
+  background: linear-gradient(107.32deg, #d100b2 19.21%, #0014ff 205.16%);
+  border-radius: 5px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  color: #ffffff;
 }
 
+.forgotPw {
+  width: 214px;
+  height: 36px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+  color: #d100b2;
+}
 .errorValidation {
   position: absolute;
   width: 100%;
@@ -91,9 +107,4 @@
   text-align: center;
   background: #e50914;
   color: white;
-}
-
-.signupLink {
-  font-size: 14px;
-  padding-top: 20px;
 }
