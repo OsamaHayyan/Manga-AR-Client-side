@@ -130,7 +130,7 @@ export default function Login({ handleLoginState }) {
                 className={userLogin.inputs}
                 name="email"
                 type={"email"}
-                placeholder="Required valid email"
+                placeholder="Email"
                 ref={email}
                 required
               />
@@ -167,7 +167,7 @@ export default function Login({ handleLoginState }) {
                 className={userLogin.inputs}
                 name="password"
                 type={"password"}
-                placeholder="Required at least 8 numbers & letters & symbols"
+                placeholder="Password"
                 ref={password}
                 required
               />
