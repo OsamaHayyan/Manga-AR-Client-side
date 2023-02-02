@@ -4,9 +4,11 @@ import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
+import Image from "next/image";
 import Cookies from "universal-cookie";
 import validator from "validator";
 
+import Logo from "../../public/images/logo3.png";
 import * as userLogin from "../../styles/login.module.css";
 
 export default function Login({ handleLoginState }) {
@@ -103,12 +105,12 @@ export default function Login({ handleLoginState }) {
         onSubmit={handleSubmet}
       >
         <div className={userLogin.container}>
-          <h1
-            style={{ marginBottom: "20px", textAlign: "center" }}
-            className={userLogin.loginHead}
+          <div
+            style={{ height: "200px", width: "200px", position: "relative" }}
           >
-            LOGIN
-          </h1>
+            <Image src={Logo} fill style={{ objectFit: "contain" }} />
+          </div>
+          <h1 className={userLogin.loginHead}>LOGIN</h1>
 
           <div className={userLogin.inputsContainer}>
             {/* <label htmlFor="email">Email:</label> */}
