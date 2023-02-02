@@ -4,7 +4,6 @@ import { useState } from "react";
 import App from "next/app";
 import "../styles/globals.css";
 import Layout from "../components/layout";
-import Cookies from "universal-cookie";
 
 function MyApp({ Component, pageProps, request }) {
   const [checkLogin, setLogin] = useState(request);

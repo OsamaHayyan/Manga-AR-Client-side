@@ -5,7 +5,7 @@ import Navbar from "./navbar/navbar";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
 });
 
 export default function Layout({ children, checkLogin, setLogin }) {
