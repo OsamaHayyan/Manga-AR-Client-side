@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.imageSide {
+  position: relative;
+  height: 982px;
+  width: 628px;
+  filter: blur(7.5px);
+}
+
+.formSide {
+  flex-grow: 1;
+  padding-left: 11px;
+}
