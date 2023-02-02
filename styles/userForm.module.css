@@ -7,11 +7,11 @@
 .imageSide {
   position: relative;
   height: 982px;
-  width: 628px;
+  flex-grow: 1;
   filter: blur(7.5px);
 }
 
 .formSide {
-  flex-grow: 1;
+  width: 884px;
   padding-left: 11px;
 }

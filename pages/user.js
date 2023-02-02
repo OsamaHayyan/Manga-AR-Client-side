@@ -9,7 +9,11 @@ export default function User() {
   return (
     <div className={userForm.container}>
       <div className={userForm.imageSide}>
-        <Image src={backgroundImage} fill style={{ objectFit: "contain" }} />
+        <Image
+          src={backgroundImage}
+          fill
+          style={{ objectFit: "cover", objectPosition: "right" }}
+        />
       </div>
       <div className={userForm.formSide}>
         <Login />
