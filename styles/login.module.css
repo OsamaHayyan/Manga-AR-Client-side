@@ -27,6 +27,7 @@
   font-size: 48px;
   line-height: 72px;
   color: #ffffff;
+  padding-left: 0.2em;
   letter-spacing: 0.2em;
 }
 .inputsContainer {
@@ -44,10 +45,8 @@
   align-items: center;
   padding: 0px 0px 8px 8px;
   gap: 24px;
-
   width: 601px;
   height: 48px;
-
   border-bottom: 1px solid #ffffff;
 }
 .inputs,
@@ -78,7 +77,6 @@
 }
 
 .submit {
-  margin: auto !important;
   margin-top: 40px !important;
   width: 80%;
 }
@@ -97,6 +95,5 @@
 
 .signupLink {
   font-size: 14px;
-  margin: auto;
   padding-top: 20px;
 }
