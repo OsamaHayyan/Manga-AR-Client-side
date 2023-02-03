@@ -58,7 +58,7 @@ export default function User() {
         <div className={userForm.background}></div>
       </div>
       <div className={userForm.formSide}>
-        <Login />
+        {component.login ? <Login /> : <Signup />}
       </div>
     </div>
   );
