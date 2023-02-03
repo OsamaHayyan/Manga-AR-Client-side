@@ -263,8 +263,8 @@ export default function Login({ handleLoginState }) {
                     y2="36.1933"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stop-color="#0D61A9" />
-                    <stop offset="1" stop-color="#16528C" />
+                    <stop stopColor="#0D61A9" />
+                    <stop offset="1" stopColor="#16528C" />
                   </linearGradient>
                 </defs>
               </svg>
