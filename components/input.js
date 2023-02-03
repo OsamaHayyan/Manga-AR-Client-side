@@ -1,13 +1,7 @@
 import React from "react";
+import { forwardRef } from "react";
 import * as inputStyle from "../styles/input.module.css";
-export default function Input({
-  Icon,
-  name,
-  type,
-  placeholder,
-  ref,
-  required,
-}) {
+const Input = forwardRef(({ Icon, name, type, placeholder, required }, ref) => {
   return (
     <div className={inputStyle.inputContainer}>
       {Icon}
@@ -21,4 +15,6 @@ export default function Input({
       />
     </div>
   );
-}
+});
+
+export default Input;
