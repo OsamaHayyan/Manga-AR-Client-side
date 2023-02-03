@@ -34,22 +34,22 @@
 }
 
 .loginBtnPosition {
-  right: -14px;
+  right: 0;
   top: 250px;
 }
 
 .loginTextPosition {
-  right: 54px;
+  right: 72px;
   top: 310px;
 }
 
 .signBtnPosition {
-  right: -15px;
+  right: 0;
   top: 404px;
 }
 
 .signTextPosition {
-  right: 33px;
+  right: 45px;
   top: 465px;
 }
 
