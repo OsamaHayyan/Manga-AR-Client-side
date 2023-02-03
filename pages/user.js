@@ -7,7 +7,7 @@ import * as userForm from "../styles/userForm.module.css";
 import Login from "../components/user/login";
 import Signup from "../components/user/signup";
 import backgroundImage from "../public/images/userFormBackground.jpg";
-export default function User() {
+export default function User({ handleLoginState }) {
   const [component, setComponent] = useState({ login: true, signup: false });
   return (
     <div className={userForm.container}>
@@ -58,7 +58,11 @@ export default function User() {
         <div className={userForm.background}></div>
       </div>
       <div className={userForm.formSide}>
-        {component.login ? <Login /> : <Signup />}
+        {component.login ? (
+          <Login handleLoginState={handleLoginState} />
+        ) : (
+          <Signup />
+        )}
       </div>
     </div>
   );
