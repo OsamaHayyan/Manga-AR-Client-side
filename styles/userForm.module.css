@@ -21,7 +21,7 @@
 
 .selected {
   width: 255px;
-  height: 150px;
+  height: 179px;
   background: #000000;
   border: none;
   border-radius: 100px 0 0 100px;
@@ -31,14 +31,30 @@
   line-height: 36px;
   color: #ffffff;
   position: absolute;
+}
+
+.loginBtnPosition {
   right: -14px;
   top: 250px;
 }
 
-.textNotSelected {
-  position: absolute;
+.loginTextPosition {
+  right: 54px;
+  top: 310px;
+}
+
+.signBtnPosition {
+  right: -15px;
+  top: 404px;
+}
+
+.signTextPosition {
   right: 33px;
   top: 465px;
+}
+
+.textNotSelected {
+  position: absolute;
   font-weight: 600;
   font-size: 40px;
   color: #ffffff;
