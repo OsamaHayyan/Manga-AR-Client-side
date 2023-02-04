@@ -1,0 +1,16 @@
+.inputFile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+  width: 641px;
+  height: 81.27px;
+  border-bottom: 1px solid #ffffff;
+}
+.inputFile > p {
+  flex-grow: 1;
+  font-weight: 300;
+  font-size: 24px;
+  color: #ffffff;
+}
