@@ -5,12 +5,18 @@ import { Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import validator from "validator";
 import * as userSignup from "../../styles/signup.module.css";
+import { HiddenPassword, Password, Person } from "../icons";
+import Input from "../input";
+import InputUpload from "../upload_input";
+import RegisterForm from "./registerForm";
 export default function Signup() {
   const username = useRef("");
   const email = useRef("");
   const password = useRef("");
   const confirmPassword = useRef("");
 
+  const [disable, setDisable] = useState(false);
+  const [fileName, setFileName] = useState("Choose a profile picture");
   const [valid, setValid] = useState({
     usernameValid: true,
     emailValid: true,
@@ -20,8 +26,11 @@ export default function Signup() {
     profileImageData: null,
   });
   const handleSubmet = async (e) => {
-    e.preventDefault();
+    console.log(username.current.value);
+    console.log(email.current.value);
 
+    e.preventDefault();
+    setDisable(true);
     let checkValidation = validation(
       username.current.value,
       email.current.value,
@@ -69,6 +78,7 @@ export default function Signup() {
     } else {
       console.log("not submitted");
     }
+    setDisable(false);
   };
 
   const validation = (username, email, password, confirmPassword) => {
@@ -101,85 +111,140 @@ export default function Signup() {
       e.target.value = null;
     } else {
       setValid({ ...valid, profileImage: true, profileImageData: file });
+      setFileName(file.name);
     }
   };
   return (
-    <form
-      method="POST"
-      encType="multipart/form-data"
-      className={userSignup.formSignup}
-      onSubmit={handleSubmet}
-    >
-      <div className={userSignup.container}>
-        <h1 style={{ marginBottom: "20px" }}>Sign Up</h1>
-        <label htmlFor="username">Username:</label>
-        <input
-          className={userSignup.inputs}
-          name="username"
+    <>
+      <RegisterForm
+        formName={"SIGNUP"}
+        handleSubmet={handleSubmet}
+        disable={disable}
+      >
+        <Input
+          Icon={<Person />}
           type={"text"}
-          placeholder="Required in 4-15 letters & numbers"
+          name={"username"}
           ref={username}
-          required
+          placeholder={"Username"}
+          required={true}
+          style={{ width: "641px" }}
         />
-        {!valid.usernameValid && <span>Please type a valid username</span>}
-
-        <label htmlFor="email">Email:</label>
-        <input
-          className={userSignup.inputs}
-          name="email"
+        <Input
+          Icon={<Person />}
           type={"email"}
-          placeholder="Required valid email"
+          name={"email"}
           ref={email}
-          required
+          placeholder={"Email"}
+          required={true}
+          style={{ width: "641px" }}
         />
-        {!valid.emailValid && <span>Please type a valid email</span>}
-        <label htmlFor="password">Password:</label>
-        <input
-          className={userSignup.inputs}
-          name="password"
-          type={"password"}
-          placeholder="Required at least 8 numbers & letters & symbols"
-          ref={password}
-          required
-        />
-        {!valid.password && <span>Please type a valid password</span>}
-        <label htmlFor="confirmPassword">Confirm Password:</label>
-        <input
-          className={userSignup.inputs}
-          name="confirmPassword"
-          type={"password"}
-          placeholder="Rewrite your password"
-          ref={confirmPassword}
-          required
-        />
-        {!valid.confirmPassword && (
-          <span>Password confirm doesn't equal you password</span>
-        )}
-
-        <Form.Group controlId="formFile" style={{ width: "100%" }}>
-          <Form.Label style={{ padding: "10px 0", margin: "0" }}>
-            Profile Image:
-          </Form.Label>
-          <Form.Control
-            style={{ width: "100%" }}
-            type="file"
-            placeholder="Upload your image"
-            accept=".jpeg, .png, .webp, .jpg"
-            onChange={handleFileInput}
-            multiple
+        <div className={userSignup.passwordContainer}>
+          <Input
+            Icon={<Person />}
+            lastIcon={{
+              icon: <HiddenPassword width="32px" height="32px" />,
+              width: 32,
+            }}
+            type={"password"}
+            name={"password"}
+            ref={password}
+            placeholder={"Password"}
+            required={true}
           />
-          {!valid.profileImage && <span>Please use valid photo</span>}
-        </Form.Group>
+          <Input
+            Icon={<Password />}
+            lastIcon={{
+              icon: <HiddenPassword width="32px" height="32px" />,
+              width: 32,
+            }}
+            type={"password"}
+            name={"confirmPassword"}
+            ref={confirmPassword}
+            placeholder={"Confirm"}
+            required={true}
+          />
+        </div>
 
-        <Button
-          className={userSignup.submit}
-          type="submit"
-          variant="contained"
-          size="large"
-        >
-          SIGN UP
-        </Button>
-      </div>
-    </form>
+        <InputUpload handleFileInput={handleFileInput} fileName={fileName} />
+      </RegisterForm>
+      {/* <form
+        method="POST"
+        encType="multipart/form-data"
+        className={userSignup.formSignup}
+        onSubmit={handleSubmet}
+      >
+        <div className={userSignup.container}>
+          <h1 style={{ marginBottom: "20px" }}>Sign Up</h1>
+          <label htmlFor="username">Username:</label>
+          <input
+            className={userSignup.inputs}
+            name="username"
+            type={"text"}
+            placeholder="Required in 4-15 letters & numbers"
+            ref={username}
+            required
+          />
+          {!valid.usernameValid && <span>Please type a valid username</span>}
+
+          <label htmlFor="email">Email:</label>
+          <input
+            className={userSignup.inputs}
+            name="email"
+            type={"email"}
+            placeholder="Required valid email"
+            ref={email}
+            required
+          />
+          {!valid.emailValid && <span>Please type a valid email</span>}
+          <label htmlFor="password">Password:</label>
+          <input
+            className={userSignup.inputs}
+            name="password"
+            type={"password"}
+            placeholder="Required at least 8 numbers & letters & symbols"
+            ref={password}
+            required
+          />
+          {!valid.password && <span>Please type a valid password</span>}
+          <label htmlFor="confirmPassword">Confirm Password:</label>
+          <input
+            className={userSignup.inputs}
+            name="confirmPassword"
+            type={"password"}
+            placeholder="Rewrite your password"
+            ref={confirmPassword}
+            required
+          />
+          {!valid.confirmPassword && (
+            <span>Password confirm doesn't equal you password</span>
+          )}
+
+          <Form.Group controlId="formFile" style={{ width: "100%" }}>
+            <Form.Label style={{ padding: "10px 0", margin: "0" }}>
+              Profile Image:
+            </Form.Label>
+            <Form.Control
+              style={{ width: "100%" }}
+              type="file"
+              placeholder="Upload your image"
+              accept=".jpeg, .png, .webp, .jpg"
+              onChange={handleFileInput}
+              multiple
+            />
+            {!valid.profileImage && <span>Please use valid photo</span>}
+          </Form.Group>
+
+          <Button
+            className={userSignup.submit}
+            type="submit"
+            variant="contained"
+            size="large"
+          >
+            SIGN UP
+          </Button>
+        </div>
+      </form> */}
+    </>
   );
 }
