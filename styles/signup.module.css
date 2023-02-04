@@ -1,44 +1,19 @@
-.formSignup {
-  margin: auto;
-  background-color: #f7f7f7;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .container {
-  width: 378px;
-  max-width: 70%;
-  padding: 50px 0;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
-
-.container > label {
-  padding: 10px 0;
+.passwordContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 80px;
+  width: 636px;
+  height: 48px;
 }
-
-.inputs {
-  width: 100%;
-  min-width: 100px;
-  height: 40px;
-  padding: 0 10px;
-  outline: 0;
-  border-radius: 5px;
-  border: 1px solid #d8d8d8;
-}
-
-.inputs::placeholder,
-.container > span {
-  font-size: 14px;
-}
-
-.submit {
-  margin: auto !important;
-  margin-top: 40px !important;
-  width: 80% !important;
+.passwordContainer > div {
+  width: 278px;
 }
