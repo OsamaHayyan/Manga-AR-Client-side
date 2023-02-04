@@ -30,7 +30,6 @@ export default function RegisterForm({
           className={
             formName == "LOGIN" ? userLogin.loginSubmit : userLogin.signupSubmit
           }
-          style={{ marginTop: "120px", width: "100%" }}
         >
           {formName == "LOGIN" ? (
             <p className={userLogin.forgotPw}>Forgot password?</p>
