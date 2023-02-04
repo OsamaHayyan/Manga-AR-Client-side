@@ -89,42 +89,33 @@ export default function Login({ handleLoginState }) {
   };
 
   return (
-    <>
-      {/* {!valid.emailValid || !valid.password || !serverAccept ? (
-        <span className={userLogin.errorValidation}>
-          Your email or password is incorrect
-        </span>
-      ) : null} */}
-      <RegisterForm
-        formName={"LOGIN"}
-        handleSubmet={handleSubmet}
-        disable={disable}
-      >
-        <Input
-          Icon={<Person />}
-          type={"email"}
-          name={"email"}
-          ref={email}
-          placeholder={"Email"}
-          required={true}
-        />
-        <Input
-          Icon={<Password />}
-          type={"password"}
-          name={"password"}
-          ref={password}
-          placeholder={"Password"}
-          required={true}
-          validation={
-            !valid.current.emailValid ||
-            !valid.current.password ||
-            !serverAccept
-              ? true
-              : false
-          }
-          validationText={"Your email or password is incorrect"}
-        />
-      </RegisterForm>
-    </>
+    <RegisterForm
+      formName={"LOGIN"}
+      handleSubmet={handleSubmet}
+      disable={disable}
+    >
+      <Input
+        Icon={<Person />}
+        type={"email"}
+        name={"email"}
+        ref={email}
+        placeholder={"Email"}
+        required={true}
+      />
+      <Input
+        Icon={<Password />}
+        type={"password"}
+        name={"password"}
+        ref={password}
+        placeholder={"Password"}
+        required={true}
+        validation={
+          !valid.current.emailValid || !valid.current.password || !serverAccept
+            ? true
+            : false
+        }
+        validationText={"Your email or password is incorrect"}
+      />
+    </RegisterForm>
   );
 }
