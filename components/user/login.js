@@ -1,17 +1,14 @@
-import { Button } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/dist/client/router";
-import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
-import Image from "next/image";
 import Cookies from "universal-cookie";
 import validator from "validator";
 
-import Logo from "../../public/images/logo3.png";
+import { Password, Person } from "../icons";
 import * as userLogin from "../../styles/login.module.css";
-import { Facebook, Google, Password, Person } from "../icons";
 import Input from "../input";
+import RegisterForm from "./registerForm";
 
 export default function Login({ handleLoginState }) {
   const email = useRef("");
@@ -97,82 +94,33 @@ export default function Login({ handleLoginState }) {
 
   return (
     <>
-      {!valid.emailValid || !valid.password || !serverAccept ? (
+      {/* {!valid.emailValid || !valid.password || !serverAccept ? (
         <span className={userLogin.errorValidation}>
           Your email or password is incorrect
         </span>
-      ) : null}
-      <form
-        method="POST"
-        encType="multipart/form-data"
-        className={userLogin.formLogin}
-        onSubmit={handleSubmet}
+      ) : null} */}
+      <RegisterForm
+        formName={"LOGIN"}
+        handleSubmet={handleSubmet}
+        disable={disable}
       >
-        <div className={userLogin.container}>
-          <div
-            style={{ height: "200px", width: "200px", position: "relative" }}
-          >
-            <Image src={Logo} fill style={{ objectFit: "contain" }} />
-          </div>
-          <h1 className={userLogin.loginHead}>LOGIN</h1>
-
-          <div className={userLogin.inputsContainer}>
-            <Input
-              Icon={<Person />}
-              type={"email"}
-              name={"email"}
-              ref={email}
-              placeholder={"Email"}
-              required={true}
-            />
-            <Input
-              Icon={<Password />}
-              type={"password"}
-              name={"password"}
-              ref={password}
-              placeholder={"Password"}
-              required={true}
-            />
-          </div>
-          <div
-            className="d-flex flex-row justify-content-between align-items-center"
-            style={{ marginTop: "120px", width: "100%" }}
-          >
-            <p className={userLogin.forgotPw}>Forgot password?</p>
-            <Button
-              disabled={disable ? true : false}
-              className={userLogin.submit}
-              type="submit"
-              variant="contained"
-            >
-              Login
-            </Button>
-          </div>
-        </div>
-        <div
-          style={{
-            borderTop: "5px solid #1e1e1e",
-            marginTop: "101px",
-            width: "100%",
-          }}
-        >
-          <div className={userLogin.thirdPartyloginContainer}>
-            <p
-              style={{ fontWeight: "300", fontSize: "24px", color: "#FFFFFF" }}
-            >
-              Or Login with
-            </p>
-            <p>
-              <Google />
-              Google
-            </p>
-            <p>
-              <Facebook />
-              Facebook
-            </p>
-          </div>
-        </div>
-      </form>
+        <Input
+          Icon={<Person />}
+          type={"email"}
+          name={"email"}
+          ref={email}
+          placeholder={"Email"}
+          required={true}
+        />
+        <Input
+          Icon={<Password />}
+          type={"password"}
+          name={"password"}
+          ref={password}
+          placeholder={"Password"}
+          required={true}
+        />
+      </RegisterForm>
     </>
   );
 }
