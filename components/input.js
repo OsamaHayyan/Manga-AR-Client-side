@@ -2,7 +2,10 @@ import React from "react";
 import { forwardRef } from "react";
 import * as inputStyle from "../styles/input.module.css";
 const Input = forwardRef(
-  ({ Icon, name, type, placeholder, required, style }, ref) => {
+  (
+    { Icon, lastIcon = null, name, type, placeholder, required, style },
+    ref
+  ) => {
     return (
       <div className={inputStyle.inputContainer} style={style}>
         {Icon}
@@ -14,6 +17,7 @@ const Input = forwardRef(
           ref={ref}
           required={required ? true : false}
         />
+        {lastIcon}
       </div>
     );
   }
