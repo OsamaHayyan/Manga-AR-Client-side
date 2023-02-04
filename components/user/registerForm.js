@@ -41,7 +41,7 @@ export default function RegisterForm({
             type="submit"
             variant="contained"
           >
-            Login
+            {formName}
           </Button>
         </div>
       </div>
