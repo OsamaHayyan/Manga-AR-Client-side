@@ -61,14 +61,20 @@ export default function RegisterForm({
             >
               Or Login with
             </p>
-            <p>
+            <div
+              className="d-flex flex-row justify-content-center align-items-center"
+              style={{ gap: "8px" }}
+            >
               <Google />
-              Google
-            </p>
-            <p>
+              <p>Google</p>
+            </div>
+            <div
+              className="d-flex flex-row justify-content-center align-items-center"
+              style={{ gap: "8px" }}
+            >
               <Facebook />
-              Facebook
-            </p>
+              <p>Facebook</p>
+            </div>
           </div>
         </div>
       ) : null}
