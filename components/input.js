@@ -13,6 +13,7 @@ const Input = forwardRef(
       validationText,
       required,
       style,
+      validationStyle,
     },
     ref
   ) => {
@@ -36,7 +37,9 @@ const Input = forwardRef(
           {lastIcon?.icon}
         </div>
         {validation && (
-          <p className={inputStyle.validation}>{validationText}</p>
+          <p className={inputStyle.validation} style={validationStyle}>
+            {validationText}
+          </p>
         )}
       </div>
     );
