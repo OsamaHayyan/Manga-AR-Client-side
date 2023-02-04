@@ -9,16 +9,19 @@
   border-bottom: 1px solid #ffffff;
 }
 
-.inputs,
-.inputs::placeholder {
-  max-width: 100%;
+.inputs {
+  max-width: calc(100% - 72px);
   max-height: 100%;
-  padding-right: 10px;
   outline: 0;
   border: 0;
   background-color: transparent;
   flex-grow: 1;
   font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  color: #ffffff;
+}
+.inputs::placeholder {
   font-weight: 300;
   font-size: 24px;
   color: #ffffff;
