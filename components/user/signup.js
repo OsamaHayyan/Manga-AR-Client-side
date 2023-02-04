@@ -129,15 +129,19 @@ export default function Signup() {
           placeholder={"Username"}
           required={true}
           style={{ width: "641px" }}
+          validation={!valid.usernameValid}
+          validationText={"Please type a valid username"}
         />
         <Input
-          Icon={<Person />}
+          Icon={<Password />}
           type={"email"}
           name={"email"}
           ref={email}
           placeholder={"Email"}
           required={true}
           style={{ width: "641px" }}
+          validation={!valid.emailValid}
+          validationText={"Please type a valid email"}
         />
         <div className={userSignup.passwordContainer}>
           <Input
@@ -151,6 +155,9 @@ export default function Signup() {
             ref={password}
             placeholder={"Password"}
             required={true}
+            validation={!valid.password}
+            validationText={"Required at least 8 numbers & letters & symbols"}
+            validationStyle={{ width: "278px" }}
           />
           <Input
             Icon={<Password />}
@@ -163,6 +170,9 @@ export default function Signup() {
             ref={confirmPassword}
             placeholder={"Confirm"}
             required={true}
+            validation={!valid.confirmPassword}
+            validationText={"Password confirm doesn't equal you password"}
+            validationStyle={{ width: "278px" }}
           />
         </div>
 
