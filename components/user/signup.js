@@ -133,7 +133,7 @@ export default function Signup() {
           validationText={"Please type a valid username"}
         />
         <Input
-          Icon={<Password />}
+          Icon={<Person />}
           type={"email"}
           name={"email"}
           ref={email}
@@ -145,7 +145,7 @@ export default function Signup() {
         />
         <div className={userSignup.passwordContainer}>
           <Input
-            Icon={<Person />}
+            Icon={<Password />}
             lastIcon={{
               icon: <HiddenPassword width="32px" height="32px" />,
               width: 32,
