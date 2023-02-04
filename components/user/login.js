@@ -15,7 +15,7 @@ export default function Login({ handleLoginState }) {
   const password = useRef("");
   const router = useRouter();
   const cookies = new Cookies();
-  const [valid, setValid] = useState({
+  const valid = useRef({
     emailValid: true,
     password: true,
   });
@@ -24,8 +24,6 @@ export default function Login({ handleLoginState }) {
   const handleSubmet = async (e) => {
     e.preventDefault();
 
-    console.log(email.current.value);
-    console.log(password.current.value);
     try {
       setDisable(true);
       let checkValidation = await validation(
@@ -50,8 +48,6 @@ export default function Login({ handleLoginState }) {
         await handleLoginState(true);
         console.log("submeted");
         router.replace("/library");
-      } else {
-        console.log("not submitted");
       }
       setDisable(false);
     } catch (error) {
@@ -77,13 +73,13 @@ export default function Login({ handleLoginState }) {
 
   const validation = async (email, password) => {
     try {
-      setValid({
+      valid.current = {
         emailValid: validator.isEmail(email),
         password: validator.isStrongPassword(password, { minUppercase: 0 }),
-      });
+      };
       setServerAccept(true);
 
-      if (Object.values(valid).includes(false)) {
+      if (Object.values(valid.current).includes(false)) {
         return true;
       }
       return false;
@@ -120,7 +116,11 @@ export default function Login({ handleLoginState }) {
           placeholder={"Password"}
           required={true}
           validation={
-            !valid.emailValid || !valid.password || !serverAccept ? true : false
+            !valid.current.emailValid ||
+            !valid.current.password ||
+            !serverAccept
+              ? true
+              : false
           }
           validationText={"Your email or password is incorrect"}
         />
