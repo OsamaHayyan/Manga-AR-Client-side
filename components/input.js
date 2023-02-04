@@ -11,13 +11,18 @@ const Input = forwardRef(
         {Icon}
         <input
           className={inputStyle.inputs}
+          style={
+            lastIcon
+              ? { width: `calc(100% - ${72 - lastIcon?.width}px)` }
+              : null
+          }
           name={name}
           type={type}
           placeholder={placeholder}
           ref={ref}
           required={required ? true : false}
         />
-        {lastIcon}
+        {lastIcon?.icon}
       </div>
     );
   }
