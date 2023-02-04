@@ -2,13 +2,11 @@ import React from "react";
 
 export function Person({ width = "40px", height = "40px" }) {
   return (
-    <div
+    <span
       style={{
         width: width,
         height: height,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        display: "inline-block",
       }}
     >
       <svg
@@ -23,19 +21,17 @@ export function Person({ width = "40px", height = "40px" }) {
           fill="white"
         />
       </svg>
-    </div>
+    </span>
   );
 }
 
-export function Password() {
+export function Password({ width = "40px", height = "40px" }) {
   return (
-    <div
+    <span
       style={{
         width: width,
         height: height,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        display: "inline-block",
       }}
     >
       <svg
@@ -64,19 +60,17 @@ export function Password() {
           strokeLinejoin="round"
         />
       </svg>
-    </div>
+    </span>
   );
 }
 
-export function Google() {
+export function Google({ width = "40px", height = "40px" }) {
   return (
-    <div
+    <span
       style={{
         width: width,
         height: height,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        display: "inline-block",
       }}
     >
       <svg
@@ -103,19 +97,17 @@ export function Google() {
           fill="#1976D2"
         />
       </svg>
-    </div>
+    </span>
   );
 }
 
-export function Facebook() {
+export function Facebook({ width = "40px", height = "40px" }) {
   return (
-    <div
+    <span
       style={{
         width: width,
         height: height,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        display: "inline-block",
       }}
     >
       <svg
@@ -157,19 +149,17 @@ export function Facebook() {
           </linearGradient>
         </defs>
       </svg>
-    </div>
+    </span>
   );
 }
 
-export function HiddenPassword() {
+export function HiddenPassword({ width = "40px", height = "40px" }) {
   return (
-    <div
+    <span
       style={{
         width: width,
         height: height,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        display: "inline-block",
       }}
     >
       <svg
@@ -184,6 +174,6 @@ export function HiddenPassword() {
           fill="white"
         />
       </svg>
-    </div>
+    </span>
   );
 }
