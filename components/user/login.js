@@ -119,6 +119,10 @@ export default function Login({ handleLoginState }) {
           ref={password}
           placeholder={"Password"}
           required={true}
+          validation={
+            !valid.emailValid || !valid.password || !serverAccept ? true : false
+          }
+          validationText={"Your email or password is incorrect"}
         />
       </RegisterForm>
     </>
