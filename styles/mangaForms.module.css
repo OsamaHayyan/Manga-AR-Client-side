@@ -1,0 +1,44 @@
+.formStyle {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.formHeader {
+  margin-bottom: 64px;
+  height: 72px;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 72px;
+  color: #ffffff;
+  padding-left: 0.2em;
+  letter-spacing: 0.2em;
+}
+
+.inputsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 80px;
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+  margin-top: 55px;
+  width: 100%;
+}
+
+.submit > button {
+  background: linear-gradient(107.32deg, #d100b2 19.21%, #0014ff 205.16%);
+  border-radius: 5px;
+  width: 426px;
+  height: 68px;
+  font-weight: 500;
+  font-size: 24px;
+  color: #ffffff;
+}
