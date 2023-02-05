@@ -172,8 +172,9 @@ export default function Signup() {
       <InputUpload
         handleFileInput={handleFileInput}
         fileName={fileName}
-        validation={!valid.profileImage}
+        error={!valid.profileImage}
         validationText={"Please add a valid photo"}
+        accept={".jpeg, .png, .webp, .jpg"}
       />
     </RegisterForm>
   );
