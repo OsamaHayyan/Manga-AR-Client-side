@@ -3,15 +3,21 @@ import inputStyle from "../styles/upload_input.module.css";
 
 export default function InputUpload({
   handleFileInput,
+  name,
   fileName,
   validation,
+  register,
+  error,
   validationStyle,
   validationText,
+  accept,
+  calssName,
+  lastIcon,
 }) {
   return (
     <div>
       <label for="profileImage">
-        <div className={inputStyle.inputFile}>
+        <div className={`${inputStyle.inputFile} ${calssName}`}>
           <svg
             width="75"
             height="64"
@@ -30,17 +36,30 @@ export default function InputUpload({
           </svg>
 
           <p>{fileName}</p>
+          {lastIcon}
         </div>
-        <input
-          id="profileImage"
-          type="file"
-          placeholder="Upload your image"
-          accept=".jpeg, .png, .webp, .jpg"
-          onChange={handleFileInput}
-          style={{ display: "none" }}
-        />
+        {register ? (
+          <>
+            <input
+              {...register(name, validation)}
+              id="profileImage"
+              type="file"
+              accept={accept}
+              onChange={handleFileInput}
+              style={{ display: "none" }}
+            />
+          </>
+        ) : (
+          <input
+            id="profileImage"
+            type="file"
+            accept={accept}
+            onChange={handleFileInput}
+            style={{ display: "none" }}
+          />
+        )}
       </label>
-      {validation && (
+      {error && (
         <p className={inputStyle.validation} style={validationStyle}>
           {validationText}
         </p>
