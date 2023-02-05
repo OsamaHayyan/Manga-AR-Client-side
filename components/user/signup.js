@@ -5,7 +5,7 @@ import { Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import validator from "validator";
 import * as userSignup from "../../styles/signup.module.css";
-import { HiddenPassword, Password, Person } from "../icons";
+import { AddPhoto, HiddenPassword, Password, Person } from "../icons";
 import Input from "../input";
 import InputUpload from "../upload_input";
 import RegisterForm from "./registerForm";
@@ -170,6 +170,7 @@ export default function Signup() {
       </div>
 
       <InputUpload
+        icon={<AddPhoto />}
         handleFileInput={handleFileInput}
         fileName={fileName}
         error={!valid.profileImage}
