@@ -23,7 +23,7 @@ const Input = forwardRef(
     return (
       <div>
         <div
-          className={`${inputStyle.inputContainer} ${className}`}
+          className={`${className} ${inputStyle.inputContainer}`}
           style={style}
         >
           {Icon}
