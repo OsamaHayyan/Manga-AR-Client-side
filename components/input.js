@@ -15,6 +15,8 @@ const Input = forwardRef(
       style,
       className,
       validationStyle,
+      onChange,
+      onBlur,
     },
     ref
   ) => {
@@ -33,6 +35,8 @@ const Input = forwardRef(
                 : null
             }
             name={name}
+            onChange={onChange}
+            onBlur={onBlur}
             type={type}
             placeholder={placeholder}
             ref={ref}
