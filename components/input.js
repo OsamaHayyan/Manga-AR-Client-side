@@ -13,13 +13,17 @@ const Input = forwardRef(
       validationText,
       required,
       style,
+      className,
       validationStyle,
     },
     ref
   ) => {
     return (
       <div>
-        <div className={inputStyle.inputContainer} style={style}>
+        <div
+          className={`${inputStyle.inputContainer} ${className}`}
+          style={style}
+        >
           {Icon}
           <input
             className={inputStyle.inputs}
