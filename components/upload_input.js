@@ -18,7 +18,7 @@ export default function InputUpload({
 }) {
   return (
     <div>
-      <label for={id}>
+      <label htmlFor={id}>
         <div className={`${inputStyle.inputFile} ${calssName}`}>
           {icon}
           <p>{fileName}</p>
