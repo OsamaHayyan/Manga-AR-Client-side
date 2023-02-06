@@ -98,8 +98,8 @@ export default function Signup() {
 
   const handleFileInput = (e) => {
     const file = e.target.files[0];
+    if (!file) return setFileName("Choose a profile picture");
     const fileType = ["image/png", "image/jpg", "image/jpeg", "image/webp"];
-    if (!file) return;
     if (file.size > 4 * Math.pow(10, 6) || !fileType.includes(file.type)) {
       setValid({ ...valid, profileImage: false });
       e.target.value = null;
