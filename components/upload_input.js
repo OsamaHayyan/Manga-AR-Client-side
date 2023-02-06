@@ -2,6 +2,7 @@ import React from "react";
 import inputStyle from "../styles/upload_input.module.css";
 
 export default function InputUpload({
+  id,
   icon,
   handleFileInput,
   name,
@@ -17,7 +18,7 @@ export default function InputUpload({
 }) {
   return (
     <div>
-      <label for="profileImage">
+      <label for={id}>
         <div className={`${inputStyle.inputFile} ${calssName}`}>
           {icon}
           <p>{fileName}</p>
@@ -27,7 +28,7 @@ export default function InputUpload({
           <>
             <input
               {...register(name, validation)}
-              id="profileImage"
+              id={id}
               type="file"
               accept={accept}
               onChange={handleFileInput}
@@ -36,7 +37,7 @@ export default function InputUpload({
           </>
         ) : (
           <input
-            id="profileImage"
+            id={id}
             type="file"
             accept={accept}
             onChange={handleFileInput}
