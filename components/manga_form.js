@@ -28,7 +28,7 @@ export default function MangaForm({
             type="submit"
             variant="contained"
           >
-            {formName}
+            Submit
           </Button>
         </div>
       </div>
