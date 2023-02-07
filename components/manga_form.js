@@ -32,6 +32,13 @@ export default function MangaForm({
           </Button>
         </div>
       </div>
+      <span
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "rgb(20 20 20 / 90%)",
+        }}
+      ></span>
     </form>
   );
 }

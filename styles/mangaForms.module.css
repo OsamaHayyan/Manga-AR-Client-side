@@ -4,13 +4,10 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-image: linear-gradient(
-      rgba(30, 30, 30, 0.5),
-      rgba(30, 30, 30, 0.5)
-    ),
-    url(../public/images/userFormBackground.jpg);
+  background-image: url(../public/images/backgroundMangaForm.png);
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
 }
 
 .formHeader {
@@ -26,6 +23,7 @@
 
 .container {
   margin-top: 28px;
+  z-index: 1;
 }
 
 .inputsContainer {
