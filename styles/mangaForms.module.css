@@ -4,9 +4,10 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-image: url(../public/images/backgroundMangaForm.png);
+  background-image: url(../public/images/backgroundMangaForm.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: top right;
   position: relative;
 }
 
