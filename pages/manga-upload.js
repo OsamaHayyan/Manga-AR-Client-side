@@ -1,86 +1,48 @@
 import * as mangaUploadStyle from "../styles/mangaupload.module.css";
-import {
-  Autocomplete,
-  Button,
-  CircularProgress,
-  TextField,
-} from "@mui/material";
 import React, { useState } from "react";
 import axios from "axios";
 import { Controller, useForm } from "react-hook-form";
+import MangaForm from "../components/manga_form";
+import Input from "../components/input";
+import AutoComplete from "../components/auto_complete_input";
+import { DownArrow } from "../components/icons";
+import InputUpload from "../components/upload_input";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const MangaUplouds = () => {
   const {
     register,
-    clearErrors,
     handleSubmit,
     control,
     formState: { errors },
   } = useForm();
 
   const [mangaData, setMangaData] = useState({
-    authers: [],
+    auther: [],
     categories: [],
-    date: ["2992"],
+    date: [],
     status: ["on going", "finished", "stopped"],
   });
+  const [disable, setDisable] = useState(false);
 
-  const [imageValidate, setImageValidate] = useState({
-    image: null,
-    banner: null,
+  const [fileName, setFileName] = useState({
+    image: "Choose a manga image..",
+    banner: "Choose a banar image..",
   });
-  const [loading, setLoading] = useState(false);
 
   const compare = (a, b) => {
     if (a < b) return -1;
     if (a > b) return 1;
     return 0;
   };
-  const handleData = async (id) => {
-    try {
-      if (id === "auther") {
-        if (mangaData.authers.length != 0) return undefined;
-        setLoading(true);
-        let data = await (
-          await axios.get("http://localhost:8080/authers/get-authers")
-        ).data.sort((a, b) => compare(a.autherName, b.autherName));
-        setMangaData({ ...mangaData, authers: data });
-      } else if (id === "category") {
-        if (mangaData.categories.length != 0) return undefined;
-        setLoading(true);
-        let data = await (
-          await axios.get("http://localhost:8080/category/get-cat/")
-        ).data.sort((a, b) => compare(a.category, b.category));
-        setMangaData({ ...mangaData, categories: data });
-      } else if (id === "date") {
-        let date = [];
-        for (let i = 1950; i <= new Date().getFullYear(); i++) {
-          date.unshift(i.toString());
-        }
-        setMangaData({ ...mangaData, date: date });
-      }
-      setLoading(false);
-    } catch (error) {}
-  };
-
-  const handleImage = async (e) => {
-    let file = e.target.files[0];
-    if (
-      file &&
-      (!file.type.includes("image") || file.size * Math.pow(10, -6) > 10)
-    ) {
-      e.target.value = null;
-      return setImageValidate({ ...imageValidate, image: true });
-    }
-    setImageValidate({ ...imageValidate, image: null });
-    clearErrors("image");
-  };
 
   const onSubmit = async (data) => {
     try {
+      setDisable(true);
       let formData = new FormData();
       formData.append("title", data.title);
-      formData.append("status", data.status);
+      formData.append("status", data.state);
       formData.append("date", data.date);
       data.auther.map((d) => {
         formData.append("auther", d._id);
@@ -88,288 +50,212 @@ const MangaUplouds = () => {
       data.category.map((d) => {
         formData.append("category", d._id);
       });
-
       formData.append("story", data.story);
       formData.append("image", data.image[0]);
       if (data.banner) formData.append("banner", data.banner[0]);
-
       await axios.post("http://localhost:8080/mangas/add", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
         withCredentials: true,
       });
+      setDisable(false);
     } catch (error) {
-      console.log(error);
+      setDisable(false);
+      if (error.response.status == 400) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        error.response.data.data.map((d) => toast.error(d.msg));
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        toast.error("Can't login try again, please!");
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        toast.error("sorry, unexpected error happened");
+      }
     }
   };
 
+  useEffect(() => {
+    const getData = async () => {
+      let authers = await (
+        await axios.get("http://localhost:8080/authers/get-authers")
+      ).data.sort((a, b) => compare(a.autherName, b.autherName));
+      let categories = await (
+        await axios.get("http://localhost:8080/category/get-cat/")
+      ).data.sort((a, b) => compare(a.category, b.category));
+      let date = [];
+      for (let i = 1950; i <= new Date().getFullYear(); i++) {
+        date.unshift(i.toString());
+      }
+      setMangaData({
+        ...mangaData,
+        date: date,
+        categories: categories,
+        auther: authers,
+      });
+    };
+    getData().catch(console.error);
+  }, []);
+
   return (
-    <>
-      <div className={mangaUploadStyle.container}>
-        <form
-          encType="multipart/form-data"
-          onSubmit={handleSubmit(onSubmit)}
-          noValidate
-        >
-          <TextField
-            {...register("title", { required: true })}
-            error={errors.title ? true : false}
-            variant="standard"
-            label="Title"
-            placeholder=" "
-            helperText={errors.title ? "Please add manga title" : null}
+    <MangaForm
+      formName={"Now you can add your favourite manga to make a new collection"}
+      disable={disable}
+      onSubmit={handleSubmit(onSubmit)}
+      className={mangaUploadStyle.formStyle}
+    >
+      <Input
+        {...register("title", {
+          required: true,
+          minLength: 5,
+          maxLength: 100,
+        })}
+        type={"text"}
+        placeholder={"Manga Title..."}
+        validation={errors.title ? true : false}
+        validationText={"Please type a valid title"}
+        className={mangaUploadStyle.inputStyle}
+      />
+      <Controller
+        name={"auther"}
+        control={control}
+        rules={{ validate: (value) => value?.length > 0 }}
+        render={({ field }) => (
+          <AutoComplete
+            multiple={true}
+            onChange={(value) => field.onChange(value)}
+            id={"auther"}
+            type={"text"}
+            placeholder={"Manga Autors..."}
+            error={errors.auther ? true : false}
+            validation={{ required: true }}
+            validationText={"Please select author"}
+            lastIcon={{
+              icon: <DownArrow width="32px" height="32px" />,
+              width: 32,
+            }}
+            options={mangaData.auther}
+            filterOptions={setMangaData}
+            accessedDataName={"autherName"}
+            accessedValueName={"_id"}
           />
-          <Controller
-            name="auther"
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => (
-              <Autocomplete
-                multiple
-                loading
-                onChange={(_, value) => field.onChange(value)}
-                id="auther"
-                options={mangaData.authers}
-                getOptionLabel={(option) => option.autherName}
-                onOpen={(e) => handleData(e.target.id)}
-                onClose={() => setLoading(false)}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    onChange={(e) => console.log(e)}
-                    error={errors.auther ? true : false}
-                    variant="standard"
-                    label="Authers"
-                    InputProps={{
-                      ...params.InputProps,
-                      endAdornment: (
-                        <>
-                          {loading ? (
-                            <CircularProgress color="inherit" size={20} />
-                          ) : null}
-                          {params.InputProps.endAdornment}
-                        </>
-                      ),
-                    }}
-                    helperText={errors.auther ? "please choose auhters" : null}
-                  />
-                )}
-              />
-            )}
+        )}
+      />
+      <Controller
+        name={"category"}
+        control={control}
+        rules={{ validate: (value) => value?.length > 0 }}
+        render={({ field }) => (
+          <AutoComplete
+            multiple={true}
+            register={register}
+            onChange={(value) => field.onChange(value)}
+            type={"text"}
+            name={"category"}
+            id={"categories"}
+            placeholder={"Category..."}
+            error={errors.category ? true : false}
+            validationText={"Please select category"}
+            lastIcon={{
+              icon: <DownArrow width="32px" height="32px" />,
+              width: 32,
+            }}
+            options={mangaData.categories}
+            filterOptions={setMangaData}
+            accessedDataName={"category"}
+            accessedValueName={"_id"}
           />
+        )}
+      />
 
-          <Controller
-            name="category"
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => (
-              <Autocomplete
-                multiple
-                loading
-                onChange={(_, value) => field.onChange(value)}
-                onOpen={(e) => handleData(e.target.id)}
-                onClose={() => setLoading(false)}
-                id="category"
-                options={mangaData.categories}
-                getOptionLabel={(option) => option.category}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    error={errors.category ? true : false}
-                    variant="standard"
-                    label="Categories"
-                    InputProps={{
-                      ...params.InputProps,
-                      endAdornment: (
-                        <>
-                          {loading ? (
-                            <CircularProgress color="inherit" size={20} />
-                          ) : null}
-                          {params.InputProps.endAdornment}
-                        </>
-                      ),
-                    }}
-                    helperText={
-                      errors.category ? "please choose manga categories" : null
-                    }
-                  />
-                )}
-              />
-            )}
+      <Controller
+        name={"date"}
+        control={control}
+        rules={{ validate: (value) => value?.length > 0 }}
+        render={({ field }) => (
+          <AutoComplete
+            register={register}
+            onChange={(value) => field.onChange(value)}
+            type={"text"}
+            name={"date"}
+            id={"date"}
+            placeholder={"Date..."}
+            error={errors.date ? true : false}
+            validationText={"Please select date"}
+            lastIcon={{
+              icon: <DownArrow width="32px" height="32px" />,
+              width: 32,
+            }}
+            options={mangaData.date}
           />
+        )}
+      />
 
-          <Controller
-            name="date"
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => (
-              <Autocomplete
-                id="date"
-                loading
-                onChange={(_, value) => field.onChange(value)}
-                onOpen={(e) => handleData(e.target.id)}
-                options={mangaData.date}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    error={errors.date ? true : false}
-                    variant="standard"
-                    label="Date"
-                    InputProps={{
-                      ...params.InputProps,
-                      endAdornment: (
-                        <>
-                          {loading ? (
-                            <CircularProgress color="inherit" size={20} />
-                          ) : null}
-                          {params.InputProps.endAdornment}
-                        </>
-                      ),
-                    }}
-                    helperText={
-                      errors.date ? "please choose manga publish date" : null
-                    }
-                  />
-                )}
-              />
-            )}
+      <Controller
+        name={"state"}
+        control={control}
+        rules={{ validate: (value) => value?.length > 0 }}
+        render={({ field }) => (
+          <AutoComplete
+            register={register}
+            onChange={(value) => field.onChange(value)}
+            type={"text"}
+            name={"state"}
+            id={"status"}
+            placeholder={"State..."}
+            error={errors.state ? true : false}
+            validationText={"Please select state"}
+            lastIcon={{
+              icon: <DownArrow width="32px" height="32px" />,
+              width: 32,
+            }}
+            options={mangaData.status}
           />
-          <Controller
-            name="status"
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => (
-              <Autocomplete
-                id="status"
-                loading
-                onChange={(_, value) => field.onChange(value)}
-                options={mangaData.status}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    error={errors.status ? true : false}
-                    variant="standard"
-                    label="Status"
-                    InputProps={{
-                      ...params.InputProps,
-                      endAdornment: (
-                        <>
-                          {loading ? (
-                            <CircularProgress color="inherit" size={20} />
-                          ) : null}
-                          {params.InputProps.endAdornment}
-                        </>
-                      ),
-                    }}
-                    helperText={
-                      errors.status ? "please choose manga status" : null
-                    }
-                  />
-                )}
-              />
-            )}
-          />
+        )}
+      />
 
-          <div className="mb-3">
-            <label
-              className="form-label"
-              style={{
-                color: "rgba(0, 0, 0, 0.6)",
-                fontFamily: "Roboto,Helvetica,Arial,sans-serif",
-              }}
-            >
-              Manga Image *
-            </label>
-            <input
-              {...register("image", { required: true })}
-              style={{
-                color: "rgba(0, 0, 0, 0.6)",
-                fontFamily: "Roboto,Helvetica,Arial,sans-serif",
-              }}
-              className="form-control"
-              type="file"
-              id="formFile"
-              accept="image/*"
-              onChange={handleImage}
-            />
-            {errors.image != undefined || imageValidate.image != null ? (
-              <div
-                className="invalid-feedback"
-                style={{ display: "block", fontSize: "0.75rem" }}
-              >
-                Please upload a valid image.
-              </div>
-            ) : null}
-          </div>
-          <div className="mb-3">
-            <label
-              className="form-label"
-              style={{
-                color: "rgba(0, 0, 0, 0.6)",
-                fontFamily: "Roboto,Helvetica,Arial,sans-serif",
-              }}
-            >
-              Banner Image *
-            </label>
-            <input
-              {...register("banner")}
-              style={{
-                color: "rgba(0, 0, 0, 0.6)",
-                fontFamily: "Roboto,Helvetica,Arial,sans-serif",
-              }}
-              className="form-control"
-              type="file"
-              id="formFile"
-              accept="image/*"
-              onChange={handleImage}
-            />
-            {imageValidate.banner != null ? (
-              <div
-                className="invalid-feedback"
-                style={{ display: "block", fontSize: "0.75rem" }}
-              >
-                Please upload a valid image.
-              </div>
-            ) : null}
-          </div>
-          <div className="mb-3">
-            <label
-              className="form-label"
-              style={{
-                color: "rgba(0, 0, 0, 0.6)",
-                fontFamily: "Roboto,Helvetica,Arial,sans-serif",
-              }}
-            >
-              Story *
-            </label>
-            <textarea
-              {...register("story", { required: true, minLength: 10 })}
-              style={{
-                fontFamily: "Roboto,Helvetica,Arial,sans-serif",
-              }}
-              className="form-control"
-              id="story"
-              rows="3"
-            ></textarea>
-            {errors.story && (
-              <div
-                className="invalid-feedback"
-                style={{ display: "block", fontSize: "0.75rem" }}
-                onChange={() => {
-                  if (errors.story) clearErrors("story");
-                }}
-              >
-                Please add manga story.
-              </div>
-            )}
-          </div>
-          <Button variant="outlined" type="submit">
-            Submit
-          </Button>
-        </form>
-      </div>
-    </>
+      <InputUpload
+        id={"image"}
+        register={register}
+        name={"image"}
+        validation={{ required: true }}
+        fileName={fileName.image}
+        errors={errors.image}
+        validationText={"Please add a valid Image"}
+        accept="image/*"
+        calssName={mangaUploadStyle.inputUploadStyle}
+        lastIcon={<DownArrow height="32px" width="32px" />}
+      />
+
+      <InputUpload
+        id={"banner"}
+        register={register}
+        name={"banner"}
+        fileName={fileName.banner}
+        errors={errors.banner}
+        validationText={"Please add a valid Image"}
+        accept="image/*"
+        calssName={mangaUploadStyle.inputUploadStyle}
+        lastIcon={<DownArrow height="32px" width="32px" />}
+      />
+      <Input
+        {...register("story", {
+          required: true,
+          minLength: 10,
+          maxLength: 1000,
+        })}
+        type={"text"}
+        placeholder={"Story..."}
+        validation={errors.story ? true : false}
+        validationText={"Please type a valid story"}
+        className={mangaUploadStyle.inputStyle}
+        style={{ height: "105px !important" }}
+      />
+    </MangaForm>
   );
 };
 

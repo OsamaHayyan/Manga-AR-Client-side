@@ -13,3 +13,27 @@
   padding: 20px;
   border-radius: 8px;
 }
+
+.inputStyle,
+.inputUploadStyle {
+  width: 1081px !important;
+  height: 56px !important;
+  padding: 0px 0px 8px 8px !important;
+}
+.inputUploadStyle > p {
+  font-size: 32px !important;
+  font-weight: 400 !important;
+}
+.inputStyle > input,
+.inputStyle > input::placeholder {
+  font-size: 32px;
+  font-weight: 400;
+}
+
+.formStyle > div > div {
+  gap: 32px;
+}
+.formStyle > div > div > div > p {
+  font-size: 14px;
+  margin-top: 8px;
+}
