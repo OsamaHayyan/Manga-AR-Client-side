@@ -1,0 +1,88 @@
+.validation {
+  width: 598px;
+  margin-top: 16px;
+  font-weight: 300;
+  font-size: 16px;
+  color: #ff0f0f;
+  position: absolute;
+}
+
+.boxContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 1081px;
+  min-height: 56px;
+  border-bottom: 1px solid #ffffff;
+  padding: 0px 0px 8px 8px;
+}
+
+.boxContainer > ul {
+  gap: 16px;
+}
+.inputContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.inputs {
+  max-height: 100%;
+  outline: 0;
+  border: 0;
+  background-color: transparent;
+  flex-grow: 1;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  color: #ffffff;
+}
+.inputs::placeholder {
+  font-weight: 400;
+  font-size: 32px;
+  color: #ffffff;
+}
+
+.inputs:-webkit-autofill,
+.inputs:-webkit-autofill:hover,
+.inputs:-webkit-autofill:focus,
+.inputs:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #ffffff;
+}
+
+.hideList {
+  max-height: 0;
+}
+
+.showList {
+  max-height: 480px;
+}
+
+.reflectArrow {
+  transform: rotate(180deg);
+}
+
+.selectedOption {
+  font-weight: 300;
+  font-size: 24px;
+  color: #ffffff;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  background: #2d2c2c;
+  border-radius: 50px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.removeIcon {
+  background: black;
+  border-radius: 50px;
+}
