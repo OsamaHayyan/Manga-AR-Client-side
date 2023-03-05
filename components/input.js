@@ -21,7 +21,7 @@ const Input = forwardRef(
     ref
   ) => {
     return (
-      <div>
+      <div className={inputStyle.container}>
         <div
           className={`${className} ${inputStyle.inputContainer}`}
           style={style}
@@ -53,5 +53,5 @@ const Input = forwardRef(
     );
   }
 );
-
+Input.displayName = "Input";
 export default Input;
