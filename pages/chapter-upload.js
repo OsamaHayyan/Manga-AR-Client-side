@@ -1,32 +1,25 @@
 import * as chapterUploadStyle from "../styles/mangaupload.module.css";
-import {
-  Autocomplete,
-  Button,
-  CircularProgress,
-  TextField,
-  LinearProgress,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import path from "path";
 import axios from "axios";
 import { Controller, useForm } from "react-hook-form";
 import LazyLoading from "../util/lazyloading";
 import { toast } from "react-toastify";
 import { useRouter } from "next/dist/client/router";
-
+import AutoComplete from "../components/auto_complete_input";
+import Input from "../components/input";
+import MangaForm from "../components/manga_form";
+import { DownArrow } from "../components/icons";
+import InputUpload from "../components/upload_input";
 export default function ChapterUpload() {
   const { replace } = useRouter();
   const {
     register,
-    clearErrors,
     handleSubmit,
     control,
     formState: { errors },
+    setError,
   } = useForm();
-
-  const [imageValidate, setImageValidate] = useState({
-    image: null,
-    banner: null,
-  });
   const [loading, setLoading] = useState(false);
   const [disable, setDisable] = useState(false);
   const [results, setResults] = useState([]);
@@ -59,29 +52,20 @@ export default function ChapterUpload() {
     }, 300);
   };
 
-  const handleImage = async (e) => {
-    let file = e.target.files[0];
-    if (
-      file &&
-      (!file.type.includes("image") || file.size * Math.pow(10, -6) > 10)
-    ) {
-      e.target.value = null;
-      return setImageValidate({ ...imageValidate, image: true });
-    }
-    setImageValidate({ ...imageValidate, image: null });
-    clearErrors("image");
-  };
-
   const onSubmit = async (data) => {
     try {
       setDisable(true);
-      console.log(data);
       let formData = new FormData();
       formData.append("mangaId", data.manga._id);
       formData.append("chapterNum", data.chapterNum);
-      formData.append("name", data.chapterName);
+      formData.append("name", data.chapter_title);
 
       [...data.image].map((image) => {
+        let fileName = path.parse(image.name).name;
+        if (parseInt(fileName) < 0 || isNaN(fileName)) {
+          setDisable(false);
+          return setError("image");
+        }
         formData.append("photos", image);
       });
 
@@ -107,129 +91,83 @@ export default function ChapterUpload() {
     }
   };
 
-  let { lazyLoader: lazySpinner } = new LazyLoading();
-  const handleLoading = async (e) => {
-    if (e.target.value.length < 3) return setLoading(false);
-    await lazySpinner(() => setLoading(true), 300);
-  };
   return (
     <>
-      <div className={chapterUploadStyle.container}>
-        <form
-          encType="multipart/form-data"
-          onSubmit={handleSubmit(onSubmit)}
-          noValidate
-        >
-          <Controller
-            name="manga"
-            control={control}
-            rules={{
-              required: true,
-              validate: (v) => (v && v._id ? true : false),
-            }}
-            render={({ field }) => (
-              <Autocomplete
-                disabled={disable}
-                id="title"
-                loading={loading}
-                onChange={(_, value) => field.onChange(value)}
-                options={results}
-                isOptionEqualToValue={(option, value) =>
-                  option.title === value.title
-                }
-                getOptionLabel={(option) => option.title}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    onChange={handleLoading}
-                    error={errors.manga ? true : false}
-                    variant="standard"
-                    label="Manga Title"
-                    InputProps={{
-                      ...params.InputProps,
-                      endAdornment: (
-                        <>
-                          {loading ? (
-                            <CircularProgress color="inherit" size={20} />
-                          ) : null}
-                          {params.InputProps.endAdornment}
-                        </>
-                      ),
-                    }}
-                    helperText={errors.manga ? "please choose the manga" : null}
-                    onInput={handleSearch}
-                  />
-                )}
-              />
-            )}
-          />
-
-          <TextField
-            {...register("chapterName")}
-            variant="standard"
-            label="Chapter Title"
-            placeholder=" "
-            disabled={disable}
-          />
-
-          <TextField
-            {...register("chapterNum", {
-              required: true,
-              validate: {
-                postive: (v) => parseInt(v) >= 0,
-                isInt: (v) => !isNaN(v),
-              },
-            })}
-            error={errors.chapterNum ? true : false}
-            variant="standard"
-            label="Chapter Number"
-            placeholder=" "
-            helperText={errors.chapterNum ? "Please add chapter number" : null}
-            disabled={disable}
-          />
-
-          <div className="mb-3">
-            <label
-              className="form-label"
-              style={{
-                color: "rgba(0, 0, 0, 0.6)",
-                fontFamily: "Roboto,Helvetica,Arial,sans-serif",
+      <MangaForm
+        formName={"Here you can add chapters of your manga"}
+        disable={disable}
+        onSubmit={handleSubmit(onSubmit)}
+        className={chapterUploadStyle.formStyle}
+      >
+        <Controller
+          name="manga"
+          control={control}
+          rules={{
+            required: true,
+            validate: (v) => (v && v._id ? true : false),
+          }}
+          render={({ field }) => (
+            <AutoComplete
+              onChange={(value) => field.onChange(value)}
+              onInput={handleSearch}
+              id={"manga"}
+              type={"text"}
+              placeholder={"Manga Title..."}
+              error={errors.manga ? true : false}
+              validationText={"Please select manga"}
+              lastIcon={{
+                icon: <DownArrow width="32px" height="32px" />,
+                width: 32,
               }}
-            >
-              Chapter Pages
-            </label>
-            <input
-              {...register("image", { required: true })}
-              style={{
-                color: "rgba(0, 0, 0, 0.6)",
-                fontFamily: "Roboto,Helvetica,Arial,sans-serif",
-              }}
-              className="form-control"
-              type="file"
-              multiple
-              id="formFile"
-              accept="image/*"
-              onChange={handleImage}
-              disabled={disable}
+              options={results}
+              accessedDataName={"title"}
+              accessedValueName={"_id"}
             />
-            {errors.image != undefined || imageValidate.image != null ? (
-              <div
-                className="invalid-feedback"
-                style={{ display: "block", fontSize: "0.75rem" }}
-              >
-                Please upload a valid image.
-              </div>
-            ) : null}
-          </div>
+          )}
+        />
 
-          {disable ? (
-            <LinearProgress variant="determinate" value={progress} />
-          ) : null}
-          <Button variant="outlined" type="submit" disabled={disable}>
-            Submit
-          </Button>
-        </form>
-      </div>
+        <Input
+          {...register("chapter_title", {
+            minLength: 5,
+            maxLength: 100,
+          })}
+          type={"text"}
+          placeholder={"Chapter title..."}
+          validation={errors.chapter_title ? true : false}
+          validationText={"Please type a valid name"}
+          className={chapterUploadStyle.inputStyle}
+        />
+        <Input
+          {...register("chapterNum", {
+            required: true,
+            validate: {
+              postive: (v) => parseInt(v) >= 0,
+              isInt: (v) => !isNaN(v),
+            },
+          })}
+          type={"text"}
+          placeholder={"Chapter number..."}
+          validation={errors.chapterNum ? true : false}
+          validationText={
+            "Please type a valid  chapter number bigger  or equal zero"
+          }
+          className={chapterUploadStyle.inputStyle}
+        />
+
+        <InputUpload
+          multiple={true}
+          id={"image"}
+          register={register}
+          name={"image"}
+          // validation={{ required: true }}
+          fileName={"Upload chapter pages.."}
+          errors={errors.image}
+          validationText={"Please add a valid images"}
+          accept="image/*"
+          calssName={chapterUploadStyle.inputUploadStyle}
+          lastIcon={<DownArrow height="32px" width="32px" />}
+        />
+      </MangaForm>
     </>
   );
 }
