@@ -153,13 +153,14 @@ export function Facebook({ width = "40px", height = "40px" }) {
   );
 }
 
-export function HiddenPassword({ width = "40px", height = "40px" }) {
+export function EyeSlash({ width = "40px", height = "40px" }) {
   return (
     <span
       style={{
         width: width,
         height: height,
         display: "inline-block",
+        cursor: "pointer",
       }}
     >
       <svg
@@ -178,16 +179,52 @@ export function HiddenPassword({ width = "40px", height = "40px" }) {
   );
 }
 
-export function DownArrow({ width = "40px", height = "40px" }) {
+export function Eye({ width = "40px", height = "40px", className, onClick }) {
   return (
     <span
       style={{
         width: width,
         height: height,
         display: "inline-block",
+        cursor: "pointer",
       }}
+      className={className}
     >
       <svg
+        onClick={onClick}
+        width="15"
+        height="9"
+        viewBox="0 0 15 9"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M14.5534 0.413363C14.43 0.289758 14.2835 0.191695 14.1222 0.124786C13.9609 0.0578778 13.788 0.0234375 13.6134 0.0234375C13.4388 0.0234375 13.2659 0.0578778 13.1046 0.124786C12.9433 0.191695 12.7967 0.289758 12.6734 0.413363L7.50005 5.5867L2.32672 0.413363C2.07741 0.16406 1.73929 0.0240021 1.38672 0.0240021C1.03415 0.0240021 0.696021 0.16406 0.446717 0.413363C0.197413 0.662667 0.0573587 1.00079 0.0573587 1.35336C0.0573587 1.70593 0.197413 2.04406 0.446717 2.29336L6.56672 8.41336C6.69007 8.53697 6.83659 8.63503 6.99789 8.70194C7.15918 8.76885 7.33209 8.80329 7.50672 8.80329C7.68134 8.80329 7.85425 8.76885 8.01555 8.70194C8.17685 8.63503 8.32337 8.53697 8.44672 8.41336L14.5667 2.29336C15.0734 1.7867 15.0734 0.933363 14.5534 0.413363Z"
+          fill="white"
+        />
+      </svg>
+    </span>
+  );
+}
+
+export function DownArrow({
+  width = "40px",
+  height = "40px",
+  className,
+  onClick,
+}) {
+  return (
+    <span
+      style={{
+        width: width,
+        height: height,
+        display: "inline-block",
+        cursor: "pointer",
+      }}
+      className={className}
+    >
+      <svg
+        onClick={onClick}
         width="15"
         height="9"
         viewBox="0 0 15 9"
