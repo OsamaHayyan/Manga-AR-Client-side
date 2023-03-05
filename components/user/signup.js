@@ -5,7 +5,7 @@ import { Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import validator from "validator";
 import * as userSignup from "../../styles/signup.module.css";
-import { AddPhoto, HiddenPassword, Password, Person } from "../icons";
+import { AddPhoto, EyeSlash, Password, Person } from "../icons";
 import Input from "../input";
 import InputUpload from "../upload_input";
 import RegisterForm from "./registerForm";
@@ -140,7 +140,7 @@ export default function Signup() {
         <Input
           Icon={<Password />}
           lastIcon={{
-            icon: <HiddenPassword width="32px" height="32px" />,
+            icon: <EyeSlash width="32px" height="32px" />,
             width: 32,
           }}
           type={"password"}
@@ -155,7 +155,7 @@ export default function Signup() {
         <Input
           Icon={<Password />}
           lastIcon={{
-            icon: <HiddenPassword width="32px" height="32px" />,
+            icon: <EyeSlash width="32px" height="32px" />,
             width: 32,
           }}
           type={"password"}
