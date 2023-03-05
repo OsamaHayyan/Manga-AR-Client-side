@@ -8,11 +8,10 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top right;
-  position: relative;
+  max-width: 1081px;
 }
 
 .formHeader {
-  width: 1192px;
   height: 54px;
   font-weight: 600;
   font-size: 36px;
@@ -25,6 +24,7 @@
 .container {
   margin-top: 28px;
   z-index: 1;
+  width: 100%;
 }
 
 .inputsContainer {

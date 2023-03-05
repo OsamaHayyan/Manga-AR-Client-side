@@ -1,7 +1,8 @@
 import { Button } from "@mui/material";
+import Image from "next/image";
 import React from "react";
 import * as mangaFromStyle from "../styles/mangaForms.module.css";
-
+import background from "../public/images/backgroundMangaForm.jpg";
 export default function MangaForm({
   formName,
   onSubmit,
@@ -32,6 +33,12 @@ export default function MangaForm({
           </Button>
         </div>
       </div>
+      <Image
+        src={background}
+        alt="background"
+        fill
+        style={{ objectPosition: "top right", objectFit: "cover" }}
+      />
       <span
         style={{
           position: "absolute",
