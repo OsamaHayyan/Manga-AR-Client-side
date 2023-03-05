@@ -16,7 +16,7 @@ export default function AutoComplete({
   style,
   className,
   validationStyle,
-  handleValue,
+  onChange,
   onBlur,
   options,
   filterOptions,
@@ -54,7 +54,7 @@ export default function AutoComplete({
       newData = data;
       setSelectedOption(newData);
     }
-    handleValue(newData);
+    onChange(newData);
     inputList.current.value = null;
   };
   const handleSearch = (e) => {
@@ -85,7 +85,7 @@ export default function AutoComplete({
     setSearchedOptions(options);
   }, [options]);
   return (
-    <div>
+    <div className={inputStyle.container}>
       <div className={inputStyle.boxContainer}>
         {Icon}
         {Array.isArray(selectedOption) ? (
@@ -137,7 +137,7 @@ export default function AutoComplete({
               setListHide(false);
             }}
             onBlur={() => setListHide(true)}
-            onChange={handleSearch}
+            onChange={onInput ? null : handleSearch}
             onInput={onInput}
           />
           <DownArrow
@@ -156,6 +156,9 @@ export default function AutoComplete({
           transformOrigin: "top",
           transition: "max-height 300ms ease-out",
           overflowY: "auto",
+          width: "100%",
+          position: "absolute",
+          borderRadius: "0 0 5px 5px",
         }}
       >
         {searchedOptions?.map((option, i) => (
