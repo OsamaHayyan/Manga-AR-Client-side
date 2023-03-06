@@ -1,11 +1,53 @@
 .container {
-  background-color: #f2f2f2;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 116px;
+  gap: 64px;
 }
 
-.row {
-  padding-top: 20px;
-  row-gap: 20px;
+.sortSection,
+.catSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+.sortSection > p,
+.catSection > p {
+  width: 110px;
+  height: 48px;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 48px;
+  text-align: center;
+  text-decoration-line: underline;
+  color: #ffffff;
+}
+.choices {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  column-gap: 32px;
+  row-gap: 16px;
+}
+
+.btnContainer {
+  padding: 10px;
+  background: #1e1e1e;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.btnContainer > p {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 48px;
+  text-align: center;
+  color: #ffffff;
 }
 
 .a {
@@ -23,13 +65,10 @@
 }
 
 .a:hover {
-  background-color: whitesmoke;
-  box-shadow: rgb(0 0 0 / 20%) 0px 0px 3px 2px;
 }
 
 .active {
-  background-color: whitesmoke;
-  box-shadow: rgb(0 0 0 / 20%) 0px 0px 3px 2px;
+  background: #d100b2;
 }
 
 .section {
