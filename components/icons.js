@@ -268,3 +268,77 @@ export function AddPhoto({ width = "40px", height = "40px" }) {
     </span>
   );
 }
+
+export function FilledStar({ width = "40px", height = "40px" }) {
+  return (
+    <span
+      style={{
+        width: width,
+        height: height,
+        display: "inline-block",
+      }}
+    >
+      <svg
+        width="68"
+        height="64"
+        viewBox="0 0 68 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M34.0003 51.5665L54.6003 63.9998L49.1337 40.5665L67.3337 24.7998L43.367 22.7665L34.0003 0.666504L24.6337 22.7665L0.666992 24.7998L18.867 40.5665L13.4003 63.9998L34.0003 51.5665Z"
+          fill="#D100B2"
+        />
+      </svg>
+    </span>
+  );
+}
+
+export function HalfFilledStar({ width = "40px", height = "40px" }) {
+  return (
+    <span
+      style={{
+        width: width,
+        height: height,
+        display: "inline-block",
+      }}
+    >
+      <svg
+        width="68"
+        height="64"
+        viewBox="0 0 68 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M67.3337 24.7998L43.367 22.7332L34.0003 0.666504L24.6337 22.7665L0.666992 24.7998L18.867 40.5665L13.4003 63.9998L34.0003 51.5665L54.6003 63.9998L49.167 40.5665L67.3337 24.7998ZM34.0003 45.3332V14.3332L39.7003 27.7998L54.3003 29.0665L43.2337 38.6665L46.567 52.9332L34.0003 45.3332Z"
+          fill="#D100B2"
+        />
+      </svg>
+    </span>
+  );
+}
+export function Star({ width = "40px", height = "40px" }) {
+  return (
+    <span
+      style={{
+        width: width,
+        height: height,
+        display: "inline-block",
+      }}
+    >
+      <svg
+        width="68"
+        height="64"
+        viewBox="0 0 68 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M67.3337 24.7998L43.367 22.7332L34.0003 0.666504L24.6337 22.7665L0.666992 24.7998L18.867 40.5665L13.4003 63.9998L34.0003 51.5665L54.6003 63.9998L49.167 40.5665L67.3337 24.7998ZM34.0003 45.3332L21.467 52.8998L24.8003 38.6332L13.7337 29.0332L28.3337 27.7665L34.0003 14.3332L39.7003 27.7998L54.3003 29.0665L43.2337 38.6665L46.567 52.9332L34.0003 45.3332Z"
+          fill="#D100B2"
+        />
+      </svg>
+    </span>
+  );
+}
