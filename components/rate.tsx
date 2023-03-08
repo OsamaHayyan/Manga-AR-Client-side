@@ -18,10 +18,24 @@ export default function Rate({
     <div className={`${rateStyle.rateContainer} ${className}`} style={style}>
       {[1, 2, 3, 4, 5].map((i) => {
         if (Math.floor(rate) >= i)
-          return <FilledStar key={i} width={width} height={height} />;
+          return (
+            <FilledStar
+              key={i}
+              width={width}
+              height={height}
+              color={"#D100B2"}
+            />
+          );
         if (Math.round(rate) === i)
-          return <HalfFilledStar key={i} width={width} height={height} />;
-        return <Star key={i} width={width} height={height} />;
+          return (
+            <HalfFilledStar
+              key={i}
+              width={width}
+              height={height}
+              color={"#D100B2"}
+            />
+          );
+        return <Star key={i} width={width} height={height} color={"#D100B2"} />;
       })}
     </div>
   );
