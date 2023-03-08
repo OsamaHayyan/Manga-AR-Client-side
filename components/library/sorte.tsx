@@ -6,7 +6,15 @@ import sortStyle from "./sorte.module.css";
 
 interface Props {
   catData: IcategoryAll;
-  handleSubmet: () => Promise<void>;
+  handleSubmet: ({
+    catId,
+    order,
+    page,
+  }: {
+    catId?: string;
+    order?: string;
+    page: number;
+  }) => Promise<void>;
   handleSort: React.Dispatch<
     React.SetStateAction<{
       catId: string;
@@ -22,27 +30,18 @@ interface Props {
     pageMount: number;
   };
 }
-export default function Sorte({
-  catData,
-  handleSubmet,
-  handleSort,
-  sort,
-}: Props) {
+export default function Sorte({ catData, handleSubmet }: Props) {
   const [idSort, setIdSort] = useState("");
-  const [idCat, setIdCat] = useState("");
-  const router = useRouter();
-  const handleClickSort = (id) => {
-    // router.replace("/library");
+  const [idCat, setIdCat] = useState("all");
+  const handleClickSort = (id: string) => {
     setIdSort(id);
-    handleSort({ ...sort, page: 1, order: id });
+    handleSubmet({ order: id, page: 1 });
   };
-  const handleClickCat = (id) => {
-    // router.replace("/library");
+  const handleClickCat = (id: string) => {
     setIdCat(id);
-    handleSort({ ...sort, page: 1, catId: id });
+    handleSubmet({ catId: id, page: 1 });
   };
 
-  const data = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
     <div className={sortStyle.container}>
       <section className={sortStyle.sortSection}>
@@ -90,9 +89,9 @@ export default function Sorte({
         <p>Categories</p>
         <div className={sortStyle.choices}>
           <span
-            id={""}
+            id="all"
             className={`${sortStyle.btnContainer} ${
-              idCat === "" ? sortStyle.active : ""
+              idCat === "all" ? sortStyle.active : ""
             }`}
             onClick={(e) => handleClickCat(e.currentTarget.id)}
           >
