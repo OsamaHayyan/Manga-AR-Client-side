@@ -10,12 +10,12 @@ import Rate from "../rate";
 export default function MangaCard({ manga }: { manga: manga }) {
   const router = useRouter();
 
-  const handleNavigation = (_id, title) => {
-    return router.push(`series/${title}/${_id}`);
+  const handleNavigation = () => {
+    return router.push(`series/${manga.title}/${manga._id}`);
   };
 
   return (
-    <div className={card.container}>
+    <div className={card.container} onClick={handleNavigation}>
       <section className={card.imageSection}>
         <Image
           src={`http://localhost:8080/${manga.image}`}
