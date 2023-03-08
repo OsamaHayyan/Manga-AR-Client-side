@@ -1,0 +1,156 @@
+import { useRouter } from "next/dist/client/router";
+import React, { useState } from "react";
+import Error from "next/error";
+import MangaCard from "../components/library/manga_card";
+import Sorte from "../components/library/sorte";
+import library from "../styles/library.module.css";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { GetServerSideProps } from "next";
+import { IcategoryAll, ImangaAll, manga } from "../util/interfaces";
+import Image from "next/image";
+import libraryBanner from "../public/images/libraryBanner.jpg";
+import Pagination from "../components/pagination";
+interface Props {
+  mangaData: manga[];
+  AllPages: number;
+  catData: IcategoryAll;
+  DataExist: boolean;
+  statusCode: number;
+  errorMessage: string;
+}
+export default function Library({
+  mangaData,
+  AllPages,
+  catData,
+  DataExist,
+  statusCode,
+  errorMessage,
+}: Props) {
+  const router = useRouter();
+  const [sort, setSort] = useState({
+    catId: "",
+    order: "",
+    page: 1,
+    pageMount: AllPages,
+  });
+  const [manga, setManga] = useState(mangaData);
+  const handleSubmet = async ({
+    catId,
+    order,
+    page,
+  }: {
+    catId: string;
+    order: string;
+    page: number;
+  }) => {
+    try {
+      const url = `http://localhost:8080/mangas/?catId=${
+        catId ? catId : sort.catId
+      }&orderBy=${order ? order : sort.order}&page=${page ? page : sort.page}`;
+      const mangas = await fetch(url);
+      let {
+        mangaData,
+        mangaPages,
+        message,
+      }: { mangaData: manga[]; mangaPages: number; message: string } =
+        await mangas.json();
+      if (message) throw message;
+      setSort({
+        catId: catId ? catId : sort.catId,
+        order: order ? order : sort.order,
+        page: page ? page : sort.page,
+        pageMount: mangaPages,
+      });
+      setManga(mangaData);
+    } catch (error) {
+      toast.error("Sorry there was an error, try again later");
+    }
+  };
+  return (
+    <>
+      {!DataExist ? (
+        <Error statusCode={statusCode} title={errorMessage} />
+      ) : (
+        <div className={library.container}>
+          <section className={library.imageSection}>
+            <Image
+              priority
+              src={libraryBanner}
+              style={{ width: "100%", height: "auto" }}
+              alt="image banner"
+            />
+          </section>
+          <section className={library.sortSection}>
+            <Sorte
+              catData={catData}
+              handleSort={setSort}
+              sort={sort}
+              handleSubmet={handleSubmet}
+            />
+          </section>
+          <section className={library.mangaSection}>
+            {manga.map((m) => (
+              <MangaCard key={m._id} manga={m} />
+            ))}
+          </section>
+          <section className={library.paginationSection}>
+            <Pagination
+              renderON={sort.order}
+              totalPages={sort.pageMount}
+              onClick={handleSubmet}
+            />
+          </section>
+        </div>
+      )}
+    </>
+  );
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  try {
+    const DataExist = true;
+    const {
+      data: { mangaData, mangaPages },
+    }: { data: ImangaAll } = await axios("http://localhost:8080/mangas/");
+    const { data: catData }: { data: IcategoryAll } = await axios(
+      "http://localhost:8080/category/get-cat/"
+    );
+
+    return {
+      props: { mangaData, AllPages: mangaPages, catData, DataExist }, // will be passed to the page component as props
+    };
+  } catch (error) {
+    const DataExist = false;
+    let errorMessage: string;
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      error.response.data.data.forEach((d) => (errorMessage = d.msg));
+      return {
+        props: { statusCode: error.response.status, errorMessage, DataExist },
+      };
+    } else if (error.request) {
+      // The request was made but no response was received
+      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+      // http.ClientRequest in node.js
+      return {
+        props: {
+          statusCode: 500,
+          errorMessage: "Server deosn't responsed, Please try again later",
+          DataExist,
+        },
+      };
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.log("Error", error.message);
+      return {
+        props: {
+          statusCode: 500,
+          errorMessage: "Please try again later",
+          DataExist,
+        },
+      };
+    }
+  }
+};

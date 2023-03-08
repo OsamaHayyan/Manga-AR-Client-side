@@ -1,18 +1,33 @@
-.library {
-  width: 100%;
-  display: -webkit-flex;
-  display: -moz-box;
+.container {
+  position: relative;
   display: flex;
-  -webkit-justify-content: center;
-  -moz-box-pack: center;
-  justify-content: center;
-  -webkit-flex-direction: row;
-  -moz-box-orient: horizontal;
-  -moz-box-direction: normal;
   flex-direction: column;
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-align-content: center;
-  align-content: center;
   align-items: center;
+}
+.imageSection {
+  width: 100%;
+  max-height: 768px;
+  overflow: hidden;
+}
+
+.sortSection {
+  margin-top: 64px;
+  width: 100%;
+}
+
+.mangaSection {
+  display: flex;
+  flex-direction: row;
+  column-gap: 64px;
+  row-gap: 36px;
+  padding: 0 48px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 119px;
+}
+
+.paginationSection {
+  margin-top: 104px;
+  width: 100%;
 }
