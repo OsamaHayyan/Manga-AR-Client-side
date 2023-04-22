@@ -1,10 +1,7 @@
 import React from "react";
 import card from "./manga_card.module.css";
-import { Container } from "react-bootstrap";
-import { TiEye, TiCalendar } from "react-icons/ti";
 import { useRouter } from "next/dist/client/router";
 import { manga } from "../../util/interfaces";
-import Image from "next/image";
 import Rate from "../rate";
 import RemoteImage from "../remote_image";
 
@@ -24,7 +21,7 @@ export default function MangaCard({ manga }: { manga: manga }) {
           <p className={card.category}>
             {manga.category.map((cat) => cat.category).join(", ")}
           </p>
-          <Rate rate={manga.rate} width={"24px"} height={"24px"} />
+          <Rate rate={manga.rate} size={24} />
           <div>
             <p className={card.story}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.

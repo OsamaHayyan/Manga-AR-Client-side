@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import * as favorite from "./favorite.module.css";
-import { FaBookOpen, FaRegHeart } from "react-icons/fa";
-import { BsHeart } from "react-icons/bs";
+import { FaBookOpen } from "react-icons/fa";
 import { IoHeartCircle } from "react-icons/io5";
 
 export default function Favorite() {

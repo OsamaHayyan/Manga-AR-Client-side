@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Button, Container, SSRProvider, Tab, Tabs } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Container, SSRProvider, Tab, Tabs } from "react-bootstrap";
 import { TiCalendar, TiEye } from "react-icons/ti";
-import { animateScroll } from "react-scroll";
 import Abbreviate_Numbers from "../abbreviate_numbers";
 import Expand from "../expand";
 import * as chapter from "./chapter.module.css";

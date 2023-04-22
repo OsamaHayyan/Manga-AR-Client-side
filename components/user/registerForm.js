@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import Logo from "../../public/images/logo3.png";
 import * as userLogin from "../../styles/registerForm.module.css";
-import { Facebook, Google } from "../icons";
+import Icon from "../Icon";
 
 export default function RegisterForm({
   formName,
@@ -64,14 +64,14 @@ export default function RegisterForm({
               className="d-flex flex-row justify-content-center align-items-center"
               style={{ gap: "8px" }}
             >
-              <Google />
+              <Icon name="google" />
               <p>Google</p>
             </div>
             <div
               className="d-flex flex-row justify-content-center align-items-center"
               style={{ gap: "8px" }}
             >
-              <Facebook />
+              <Icon name="facebook" />
               <p>Facebook</p>
             </div>
           </div>

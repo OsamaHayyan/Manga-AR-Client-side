@@ -1,14 +1,12 @@
-import { Button } from "@mui/material";
 import axios from "axios";
 import React, { useRef, useState } from "react";
-import { Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import validator from "validator";
 import * as userSignup from "../../styles/signup.module.css";
-import { AddPhoto, EyeSlash, Password, Person } from "../icons";
 import Input from "../input";
 import InputUpload from "../upload_input";
 import RegisterForm from "./registerForm";
+import Icon from "../Icon";
 export default function Signup() {
   const username = useRef("");
   const email = useRef("");
@@ -115,7 +113,7 @@ export default function Signup() {
       disable={disable}
     >
       <Input
-        Icon={<Person />}
+        Icon={<Icon name="person" />}
         type={"text"}
         name={"username"}
         ref={username}
@@ -126,7 +124,7 @@ export default function Signup() {
         validationText={"Please type a valid username"}
       />
       <Input
-        Icon={<Person />}
+        Icon={<Icon name="person" />}
         type={"email"}
         name={"email"}
         ref={email}
@@ -138,9 +136,9 @@ export default function Signup() {
       />
       <div className={userSignup.passwordContainer}>
         <Input
-          Icon={<Password />}
+          Icon={<Icon name="password" />}
           lastIcon={{
-            icon: <EyeSlash width="32px" height="32px" />,
+            icon: <Icon name="eyeSlash" size={32} />,
             width: 32,
           }}
           type={"password"}
@@ -153,9 +151,9 @@ export default function Signup() {
           validationStyle={{ width: "278px" }}
         />
         <Input
-          Icon={<Password />}
+          Icon={<Icon name="password" />}
           lastIcon={{
-            icon: <EyeSlash width="32px" height="32px" />,
+            icon: <Icon name="eyeSlash" size={32} />,
             width: 32,
           }}
           type={"password"}
@@ -170,7 +168,7 @@ export default function Signup() {
       </div>
 
       <InputUpload
-        icon={<AddPhoto />}
+        icon={<Icon name="addPhoto" />}
         handleFileInput={handleFileInput}
         fileName={fileName}
         error={!valid.profileImage}

@@ -1,19 +1,17 @@
 import React, { useState } from "react";
-import { FilledStar, HalfFilledStar, Star } from "./icons";
+import Icon from "./Icon";
 import rateStyle from "../styles/rate.module.css";
 export default function Rate({
   className,
   style,
   rate,
-  width,
-  height,
+  size,
   handleRate,
 }: {
   className?: string;
   style?: React.CSSProperties;
   rate: number;
-  width: string;
-  height: string;
+  size: number;
   acceptRate?: boolean;
   handleRate?: (rate: number) => Promise<void>;
 }) {
@@ -25,33 +23,26 @@ export default function Rate({
         ? [1, 2, 3, 4, 5].map((i) => {
             if (Math.floor(rate) >= i)
               return (
-                <FilledStar
-                  key={i}
-                  width={width}
-                  height={height}
-                  color={"#D100B2"}
-                />
+                <Icon name="filledStar" key={i} size={size} color={"#D100B2"} />
               );
             if (Math.round(rate) === i)
               return (
-                <HalfFilledStar
+                <Icon
+                  name="halfFilledStar"
                   key={i}
-                  width={width}
-                  height={height}
+                  size={size}
                   color={"#D100B2"}
                 />
               );
-            return (
-              <Star key={i} width={width} height={height} color={"#D100B2"} />
-            );
+            return <Icon name="star" key={i} size={size} color={"#D100B2"} />;
           })
         : [1, 2, 3, 4, 5].map((i) => {
             if (userRate >= i)
               return (
-                <FilledStar
+                <Icon
                   key={i}
-                  width={width}
-                  height={height}
+                  name="filledStar"
+                  size={size}
                   color={"#D100B2"}
                   onClick={() => {
                     setUserRate(i);
@@ -60,10 +51,10 @@ export default function Rate({
                 />
               );
             return (
-              <Star
+              <Icon
                 key={i}
-                width={width}
-                height={height}
+                name="star"
+                size={size}
                 color={"#D100B2"}
                 onClick={() => {
                   setUserRate(i);

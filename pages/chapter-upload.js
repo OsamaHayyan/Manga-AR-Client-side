@@ -9,7 +9,7 @@ import { useRouter } from "next/dist/client/router";
 import AutoComplete from "../components/auto_complete_input";
 import Input from "../components/input";
 import MangaForm from "../components/manga_form";
-import { DownArrow } from "../components/icons";
+import Icon from "../components/Icon";
 import InputUpload from "../components/upload_input";
 export default function ChapterUpload() {
   const { replace } = useRouter();
@@ -116,7 +116,7 @@ export default function ChapterUpload() {
               error={errors.manga ? true : false}
               validationText={"Please select manga"}
               lastIcon={{
-                icon: <DownArrow width="32px" height="32px" />,
+                icon: <Icon name="downArrow" size={32} />,
                 width: 32,
               }}
               options={results}
@@ -165,7 +165,7 @@ export default function ChapterUpload() {
           validationText={"Please add a valid images"}
           accept="image/*"
           calssName={chapterUploadStyle.inputUploadStyle}
-          lastIcon={<DownArrow height="32px" width="32px" />}
+          lastIcon={<Icon name="downArrow" size={32} />}
         />
       </MangaForm>
     </>

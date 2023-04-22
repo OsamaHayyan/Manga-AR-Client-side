@@ -5,7 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import MangaForm from "../components/manga_form";
 import Input from "../components/input";
 import AutoComplete from "../components/auto_complete_input";
-import { DownArrow } from "../components/icons";
+import Icon from "../components/Icon";
 import InputUpload from "../components/upload_input";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
@@ -135,7 +135,7 @@ const MangaUplouds = () => {
             validation={{ required: true }}
             validationText={"Please select author"}
             lastIcon={{
-              icon: <DownArrow width="32px" height="32px" />,
+              icon: <Icon name="downArrow" size={32} />,
               width: 32,
             }}
             options={mangaData.auther}
@@ -161,7 +161,7 @@ const MangaUplouds = () => {
             error={errors.category ? true : false}
             validationText={"Please select category"}
             lastIcon={{
-              icon: <DownArrow width="32px" height="32px" />,
+              icon: <Icon name="downArrow" size={32} />,
               width: 32,
             }}
             options={mangaData.categories}
@@ -187,7 +187,7 @@ const MangaUplouds = () => {
             error={errors.date ? true : false}
             validationText={"Please select date"}
             lastIcon={{
-              icon: <DownArrow width="32px" height="32px" />,
+              icon: <Icon name="downArrow" size={32} />,
               width: 32,
             }}
             options={mangaData.date}
@@ -210,7 +210,7 @@ const MangaUplouds = () => {
             error={errors.state ? true : false}
             validationText={"Please select state"}
             lastIcon={{
-              icon: <DownArrow width="32px" height="32px" />,
+              icon: <Icon name="downArrow" size={32} />,
               width: 32,
             }}
             options={mangaData.status}
@@ -228,7 +228,7 @@ const MangaUplouds = () => {
         validationText={"Please add a valid Image"}
         accept="image/*"
         calssName={mangaUploadStyle.inputUploadStyle}
-        lastIcon={<DownArrow height="32px" width="32px" />}
+        lastIcon={<Icon name="downArrow" size={32} />}
       />
 
       <InputUpload
@@ -240,7 +240,7 @@ const MangaUplouds = () => {
         validationText={"Please add a valid Image"}
         accept="image/*"
         calssName={mangaUploadStyle.inputUploadStyle}
-        lastIcon={<DownArrow height="32px" width="32px" />}
+        lastIcon={<Icon name="downArrow" size={32} />}
       />
       <Input
         {...register("story", {

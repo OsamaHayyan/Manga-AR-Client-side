@@ -1,12 +1,11 @@
 import axios from "axios";
 import { useRouter } from "next/dist/client/router";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import Cookies from "universal-cookie";
 import validator from "validator";
 
-import { Password, Person } from "../icons";
-import * as userLogin from "../../styles/login.module.css";
+import Icon from "../Icon";
 import Input from "../input";
 import RegisterForm from "./registerForm";
 
@@ -95,7 +94,7 @@ export default function Login({ handleLoginState }) {
       disable={disable}
     >
       <Input
-        Icon={<Person />}
+        Icon={<Icon name="person" />}
         type={"email"}
         name={"email"}
         ref={email}
@@ -103,7 +102,7 @@ export default function Login({ handleLoginState }) {
         required={true}
       />
       <Input
-        Icon={<Password />}
+        Icon={<Icon name="password" />}
         type={"password"}
         name={"password"}
         ref={password}

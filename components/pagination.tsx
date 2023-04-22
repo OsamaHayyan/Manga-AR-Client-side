@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import paginationStyle from "../styles/pagination.module.css";
-import { CaretRight } from "./icons";
+import Icon from "./Icon";
+
 type Props = {
   totalPages: number;
   shownPages?: number;
@@ -71,8 +72,8 @@ export default function Pagination({
           className={paginationStyle.button}
           onClick={() => handleNavigation(1)}
         >
-          <CaretRight width="6.58px" height="11.17px" />
-          <CaretRight width="6.58px" height="11.17px" />
+          <Icon name="caretRight" size={11} />
+          <Icon name="caretRight" size={11} />
         </button>
       )}
 
@@ -113,8 +114,8 @@ export default function Pagination({
           className={paginationStyle.button}
           onClick={() => handleNavigation(totalPages)}
         >
-          <CaretRight width="6.58px" height="11.17px" />
-          <CaretRight width="6.58px" height="11.17px" />
+          <Icon name="caretRight" size={11} />
+          <Icon name="caretRight" size={11} />
         </button>
       )}
     </div>

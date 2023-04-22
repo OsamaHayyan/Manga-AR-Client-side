@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useEffect } from "react";
 import * as inputStyle from "../styles/autoComplete.module.css";
-import { DownArrow, Person } from "./icons";
+import IconComponent from "./Icon";
 export default function AutoComplete({
   id,
   Icon,
@@ -99,9 +99,9 @@ export default function AutoComplete({
               <span>
                 {accessedDataName ? option[accessedDataName] : option}
               </span>
-              <DownArrow
-                width="24px"
-                height="24px"
+              <IconComponent
+                name="downArrow"
+                size={24}
                 className={inputStyle.removeIcon}
                 onClick={handleRemoveSelected}
               />
@@ -114,9 +114,9 @@ export default function AutoComplete({
                 ? selectedOption[accessedDataName]
                 : selectedOption}
             </span>
-            <DownArrow
-              width="24px"
-              height="24px"
+            <IconComponent
+              name="downArrow"
+              size={24}
               className={inputStyle.removeIcon}
             />
           </li>
@@ -140,9 +140,9 @@ export default function AutoComplete({
             onChange={onInput ? null : handleSearch}
             onInput={onInput}
           />
-          <DownArrow
-            width="32px"
-            height="32px"
+          <IconComponent
+            name="downArrow"
+            size={32}
             className={!listHide ? inputStyle.reflectArrow : null}
           />
         </div>

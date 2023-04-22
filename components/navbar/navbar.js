@@ -7,7 +7,7 @@ import Link from "next/link";
 import { ClickAwayListener } from "@mui/material";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { FaSearch } from "react-icons/fa";
 import { AiOutlineSearch } from "react-icons/ai";
 

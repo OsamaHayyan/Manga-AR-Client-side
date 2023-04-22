@@ -6,16 +6,9 @@ import Error from "next/error";
 import mangaStyle from "../../../styles/manga_page.module.css";
 import axios from "axios";
 import { useRouter } from "next/dist/client/router";
-import { manga } from "../../../util/interfaces";
+import { manga, recommendations } from "../../../util/interfaces";
 import RemoteImage from "../../../components/remote_image";
-import {
-  Eye,
-  EyeBold,
-  File,
-  FilledStar,
-  Heart,
-  Star,
-} from "../../../components/icons";
+import Icon from "../../../components/Icon";
 import moment from "moment";
 import Rate from "../../../components/rate";
 import { GetServerSideProps } from "next";
@@ -136,7 +129,7 @@ export default function Manga({
             </div>
             <div className={mangaStyle.btns}>
               <div style={{ alignSelf: "flex-start" }}>
-                <FilledStar color="#FFC107" width="80px" height="80px" />
+                <Icon name="filledStar" color="#FFC107" size={65} />
                 <p>
                   {mangaData.rate}
                   <span>/5</span>
@@ -150,7 +143,7 @@ export default function Manga({
                     toast.error("please login first to rate this manga");
                 }}
               >
-                <Star width="80px" height="80px" />
+                <Icon name="star" size={65} />
                 {userLoggedIn && showRate ? (
                   <span
                     style={{
@@ -160,30 +153,25 @@ export default function Manga({
                       justifyContent: "center",
                     }}
                   >
-                    <Rate
-                      handleRate={sendRate}
-                      rate={null}
-                      width={"24px"}
-                      height={"24px"}
-                    />
+                    <Rate handleRate={sendRate} rate={null} size={24} />
                   </span>
                 ) : (
                   <p>Add rate</p>
                 )}
               </div>
               <div>
-                <Eye width="80px" height="80px" />
+                <Icon name="eye" size={65} />
                 <p>{mangaData.views}</p>
               </div>
               <div style={{ alignSelf: "flex-start" }} onClick={addToFavorit}>
                 {userLoggedIn && showFavorit ? (
                   <>
-                    <FilledStar color="#FFC107" width="80px" height="80px" />
+                    <Icon name="filledStar" color="#FFC107" size={65} />
                     <p>Added to favorite!</p>
                   </>
                 ) : (
                   <>
-                    <Heart width="80px" height="80px" />
+                    <Icon name="heart" size={65} />
                     <p>Add to favorite</p>
                   </>
                 )}
@@ -248,7 +236,7 @@ export default function Manga({
                     onClick={() => navigateToChapter(chapter._id)}
                   >
                     <div className={mangaStyle.chapterHeader}>
-                      <File width="21px" height="25px" />
+                      <Icon name="file" size={25} />
                       <p>
                         {chapter.chapterNum} | Lorem ipsum dolor sit, amet
                         consectetur adipisicing elit. Odio, ducimus? Excepturi
@@ -260,7 +248,7 @@ export default function Manga({
                     <div className={mangaStyle.chapterFooter}>
                       <span style={{ fontWeight: 300 }}>{publisdTime}</span>
                       <span style={{ fontWeight: 300 }}>
-                        <EyeBold width="20px" height="14px" />
+                        <Icon name="eyeBold" size={14} />
                         {chapter.views}
                       </span>
                     </div>
@@ -280,11 +268,14 @@ export default function Manga({
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const { manga, mangaId } = context.query;
+
     const userLoggedIn = context.req?.cookies["access_token"] ? true : false;
     const DataExist = true;
-    const { data: mangaData }: { data: manga } = await axios.get(
-      `http://localhost:8080/mangas/manga/${mangaId}`
-    );
+    const {
+      data: { manga: mangaData, recommendationManga: recommendations },
+    }: { data: { manga: manga; recommendationManga: recommendations } } =
+      await axios.get(`http://localhost:8080/mangas/manga/${mangaId}`);
+
     if (mangaData.title != manga) {
       return {
         props: {

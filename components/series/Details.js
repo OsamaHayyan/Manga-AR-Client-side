@@ -11,7 +11,7 @@ import {
   TiPen,
   TiCalendar,
 } from "react-icons/ti";
-import { FaArrowCircleDown, FaArrowCircleUp, FaBookOpen } from "react-icons/fa";
+import { FaBookOpen } from "react-icons/fa";
 import { animateScroll, Element, Link } from "react-scroll";
 import Abbreviate_Numbers from "../abbreviate_numbers";
 import Expand from "../expand";
