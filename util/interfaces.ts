@@ -10,6 +10,16 @@ export interface manga {
   status?: string;
   date?: string | null;
   auther?: auther[];
+  chapters: chapter[];
+}
+
+export interface chapter {
+  chapterNum: string;
+  name: string;
+  chapter?: string[];
+  views: number;
+  date: string;
+  _id: string;
 }
 
 export interface auther {
