@@ -273,7 +273,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const DataExist = true;
     const {
       data: { manga: mangaData, recommendationManga: recommendations },
-    }: { data: { manga: manga; recommendationManga: recommendations } } =
+    }: { data: { manga: manga; recommendationManga: recommendations[] } } =
       await axios.get(`http://localhost:8080/mangas/manga/${mangaId}`);
 
     if (mangaData.title != manga) {
