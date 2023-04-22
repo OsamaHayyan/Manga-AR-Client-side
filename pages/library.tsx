@@ -2,7 +2,7 @@ import { useRouter } from "next/dist/client/router";
 import React, { useState } from "react";
 import Error from "next/error";
 import MangaCard from "../components/library/manga_card";
-import Sorte from "../components/library/sorte";
+import Sort from "../components/library/sort";
 import library from "../styles/library.module.css";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -82,7 +82,7 @@ export default function Library({
             />
           </section>
           <section className={library.sortSection}>
-            <Sorte
+            <Sort
               catData={catData}
               handleSort={setSort}
               sort={sort}
