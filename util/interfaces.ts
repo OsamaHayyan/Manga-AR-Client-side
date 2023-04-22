@@ -12,6 +12,11 @@ export interface manga {
   auther?: auther[];
   chapters: chapter[];
 }
+export interface recommendations {
+  _id: string;
+  title: string;
+  image: string;
+}
 
 export interface chapter {
   chapterNum: string;
