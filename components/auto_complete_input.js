@@ -159,6 +159,7 @@ export default function AutoComplete({
           width: "100%",
           position: "absolute",
           borderRadius: "0 0 5px 5px",
+          zIndex: 2,
         }}
       >
         {searchedOptions?.map((option, i) => (
@@ -173,6 +174,9 @@ export default function AutoComplete({
               height: "48px",
               lineHeight: "48px",
               cursor: "pointer",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
             }}
           >
             {accessedDataName ? option[accessedDataName] : option}
