@@ -6,6 +6,7 @@ import { useRouter } from "next/dist/client/router";
 import { manga } from "../../util/interfaces";
 import Image from "next/image";
 import Rate from "../rate";
+import RemoteImage from "../remote_image";
 
 export default function MangaCard({ manga }: { manga: manga }) {
   const router = useRouter();
@@ -16,14 +17,7 @@ export default function MangaCard({ manga }: { manga: manga }) {
 
   return (
     <div className={card.container} onClick={handleNavigation}>
-      <section className={card.imageSection}>
-        <Image
-          src={`http://localhost:8080/${manga.image}`}
-          alt=""
-          fill
-          style={{ objectFit: "cover", borderRadius: "5px" }}
-        />
-      </section>
+      <RemoteImage src={manga.image} />
       <section className={card.contentSection}>
         <p className={card.title}>{manga.title}</p>
         <div>
