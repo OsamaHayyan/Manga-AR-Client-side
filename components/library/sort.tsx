@@ -1,6 +1,4 @@
-import { useRouter } from "next/dist/client/router";
-import React, { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import React, { useState } from "react";
 import { IcategoryAll } from "../../util/interfaces";
 import sortStyle from "./sorte.module.css";
 
@@ -30,7 +28,7 @@ interface Props {
     pageMount: number;
   };
 }
-export default function Sorte({ catData, handleSubmet }: Props) {
+export default function Sort({ catData, handleSubmet }: Props) {
   const [idSort, setIdSort] = useState("");
   const [idCat, setIdCat] = useState("all");
   const handleClickSort = (id: string) => {
