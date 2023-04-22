@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FilledStar, HalfFilledStar, Star } from "./icons";
 import rateStyle from "../styles/rate.module.css";
 export default function Rate({
