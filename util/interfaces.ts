@@ -18,6 +18,12 @@ export interface recommendationsType {
   image: string;
 }
 
+export interface searchMangaType {
+  _id: string;
+  title: string;
+  image: string;
+}
+
 export interface chapter {
   chapterNum: string;
   name: string;
