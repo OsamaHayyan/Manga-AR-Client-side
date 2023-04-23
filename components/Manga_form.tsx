@@ -1,8 +1,15 @@
 import { Button } from "@mui/material";
 import Image from "next/image";
-import React from "react";
-import * as mangaFromStyle from "../styles/mangaForms.module.css";
+import React, { PropsWithChildren } from "react";
+import mangaFromStyle from "../styles/mangaForms.module.css";
 import background from "../public/images/backgroundMangaForm.jpg";
+type Props = {
+  formName: string;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
+  disable: boolean;
+  style?: React.CSSProperties;
+  className?: string;
+};
 export default function MangaForm({
   formName,
   onSubmit,
@@ -10,7 +17,7 @@ export default function MangaForm({
   disable,
   style,
   className,
-}) {
+}: PropsWithChildren<Props>) {
   return (
     <form
       method="POST"
