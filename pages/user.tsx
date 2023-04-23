@@ -1,13 +1,15 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
-import React, { useEffect, useRef, useState } from "react";
-import { Button } from "@mui/material";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
-import * as userForm from "../styles/userForm.module.css";
-import Login from "../components/user/login";
-import Signup from "../components/user/signup";
+import userForm from "../styles/userForm.module.css";
+import Login from "../components/user/Login";
+import Signup from "../components/user/Signup";
 import backgroundImage from "../public/images/userFormBackground.jpg";
-export default function User({ handleLoginState }) {
+
+type Props = {
+  handleLoginState: Dispatch<SetStateAction<boolean>>;
+};
+export default function User({ handleLoginState }: Props) {
   const [component, setComponent] = useState({ login: true, signup: false });
   return (
     <div className={userForm.container}>
@@ -16,6 +18,7 @@ export default function User({ handleLoginState }) {
           src={backgroundImage}
           fill
           className={userForm.backgroundImage}
+          alt="Background image"
         />
         <button
           className={
