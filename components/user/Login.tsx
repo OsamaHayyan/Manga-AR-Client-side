@@ -6,12 +6,13 @@ import Cookies from "universal-cookie";
 import validator from "validator";
 
 import Icon from "../Icon";
-import Input from "../input";
+import Input from "../Input";
 import RegisterForm from "./registerForm";
 
-export default function Login({ handleLoginState }) {
-  const email = useRef("");
-  const password = useRef("");
+type Props = { handleLoginState: (params: boolean) => void };
+export default function Login({ handleLoginState }: Props) {
+  const email = useRef<HTMLInputElement>();
+  const password = useRef<HTMLInputElement>();
   const router = useRouter();
   const cookies = new Cookies();
   const valid = useRef({
@@ -44,7 +45,7 @@ export default function Login({ handleLoginState }) {
           // expire in 3h
           expires: new Date(Date.now() + 3 * (60 * 60 * 1000)),
         });
-        await handleLoginState(true);
+        handleLoginState(true);
         console.log("submeted");
         router.replace("/library");
       }
@@ -70,7 +71,7 @@ export default function Login({ handleLoginState }) {
     }
   };
 
-  const validation = async (email, password) => {
+  const validation = async (email: string, password: string) => {
     try {
       valid.current = {
         emailValid: validator.isEmail(email),
@@ -83,7 +84,7 @@ export default function Login({ handleLoginState }) {
       }
       return false;
     } catch (error) {
-      console.log("error: " + error);
+      throw error;
     }
   };
 
