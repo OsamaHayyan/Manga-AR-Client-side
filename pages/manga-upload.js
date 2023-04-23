@@ -4,7 +4,7 @@ import axios from "axios";
 import { Controller, useForm } from "react-hook-form";
 import MangaForm from "../components/manga_form";
 import Input from "../components/Input";
-import AutoComplete from "../components/auto_complete_input";
+import AutoComplete from "../components/Auto_complete_input";
 import Icon from "../components/Icon";
 import InputUpload from "../components/Upload_input";
 import { useEffect } from "react";
