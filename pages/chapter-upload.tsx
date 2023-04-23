@@ -1,4 +1,4 @@
-import * as chapterUploadStyle from "../styles/mangaupload.module.css";
+import chapterUploadStyle from "../styles/mangaupload.module.css";
 import React, { useState } from "react";
 import path from "path";
 import axios from "axios";
@@ -6,11 +6,12 @@ import { Controller, useForm } from "react-hook-form";
 import LazyLoading from "../util/lazyloading";
 import { toast } from "react-toastify";
 import { useRouter } from "next/dist/client/router";
-import AutoComplete from "../components/auto_complete_input";
-import Input from "../components/input";
-import MangaForm from "../components/manga_form";
+import AutoComplete from "../components/Auto_complete_input";
+import Input from "../components/Input";
+import MangaForm from "../components/Manga_form";
 import Icon from "../components/Icon";
-import InputUpload from "../components/upload_input";
+import InputUpload from "../components/Upload_input";
+import { searchMangaType } from "../util/interfaces";
 export default function ChapterUpload() {
   const { replace } = useRouter();
   const {
@@ -25,7 +26,7 @@ export default function ChapterUpload() {
   const [results, setResults] = useState([]);
   const [progress, setPorgress] = useState(0);
   let { lazyLoader: lazySearch } = new LazyLoading();
-  const handleSearch = async (e) => {
+  const handleSearch: React.FormEventHandler<HTMLInputElement> = async (e) => {
     //new sorting way
     let collator = new Intl.Collator(undefined, {
       numeric: true,
@@ -35,15 +36,15 @@ export default function ChapterUpload() {
     await lazySearch(async () => {
       try {
         e.preventDefault();
-        const input = e.target.value;
+        const input = e.currentTarget.value;
         if (input.length < 3) return;
         console.log(input);
 
-        const result = await (
-          await axios.post("http://localhost:8080/mangas/search-manga/", {
+        const { data: result }: { data: searchMangaType[] } =
+          await await axios.post("http://localhost:8080/mangas/search-manga/", {
             query: input,
-          })
-        ).data.sort((a, b) => collator.compare(a.title, b.title));
+          });
+        result.sort((a, b) => collator.compare(a.title, b.title));
         setLoading(false);
         setResults(result);
       } catch (error) {
@@ -62,9 +63,9 @@ export default function ChapterUpload() {
 
       [...data.image].map((image) => {
         let fileName = path.parse(image.name).name;
-        if (parseInt(fileName) < 0 || isNaN(fileName)) {
+        if (parseInt(fileName) < 0 || isNaN(Number(fileName))) {
           setDisable(false);
-          return setError("image");
+          return setError("image", { message: "Please add a valid images" });
         }
         formData.append("photos", image);
       });
@@ -161,7 +162,7 @@ export default function ChapterUpload() {
           name={"image"}
           // validation={{ required: true }}
           fileName={"Upload chapter pages.."}
-          errors={errors.image}
+          errors={{ other: !!errors.image }}
           validationText={"Please add a valid images"}
           accept="image/*"
           calssName={chapterUploadStyle.inputUploadStyle}
