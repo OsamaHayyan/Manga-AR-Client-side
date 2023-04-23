@@ -1,8 +1,31 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import {
+  FieldErrorsImpl,
+  FieldValues,
+  Message,
+  UseFormRegister,
+  ValidationRule,
+  useForm,
+} from "react-hook-form";
 import inputStyle from "../styles/upload_input.module.css";
 
+type Props = {
+  id?: string;
+  icon?: JSX.Element;
+  handleFileInput: React.ChangeEventHandler<HTMLInputElement>;
+  name?: string;
+  fileName: string;
+  validation?: Partial<{ required: Message | ValidationRule<boolean> }>;
+  register?: UseFormRegister<FieldValues>;
+  validationStyle?: React.CSSProperties;
+  validationText?: string;
+  errors?: { required?: boolean; other?: boolean };
+  accept: string;
+  calssName?: string;
+  lastIcon?: JSX.Element;
+  multiple?: boolean;
+};
 export default function InputUpload({
   id = "file",
   icon,
@@ -18,9 +41,8 @@ export default function InputUpload({
   calssName,
   lastIcon,
   multiple,
-}) {
-  const [selectedFile, setSelectedFile] = useState();
-  const [test, setTest] = useState();
+}: Props) {
+  const [selectedFile, setSelectedFile] = useState<File[]>();
 
   return (
     <div className={inputStyle.container}>
@@ -28,7 +50,7 @@ export default function InputUpload({
         <div className={`${inputStyle.inputFile} ${calssName}`}>
           {icon}
           <div className={inputStyle.selectedFiles}>
-            {selectedFile ? (
+            {selectedFile.length > 0 ? (
               selectedFile?.map((file, i) => {
                 return <p key={i}>{file.name}</p>;
               })
@@ -51,11 +73,12 @@ export default function InputUpload({
                       file[0].size * Math.pow(10, -6) > 10)
                   ) {
                     setSelectedFile(null);
-                    document.querySelector(`#${id}`).value = null;
+                    document.querySelector<HTMLInputElement>(`#${id}`).value =
+                      null;
                     return false;
                   }
                 },
-                onChange: (e) => {
+                onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
                   setSelectedFile([...e.target.files]);
                 },
               })}
@@ -75,11 +98,12 @@ export default function InputUpload({
           />
         )}
       </label>
-      {errors && (
-        <p className={inputStyle.validation} style={validationStyle}>
-          {errors.required ? validationText : "maximum image size is 10MB"}
-        </p>
-      )}
+      {errors.other ||
+        (errors.required && (
+          <p className={inputStyle.validation} style={validationStyle}>
+            {errors.required ? validationText : "maximum image size is 10MB"}
+          </p>
+        ))}
     </div>
   );
 }
