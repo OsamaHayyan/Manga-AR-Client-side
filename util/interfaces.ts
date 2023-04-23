@@ -1,18 +1,18 @@
-export interface manga {
+export interface mangaType {
   _id: string;
   title: string;
   image: string;
   views: number;
   rate: number;
-  category: Icategory[];
+  category: categoryType[];
   story?: string;
   banner?: string | null;
   status?: string;
   date?: string | null;
-  auther?: auther[];
+  auther?: autherType[];
   chapters: chapter[];
 }
-export interface recommendations {
+export interface recommendationsType {
   _id: string;
   title: string;
   image: string;
@@ -27,20 +27,20 @@ export interface chapter {
   _id: string;
 }
 
-export interface auther {
+export interface autherType {
   _id: string;
   autherName: string;
-  autherManga?: manga[];
+  autherManga?: mangaType[];
 }
 export interface ImangaAll {
-  mangaData: manga[];
+  mangaData: mangaType[];
   mangaPages: number;
 }
 
-export interface Icategory {
+export interface categoryType {
   _id: string;
   category: string;
   catManga?: string[];
 }
 
-export type IcategoryAll = Icategory[];
+export type IcategoryAll = categoryType[];
