@@ -7,7 +7,7 @@ import validator from "validator";
 
 import Icon from "../Icon";
 import Input from "../Input";
-import RegisterForm from "./registerForm";
+import RegisterForm from "./RegisterForm";
 
 type Props = { handleLoginState: (params: boolean) => void };
 export default function Login({ handleLoginState }: Props) {

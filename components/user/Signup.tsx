@@ -5,7 +5,7 @@ import validator from "validator";
 import userSignup from "../../styles/signup.module.css";
 import Input from "../Input";
 import InputUpload from "../Upload_input";
-import RegisterForm from "./registerForm";
+import RegisterForm from "./RegisterForm";
 import Icon from "../Icon";
 export default function Signup() {
   const username = useRef<HTMLInputElement>();

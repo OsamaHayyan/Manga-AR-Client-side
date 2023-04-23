@@ -1,16 +1,21 @@
 import { Button } from "@mui/material";
 import Image from "next/image";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import Logo from "../../public/images/logo3.png";
-import * as userLogin from "../../styles/registerForm.module.css";
+import userLogin from "../../styles/registerForm.module.css";
 import Icon from "../Icon";
 
+type Props = PropsWithChildren<{
+  formName: string;
+  handleSubmet: React.FormEventHandler<HTMLFormElement>;
+  disable: boolean;
+}>;
 export default function RegisterForm({
   formName,
   handleSubmet,
   children,
   disable,
-}) {
+}: Props) {
   return (
     <form
       method="POST"
@@ -20,7 +25,12 @@ export default function RegisterForm({
     >
       <div className={userLogin.container}>
         <div style={{ height: "200px", width: "200px", position: "relative" }}>
-          <Image src={Logo} fill style={{ objectFit: "contain" }} />
+          <Image
+            src={Logo}
+            fill
+            style={{ objectFit: "contain" }}
+            alt="MangaAr"
+          />
         </div>
         <h1 className={userLogin.loginHead}>{formName}</h1>
 
