@@ -2,16 +2,16 @@ import axios from "axios";
 import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import validator from "validator";
-import * as userSignup from "../../styles/signup.module.css";
-import Input from "../input";
-import InputUpload from "../upload_input";
+import userSignup from "../../styles/signup.module.css";
+import Input from "../Input";
+import InputUpload from "../Upload_input";
 import RegisterForm from "./registerForm";
 import Icon from "../Icon";
 export default function Signup() {
-  const username = useRef("");
-  const email = useRef("");
-  const password = useRef("");
-  const confirmPassword = useRef("");
+  const username = useRef<HTMLInputElement>();
+  const email = useRef<HTMLInputElement>();
+  const password = useRef<HTMLInputElement>();
+  const confirmPassword = useRef<HTMLInputElement>();
 
   const [disable, setDisable] = useState(false);
   const [fileName, setFileName] = useState("Choose a profile picture");
@@ -23,7 +23,7 @@ export default function Signup() {
     profileImage: true,
     profileImageData: null,
   });
-  const handleSubmet = (e) => {
+  const handleSubmet: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     setDisable(true);
     let checkValidation = validation(
@@ -73,7 +73,12 @@ export default function Signup() {
     setDisable(false);
   };
 
-  const validation = (username, email, password, confirmPassword) => {
+  const validation = (
+    username: string,
+    email: string,
+    password: string,
+    confirmPassword: string
+  ) => {
     const dataValid = {
       usernameValid: validator.isLength(username, { min: 4, max: 15 }),
       emailValid: validator.isEmail(email),
@@ -94,7 +99,7 @@ export default function Signup() {
     return false;
   };
 
-  const handleFileInput = (e) => {
+  const handleFileInput: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     const file = e.target.files[0];
     if (!file) return setFileName("Choose a profile picture");
     const fileType = ["image/png", "image/jpg", "image/jpeg", "image/webp"];
@@ -106,6 +111,7 @@ export default function Signup() {
       setFileName(file.name);
     }
   };
+
   return (
     <RegisterForm
       formName={"SIGNUP"}
@@ -171,7 +177,7 @@ export default function Signup() {
         icon={<Icon name="addPhoto" />}
         handleFileInput={handleFileInput}
         fileName={fileName}
-        error={!valid.profileImage}
+        errors={{ other: !valid.profileImage }}
         validationText={"Please add a valid photo"}
         accept={".jpeg, .png, .webp, .jpg"}
       />
