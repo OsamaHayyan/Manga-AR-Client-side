@@ -1,7 +1,23 @@
 import React from "react";
 import { forwardRef } from "react";
-import * as inputStyle from "../styles/input.module.css";
-const Input = forwardRef(
+import inputStyle from "../styles/input.module.css";
+
+type Props = {
+  Icon?: JSX.Element;
+  lastIcon?: { icon: JSX.Element; width: number };
+  name: string;
+  type: string;
+  placeholder?: string;
+  validation?: boolean;
+  validationText?: string;
+  required: boolean;
+  style?: React.CSSProperties;
+  className?: string;
+  validationStyle?: React.CSSProperties;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
+};
+const Input = forwardRef<HTMLInputElement, Props>(
   (
     {
       Icon,
