@@ -1,43 +1,69 @@
-import React, { useRef, useState } from "react";
+import React, { createRef, useRef, useState } from "react";
 import { useEffect } from "react";
-import * as inputStyle from "../styles/autoComplete.module.css";
+import inputStyle from "../styles/autoComplete.module.css";
 import IconComponent from "./Icon";
+
+type Props = {
+  id: string;
+  Icon?: JSX.Element;
+  lastIcon?: JSX.Element;
+  type: string;
+  placeholder: string;
+  error?: boolean;
+  validationText?: string;
+  required?: boolean;
+  style?: React.CSSProperties;
+  className?: string;
+  validationStyle?: React.CSSProperties;
+  onChange: (params: any) => void;
+  onBlur: React.FocusEventHandler<HTMLInputElement>;
+  options: any;
+  filterOptions: React.Dispatch<
+    React.SetStateAction<{
+      auther: never[];
+      categories: never[];
+      date: never[];
+      status: string[];
+    }>
+  >;
+  onInput: React.FormEventHandler<HTMLInputElement>;
+  accessedDataName: string;
+  accessedValueName: string;
+  multiple?: boolean;
+};
 export default function AutoComplete({
   id,
   Icon,
-  lastIcon = null,
-  name,
+  lastIcon,
   type,
   placeholder,
   error,
-  validation,
   validationText,
   required,
   style,
   className,
   validationStyle,
   onChange,
-  onBlur,
   options,
   filterOptions,
   onInput,
   accessedDataName,
   accessedValueName,
   multiple,
-}) {
+}: Props) {
   const compare = (a, b) => {
     if (a < b) return -1;
     if (a > b) return 1;
     return 0;
   };
-  const inputList = useRef();
-  const selectedRef = React.createRef();
+  const inputList = useRef<HTMLInputElement>();
+  const selectedRef = createRef<HTMLLIElement>();
   const [searchedOptions, setSearchedOptions] = useState(options);
   const [listHide, setListHide] = useState(true);
   const [selectedOption, setSelectedOption] = useState([]);
-  const onClickOption = (e) => {
-    const data = JSON.parse(e.target.dataset.value);
-    let newData;
+  const onClickOption: React.MouseEventHandler<HTMLLIElement> = (e) => {
+    const data = JSON.parse(e.currentTarget.dataset.value);
+    let newData: any;
     if (multiple) {
       const newOptions = options.filter(
         (option) => option[accessedValueName] != data[accessedValueName]
