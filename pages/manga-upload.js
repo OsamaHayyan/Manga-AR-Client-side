@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Controller, useForm } from "react-hook-form";
 import MangaForm from "../components/manga_form";
-import Input from "../components/input";
+import Input from "../components/Input";
 import AutoComplete from "../components/auto_complete_input";
 import Icon from "../components/Icon";
-import InputUpload from "../components/upload_input";
+import InputUpload from "../components/Upload_input";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
@@ -224,7 +224,7 @@ const MangaUplouds = () => {
         name={"image"}
         validation={{ required: true }}
         fileName={fileName.image}
-        errors={errors.image}
+        errors={{ required: errors.image }}
         validationText={"Please add a valid Image"}
         accept="image/*"
         calssName={mangaUploadStyle.inputUploadStyle}
@@ -236,7 +236,7 @@ const MangaUplouds = () => {
         register={register}
         name={"banner"}
         fileName={fileName.banner}
-        errors={errors.banner}
+        errors={{ required: errors.banner }}
         validationText={"Please add a valid Image"}
         accept="image/*"
         calssName={mangaUploadStyle.inputUploadStyle}
