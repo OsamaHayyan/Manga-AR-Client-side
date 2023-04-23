@@ -6,29 +6,23 @@ import IconComponent from "./Icon";
 type Props = {
   id: string;
   Icon?: JSX.Element;
-  lastIcon?: JSX.Element;
+  lastIcon?: { icon: JSX.Element; width: number };
   type: string;
   placeholder: string;
   error?: boolean;
+
   validationText?: string;
   required?: boolean;
   style?: React.CSSProperties;
   className?: string;
   validationStyle?: React.CSSProperties;
   onChange: (params: any) => void;
-  onBlur: React.FocusEventHandler<HTMLInputElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
   options: any;
-  filterOptions: React.Dispatch<
-    React.SetStateAction<{
-      auther: never[];
-      categories: never[];
-      date: never[];
-      status: string[];
-    }>
-  >;
-  onInput: React.FormEventHandler<HTMLInputElement>;
-  accessedDataName: string;
-  accessedValueName: string;
+  filterOptions?: React.Dispatch<React.SetStateAction<any>>;
+  onInput?: React.FormEventHandler<HTMLInputElement>;
+  accessedDataName?: string;
+  accessedValueName?: string;
   multiple?: boolean;
 };
 export default function AutoComplete({

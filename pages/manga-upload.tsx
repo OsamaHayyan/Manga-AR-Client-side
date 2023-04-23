@@ -1,14 +1,15 @@
-import * as mangaUploadStyle from "../styles/mangaupload.module.css";
+import mangaUploadStyle from "../styles/mangaupload.module.css";
 import React, { useState } from "react";
 import axios from "axios";
 import { Controller, useForm } from "react-hook-form";
-import MangaForm from "../components/manga_form";
+import MangaForm from "../components/Manga_form";
 import Input from "../components/Input";
 import AutoComplete from "../components/Auto_complete_input";
 import Icon from "../components/Icon";
 import InputUpload from "../components/Upload_input";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import { autherType, categoryType } from "../util/interfaces";
 
 const MangaUplouds = () => {
   const {
@@ -18,7 +19,12 @@ const MangaUplouds = () => {
     formState: { errors },
   } = useForm();
 
-  const [mangaData, setMangaData] = useState({
+  const [mangaData, setMangaData] = useState<{
+    auther: autherType[];
+    categories: categoryType[];
+    date: string[];
+    status: ["on going", "finished", "stopped"];
+  }>({
     auther: [],
     categories: [],
     date: [],
@@ -31,7 +37,7 @@ const MangaUplouds = () => {
     banner: "Choose a banar image..",
   });
 
-  const compare = (a, b) => {
+  const compare = (a: number, b: number) => {
     if (a < b) return -1;
     if (a > b) return 1;
     return 0;
@@ -132,12 +138,7 @@ const MangaUplouds = () => {
             type={"text"}
             placeholder={"Manga Autors..."}
             error={errors.auther ? true : false}
-            validation={{ required: true }}
             validationText={"Please select author"}
-            lastIcon={{
-              icon: <Icon name="downArrow" size={32} />,
-              width: 32,
-            }}
             options={mangaData.auther}
             filterOptions={setMangaData}
             accessedDataName={"autherName"}
@@ -152,10 +153,8 @@ const MangaUplouds = () => {
         render={({ field }) => (
           <AutoComplete
             multiple={true}
-            register={register}
             onChange={(value) => field.onChange(value)}
             type={"text"}
-            name={"category"}
             id={"categories"}
             placeholder={"Category..."}
             error={errors.category ? true : false}
@@ -178,10 +177,8 @@ const MangaUplouds = () => {
         rules={{ validate: (value) => value?.length > 0 }}
         render={({ field }) => (
           <AutoComplete
-            register={register}
             onChange={(value) => field.onChange(value)}
             type={"text"}
-            name={"date"}
             id={"date"}
             placeholder={"Date..."}
             error={errors.date ? true : false}
@@ -201,10 +198,8 @@ const MangaUplouds = () => {
         rules={{ validate: (value) => value?.length > 0 }}
         render={({ field }) => (
           <AutoComplete
-            register={register}
             onChange={(value) => field.onChange(value)}
             type={"text"}
-            name={"state"}
             id={"status"}
             placeholder={"State..."}
             error={errors.state ? true : false}
@@ -224,7 +219,7 @@ const MangaUplouds = () => {
         name={"image"}
         validation={{ required: true }}
         fileName={fileName.image}
-        errors={{ required: errors.image }}
+        errors={{ required: !!errors.image }}
         validationText={"Please add a valid Image"}
         accept="image/*"
         calssName={mangaUploadStyle.inputUploadStyle}
@@ -236,7 +231,7 @@ const MangaUplouds = () => {
         register={register}
         name={"banner"}
         fileName={fileName.banner}
-        errors={{ required: errors.banner }}
+        errors={{ required: !!errors.banner }}
         validationText={"Please add a valid Image"}
         accept="image/*"
         calssName={mangaUploadStyle.inputUploadStyle}

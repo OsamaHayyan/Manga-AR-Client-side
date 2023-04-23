@@ -13,7 +13,7 @@ import inputStyle from "../styles/upload_input.module.css";
 type Props = {
   id?: string;
   icon?: JSX.Element;
-  handleFileInput: React.ChangeEventHandler<HTMLInputElement>;
+  handleFileInput?: React.ChangeEventHandler<HTMLInputElement>;
   name?: string;
   fileName: string;
   validation?: Partial<{ required: Message | ValidationRule<boolean> }>;
@@ -50,7 +50,7 @@ export default function InputUpload({
         <div className={`${inputStyle.inputFile} ${calssName}`}>
           {icon}
           <div className={inputStyle.selectedFiles}>
-            {selectedFile.length > 0 ? (
+            {selectedFile?.length > 0 ? (
               selectedFile?.map((file, i) => {
                 return <p key={i}>{file.name}</p>;
               })
