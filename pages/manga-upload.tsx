@@ -7,6 +7,7 @@ import Input from "../components/Input";
 import AutoComplete from "../components/Auto_complete_input";
 import Icon from "../components/Icon";
 import InputUpload from "../components/Upload_input";
+import Navbar from "../components/navbar/Navbar";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { autherType, categoryType } from "../util/interfaces";
@@ -108,149 +109,154 @@ const MangaUplouds = () => {
   }, []);
 
   return (
-    <MangaForm
-      formName={"Now you can add your favourite manga to make a new collection"}
-      disable={disable}
-      onSubmit={handleSubmit(onSubmit)}
-      className={mangaUploadStyle.formStyle}
-    >
-      <Input
-        {...register("title", {
-          required: true,
-          minLength: 5,
-          maxLength: 100,
-        })}
-        type={"text"}
-        placeholder={"Manga Title..."}
-        validation={errors.title ? true : false}
-        validationText={"Please type a valid title"}
-        className={mangaUploadStyle.inputStyle}
-      />
-      <Controller
-        name={"auther"}
-        control={control}
-        rules={{ validate: (value) => value?.length > 0 }}
-        render={({ field }) => (
-          <AutoComplete
-            multiple={true}
-            onChange={(value) => field.onChange(value)}
-            id={"auther"}
-            type={"text"}
-            placeholder={"Manga Autors..."}
-            error={errors.auther ? true : false}
-            validationText={"Please select author"}
-            options={mangaData.auther}
-            filterOptions={setMangaData}
-            accessedDataName={"autherName"}
-            accessedValueName={"_id"}
-          />
-        )}
-      />
-      <Controller
-        name={"category"}
-        control={control}
-        rules={{ validate: (value) => value?.length > 0 }}
-        render={({ field }) => (
-          <AutoComplete
-            multiple={true}
-            onChange={(value) => field.onChange(value)}
-            type={"text"}
-            id={"categories"}
-            placeholder={"Category..."}
-            error={errors.category ? true : false}
-            validationText={"Please select category"}
-            lastIcon={{
-              icon: <Icon name="downArrow" size={32} />,
-              width: 32,
-            }}
-            options={mangaData.categories}
-            filterOptions={setMangaData}
-            accessedDataName={"category"}
-            accessedValueName={"_id"}
-          />
-        )}
-      />
+    <>
+      <Navbar />
+      <MangaForm
+        formName={
+          "Now you can add your favourite manga to make a new collection"
+        }
+        disable={disable}
+        onSubmit={handleSubmit(onSubmit)}
+        className={mangaUploadStyle.formStyle}
+      >
+        <Input
+          {...register("title", {
+            required: true,
+            minLength: 5,
+            maxLength: 100,
+          })}
+          type={"text"}
+          placeholder={"Manga Title..."}
+          validation={errors.title ? true : false}
+          validationText={"Please type a valid title"}
+          className={mangaUploadStyle.inputStyle}
+        />
+        <Controller
+          name={"auther"}
+          control={control}
+          rules={{ validate: (value) => value?.length > 0 }}
+          render={({ field }) => (
+            <AutoComplete
+              multiple={true}
+              onChange={(value) => field.onChange(value)}
+              id={"auther"}
+              type={"text"}
+              placeholder={"Manga Autors..."}
+              error={errors.auther ? true : false}
+              validationText={"Please select author"}
+              options={mangaData.auther}
+              filterOptions={setMangaData}
+              accessedDataName={"autherName"}
+              accessedValueName={"_id"}
+            />
+          )}
+        />
+        <Controller
+          name={"category"}
+          control={control}
+          rules={{ validate: (value) => value?.length > 0 }}
+          render={({ field }) => (
+            <AutoComplete
+              multiple={true}
+              onChange={(value) => field.onChange(value)}
+              type={"text"}
+              id={"categories"}
+              placeholder={"Category..."}
+              error={errors.category ? true : false}
+              validationText={"Please select category"}
+              lastIcon={{
+                icon: <Icon name="downArrow" size={32} />,
+                width: 32,
+              }}
+              options={mangaData.categories}
+              filterOptions={setMangaData}
+              accessedDataName={"category"}
+              accessedValueName={"_id"}
+            />
+          )}
+        />
 
-      <Controller
-        name={"date"}
-        control={control}
-        rules={{ validate: (value) => value?.length > 0 }}
-        render={({ field }) => (
-          <AutoComplete
-            onChange={(value) => field.onChange(value)}
-            type={"text"}
-            id={"date"}
-            placeholder={"Date..."}
-            error={errors.date ? true : false}
-            validationText={"Please select date"}
-            lastIcon={{
-              icon: <Icon name="downArrow" size={32} />,
-              width: 32,
-            }}
-            options={mangaData.date}
-          />
-        )}
-      />
+        <Controller
+          name={"date"}
+          control={control}
+          rules={{ validate: (value) => value?.length > 0 }}
+          render={({ field }) => (
+            <AutoComplete
+              onChange={(value) => field.onChange(value)}
+              type={"text"}
+              id={"date"}
+              placeholder={"Date..."}
+              error={errors.date ? true : false}
+              validationText={"Please select date"}
+              lastIcon={{
+                icon: <Icon name="downArrow" size={32} />,
+                width: 32,
+              }}
+              options={mangaData.date}
+            />
+          )}
+        />
 
-      <Controller
-        name={"state"}
-        control={control}
-        rules={{ validate: (value) => value?.length > 0 }}
-        render={({ field }) => (
-          <AutoComplete
-            onChange={(value) => field.onChange(value)}
-            type={"text"}
-            id={"status"}
-            placeholder={"State..."}
-            error={errors.state ? true : false}
-            validationText={"Please select state"}
-            lastIcon={{
-              icon: <Icon name="downArrow" size={32} />,
-              width: 32,
-            }}
-            options={mangaData.status}
-          />
-        )}
-      />
+        <Controller
+          name={"state"}
+          control={control}
+          rules={{ validate: (value) => value?.length > 0 }}
+          render={({ field }) => (
+            <AutoComplete
+              onChange={(value) => field.onChange(value)}
+              type={"text"}
+              id={"status"}
+              placeholder={"State..."}
+              error={errors.state ? true : false}
+              validationText={"Please select state"}
+              lastIcon={{
+                icon: <Icon name="downArrow" size={32} />,
+                width: 32,
+              }}
+              options={mangaData.status}
+            />
+          )}
+        />
 
-      <InputUpload
-        id={"image"}
-        register={register}
-        name={"image"}
-        validation={{ required: true }}
-        fileName={fileName.image}
-        errors={{ required: !!errors.image }}
-        validationText={"Please add a valid Image"}
-        accept="image/*"
-        calssName={mangaUploadStyle.inputUploadStyle}
-        lastIcon={<Icon name="downArrow" size={32} />}
-      />
+        <InputUpload
+          id={"image"}
+          register={register}
+          name={"image"}
+          validation={{ required: true }}
+          fileName={fileName.image}
+          errors={{ required: !!errors.image }}
+          validationText={"Please add a valid Image"}
+          accept="image/*"
+          calssName={mangaUploadStyle.inputUploadStyle}
+          lastIcon={<Icon name="downArrow" size={32} />}
+        />
 
-      <InputUpload
-        id={"banner"}
-        register={register}
-        name={"banner"}
-        fileName={fileName.banner}
-        errors={{ required: !!errors.banner }}
-        validationText={"Please add a valid Image"}
-        accept="image/*"
-        calssName={mangaUploadStyle.inputUploadStyle}
-        lastIcon={<Icon name="downArrow" size={32} />}
-      />
-      <Input
-        {...register("story", {
-          required: true,
-          minLength: 10,
-          maxLength: 1000,
-        })}
-        type={"text"}
-        placeholder={"Story..."}
-        validation={errors.story ? true : false}
-        validationText={"Please type a valid story"}
-        className={mangaUploadStyle.inputStyle}
-        style={{ height: "105px !important" }}
-      />
-    </MangaForm>
+        <InputUpload
+          id={"banner"}
+          register={register}
+          name={"banner"}
+          fileName={fileName.banner}
+          errors={{ required: !!errors.banner }}
+          validationText={"Please add a valid Image"}
+          accept="image/*"
+          calssName={mangaUploadStyle.inputUploadStyle}
+          lastIcon={<Icon name="downArrow" size={32} />}
+        />
+        <Input
+          {...register("story", {
+            required: true,
+            minLength: 10,
+            maxLength: 1000,
+          })}
+          type={"text"}
+          placeholder={"Story..."}
+          validation={errors.story ? true : false}
+          validationText={"Please type a valid story"}
+          className={mangaUploadStyle.inputStyle}
+          style={{ height: "105px !important" }}
+        />
+      </MangaForm>
+    </>
   );
 };
 

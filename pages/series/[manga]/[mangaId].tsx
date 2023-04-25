@@ -12,6 +12,7 @@ import Icon from "../../../components/Icon";
 import moment from "moment";
 import Rate from "../../../components/Rate";
 import { GetServerSideProps } from "next";
+import Navbar from "../../../components/navbar/Navbar";
 
 type Props = {
   userLoggedIn: boolean;
@@ -80,6 +81,7 @@ export default function Manga({
 
   return (
     <>
+      <Navbar />
       {DataExist ? (
         <div className={mangaStyle.container}>
           <section className={mangaStyle.mangaSection}>

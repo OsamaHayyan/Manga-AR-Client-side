@@ -12,6 +12,7 @@ import MangaForm from "../components/Manga_form";
 import Icon from "../components/Icon";
 import InputUpload from "../components/Upload_input";
 import { searchMangaType } from "../util/interfaces";
+import Navbar from "../components/navbar/Navbar";
 export default function ChapterUpload() {
   const { replace } = useRouter();
   const {
@@ -94,6 +95,7 @@ export default function ChapterUpload() {
 
   return (
     <>
+      <Navbar />
       <MangaForm
         formName={"Here you can add chapters of your manga"}
         disable={disable}

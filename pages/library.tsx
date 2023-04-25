@@ -11,6 +11,8 @@ import { IcategoryAll, ImangaAll, mangaType } from "../util/interfaces";
 import Image from "next/image";
 import libraryBanner from "../public/images/libraryBanner.jpg";
 import Pagination from "../components/Pagination";
+import Navbar from "../components/navbar/Navbar";
+
 interface Props {
   mangaData: mangaType[];
   AllPages: number;
@@ -69,6 +71,7 @@ export default function Library({
   };
   return (
     <>
+      <Navbar />
       {!DataExist ? (
         <Error statusCode={statusCode} title={errorMessage} />
       ) : (

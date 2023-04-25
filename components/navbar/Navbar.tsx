@@ -10,8 +10,8 @@ import { searchMangaType } from "../../util/interfaces";
 import RemoteImage from "../Remote_image";
 
 type Props = {
-  checkLogin: boolean;
-  handleLoginState: Dispatch<SetStateAction<boolean>>;
+  checkLogin?: boolean;
+  handleLoginState?: Dispatch<SetStateAction<boolean>>;
 };
 export default function Navbar({ checkLogin, handleLoginState }: Props) {
   const router = useRouter();
