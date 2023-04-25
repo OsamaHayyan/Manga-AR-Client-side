@@ -1,11 +1,11 @@
 import React from "react";
 import card from "./manga_card.module.css";
 import { useRouter } from "next/dist/client/router";
-import { manga } from "../../util/interfaces";
-import Rate from "../rate";
-import RemoteImage from "../remote_image";
+import { mangaType } from "../../util/interfaces";
+import Rate from "../Rate";
+import RemoteImage from "../Remote_image";
 
-export default function MangaCard({ manga }: { manga: manga }) {
+export default function MangaCard({ manga }: { manga: mangaType }) {
   const router = useRouter();
 
   const handleNavigation = () => {
