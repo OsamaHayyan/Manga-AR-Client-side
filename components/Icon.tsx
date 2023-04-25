@@ -14,13 +14,15 @@ type iconNames =
   | "star"
   | "caretRight"
   | "heart"
-  | "file";
+  | "file"
+  | "search";
 
 type Props = {
   name: iconNames;
   size?: number;
   color?: string;
   className?: string;
+  style?: React.CSSProperties;
   onClick?: React.MouseEventHandler<HTMLSpanElement>;
 };
 
@@ -29,6 +31,7 @@ export default function Icon({
   size = 40,
   color = "white",
   className,
+  style,
   onClick,
 }: Props) {
   const sizeString = `${size}px`;
@@ -40,7 +43,10 @@ export default function Icon({
             width: sizeString,
             height: sizeString,
             display: "inline-block",
+            ...style,
           }}
+          onClick={onClick}
+          className={className}
         >
           <svg
             width="32"
@@ -63,7 +69,10 @@ export default function Icon({
             width: sizeString,
             height: sizeString,
             display: "inline-block",
+            ...style,
           }}
+          onClick={onClick}
+          className={className}
         >
           <svg
             width="30"
@@ -100,7 +109,10 @@ export default function Icon({
             width: sizeString,
             height: sizeString,
             display: "inline-block",
+            ...style,
           }}
+          onClick={onClick}
+          className={className}
         >
           <svg
             width="40"
@@ -135,7 +147,10 @@ export default function Icon({
             width: sizeString,
             height: sizeString,
             display: "inline-block",
+            ...style,
           }}
+          onClick={onClick}
+          className={className}
         >
           <svg
             width="40"
@@ -185,8 +200,10 @@ export default function Icon({
             width: sizeString,
             height: sizeString,
             display: "inline-block",
-            cursor: "pointer",
+            ...style,
           }}
+          onClick={onClick}
+          className={className}
         >
           <svg
             width="30"
@@ -209,8 +226,9 @@ export default function Icon({
             width: sizeString,
             height: sizeString,
             display: "inline-block",
-            cursor: "pointer",
+            ...style,
           }}
+          onClick={onClick}
           className={className}
         >
           <svg
@@ -244,8 +262,9 @@ export default function Icon({
             width: sizeString,
             height: sizeString,
             display: "inline-block",
-            cursor: "pointer",
+            ...style,
           }}
+          onClick={onClick}
           className={className}
         >
           <svg
@@ -279,10 +298,10 @@ export default function Icon({
             width: sizeString,
             height: sizeString,
             display: "inline-block",
-            cursor: "pointer",
+            ...style,
           }}
-          className={className}
           onClick={onClick}
+          className={className}
         >
           <svg
             width="15"
@@ -305,8 +324,10 @@ export default function Icon({
             width: sizeString,
             height: sizeString,
             display: "inline-block",
+            ...style,
           }}
           onClick={onClick}
+          className={className}
         >
           <svg
             width="75"
@@ -326,7 +347,6 @@ export default function Icon({
           </svg>
         </span>
       );
-
     case "filledStar":
       return (
         <span
@@ -334,8 +354,10 @@ export default function Icon({
             width: sizeString,
             height: sizeString,
             display: "inline-block",
+            ...style,
           }}
           onClick={onClick}
+          className={className}
         >
           <svg
             width="68"
@@ -358,8 +380,10 @@ export default function Icon({
             width: sizeString,
             height: sizeString,
             display: "inline-block",
+            ...style,
           }}
           onClick={onClick}
+          className={className}
         >
           <svg
             width="68"
@@ -382,8 +406,10 @@ export default function Icon({
             width: sizeString,
             height: sizeString,
             display: "inline-block",
+            ...style,
           }}
           onClick={onClick}
+          className={className}
         >
           <svg
             width="68"
@@ -406,7 +432,10 @@ export default function Icon({
             width: sizeString,
             height: sizeString,
             display: "inline-block",
+            ...style,
           }}
+          onClick={onClick}
+          className={className}
         >
           <svg
             width="8"
@@ -429,7 +458,10 @@ export default function Icon({
             width: sizeString,
             height: sizeString,
             display: "inline-block",
+            ...style,
           }}
+          onClick={onClick}
+          className={className}
         >
           <svg
             width="68"
@@ -452,7 +484,10 @@ export default function Icon({
             width: sizeString,
             height: sizeString,
             display: "inline-block",
+            ...style,
           }}
+          onClick={onClick}
+          className={className}
         >
           <svg
             width="54"
@@ -463,6 +498,32 @@ export default function Icon({
           >
             <path
               d="M52.875 18.6251L35.375 1.12509C35.2654 1.00242 35.1303 0.905265 34.9791 0.840474C34.8279 0.775683 34.6644 0.744829 34.5 0.750087H4.5C3.50544 0.750087 2.55161 1.14517 1.84835 1.84844C1.14509 2.5517 0.75 3.50552 0.75 4.50009V59.5001C0.75 60.4947 1.14509 61.4485 1.84835 62.1517C2.55161 62.855 3.50544 63.2501 4.5 63.2501H49.5C50.4946 63.2501 51.4484 62.855 52.1516 62.1517C52.8549 61.4485 53.25 60.4947 53.25 59.5001V19.5001C53.2553 19.3357 53.2244 19.1721 53.1596 19.021C53.0948 18.8698 52.9977 18.7347 52.875 18.6251ZM35.75 5.03134L48.9688 18.2501H35.75V5.03134ZM49.5 60.7501H4.5C4.16848 60.7501 3.85054 60.6184 3.61612 60.384C3.3817 60.1496 3.25 59.8316 3.25 59.5001V4.50009C3.25 4.16857 3.3817 3.85062 3.61612 3.6162C3.85054 3.38178 4.16848 3.25009 4.5 3.25009H33.25V19.5001C33.25 19.8316 33.3817 20.1495 33.6161 20.384C33.8505 20.6184 34.1685 20.7501 34.5 20.7501H50.75V59.5001C50.75 59.8316 50.6183 60.1496 50.3839 60.384C50.1495 60.6184 49.8315 60.7501 49.5 60.7501ZM38.25 34.5001C38.25 34.8316 38.1183 35.1496 37.8839 35.384C37.6495 35.6184 37.3315 35.7501 37 35.7501H17C16.6685 35.7501 16.3505 35.6184 16.1161 35.384C15.8817 35.1496 15.75 34.8316 15.75 34.5001C15.75 34.1686 15.8817 33.8506 16.1161 33.6162C16.3505 33.3818 16.6685 33.2501 17 33.2501H37C37.3315 33.2501 37.6495 33.3818 37.8839 33.6162C38.1183 33.8506 38.25 34.1686 38.25 34.5001ZM38.25 44.5001C38.25 44.8316 38.1183 45.1496 37.8839 45.384C37.6495 45.6184 37.3315 45.7501 37 45.7501H17C16.6685 45.7501 16.3505 45.6184 16.1161 45.384C15.8817 45.1496 15.75 44.8316 15.75 44.5001C15.75 44.1686 15.8817 43.8506 16.1161 43.6162C16.3505 43.3818 16.6685 43.2501 17 43.2501H37C37.3315 43.2501 37.6495 43.3818 37.8839 43.6162C38.1183 43.8506 38.25 44.1686 38.25 44.5001Z"
+              fill={color}
+            />
+          </svg>
+        </span>
+      );
+    case "search":
+      return (
+        <span
+          style={{
+            width: sizeString,
+            height: sizeString,
+            display: "inline-block",
+            ...style,
+          }}
+          onClick={onClick}
+          className={className}
+        >
+          <svg
+            width="31"
+            height="31"
+            viewBox="0 0 31 31"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M30.0167 27.15L24.35 21.5C26.1783 19.1708 27.1704 16.2944 27.1667 13.3333C27.1667 10.6963 26.3847 8.11839 24.9196 5.92574C23.4545 3.73308 21.3721 2.02411 18.9358 1.01495C16.4994 0.00577708 13.8185 -0.258267 11.2321 0.256202C8.64572 0.770672 6.26995 2.04055 4.40525 3.90525C2.54055 5.76995 1.27067 8.14572 0.756202 10.7321C0.241733 13.3185 0.505777 15.9994 1.51495 18.4358C2.52411 20.8721 4.23308 22.9545 6.42574 24.4196C8.61839 25.8847 11.1963 26.6667 13.8333 26.6667C16.7944 26.6704 19.6708 25.6783 22 23.85L27.65 29.5167C27.8049 29.6729 27.9893 29.7969 28.1924 29.8815C28.3955 29.9661 28.6133 30.0097 28.8333 30.0097C29.0534 30.0097 29.2712 29.9661 29.4743 29.8815C29.6774 29.7969 29.8617 29.6729 30.0167 29.5167C30.1729 29.3617 30.2969 29.1774 30.3815 28.9743C30.4661 28.7712 30.5097 28.5534 30.5097 28.3333C30.5097 28.1133 30.4661 27.8955 30.3815 27.6924C30.2969 27.4893 30.1729 27.3049 30.0167 27.15ZM3.83334 13.3333C3.83334 11.3555 4.41983 9.42213 5.51864 7.77764C6.61746 6.13315 8.17924 4.85142 10.0065 4.09454C11.8338 3.33767 13.8444 3.13963 15.7842 3.52549C17.7241 3.91134 19.5059 4.86375 20.9044 6.26227C22.3029 7.6608 23.2553 9.44263 23.6412 11.3824C24.027 13.3222 23.829 15.3329 23.0721 17.1602C22.3153 18.9874 21.0335 20.5492 19.389 21.648C17.7446 22.7468 15.8112 23.3333 13.8333 23.3333C11.1812 23.3333 8.63764 22.2798 6.76227 20.4044C4.88691 18.529 3.83334 15.9855 3.83334 13.3333Z"
               fill={color}
             />
           </svg>
