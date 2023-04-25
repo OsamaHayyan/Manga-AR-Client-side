@@ -1,7 +1,7 @@
 import { useRouter } from "next/dist/client/router";
 import { ToastContainer } from "react-toastify";
 import { Poppins } from "@next/font/google";
-import Navbar from "./navbar/navbar";
+import Navbar from "./navbar/Navbar";
 import { Dispatch, PropsWithChildren, SetStateAction } from "react";
 
 const poppins = Poppins({
@@ -13,14 +13,10 @@ type Props = PropsWithChildren<{
   checkLogin: boolean;
   setLogin: Dispatch<SetStateAction<boolean>>;
 }>;
-export default function Layout({ children, checkLogin, setLogin }: Props) {
-  const { pathname } = useRouter();
+export default function Layout({ children }: Props) {
   return (
-    <>
-      {pathname && pathname != "/search" ? (
-        <Navbar checkLogin={checkLogin} handleLoginState={setLogin} />
-      ) : null}
-      <main className={poppins.className}>{children}</main>
+    <main className={poppins.className}>
+      {children}
       <ToastContainer
         position="bottom-right"
         autoClose={5000}
@@ -32,6 +28,6 @@ export default function Layout({ children, checkLogin, setLogin }: Props) {
         draggable
         pauseOnHover
       />
-    </>
+    </main>
   );
 }
