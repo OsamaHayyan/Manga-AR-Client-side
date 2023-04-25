@@ -3,8 +3,8 @@ import React from "react";
 
 type Props = {
   src: string;
-  width?: string;
-  height?: string;
+  width?: number;
+  height?: number;
   className?: string;
   style?: React.CSSProperties;
   priority?: boolean;
@@ -12,8 +12,8 @@ type Props = {
 
 export default function RemoteImage({
   src,
-  width = "318px",
-  height = "453px",
+  width = 318,
+  height = 453,
   className,
   style,
   priority = false,
@@ -22,8 +22,8 @@ export default function RemoteImage({
     <div
       className={className}
       style={{
-        flexBasis: width,
-        height: height,
+        flexBasis: `${width}px`,
+        height: `${height}px`,
         position: "relative",
         ...style,
       }}
@@ -31,8 +31,9 @@ export default function RemoteImage({
       <Image
         src={`http://localhost:8080/${src}`}
         alt=""
-        fill
-        sizes="318px"
+        width={width}
+        height={height}
+        // sizes="318px"
         style={{ objectFit: "cover", borderRadius: "5px" }}
         priority={priority}
       />
