@@ -6,16 +6,16 @@ import Error from "next/error";
 import mangaStyle from "../../../styles/manga_page.module.css";
 import axios from "axios";
 import { useRouter } from "next/dist/client/router";
-import { manga, recommendations } from "../../../util/interfaces";
-import RemoteImage from "../../../components/remote_image";
+import { mangaType, recommendationsType } from "../../../util/interfaces";
+import RemoteImage from "../../../components/Remote_image";
 import Icon from "../../../components/Icon";
 import moment from "moment";
-import Rate from "../../../components/rate";
+import Rate from "../../../components/Rate";
 import { GetServerSideProps } from "next";
 
 type Props = {
   userLoggedIn: boolean;
-  mangaData: manga;
+  mangaData: mangaType;
   DataExist: boolean;
   statusCode: number;
   errorMessage: string;
@@ -120,7 +120,10 @@ export default function Manga({
                   <p className={mangaStyle.status}>{mangaData.status}</p>
                   <p
                     className={mangaStyle.firstChapterBtn}
-                    onClick={() => navigateToChapter(mangaData.chapters[0]._id)}
+                    onClick={() =>
+                      mangaData.chapters[0] &&
+                      navigateToChapter(mangaData.chapters[0]._id)
+                    }
                   >
                     Go to first chapter
                   </p>
@@ -273,8 +276,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const DataExist = true;
     const {
       data: { manga: mangaData, recommendationManga: recommendations },
-    }: { data: { manga: manga; recommendationManga: recommendations[] } } =
-      await axios.get(`http://localhost:8080/mangas/manga/${mangaId}`);
+    }: {
+      data: { manga: mangaType; recommendationManga: recommendationsType[] };
+    } = await axios.get(`http://localhost:8080/mangas/manga/${mangaId}`);
 
     if (mangaData.title != manga) {
       return {

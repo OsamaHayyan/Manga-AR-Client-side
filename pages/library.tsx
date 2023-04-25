@@ -7,12 +7,12 @@ import library from "../styles/library.module.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { GetServerSideProps } from "next";
-import { IcategoryAll, ImangaAll, manga } from "../util/interfaces";
+import { IcategoryAll, ImangaAll, mangaType } from "../util/interfaces";
 import Image from "next/image";
 import libraryBanner from "../public/images/libraryBanner.jpg";
-import Pagination from "../components/pagination";
+import Pagination from "../components/Pagination";
 interface Props {
-  mangaData: manga[];
+  mangaData: mangaType[];
   AllPages: number;
   catData: IcategoryAll;
   DataExist: boolean;
@@ -53,7 +53,7 @@ export default function Library({
         mangaData,
         mangaPages,
         message,
-      }: { mangaData: manga[]; mangaPages: number; message: string } =
+      }: { mangaData: mangaType[]; mangaPages: number; message: string } =
         await mangas.json();
       if (message) throw message;
       setSort({
