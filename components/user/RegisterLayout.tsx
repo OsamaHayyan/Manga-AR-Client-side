@@ -24,7 +24,7 @@ export default function User({ children }: { children: React.ReactNode }) {
               : null
           }
           type="button"
-          onClick={() => route.push("login")}
+          onClick={() => route.push("login", undefined, { scroll: false })}
         >
           <div
             className={
@@ -43,7 +43,7 @@ export default function User({ children }: { children: React.ReactNode }) {
               : null
           }
           type="button"
-          onClick={() => route.push("signup")}
+          onClick={() => route.push("signup", undefined, { scroll: false })}
         >
           <div
             className={
