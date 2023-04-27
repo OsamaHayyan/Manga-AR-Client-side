@@ -189,7 +189,7 @@ export default function Manga({
             </div>
             <div
               className={mangaStyle.story}
-              style={{ maxHeight: showMore && "fit-content" }}
+              style={showMore ? { maxHeight: "fit-content" } : null}
             >
               <div className={mangaStyle.storyHeader}>
                 <p
@@ -218,7 +218,7 @@ export default function Manga({
                 )}
               </div>
 
-              <p className={!showMore && mangaStyle.storyShowLess}>
+              <p className={!showMore ? mangaStyle.storyShowLess : null}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
                 sequi quisquam sunt dicta numquam exercitationem quas illum
                 sapiente fugit dignissimos! Ipsam consectetur quas illo beatae
