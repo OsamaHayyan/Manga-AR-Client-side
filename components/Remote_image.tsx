@@ -33,8 +33,13 @@ export default function RemoteImage({
         alt=""
         width={width}
         height={height}
-        // sizes="318px"
-        style={{ objectFit: "cover", borderRadius: "5px" }}
+        style={{
+          objectFit: "cover",
+          objectPosition: "center",
+          borderRadius: "5px",
+          width: "100%",
+          height: "100%",
+        }}
         priority={priority}
       />
     </div>
