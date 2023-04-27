@@ -9,8 +9,8 @@ import Icon from "../Icon";
 import Input from "../Input";
 import RegisterForm from "./RegisterForm";
 
-type Props = { handleLoginState: (params: boolean) => void };
-export default function Login({ handleLoginState }: Props) {
+type Props = {};
+export default function Login({}: Props) {
   const email = useRef<HTMLInputElement>();
   const password = useRef<HTMLInputElement>();
   const router = useRouter();
@@ -45,9 +45,8 @@ export default function Login({ handleLoginState }: Props) {
           // expire in 3h
           expires: new Date(Date.now() + 3 * (60 * 60 * 1000)),
         });
-        handleLoginState(true);
         console.log("submeted");
-        router.replace("/library");
+        router.replace("/");
       }
       setDisable(false);
     } catch (error) {
