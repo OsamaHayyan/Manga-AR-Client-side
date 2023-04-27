@@ -43,6 +43,15 @@ export interface ImangaAll {
   mangaPages: number;
 }
 
+export interface userType {
+  admin: boolean;
+  username: string;
+  image: string;
+  email: string;
+  superuser: boolean;
+  userId: string;
+}
+
 export interface categoryType {
   _id: string;
   category: string;
