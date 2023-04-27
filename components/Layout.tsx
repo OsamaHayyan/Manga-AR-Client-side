@@ -9,10 +9,7 @@ const poppins = Poppins({
   weight: ["200", "300", "400", "500", "600", "700", "800"],
 });
 
-type Props = PropsWithChildren<{
-  checkLogin: boolean;
-  setLogin: Dispatch<SetStateAction<boolean>>;
-}>;
+type Props = PropsWithChildren<{}>;
 export default function Layout({ children }: Props) {
   return (
     <main className={poppins.className}>
