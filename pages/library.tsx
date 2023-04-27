@@ -6,12 +6,19 @@ import Sort from "../components/library/sort";
 import library from "../styles/library.module.css";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { GetServerSideProps } from "next";
-import { IcategoryAll, ImangaAll, mangaType } from "../util/interfaces";
+import { GetServerSideProps, NextPage } from "next";
+import {
+  IcategoryAll,
+  ImangaAll,
+  mangaType,
+  userType,
+} from "../util/interfaces";
 import Image from "next/image";
 import libraryBanner from "../public/images/libraryBanner.jpg";
 import Pagination from "../components/Pagination";
 import Navbar from "../components/navbar/Navbar";
+import cookieParser from "../util/cookieParser";
+import userParser from "../util/userParser";
 
 interface Props {
   mangaData: mangaType[];
@@ -20,16 +27,17 @@ interface Props {
   DataExist: boolean;
   statusCode: number;
   errorMessage: string;
+  user: userType;
 }
-export default function Library({
+const Library: NextPage<Props> = ({
   mangaData,
   AllPages,
   catData,
   DataExist,
   statusCode,
   errorMessage,
-}: Props) {
-  const router = useRouter();
+  user,
+}) => {
   const [sort, setSort] = useState({
     catId: "",
     order: "",
@@ -71,7 +79,7 @@ export default function Library({
   };
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       {!DataExist ? (
         <Error statusCode={statusCode} title={errorMessage} />
       ) : (
@@ -108,10 +116,12 @@ export default function Library({
       )}
     </>
   );
-}
+};
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   try {
+    const cookies = cookieParser(req);
+    const user = userParser(cookies);
     const DataExist = true;
     const {
       data: { mangaData, mangaPages },
@@ -121,7 +131,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     );
 
     return {
-      props: { mangaData, AllPages: mangaPages, catData, DataExist }, // will be passed to the page component as props
+      props: {
+        mangaData,
+        AllPages: mangaPages,
+        catData,
+        DataExist,
+        user,
+      }, // will be passed to the page component as props
     };
   } catch (error) {
     const DataExist = false;
@@ -157,3 +173,5 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 };
+
+export default Library;

@@ -1,5 +1,5 @@
-import chapterUploadStyle from "../styles/mangaupload.module.css";
 import React, { useState } from "react";
+import chapterUploadStyle from "../styles/mangaupload.module.css";
 import path from "path";
 import axios from "axios";
 import { Controller, useForm } from "react-hook-form";
@@ -11,9 +11,16 @@ import Input from "../components/Input";
 import MangaForm from "../components/Manga_form";
 import Icon from "../components/Icon";
 import InputUpload from "../components/Upload_input";
-import { searchMangaType } from "../util/interfaces";
+import { searchMangaType, userType } from "../util/interfaces";
 import Navbar from "../components/navbar/Navbar";
-export default function ChapterUpload() {
+import { NextPage } from "next";
+import cookieParser from "../util/cookieParser";
+import userParser from "../util/userParser";
+
+type Props = {
+  user: userType;
+};
+const ChapterUpload: NextPage<Props> = ({ user }) => {
   const { replace } = useRouter();
   const {
     register,
@@ -95,7 +102,7 @@ export default function ChapterUpload() {
 
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <MangaForm
         formName={"Here you can add chapters of your manga"}
         disable={disable}
@@ -173,4 +180,12 @@ export default function ChapterUpload() {
       </MangaForm>
     </>
   );
-}
+};
+
+ChapterUpload.getInitialProps = async ({ req }) => {
+  const cookies = cookieParser(req);
+  const user = userParser(cookies);
+  return { user };
+};
+
+export default ChapterUpload;

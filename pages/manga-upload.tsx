@@ -10,9 +10,15 @@ import InputUpload from "../components/Upload_input";
 import Navbar from "../components/navbar/Navbar";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { autherType, categoryType } from "../util/interfaces";
+import { autherType, categoryType, userType } from "../util/interfaces";
+import cookieParser from "../util/cookieParser";
+import { NextPage } from "next";
+import userParser from "../util/userParser";
 
-const MangaUplouds = () => {
+type Props = {
+  user: userType;
+};
+const MangaUplouds: NextPage<Props> = ({ user }) => {
   const {
     register,
     handleSubmit,
@@ -69,15 +75,15 @@ const MangaUplouds = () => {
       setDisable(false);
     } catch (error) {
       setDisable(false);
-      if (error.response.status == 400) {
+      if (error.response.status == 401) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        error.response.data.data.map((d) => toast.error(d.msg));
+        toast.error("Unauthorized");
       } else if (error.request) {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
         // http.ClientRequest in node.js
-        toast.error("Can't login try again, please!");
+        toast.error("sorry, unexpected error happened");
         console.log(error.request);
       } else {
         // Something happened in setting up the request that triggered an Error
@@ -110,7 +116,7 @@ const MangaUplouds = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <MangaForm
         formName={
           "Now you can add your favourite manga to make a new collection"
@@ -258,6 +264,12 @@ const MangaUplouds = () => {
       </MangaForm>
     </>
   );
+};
+
+MangaUplouds.getInitialProps = async ({ req }) => {
+  const cookies = cookieParser(req);
+  const user = userParser(cookies);
+  return { user };
 };
 
 export default MangaUplouds;

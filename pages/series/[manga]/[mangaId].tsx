@@ -6,16 +6,22 @@ import Error from "next/error";
 import mangaStyle from "../../../styles/manga_page.module.css";
 import axios from "axios";
 import { useRouter } from "next/dist/client/router";
-import { mangaType, recommendationsType } from "../../../util/interfaces";
+import {
+  mangaType,
+  recommendationsType,
+  userType,
+} from "../../../util/interfaces";
 import RemoteImage from "../../../components/Remote_image";
 import Icon from "../../../components/Icon";
 import moment from "moment";
 import Rate from "../../../components/Rate";
 import { GetServerSideProps } from "next";
 import Navbar from "../../../components/navbar/Navbar";
+import cookieParser from "../../../util/cookieParser";
+import userParser from "../../../util/userParser";
 
 type Props = {
-  userLoggedIn: boolean;
+  user: userType;
   mangaData: mangaType;
   DataExist: boolean;
   statusCode: number;
@@ -23,7 +29,7 @@ type Props = {
 };
 
 export default function Manga({
-  userLoggedIn,
+  user,
   mangaData,
   DataExist,
   statusCode,
@@ -52,14 +58,14 @@ export default function Manga({
   const addToFavorit = async () => {
     try {
       if (showFavorit) {
-        if (!userLoggedIn) return toast.error("please login first");
+        if (!user) return toast.error("please login first");
         await axios.delete(
           `http://localhost:8080/user/favorite/${mangaData._id}`,
           { withCredentials: true }
         );
         setShowFavorit(false);
       } else if (!showFavorit) {
-        if (!userLoggedIn) return toast.error("please login first please");
+        if (!user) return toast.error("please login first please");
         await axios.post(
           `http://localhost:8080/user/favorite/${mangaData._id}`,
           null,
@@ -81,7 +87,7 @@ export default function Manga({
 
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       {DataExist ? (
         <div className={mangaStyle.container}>
           <section className={mangaStyle.mangaSection}>
@@ -144,12 +150,11 @@ export default function Manga({
                 style={{ cursor: "pointer", userSelect: "none" }}
                 onClick={() => {
                   showRate == false && setShowRate(!showRate);
-                  !userLoggedIn &&
-                    toast.error("please login first to rate this manga");
+                  !user && toast.error("please login first to rate this manga");
                 }}
               >
                 <Icon name="star" size={65} />
-                {userLoggedIn && showRate ? (
+                {user && showRate ? (
                   <span
                     style={{
                       height: "36px",
@@ -169,7 +174,7 @@ export default function Manga({
                 <p>{mangaData.views}</p>
               </div>
               <div style={{ alignSelf: "flex-start" }} onClick={addToFavorit}>
-                {userLoggedIn && showFavorit ? (
+                {user && showFavorit ? (
                   <>
                     <Icon name="filledStar" color="#FFC107" size={65} />
                     <p>Added to favorite!</p>
@@ -273,8 +278,8 @@ export default function Manga({
 export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const { manga, mangaId } = context.query;
-
-    const userLoggedIn = context.req?.cookies["access_token"] ? true : false;
+    const cookies = cookieParser(context.req);
+    const user = userParser(cookies);
     const DataExist = true;
     const {
       data: { manga: mangaData, recommendationManga: recommendations },
@@ -295,7 +300,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       props: {
         mangaData: mangaData,
         DataExist,
-        userLoggedIn,
+        user,
       }, // will be passed to the page component as props
     };
   } catch (error) {
