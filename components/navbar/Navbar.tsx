@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { useState } from "react";
 import navbarStyle from "./navbar.module.css";
 import logo from "../../public/images/logo.png";
 import Image from "next/image";
@@ -6,17 +6,16 @@ import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/dist/client/router";
 import Icon from "../Icon";
-import { searchMangaType } from "../../util/interfaces";
+import { searchMangaType, userType } from "../../util/interfaces";
 import RemoteImage from "../Remote_image";
 
 type Props = {
-  checkLogin?: boolean;
-  handleLoginState?: Dispatch<SetStateAction<boolean>>;
+  user: userType;
 };
-export default function Navbar({ checkLogin, handleLoginState }: Props) {
+export default function Navbar({ user }: Props) {
   const router = useRouter();
   const [results, setResults] = useState<searchMangaType[]>();
-
+  const [userData, setUser] = useState<userType>(user);
   let timer: NodeJS.Timeout;
   const handleSearch: React.ChangeEventHandler<HTMLInputElement> = async (
     e
@@ -44,11 +43,29 @@ export default function Navbar({ checkLogin, handleLoginState }: Props) {
   ) => {
     e.preventDefault();
     e.target.value = null;
+    setResults(null);
   };
   const handleNavigateToManga = (manga: searchMangaType) => {
     router.push(`/series/${manga.title}/${manga._id}`);
     setResults(null);
   };
+  const handleLogout = async () => {
+    try {
+      await axios.get("http://localhost:8080/user/logout", {
+        withCredentials: true,
+      });
+      setUser(null);
+      if (
+        router.pathname.includes("manga-upload") ||
+        router.pathname.includes("chapter-upload")
+      )
+        router.replace("/");
+    } catch (error) {
+      console.log(error);
+      setUser(user);
+    }
+  };
+
   return (
     <div className={navbarStyle.container}>
       <section className={navbarStyle.section1}>
@@ -91,7 +108,7 @@ export default function Navbar({ checkLogin, handleLoginState }: Props) {
             <li
               key={i}
               className={navbarStyle.resultList}
-              onClick={() => handleNavigateToManga(item)}
+              onMouseDown={() => handleNavigateToManga(item)}
             >
               <RemoteImage src={item.image} height={32} width={32} />
               <p className={navbarStyle.resultTitle}>{item.title}</p>
@@ -100,12 +117,37 @@ export default function Navbar({ checkLogin, handleLoginState }: Props) {
         </ul>
       </section>
       <section className={navbarStyle.section3}>
-        <Link href="/user/login" className={navbarStyle.loginBtn}>
-          Login
-        </Link>
-        <Link href="/user/signup" className={navbarStyle.signupBtn}>
-          Sign up
-        </Link>
+        {userData ? (
+          <>
+            <Icon
+              name="logout"
+              size={28}
+              style={{ marginRight: 11, cursor: "pointer" }}
+              onClick={handleLogout}
+            />
+            <RemoteImage
+              src={userData.image}
+              height={60}
+              width={60}
+              style={{
+                borderRadius: "60px",
+                overflow: "hidden",
+                border: "3px solid #D100B2",
+                cursor: "pointer",
+              }}
+            />
+          </>
+        ) : (
+          <>
+            {" "}
+            <Link href="/user/login" className={navbarStyle.loginBtn}>
+              Login
+            </Link>
+            <Link href="/user/signup" className={navbarStyle.signupBtn}>
+              Sign up
+            </Link>
+          </>
+        )}
       </section>
     </div>
   );
