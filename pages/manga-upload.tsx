@@ -11,8 +11,7 @@ import Navbar from "../components/navbar/Navbar";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { autherType, categoryType, userType } from "../util/interfaces";
-import cookieParser from "../util/cookieParser";
-import { NextPage } from "next";
+import { GetServerSidePropsContext, NextPage } from "next";
 import userParser from "../util/userParser";
 
 type Props = {
@@ -266,10 +265,11 @@ const MangaUplouds: NextPage<Props> = ({ user }) => {
   );
 };
 
-MangaUplouds.getInitialProps = async ({ req }) => {
-  const cookies = cookieParser(req);
-  const user = userParser(cookies);
-  return { user };
-};
+export async function getServerSideProps({ req }: GetServerSidePropsContext) {
+  const user = userParser(req.cookies);
+  return {
+    props: { user }, // will be passed to the page component as props
+  };
+}
 
 export default MangaUplouds;

@@ -13,8 +13,7 @@ import Icon from "../components/Icon";
 import InputUpload from "../components/Upload_input";
 import { searchMangaType, userType } from "../util/interfaces";
 import Navbar from "../components/navbar/Navbar";
-import { NextPage } from "next";
-import cookieParser from "../util/cookieParser";
+import { GetServerSidePropsContext, NextPage } from "next";
 import userParser from "../util/userParser";
 
 type Props = {
@@ -182,10 +181,11 @@ const ChapterUpload: NextPage<Props> = ({ user }) => {
   );
 };
 
-ChapterUpload.getInitialProps = async ({ req }) => {
-  const cookies = cookieParser(req);
-  const user = userParser(cookies);
-  return { user };
-};
+export async function getServerSideProps({ req }: GetServerSidePropsContext) {
+  const user = userParser(req.cookies);
+  return {
+    props: { user }, // will be passed to the page component as props
+  };
+}
 
 export default ChapterUpload;
