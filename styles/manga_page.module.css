@@ -179,6 +179,28 @@
   gap: 13px;
 }
 
+.showAllChapters {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 233px;
+  height: 80px;
+  background: #d100b2;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.showAllChapters > p {
+  font-weight: 600;
+  font-size: 32px;
+  color: #ffffff;
+}
+.showAllChapters > span {
+  position: absolute;
+  left: 93%;
+}
+
 .recommendationSection {
   display: flex;
   align-items: center;

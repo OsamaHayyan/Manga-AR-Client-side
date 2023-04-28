@@ -41,6 +41,7 @@ export default function Manga({
   console.log(recommendations);
 
   const [showRate, setShowRate] = useState(false);
+  const [showAllChapters, setShowAllChapters] = useState(false);
   const [showFavorit, setShowFavorit] = useState(false);
   const [showMore, setShowMore] = useState(false);
   const router = useRouter();
@@ -242,6 +243,7 @@ export default function Manga({
             </div>
             <div className={mangaStyle.chaptersContainer}>
               {mangaData.chapters.map((chapter, i) => {
+                if (!showAllChapters && i > 11) return null;
                 let publisdTime = moment(chapter.date).fromNow();
 
                 return (
@@ -271,6 +273,15 @@ export default function Manga({
                 );
               })}
             </div>
+            {!showAllChapters && (
+              <div
+                className={mangaStyle.showAllChapters}
+                onClick={() => setShowAllChapters(true)}
+              >
+                <p>View more</p>
+                <Icon name="rightArrow" size={85} />
+              </div>
+            )}
           </section>
           <section className={mangaStyle.recommendationSection}>
             <Recommender recommendations={recommendations} />
