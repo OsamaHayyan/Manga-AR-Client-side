@@ -19,6 +19,7 @@ import { GetServerSideProps } from "next";
 import Navbar from "../../../components/navbar/Navbar";
 import cookieParser from "../../../util/cookieParser";
 import userParser from "../../../util/userParser";
+import Recommender from "../../../components/recommendation/Recommender";
 
 type Props = {
   user: userType;
@@ -26,6 +27,7 @@ type Props = {
   DataExist: boolean;
   statusCode: number;
   errorMessage: string;
+  recommendations: recommendationsType[];
 };
 
 export default function Manga({
@@ -34,7 +36,10 @@ export default function Manga({
   DataExist,
   statusCode,
   errorMessage,
+  recommendations,
 }: Props) {
+  console.log(recommendations);
+
   const [showRate, setShowRate] = useState(false);
   const [showFavorit, setShowFavorit] = useState(false);
   const [showMore, setShowMore] = useState(false);
@@ -267,6 +272,9 @@ export default function Manga({
               })}
             </div>
           </section>
+          <section className={mangaStyle.recommendationSection}>
+            <Recommender recommendations={recommendations} />
+          </section>
         </div>
       ) : (
         <Error statusCode={statusCode} title={errorMessage} />
@@ -299,6 +307,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         mangaData: mangaData,
+        recommendations,
         DataExist,
         user,
       }, // will be passed to the page component as props
