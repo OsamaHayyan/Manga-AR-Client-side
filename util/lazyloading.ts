@@ -1,13 +1,12 @@
 export default class LazyLoading {
+  timer: NodeJS.Timeout;
   constructor() {
-    this.timer = "";
     this.lazyLoader = this.lazyLoader.bind(this);
   }
-  async lazyLoader(cb, time) {
+  async lazyLoader(cb: () => void, time: number) {
     try {
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {
-        console.log(this);
         cb();
       }, time);
     } catch (error) {
