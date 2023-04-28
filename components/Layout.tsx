@@ -12,7 +12,7 @@ type Props = PropsWithChildren<{}>;
 export default function Layout({ children }: Props) {
   return (
     <>
-      <main className={poppins.className}>
+      <main className={poppins.className} style={{ paddingBottom: 100 }}>
         {children}
         <ToastContainer
           position="bottom-right"
