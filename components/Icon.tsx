@@ -20,7 +20,8 @@ type iconNames =
   | "file"
   | "search"
   | "logout"
-  | "add";
+  | "add"
+  | "rightArrow";
 
 type Props = {
   name: iconNames;
@@ -678,6 +679,36 @@ export default function Icon({
             <path
               d="M28.5003 7.66667C28.9606 7.66667 29.3337 7.29357 29.3337 6.83333C29.3337 6.3731 28.9606 6 28.5003 6C28.0401 6 27.667 6.3731 27.667 6.83333C27.667 7.29357 28.0401 7.66667 28.5003 7.66667Z"
               stroke={color}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      );
+
+    case "rightArrow":
+      return (
+        <span
+          style={{
+            width: sizeString,
+            height: sizeString,
+            display: "inline-block",
+            ...style,
+          }}
+          onClick={onClick}
+          className={className}
+        >
+          <svg
+            width="89"
+            height="20"
+            viewBox="0 0 89 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2 10H87M87 10L79 2M87 10L79 18"
+              stroke={color}
+              strokeWidth="3"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
