@@ -1,8 +1,7 @@
-import { useRouter } from "next/dist/client/router";
 import { ToastContainer } from "react-toastify";
 import { Poppins } from "@next/font/google";
-import Navbar from "./navbar/Navbar";
-import { Dispatch, PropsWithChildren, SetStateAction } from "react";
+import { PropsWithChildren, SetStateAction } from "react";
+import Footer from "./footer/Footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -12,19 +11,22 @@ const poppins = Poppins({
 type Props = PropsWithChildren<{}>;
 export default function Layout({ children }: Props) {
   return (
-    <main className={poppins.className}>
-      {children}
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-    </main>
+    <>
+      <main className={poppins.className}>
+        {children}
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </main>
+      <Footer />
+    </>
   );
 }
