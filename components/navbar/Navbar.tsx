@@ -16,6 +16,7 @@ export default function Navbar({ user }: Props) {
   const router = useRouter();
   const [results, setResults] = useState<searchMangaType[]>();
   const [userData, setUser] = useState<userType>(user);
+  const [hideOptions, setHideOptions] = useState(true);
   let timer: NodeJS.Timeout;
   const handleSearch: React.ChangeEventHandler<HTMLInputElement> = async (
     e
@@ -116,7 +117,11 @@ export default function Navbar({ user }: Props) {
           ))}
         </ul>
       </section>
-      <section className={navbarStyle.section3}>
+      <section
+        className={navbarStyle.section3}
+        tabIndex={1}
+        onBlur={() => setHideOptions(true)}
+      >
         {userData ? (
           <>
             <Icon
@@ -126,6 +131,7 @@ export default function Navbar({ user }: Props) {
               onClick={handleLogout}
             />
             <RemoteImage
+              onClick={() => setHideOptions(false)}
               src={userData.image}
               height={60}
               width={60}
@@ -136,6 +142,31 @@ export default function Navbar({ user }: Props) {
                 cursor: "pointer",
               }}
             />
+            <div
+              className={navbarStyle.userOptionsContainer}
+              style={hideOptions ? { display: "none" } : null}
+            >
+              <div
+                className={navbarStyle.userOption}
+                onClick={() => {
+                  router.push("/manga-upload");
+                  setHideOptions(true);
+                }}
+              >
+                <Icon name="add" size={32} />
+                <p className={navbarStyle.userOptionText}>Add Manga</p>
+              </div>
+              <div
+                className={navbarStyle.userOption}
+                onClick={() => {
+                  router.push("/chapter-upload");
+                  setHideOptions(true);
+                }}
+              >
+                <Icon name="add" size={32} />
+                <p className={navbarStyle.userOptionText}>Add Chapter</p>
+              </div>
+            </div>
           </>
         ) : (
           <>
