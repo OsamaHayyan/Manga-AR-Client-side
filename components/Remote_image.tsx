@@ -8,6 +8,7 @@ type Props = {
   className?: string;
   style?: React.CSSProperties;
   priority?: boolean;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
 
 export default function RemoteImage({
@@ -17,9 +18,11 @@ export default function RemoteImage({
   className,
   style,
   priority = false,
+  onClick,
 }: Props) {
   return (
     <div
+      onClick={onClick}
       className={className}
       style={{
         flexBasis: `${width}px`,
