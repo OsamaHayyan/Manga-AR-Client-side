@@ -1,6 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 64px;
   margin-top: 104px;
 }
@@ -91,6 +92,7 @@
   justify-content: center;
   align-items: center;
   gap: 65px;
+  width: 1512px;
 }
 
 .chapterSection > .toggleBtn {
@@ -106,8 +108,8 @@
 .toggleBtn > p {
   flex: 1;
   text-align: center;
-  line-height: 68px;
-  font-size: 32px;
+  line-height: 56px;
+  font-size: 30px;
   background: #1e1e1e;
   transition: background 0.2s ease-in-out;
 }
@@ -119,9 +121,10 @@
 .chaptersContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   gap: 64px;
+  width: 1329px;
 }
 
 .chapterBox {
@@ -174,4 +177,10 @@
   justify-content: flex-end;
   align-items: center;
   gap: 13px;
+}
+
+.recommendationSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
