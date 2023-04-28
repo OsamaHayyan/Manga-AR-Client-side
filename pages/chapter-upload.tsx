@@ -34,27 +34,30 @@ const ChapterUpload: NextPage<Props> = ({ user }) => {
   const [progress, setPorgress] = useState(0);
   let { lazyLoader: lazySearch } = new LazyLoading();
   const handleSearch: React.FormEventHandler<HTMLInputElement> = async (e) => {
+    e.preventDefault();
     //new sorting way
     let collator = new Intl.Collator(undefined, {
       numeric: true,
       sensitivity: "base",
     });
 
+    const input = e.currentTarget.value;
+    if (input.length < 3) return;
+
     await lazySearch(async () => {
       try {
-        e.preventDefault();
-        const input = e.currentTarget.value;
-        if (input.length < 3) return;
-        console.log(input);
-
-        const { data: result }: { data: searchMangaType[] } =
-          await await axios.post("http://localhost:8080/mangas/search-manga/", {
+        const { data: result }: { data: searchMangaType[] } = await axios.post(
+          "http://localhost:8080/mangas/search-manga/",
+          {
             query: input,
-          });
+          }
+        );
         result.sort((a, b) => collator.compare(a.title, b.title));
         setLoading(false);
         setResults(result);
       } catch (error) {
+        console.log(error);
+
         toast.error("Unexpected Error happened, Please Try Again Later");
       }
     }, 300);
