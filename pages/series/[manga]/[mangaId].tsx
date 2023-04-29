@@ -88,7 +88,7 @@ export default function Manga({
   };
 
   const navigateToChapter = async (id: string) => {
-    router.push(`/series/${mangaData.title}/chapter/${id}`);
+    router.push(`/series/${mangaData.title}/chapter/${id}?id=${mangaData._id}`);
   };
 
   return (
@@ -273,7 +273,7 @@ export default function Manga({
                 );
               })}
             </div>
-            {!showAllChapters && (
+            {!showAllChapters && mangaData.chapters.length > 0 && (
               <div
                 className={mangaStyle.showAllChapters}
                 onClick={() => setShowAllChapters(true)}
