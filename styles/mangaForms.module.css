@@ -4,11 +4,22 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  padding: 0 500px;
+  position: relative;
+  background: rgba(30, 30, 30, 0.5);
+}
+.formStyle::before {
+  content: "";
   background-image: url(../public/images/backgroundMangaForm.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top right;
-  max-width: 1081px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.2;
 }
 
 .formHeader {
@@ -22,7 +33,7 @@
 }
 
 .container {
-  margin-top: 28px;
+  margin: 50px 0 100px 0;
   z-index: 1;
   width: 100%;
 }
