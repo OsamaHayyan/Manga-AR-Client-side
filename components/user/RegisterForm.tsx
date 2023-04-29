@@ -9,12 +9,14 @@ type Props = PropsWithChildren<{
   formName: string;
   handleSubmet: React.FormEventHandler<HTMLFormElement>;
   disable: boolean;
+  style?: React.CSSProperties;
 }>;
 export default function RegisterForm({
   formName,
   handleSubmet,
   children,
   disable,
+  style,
 }: Props) {
   return (
     <form
@@ -22,6 +24,7 @@ export default function RegisterForm({
       encType="multipart/form-data"
       className={userLogin.formLogin}
       onSubmit={handleSubmet}
+      style={style}
     >
       <div className={userLogin.container}>
         <div style={{ height: "200px", width: "200px", position: "relative" }}>
