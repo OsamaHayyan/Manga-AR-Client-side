@@ -117,6 +117,7 @@ export default function Signup() {
       formName={"SIGNUP"}
       handleSubmet={handleSubmet}
       disable={disable}
+      style={{ marginBottom: "50px" }}
     >
       <Input
         Icon={<Icon name="person" />}
