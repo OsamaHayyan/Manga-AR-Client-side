@@ -11,8 +11,8 @@ const poppins = Poppins({
 type Props = PropsWithChildren<{}>;
 export default function Layout({ children }: Props) {
   return (
-    <>
-      <main className={poppins.className} style={{ paddingBottom: 100 }}>
+    <main style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+      <div className={poppins.className} style={{ flex: 1 }}>
         {children}
         <ToastContainer
           position="bottom-right"
@@ -25,8 +25,8 @@ export default function Layout({ children }: Props) {
           draggable
           pauseOnHover
         />
-      </main>
+      </div>
       <Footer />
-    </>
+    </main>
   );
 }
