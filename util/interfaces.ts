@@ -33,6 +33,37 @@ export interface chapter {
   _id: string;
 }
 
+export interface chapterType {
+  _id: string;
+  title: string;
+  image: string;
+  chapters: [
+    {
+      chapterNum: string;
+      name: string;
+      chapter?: string[];
+      views: number;
+      date: string;
+      _id: string;
+    }
+  ];
+}
+
+export interface chapterModifiedPagesType {
+  _id: string;
+  title: string;
+  image: string;
+  chapters: [
+    {
+      chapterNum: string;
+      name: string;
+      chapter?: string[][];
+      views: number;
+      date: string;
+      _id: string;
+    }
+  ];
+}
 export interface autherType {
   _id: string;
   autherName: string;
