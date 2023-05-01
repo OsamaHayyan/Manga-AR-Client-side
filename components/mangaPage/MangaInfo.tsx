@@ -13,7 +13,7 @@ type Props = {
 };
 
 function MangaInfo({ mangaData, user }: Props) {
-  const mangaInFavorite = user.favorite.includes(mangaData._id as string)
+  const mangaInFavorite = user?.favorite?.includes(mangaData._id as string)
     ? true
     : false;
   const router = useRouter();
