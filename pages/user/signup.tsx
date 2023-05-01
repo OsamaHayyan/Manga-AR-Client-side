@@ -9,7 +9,7 @@ type Props = {
 function Login({ handleLoginState }) {
   return (
     <>
-      <Navbar />
+      <Navbar user={null} />
       <RegisterLayout>
         <SignupComponent />
       </RegisterLayout>

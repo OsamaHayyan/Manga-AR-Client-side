@@ -3,15 +3,13 @@ import RegisterLayout from "../../components/user/RegisterLayout";
 import LoginComponent from "../../components/user/Login";
 import Navbar from "../../components/navbar/Navbar";
 
-type Props = {
-  handleLoginState: Dispatch<SetStateAction<boolean>>;
-};
-function Login({ handleLoginState }) {
+type Props = {};
+function Login({}: Props) {
   return (
     <>
-      <Navbar />
+      <Navbar user={null} />
       <RegisterLayout>
-        <LoginComponent handleLoginState={handleLoginState} />
+        <LoginComponent />
       </RegisterLayout>
     </>
   );

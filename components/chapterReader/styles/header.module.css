@@ -1,0 +1,106 @@
+.logoContainer {
+  width: 107px;
+  height: 48px;
+  margin-right: 24px;
+  position: relative;
+  cursor: pointer;
+  background-color: white;
+}
+.logo {
+  object-fit: contain;
+}
+
+.chapterNumContainer {
+  position: relative;
+  display: flex;
+}
+
+.chapterNumInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffffff;
+  padding: 0 5px;
+  height: 56px;
+  width: 445px;
+  cursor: pointer;
+}
+
+.chapterNumInput > p,
+.chapterListContainer > li {
+  font-weight: 400;
+  font-size: 32px;
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.chapterListContainer {
+  position: absolute;
+  top: 100%;
+  max-height: 357px;
+  overflow-y: auto;
+  width: 100%;
+  padding: 10px;
+  background: #000000;
+  border-radius: 0 0 5px 5px;
+  z-index: 1;
+}
+
+.chapterNavigationButtonContainer,
+.leftHeaderSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+}
+.prevChapter,
+.nextChapter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  background: #d100b2;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.prevChapter {
+  transform: rotate(90deg);
+}
+.nextChapter {
+  transform: rotate(-90deg);
+}
+
+.settingsContainer {
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.chapterOptionsContainer {
+  position: absolute;
+  top: 65px;
+  right: -10px;
+  width: 252px;
+  background-color: #1e1e1e;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  border-radius: 5px;
+}
+.chapterOption {
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  gap: 7px;
+}
+.chapterOptionText {
+  font-weight: 400;
+  font-size: 20px;
+  color: #ffffff;
+}

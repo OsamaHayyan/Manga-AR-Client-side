@@ -1,0 +1,13 @@
+.footerButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+  cursor: pointer;
+}
+
+.footerButton > p {
+  font-weight: 400;
+  font-size: 24px;
+  color: #ffffff;
+}
