@@ -13,10 +13,14 @@ type Props = {
 };
 
 function MangaInfo({ mangaData, user }: Props) {
+  const mangaInFavorite = user.favorite.includes(mangaData._id as string)
+    ? true
+    : false;
   const router = useRouter();
   const [showRate, setShowRate] = useState(false);
   const [showMore, setShowMore] = useState(false);
-  const [showFavorit, setShowFavorit] = useState(false);
+  const [showFavorit, setShowFavorit] = useState(mangaInFavorite);
+
   const sendRate = async (rate: number) => {
     try {
       await axios.post(

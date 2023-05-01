@@ -81,6 +81,7 @@ export interface userType {
   email: string;
   superuser: boolean;
   userId: string;
+  favorite: string[];
 }
 
 export interface categoryType {
