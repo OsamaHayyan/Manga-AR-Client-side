@@ -1,18 +1,22 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import * as jose from "jose";
 
-export default function middleware(req) {
+export default function middleware(req: NextRequest) {
   let { cookies, nextUrl } = req;
 
-  const { superuser, admin } = cookies.has("access_token")
-    ? jose.decodeJwt(cookies.get("access_token")?.value)
-    : { superuser: null, admin: null };
+  const { superuser, admin }: { superuser: boolean; admin: boolean } =
+    cookies.has("access_token")
+      ? (jose.decodeJwt(cookies.get("access_token")?.value) as {
+          superuser: boolean;
+          admin: boolean;
+        })
+      : { superuser: null, admin: null };
 
   if (
     nextUrl.pathname.startsWith("/manga-upload") ||
     nextUrl.pathname.startsWith("/chapter-upload")
   ) {
-    if (superuser != true || admin != true) {
+    if (superuser != true && admin != true) {
       return NextResponse.rewrite(new URL("/404", nextUrl));
     }
   }
