@@ -25,7 +25,7 @@ export default function RemoteImage({
       onClick={onClick}
       className={className}
       style={{
-        flexBasis: `${width}px`,
+        width: `${width}px`,
         height: `${height}px`,
         position: "relative",
         ...style,
