@@ -9,7 +9,9 @@ export default function MangaCard({ manga }: { manga: mangaType }) {
   const router = useRouter();
 
   const handleNavigation = () => {
-    return router.push(`series/${manga.title}/${manga._id}`);
+    return router.push(
+      `series/${manga.title.replaceAll("/", "")}/${manga._id}`
+    );
   };
 
   return (
