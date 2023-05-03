@@ -16,6 +16,8 @@ export interface recommendationsType {
   _id: string;
   title: string;
   image: string;
+  views: number;
+  chapters: string[];
 }
 
 export interface searchMangaType {
@@ -47,6 +49,15 @@ export interface chapterType {
       _id: string;
     }
   ];
+}
+
+export interface newsType {
+  _id: string;
+  title: string;
+  topic: string;
+  poster: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface chapterModifiedPagesType {
@@ -84,6 +95,15 @@ export interface userType {
   favorite: string[];
 }
 
+export interface lastReleaseType {
+  _id: string;
+  title: string;
+  image: string;
+  mangaId: string;
+  rate: number;
+  category: categoryType[];
+  chapter: [{ chapter: string; chapterNum: string }];
+}
 export interface categoryType {
   _id: string;
   category: string;
