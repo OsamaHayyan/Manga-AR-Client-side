@@ -15,6 +15,7 @@ import { searchMangaType, userType } from "../util/interfaces";
 import Navbar from "../components/navbar/Navbar";
 import { GetServerSidePropsContext, NextPage } from "next";
 import userParser from "../util/userParser";
+import Head from "next/head";
 
 type Props = {
   user: userType;
@@ -105,6 +106,11 @@ const ChapterUpload: NextPage<Props> = ({ user }) => {
   return (
     <>
       <Navbar user={user} />
+      <Head>
+        <title>MangaAR | Chapter Creation</title>
+        <meta name="description" content="Chapter creation Page" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <MangaForm
         formName={"Here you can add chapters of your manga"}
         disable={disable}

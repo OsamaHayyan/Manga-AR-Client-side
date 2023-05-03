@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import { autherType, categoryType, userType } from "../util/interfaces";
 import { GetServerSidePropsContext, NextPage } from "next";
 import userParser from "../util/userParser";
+import Head from "next/head";
 
 type Props = {
   user: userType;
@@ -116,6 +117,11 @@ const MangaUplouds: NextPage<Props> = ({ user }) => {
   return (
     <>
       <Navbar user={user} />
+      <Head>
+        <title>MangaAR | Create Manga</title>
+        <meta name="description" content="Manga Creation Page" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <MangaForm
         formName={
           "Now you can add your favourite manga to make a new collection"

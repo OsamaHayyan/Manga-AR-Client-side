@@ -19,6 +19,7 @@ import Pagination from "../components/Pagination";
 import Navbar from "../components/navbar/Navbar";
 import cookieParser from "../util/cookieParser";
 import userParser from "../util/userParser";
+import Head from "next/head";
 
 interface Props {
   mangaData: mangaType[];
@@ -80,6 +81,11 @@ const Library: NextPage<Props> = ({
   return (
     <>
       <Navbar user={user} />
+      <Head>
+        <title>MangaAR | Library</title>
+        <meta name="description" content="Manga Library Page" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       {!DataExist ? (
         <Error statusCode={statusCode} title={errorMessage} />
       ) : (
