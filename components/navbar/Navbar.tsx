@@ -70,7 +70,10 @@ export default function Navbar({ user }: Props) {
   return (
     <div className={navbarStyle.container}>
       <section className={navbarStyle.section1}>
-        <div className={navbarStyle.logoContainer}>
+        <div
+          className={navbarStyle.logoContainer}
+          style={{ background: "white" }}
+        >
           <Image src={logo} alt="logo" className={navbarStyle.logo} fill />
         </div>
         <Link
@@ -142,31 +145,33 @@ export default function Navbar({ user }: Props) {
                 cursor: "pointer",
               }}
             />
-            <div
-              className={navbarStyle.userOptionsContainer}
-              style={hideOptions ? { display: "none" } : null}
-            >
+            {user.admin && (
               <div
-                className={navbarStyle.userOption}
-                onClick={() => {
-                  router.push("/manga-upload");
-                  setHideOptions(true);
-                }}
+                className={navbarStyle.userOptionsContainer}
+                style={hideOptions ? { display: "none" } : null}
               >
-                <Icon name="add" size={32} />
-                <p className={navbarStyle.userOptionText}>Add Manga</p>
+                <div
+                  className={navbarStyle.userOption}
+                  onClick={() => {
+                    router.push("/manga-upload");
+                    setHideOptions(true);
+                  }}
+                >
+                  <Icon name="add" size={32} />
+                  <p className={navbarStyle.userOptionText}>Add Manga</p>
+                </div>
+                <div
+                  className={navbarStyle.userOption}
+                  onClick={() => {
+                    router.push("/chapter-upload");
+                    setHideOptions(true);
+                  }}
+                >
+                  <Icon name="add" size={32} />
+                  <p className={navbarStyle.userOptionText}>Add Chapter</p>
+                </div>
               </div>
-              <div
-                className={navbarStyle.userOption}
-                onClick={() => {
-                  router.push("/chapter-upload");
-                  setHideOptions(true);
-                }}
-              >
-                <Icon name="add" size={32} />
-                <p className={navbarStyle.userOptionText}>Add Chapter</p>
-              </div>
-            </div>
+            )}
           </>
         ) : (
           <>
