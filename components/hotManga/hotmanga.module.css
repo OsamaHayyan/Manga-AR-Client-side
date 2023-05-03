@@ -1,0 +1,72 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 190px;
+  cursor: pointer;
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 5px;
+  gap: 5px;
+}
+
+.titleSection > h2 {
+  font-weight: 500;
+  font-size: 24px;
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+.categoryContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.categoryContainer > p {
+  font-weight: 400;
+  font-size: 18px;
+  color: #c8c8c8;
+}
+
+.rate {
+  padding: 0 5px;
+}
+
+.viewsSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.viewsSection > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 95px;
+  height: 55px;
+  background: #1e1e1e;
+  border-radius: 5px;
+}
+
+.viewsSection > div > p:first-child {
+  font-weight: 600;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.viewsSection > div > p:nth-child(2) {
+  font-weight: 400;
+  font-size: 18px;
+  color: #c8c8c8;
+}
