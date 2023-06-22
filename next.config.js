@@ -2,12 +2,12 @@ module.exports = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["http://localhost:8080", "localhost"],
+    domains: ["https://mymanga.azurewebsites.net/"],
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "localhost",
-        port: "8080",
+        protocol: "https",
+        hostname: "mymanga.azurewebsites.net",
+        port: process.env.PORT,
       },
     ],
   },
