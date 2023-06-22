@@ -29,9 +29,12 @@ export default function Navbar({ user }: Props) {
         if (input.length < 3) return setResults(null);
 
         const result: searchMangaType[] = await (
-          await axios.post("http://localhost:8080/mangas/search-manga/", {
-            query: input,
-          })
+          await axios.post(
+            "https://mymanga.azurewebsites.net/mangas/search-manga/",
+            {
+              query: input,
+            }
+          )
         ).data;
         return setResults(result);
       }, 300);
@@ -52,7 +55,7 @@ export default function Navbar({ user }: Props) {
   };
   const handleLogout = async () => {
     try {
-      await axios.get("http://localhost:8080/user/logout", {
+      await axios.get("https://mymanga.azurewebsites.net/user/logout", {
         withCredentials: true,
       });
       setUser(null);

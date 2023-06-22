@@ -24,7 +24,7 @@ function MangaInfo({ mangaData, user }: Props) {
   const sendRate = async (rate: number) => {
     try {
       await axios.post(
-        `http://localhost:8080/mangas/rate/${mangaData._id}`,
+        `https://mymanga.azurewebsites.net/mangas/rate/${mangaData._id}`,
         {
           rate: rate,
         },
@@ -42,14 +42,14 @@ function MangaInfo({ mangaData, user }: Props) {
       if (showFavorit) {
         if (!user) return toast.error("please login first");
         await axios.delete(
-          `http://localhost:8080/user/favorite/${mangaData._id}`,
+          `https://mymanga.azurewebsites.net/user/favorite/${mangaData._id}`,
           { withCredentials: true }
         );
         setShowFavorit(false);
       } else if (!showFavorit) {
         if (!user) return toast.error("please login first please");
         await axios.post(
-          `http://localhost:8080/user/favorite/${mangaData._id}`,
+          `https://mymanga.azurewebsites.net/user/favorite/${mangaData._id}`,
           null,
           {
             withCredentials: true,

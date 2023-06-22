@@ -32,7 +32,7 @@ export default function Login({}: Props) {
       );
       if (!checkValidation) {
         await axios.post(
-          "http://localhost:8080/user/login",
+          "https://mymanga.azurewebsites.net/user/login",
           {
             email: email.current.value,
             password: password.current.value,

@@ -66,12 +66,16 @@ const MangaUplouds: NextPage<Props> = ({ user }) => {
       formData.append("story", data.story);
       formData.append("image", data.image[0]);
       if (data.banner) formData.append("banner", data.banner[0]);
-      await axios.post("http://localhost:8080/mangas/add", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        withCredentials: true,
-      });
+      await axios.post(
+        "https://mymanga.azurewebsites.net/mangas/add",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+        }
+      );
       setDisable(false);
     } catch (error) {
       setDisable(false);
@@ -95,10 +99,10 @@ const MangaUplouds: NextPage<Props> = ({ user }) => {
   useEffect(() => {
     const getData = async () => {
       let authers = await (
-        await axios.get("http://localhost:8080/authers/get-authers")
+        await axios.get("https://mymanga.azurewebsites.net/authers/get-authers")
       ).data.sort((a, b) => compare(a.autherName, b.autherName));
       let categories = await (
-        await axios.get("http://localhost:8080/category/get-cat/")
+        await axios.get("https://mymanga.azurewebsites.net/category/get-cat/")
       ).data.sort((a, b) => compare(a.category, b.category));
       let date = [];
       for (let i = 1950; i <= new Date().getFullYear(); i++) {

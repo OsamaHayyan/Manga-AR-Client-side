@@ -103,7 +103,7 @@ export default function Chapter({
 export async function getServerSideProps({ query }: GetServerSidePropsContext) {
   try {
     const { data } = await axios.get<any, AxiosResponse<chapterType>>(
-      `http://localhost:8080/chapters/get-chapter/${query.chapterId}`,
+      `https://mymanga.azurewebsites.net/chapters/get-chapter/${query.chapterId}`,
       { data: { mangaId: query.id } }
     );
     const { data: mangaData } = await axios.get<
@@ -112,7 +112,7 @@ export async function getServerSideProps({ query }: GetServerSidePropsContext) {
         manga: mangaType;
         recommendationManga: recommendationsType[];
       }>
-    >(`http://localhost:8080/mangas/manga/${query.id}`);
+    >(`https://mymanga.azurewebsites.net/mangas/manga/${query.id}`);
     const allChapters = mangaData.manga.chapters.map((item) => item._id);
     const chapterPages = data.chapters[0].chapter;
     let newPagesOrder = [];

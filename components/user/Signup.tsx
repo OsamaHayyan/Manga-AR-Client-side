@@ -48,7 +48,7 @@ export default function Signup() {
       }
 
       axios
-        .post("http://localhost:8080/user/signup", formData)
+        .post("https://mymanga.azurewebsites.net/user/signup", formData)
         .catch((error) => {
           if (error.response) {
             // The request was made and the server responded with a status code

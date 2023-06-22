@@ -32,7 +32,7 @@ export default function RemoteImage({
       }}
     >
       <Image
-        src={`http://localhost:8080/${src}`}
+        src={`https://mymanga.azurewebsites.net/${src}`}
         alt=""
         width={width}
         height={height}

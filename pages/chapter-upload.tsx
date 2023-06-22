@@ -48,7 +48,7 @@ const ChapterUpload: NextPage<Props> = ({ user }) => {
     await lazySearch(async () => {
       try {
         const { data: result }: { data: searchMangaType[] } = await axios.post(
-          "http://localhost:8080/mangas/search-manga/",
+          "https://mymanga.azurewebsites.net/mangas/search-manga/",
           {
             query: input,
           }
@@ -81,18 +81,22 @@ const ChapterUpload: NextPage<Props> = ({ user }) => {
         formData.append("photos", image);
       });
 
-      await axios.post("http://localhost:8080/chapters/add-chapter", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        withCredentials: true,
-        onUploadProgress: function (progressEvent) {
-          let accualProgress = Math.round(
-            (progressEvent.loaded / progressEvent.total) * 100
-          );
-          setPorgress(accualProgress);
-        },
-      });
+      await axios.post(
+        "https://mymanga.azurewebsites.net/chapters/add-chapter",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+          onUploadProgress: function (progressEvent) {
+            let accualProgress = Math.round(
+              (progressEvent.loaded / progressEvent.total) * 100
+            );
+            setPorgress(accualProgress);
+          },
+        }
+      );
 
       toast.success("chapter was uploaded");
       await replace(`/series/${data.manga.title}/${data.manga._id}`);
