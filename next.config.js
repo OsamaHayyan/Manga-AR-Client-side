@@ -7,7 +7,7 @@ module.exports = {
       {
         protocol: "https",
         hostname: "mymanga.azurewebsites.net",
-        port: process.env.PORT,
+        port: 80,
       },
     ],
   },
