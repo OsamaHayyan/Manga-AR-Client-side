@@ -7,7 +7,6 @@ module.exports = {
       {
         protocol: "https",
         hostname: "mymanga.azurewebsites.net",
-        pathname: "/public/**",
       },
     ],
   },
