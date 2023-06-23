@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./last_release.module.css";
-import { lastReleaseType, mangaType } from "../../util/interfaces";
+import { chapter, mangaType } from "../../util/interfaces";
 import RemoteImage from "../Remote_image";
 import Rate from "../Rate";
 import Icon from "../Icon";
@@ -12,6 +12,8 @@ type Props = {
 
 const LastRelease = ({ lastRelease }: Props) => {
   const router = useRouter();
+  const [orderedChapters, setOrderedChapters] = useState<chapter[]>(null);
+
   const handleNavigationToManga = () => {
     router.push(`/series/${lastRelease.title}/${lastRelease._id}`);
   };
@@ -20,6 +22,10 @@ const LastRelease = ({ lastRelease }: Props) => {
       `/series/${lastRelease.title}/chapter/${id}?id=${lastRelease._id}`
     );
   };
+
+  useEffect(() => {
+    setOrderedChapters(lastRelease.chapters.reverse());
+  }, [lastRelease]);
   return (
     <div className={styles.container}>
       <RemoteImage
@@ -44,7 +50,7 @@ const LastRelease = ({ lastRelease }: Props) => {
             size={20}
             style={{ marginTop: 5, marginBottom: 10 }}
           />
-          {lastRelease.chapters.reverse().map((item, i) => {
+          {orderedChapters?.map((item, i) => {
             if (i > 2) return null;
             return (
               <h2
