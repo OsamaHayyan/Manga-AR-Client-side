@@ -11,7 +11,7 @@ const News = ({ news }: Props) => {
   const [date, setDate] = useState(null);
   useEffect(() => {
     setDate(new Date(news.createdAt).toLocaleDateString());
-  }, [date, news.createdAt]);
+  }, []);
 
   return (
     <div className={styles.container}>
