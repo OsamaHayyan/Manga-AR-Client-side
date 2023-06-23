@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./news.module.css";
 import { newsType } from "../../util/interfaces";
 import RemoteImage from "../Remote_image";
@@ -8,11 +8,16 @@ type Props = {
 };
 
 const News = ({ news }: Props) => {
+  const [date, setDate] = useState(null);
+  useEffect(() => {
+    setDate(new Date(news.createdAt).toLocaleDateString());
+  }, [date, news.createdAt]);
+
   return (
     <div className={styles.container}>
       <RemoteImage src={news.poster} height={308} width={466} />
       <div className={styles.newsBody}>
-        <p>{new Date(news.createdAt).toLocaleDateString()}</p>
+        <p>{date}</p>
         <h2>{news.title}</h2>
         <p>{news.topic}</p>
       </div>
