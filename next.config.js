@@ -14,7 +14,7 @@ module.exports = {
     return [
       {
         // matching all API routes
-        source: "https://mymanga.vercel.app",
+        source: "/api/:path*",
         headers: [
           { key: "Access-Control-Allow-Credentials", value: "true" },
           {
