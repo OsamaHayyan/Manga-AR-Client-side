@@ -14,11 +14,13 @@ import { autherType, categoryType, userType } from "../util/interfaces";
 import { GetServerSidePropsContext, NextPage } from "next";
 import userParser from "../util/userParser";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 type Props = {
   user: userType;
 };
 const MangaUplouds: NextPage<Props> = ({ user }) => {
+  const { replace } = useRouter();
   const {
     register,
     handleSubmit,
@@ -72,6 +74,8 @@ const MangaUplouds: NextPage<Props> = ({ user }) => {
         },
         withCredentials: true,
       });
+      toast.success("manga was uploaded");
+      await replace(`/library`);
       setDisable(false);
     } catch (error) {
       setDisable(false);
