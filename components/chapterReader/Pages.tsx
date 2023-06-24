@@ -13,7 +13,7 @@ function Pages({ page }: Props) {
           <React.Fragment key={i}>
             {" "}
             <img
-              src={`https://mymanga.azurewebsites.net/${image}`}
+              src={`https://api.egymanga.me/${image}`}
               alt="image"
               className={pagesStyle.image}
             />

@@ -56,7 +56,7 @@ const Library: NextPage<Props> = ({
     page: number;
   }) => {
     try {
-      const url = `https://mymanga.azurewebsites.net/mangas/?catId=${
+      const url = `https://api.egymanga.me/mangas/?catId=${
         catId ? catId : sort.catId
       }&orderBy=${order ? order : sort.order}&page=${page ? page : sort.page}`;
       const mangas = await fetch(url);
@@ -131,11 +131,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     const DataExist = true;
     const {
       data: { mangaData, mangaPages },
-    }: { data: ImangaAll } = await axios(
-      "https://mymanga.azurewebsites.net/mangas/"
-    );
+    }: { data: ImangaAll } = await axios("https://api.egymanga.me/mangas/");
     const { data: catData }: { data: IcategoryAll } = await axios(
-      "https://mymanga.azurewebsites.net/category/get-cat/"
+      "https://api.egymanga.me/category/get-cat/"
     );
 
     return {

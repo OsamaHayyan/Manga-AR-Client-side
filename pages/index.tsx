@@ -45,7 +45,7 @@ export default function Home({
     let ignore = false;
     axios
       .get<any, AxiosResponse<{ manga: mangaType[]; category: string }[], any>>(
-        "https://mymanga.azurewebsites.net/mangas/trendy"
+        "https://api.egymanga.me/mangas/trendy"
       )
       .then(({ data }) => {
         if (!ignore) {
@@ -61,7 +61,7 @@ export default function Home({
   useEffect(() => {
     let ignore = false;
     axios
-      .get("https://mymanga.azurewebsites.net/news/")
+      .get("https://api.egymanga.me/news/")
       .then(({ data }: { data: { news: newsType[] } }) => {
         if (!ignore) {
           setNews(data.news);
@@ -174,7 +174,7 @@ export async function getServerSideProps({ req }: GetServerSidePropsContext) {
   const { data: lastRelease } = await axios.get<
     any,
     AxiosResponse<mangaType[], any>
-  >("https://mymanga.azurewebsites.net/last-release");
+  >("https://api.egymanga.me/last-release");
 
   const filterdLastRelease = lastRelease.map((item) => {
     return {
@@ -188,11 +188,11 @@ export async function getServerSideProps({ req }: GetServerSidePropsContext) {
   const { data: recommendationResponse } = await axios.get<
     any,
     AxiosResponse<recommendationsType[], any>
-  >("https://mymanga.azurewebsites.net/mangas/recommendation");
+  >("https://api.egymanga.me/mangas/recommendation");
   const { data: mostViewdManga } = await axios.get<
     any,
     AxiosResponse<mangaType[], any>
-  >("https://mymanga.azurewebsites.net/mangas/most-viewed");
+  >("https://api.egymanga.me/mangas/most-viewed");
 
   const user = userParser(req.cookies);
   const recommendations = recommendationResponse.filter(

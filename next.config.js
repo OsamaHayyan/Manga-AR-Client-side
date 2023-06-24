@@ -2,11 +2,11 @@ module.exports = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["https://mymanga.azurewebsites.net/"],
+    domains: ["https://api.egymanga.me/"],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "mymanga.azurewebsites.net",
+        hostname: "api.egymanga.me",
       },
     ],
   },
