@@ -10,6 +10,7 @@
 
 .headerContainer {
   width: 1348px;
+  max-width: 100%;
   height: 568px;
   background-image: url("../public/images/headerImage.webp");
   background-position: top;
