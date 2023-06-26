@@ -82,7 +82,7 @@
   align-items: center;
   justify-content: center;
   gap: 73px;
-  height: 986px;
+  height: 946px;
 }
 
 .hotContainer {
@@ -118,13 +118,14 @@
   align-items: center;
   padding: 30px 24px 0 24px;
   gap: 23px;
-  width: 441px;
+  width: 401px;
   height: 100%;
   background: #1e1e1e;
+  border-radius: 5px;
 }
 
 .recommendation {
-  width: 400px;
+  width: 340px;
   height: 131px;
   border-bottom: 1px solid #000000;
 }

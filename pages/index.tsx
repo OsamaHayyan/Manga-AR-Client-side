@@ -121,7 +121,7 @@ export default function Home({
                 >
                   <Recommendation
                     recommendation={item}
-                    style={{ width: "400px" }}
+                    style={{ width: "100%" }}
                   />
                 </div>
               );
