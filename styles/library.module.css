@@ -32,3 +32,9 @@
   margin-top: 104px;
   width: 100%;
 }
+
+@media (max-width: 1299px) {
+  .imageSection {
+    max-height: 568px;
+  }
+}
