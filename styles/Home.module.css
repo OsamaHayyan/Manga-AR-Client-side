@@ -6,6 +6,7 @@
   gap: 80px;
   margin-top: 20px;
   margin-bottom: 160px;
+  padding: 0 20px;
 }
 
 .headerContainer {
@@ -76,11 +77,18 @@
   color: #ffffff;
 }
 
+.bodyContainer {
+  width: 1300px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
 .popularSection {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 73px;
   height: 946px;
 }
@@ -92,7 +100,7 @@
   align-items: center;
   padding: 0px;
   gap: 40px;
-  width: 634px;
+  flex: 1;
   height: 100%;
 }
 
@@ -108,9 +116,11 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   gap: 40px;
+  padding-left: 16px;
 }
+
 .recommendedContainer {
   display: flex;
   flex-direction: column;
@@ -144,7 +154,6 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 32px;
-  width: 1312px;
 }
 .latestAddedHeader,
 .trendyHeader,
@@ -179,8 +188,7 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-  gap: 40px;
-  width: 1312px;
+  gap: 30px;
 }
 
 .trendyBody {
@@ -189,6 +197,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 30px;
+  width: 100%;
 }
 
 .newsContainer {

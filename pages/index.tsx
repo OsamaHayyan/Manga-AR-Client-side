@@ -101,68 +101,70 @@ export default function Home({
             </p>
           </div>
         </div>
-        <div className={styles.popularSection}>
-          <div className={styles.hotContainer}>
-            <h2>HOTTEST MANGA</h2>
-            <div className={styles.hotMangas}>
-              {mostViewdManga.map((item, i) => (
-                <HotManga key={i} manga={item} />
-              ))}
-            </div>
-          </div>
-          <div className={styles.recommendedContainer}>
-            <h2>RECOMMENDED</h2>
-            {recommendations.map((item, i) => {
-              return (
-                <div
-                  key={i}
-                  className={styles.recommendation}
-                  style={i > 4 ? { border: "none" } : null}
-                >
-                  <Recommendation
-                    recommendation={item}
-                    style={{ width: "100%" }}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <div className={styles.latestAddedContainer}>
-          <div className={styles.latestAddedHeader}>
-            <h2>RECENTLY ADDED</h2>
-            <p>Show More</p>
-          </div>
-          <div className={styles.latestAddedBody}>
-            {lastRelease.map((item, i) => (
-              <LastRelease key={i} lastRelease={item} />
-            ))}
-          </div>
-        </div>
-        {trendyManga?.map((trendy, i) => {
-          return (
-            <div key={i} className={styles.trendyContainer}>
-              <div className={styles.trendyHeader}>
-                <h2>TRENDY IN {trendy.category?.toUpperCase()}</h2>
-                <p>Show More</p>
-              </div>
-              <div className={styles.trendyBody}>
-                {trendy.manga.map((item, i) => (
-                  <TrendyManga key={i} manga={item} />
+        <div className={styles.bodyContainer}>
+          <div className={styles.popularSection}>
+            <div className={styles.hotContainer}>
+              <h2>HOTTEST MANGA</h2>
+              <div className={styles.hotMangas}>
+                {mostViewdManga.map((item, i) => (
+                  <HotManga key={i} manga={item} />
                 ))}
               </div>
             </div>
-          );
-        })}
-        <div className={styles.newsContainer}>
-          <div className={styles.newsHeader}>
-            <h2>Recent News</h2>
-            <p>Show More</p>
+            <div className={styles.recommendedContainer}>
+              <h2>RECOMMENDED</h2>
+              {recommendations.map((item, i) => {
+                return (
+                  <div
+                    key={i}
+                    className={styles.recommendation}
+                    style={i > 4 ? { border: "none" } : null}
+                  >
+                    <Recommendation
+                      recommendation={item}
+                      style={{ width: "100%" }}
+                    />
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <div className={styles.newsBody}>
-            {news.map((item, i) => (
-              <News key={i} news={item} />
-            ))}
+          <div className={styles.latestAddedContainer}>
+            <div className={styles.latestAddedHeader}>
+              <h2>RECENTLY ADDED</h2>
+              <p>Show More</p>
+            </div>
+            <div className={styles.latestAddedBody}>
+              {lastRelease.map((item, i) => (
+                <LastRelease key={i} lastRelease={item} />
+              ))}
+            </div>
+          </div>
+          {trendyManga?.map((trendy, i) => {
+            return (
+              <div key={i} className={styles.trendyContainer}>
+                <div className={styles.trendyHeader}>
+                  <h2>TRENDY IN {trendy.category?.toUpperCase()}</h2>
+                  <p>Show More</p>
+                </div>
+                <div className={styles.trendyBody}>
+                  {trendy.manga.map((item, i) => (
+                    <TrendyManga key={i} manga={item} />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+          <div className={styles.newsContainer}>
+            <div className={styles.newsHeader}>
+              <h2>Recent News</h2>
+              <p>Show More</p>
+            </div>
+            <div className={styles.newsBody}>
+              {news.map((item, i) => (
+                <News key={i} news={item} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

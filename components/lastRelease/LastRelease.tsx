@@ -31,7 +31,7 @@ const LastRelease = ({ lastRelease }: Props) => {
       <RemoteImage
         style={{ cursor: "pointer" }}
         src={lastRelease.image}
-        height={285}
+        height={245}
         width={160}
         onClick={() => handleNavigationToManga()}
       />
