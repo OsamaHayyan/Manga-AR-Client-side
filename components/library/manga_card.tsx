@@ -16,7 +16,7 @@ export default function MangaCard({ manga }: { manga: mangaType }) {
 
   return (
     <div className={card.container} onClick={handleNavigation}>
-      <RemoteImage src={manga.image} />
+      <RemoteImage src={manga.image} className={card.imageSection} />
       <section className={card.contentSection}>
         <p className={card.title}>{manga.title}</p>
         <div>

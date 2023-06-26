@@ -53,3 +53,23 @@
 .active {
   background: #d100b2;
 }
+
+@media (max-width: 1368px) {
+  .btnContainer > p {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .sortSection > p,
+  .catSection > p {
+    width: unset;
+    height: unset;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: unset;
+  }
+
+  .choices {
+    column-gap: 16px;
+  }
+}
