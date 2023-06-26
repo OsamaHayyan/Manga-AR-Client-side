@@ -209,3 +209,9 @@
   gap: 40px;
   width: 100%;
 }
+
+@media (max-width: 1299px) {
+  .bodyContainer {
+    width: fit-content;
+  }
+}

@@ -14,7 +14,12 @@ const TrendyManga = ({ manga }: Props) => {
   };
   return (
     <div className={styles.container} onClick={handleNavigationToManga}>
-      <RemoteImage src={manga.image} height={270} width={200} />
+      <RemoteImage
+        src={manga.image}
+        height={270}
+        width={200}
+        className={styles.imageContainer}
+      />
       <div className={styles.mangaBody}>
         <h2 className={styles.title}>{manga.title}</h2>
         <p className={styles.chapter}>Chapter +{manga.chapters.length}</p>

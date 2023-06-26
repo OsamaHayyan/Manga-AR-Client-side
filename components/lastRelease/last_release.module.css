@@ -60,3 +60,9 @@
   color: #d100b2;
   cursor: pointer;
 }
+
+@media (max-width: 1299px) {
+  .container {
+    width: calc(100% / 2 - 20px);
+  }
+}
