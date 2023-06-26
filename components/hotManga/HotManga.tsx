@@ -22,7 +22,7 @@ const HotManga = ({ manga, className, style }: Props) => {
       className={`${styles.container} ${className}`}
       onClick={handleNavigationToManga}
     >
-      <RemoteImage src={manga.image} width={190} height={250} />
+      <RemoteImage src={manga.image} width={150} height={210} />
       <section className={styles.titleSection}>
         <div className={styles.categoryContainer}>
           {manga.category.map((item, i) => {
