@@ -20,11 +20,13 @@
   justify-content: center;
   align-items: center;
   gap: 65px;
-  width: 1512px;
+  max-width: 1512px;
 }
 
 .recommendationSection {
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 1408px;
+  width: calc(100% - 52px * 2);
 }
