@@ -4,7 +4,7 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: 0 500px;
+  padding: 0 100px;
   position: relative;
   background: rgba(30, 30, 30, 0.5);
 }
@@ -36,6 +36,7 @@
   margin: 50px 0 100px 0;
   z-index: 1;
   width: 100%;
+  max-width: 1073px;
 }
 
 .inputsContainer {
