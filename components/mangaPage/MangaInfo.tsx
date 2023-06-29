@@ -69,19 +69,14 @@ function MangaInfo({ mangaData, user }: Props) {
   return (
     <>
       <div className={mangainfoStyle.info}>
-        <RemoteImage src={mangaData.image} priority={true} />
+        <RemoteImage
+          className={mangainfoStyle.imageContainer}
+          src={mangaData.image}
+          priority={true}
+        />
         <div className={mangainfoStyle.infoSection2}>
           <h2>{mangaData.title}</h2>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-start",
-              alignItems: "center",
-              flexWrap: "wrap",
-              gap: "32px",
-              maxWidth: "684px",
-            }}
-          >
+          <div className={mangainfoStyle.catSection}>
             {mangaData.category.map((cat, i, arr) => (
               <p key={i}>{cat.category}</p>
             ))}
@@ -92,14 +87,7 @@ function MangaInfo({ mangaData, user }: Props) {
           <p>
             Published at: {mangaData.date ? mangaData.date : "Not Specified"}
           </p>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-start",
-              alignItems: "center",
-              gap: "16px",
-            }}
-          >
+          <div className={mangainfoStyle.statusContainer}>
             <p className={mangainfoStyle.status}>{mangaData.status}</p>
             <p
               className={mangainfoStyle.firstChapterBtn}

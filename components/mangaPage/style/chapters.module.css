@@ -4,6 +4,7 @@
   justify-content: space-around;
   flex: 1;
   width: 100%;
+  max-width: 1512px;
   cursor: pointer;
   user-select: none;
   border-radius: 5px;
@@ -29,7 +30,9 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 64px;
-  width: 1329px;
+  max-width: 1512px;
+  width: 100%;
+  padding: 0 50px;
 }
 
 .chapterBox {
@@ -97,4 +100,25 @@
 .showAllChapters > span {
   position: absolute;
   left: 93%;
+}
+
+@media (max-width: 1370px) {
+  .toggleBtn > p {
+    line-height: 50px;
+    font-size: 26px;
+  }
+
+  .chapterBox {
+    width: 305px;
+    height: 141px;
+  }
+
+  .showAllChapters {
+    width: 203px;
+    height: 70px;
+  }
+
+  .showAllChapters > p {
+    font-size: 26px;
+  }
 }
