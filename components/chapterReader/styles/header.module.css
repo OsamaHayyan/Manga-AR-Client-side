@@ -104,3 +104,30 @@
   font-size: 20px;
   color: #ffffff;
 }
+
+@media (max-width: 1370px) {
+  .chapterNumInput {
+    height: unset;
+  }
+
+  .chapterNumInput > p {
+    font-size: 20px;
+  }
+
+  .prevChapter,
+  .nextChapter {
+    width: 35px;
+    height: 35px;
+  }
+
+  .settingsContainer,
+  .settingsContainer > span,
+  .leftHeaderSection > span {
+    width: 26px !important;
+    height: 26px !important;
+  }
+
+  .chapterOptionsContainer {
+    top: 40px;
+  }
+}
