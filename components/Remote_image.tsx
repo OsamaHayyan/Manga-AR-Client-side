@@ -1,5 +1,6 @@
-import Image from "next/image";
-import React from "react";
+import Image, { StaticImageData } from "next/image";
+import React, { useState } from "react";
+import defaultImage from "../public/images/default_image.jpg";
 
 type Props = {
   src: string;
@@ -20,6 +21,9 @@ export default function RemoteImage({
   priority = false,
   onClick,
 }: Props) {
+  const [imageSource, setImageSource] = useState<string | StaticImageData>(
+    `http://localhost:8080/${src}`
+  );
   return (
     <div
       onClick={onClick}
@@ -32,7 +36,8 @@ export default function RemoteImage({
       }}
     >
       <Image
-        src={`https://api.egymanga.me/${src}`}
+        src={imageSource}
+        onError={() => setImageSource(defaultImage)}
         alt=""
         width={width}
         height={height}
