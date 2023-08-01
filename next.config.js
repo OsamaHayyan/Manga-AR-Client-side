@@ -2,11 +2,11 @@ module.exports = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["https://api.egymanga.me/"],
+    domains: [process.env.NEXT_PUBLIC_HOSTURL],
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "api.egymanga.me",
+        protocol: NEXT_PUBLIC_PROTOCOL,
+        hostname: process.env.NEXT_PUBLIC_HOSTNAME,
       },
     ],
   },

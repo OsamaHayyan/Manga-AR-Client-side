@@ -32,7 +32,7 @@ export default function Login({}: Props) {
       );
       if (!checkValidation) {
         await axios.post(
-          "https://api.egymanga.me/user/login",
+          `${process.env.NEXT_PUBLIC_HOSTURL}/user/login`,
           {
             email: email.current.value,
             password: password.current.value,

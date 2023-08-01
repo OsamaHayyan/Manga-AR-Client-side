@@ -45,7 +45,7 @@ export default function Home({
     let ignore = false;
     axios
       .get<any, AxiosResponse<{ manga: mangaType[]; category: string }[], any>>(
-        "https://api.egymanga.me/mangas/trendy"
+        `${process.env.NEXT_PUBLIC_HOSTURL}/mangas/trendy`
       )
       .then(({ data }) => {
         if (!ignore) {
@@ -61,7 +61,7 @@ export default function Home({
   useEffect(() => {
     let ignore = false;
     axios
-      .get("https://api.egymanga.me/news/")
+      .get(`${process.env.NEXT_PUBLIC_HOSTURL}/news/`)
       .then(({ data }: { data: { news: newsType[] } }) => {
         if (!ignore) {
           setNews(data.news);
@@ -176,7 +176,7 @@ export async function getServerSideProps({ req }: GetServerSidePropsContext) {
   const { data: lastRelease } = await axios.get<
     any,
     AxiosResponse<mangaType[], any>
-  >("https://api.egymanga.me/last-release");
+  >(`${process.env.NEXT_PUBLIC_HOSTURL}/last-release`);
 
   const filterdLastRelease = lastRelease.map((item) => {
     return {
@@ -190,11 +190,11 @@ export async function getServerSideProps({ req }: GetServerSidePropsContext) {
   const { data: recommendationResponse } = await axios.get<
     any,
     AxiosResponse<recommendationsType[], any>
-  >("https://api.egymanga.me/mangas/recommendation");
+  >(`${process.env.NEXT_PUBLIC_HOSTURL}/mangas/recommendation`);
   const { data: mostViewdManga } = await axios.get<
     any,
     AxiosResponse<mangaType[], any>
-  >("https://api.egymanga.me/mangas/most-viewed");
+  >(`${process.env.NEXT_PUBLIC_HOSTURL}/mangas/most-viewed`);
 
   const user = userParser(req.cookies);
   const recommendations = recommendationResponse.filter(

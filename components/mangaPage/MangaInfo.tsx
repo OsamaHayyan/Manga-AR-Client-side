@@ -24,7 +24,7 @@ function MangaInfo({ mangaData, user }: Props) {
   const sendRate = async (rate: number) => {
     try {
       await axios.post(
-        `https://api.egymanga.me/mangas/rate/${mangaData._id}`,
+        `${process.env.NEXT_PUBLIC_HOSTURL}/mangas/rate/${mangaData._id}`,
         {
           rate: rate,
         },
@@ -42,14 +42,14 @@ function MangaInfo({ mangaData, user }: Props) {
       if (showFavorit) {
         if (!user) return toast.error("please login first");
         await axios.delete(
-          `https://api.egymanga.me/user/favorite/${mangaData._id}`,
+          `${process.env.NEXT_PUBLIC_HOSTURL}/user/favorite/${mangaData._id}`,
           { withCredentials: true }
         );
         setShowFavorit(false);
       } else if (!showFavorit) {
         if (!user) return toast.error("please login first please");
         await axios.post(
-          `https://api.egymanga.me/user/favorite/${mangaData._id}`,
+          `${process.env.NEXT_PUBLIC_HOSTURL}/user/favorite/${mangaData._id}`,
           null,
           {
             withCredentials: true,

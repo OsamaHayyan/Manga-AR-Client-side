@@ -76,7 +76,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       data: { manga: mangaData, recommendationManga: recommendations },
     }: {
       data: { manga: mangaType; recommendationManga: recommendationsType[] };
-    } = await axios.get(`https://api.egymanga.me/mangas/manga/${mangaId}`);
+    } = await axios.get(
+      `${process.env.NEXT_PUBLIC_HOSTURL}/mangas/manga/${mangaId}`
+    );
 
     if (mangaData.title.replaceAll("/", "") != manga) {
       return {

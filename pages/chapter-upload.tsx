@@ -48,7 +48,7 @@ const ChapterUpload: NextPage<Props> = ({ user }) => {
     await lazySearch(async () => {
       try {
         const { data: result }: { data: searchMangaType[] } = await axios.post(
-          "https://api.egymanga.me/mangas/search-manga/",
+          `${process.env.NEXT_PUBLIC_HOSTURL}/mangas/search-manga/`,
           {
             query: input,
           }
@@ -82,7 +82,7 @@ const ChapterUpload: NextPage<Props> = ({ user }) => {
       });
 
       await axios.post(
-        "https://api.egymanga.me/chapters/add-chapter",
+        `${process.env.NEXT_PUBLIC_HOSTURL}/chapters/add-chapter`,
         formData,
         {
           headers: {

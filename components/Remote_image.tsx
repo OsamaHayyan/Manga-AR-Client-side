@@ -22,7 +22,7 @@ export default function RemoteImage({
   onClick,
 }: Props) {
   const [imageSource, setImageSource] = useState<string | StaticImageData>(
-    `https://api.egymanga.me/${src}`
+    `${process.env.NEXT_PUBLIC_HOSTURL}/${src}`
   );
   return (
     <div

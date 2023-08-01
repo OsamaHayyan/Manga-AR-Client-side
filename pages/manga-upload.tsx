@@ -68,12 +68,16 @@ const MangaUplouds: NextPage<Props> = ({ user }) => {
       formData.append("story", data.story);
       formData.append("image", data.image[0]);
       if (data.banner) formData.append("banner", data.banner[0]);
-      await axios.post("https://api.egymanga.me/mangas/add", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        withCredentials: true,
-      });
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_HOSTURL}/mangas/add`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+        }
+      );
       toast.success("manga was uploaded");
       await replace(`/library`);
       setDisable(false);
@@ -99,10 +103,12 @@ const MangaUplouds: NextPage<Props> = ({ user }) => {
   useEffect(() => {
     const getData = async () => {
       let authers = await (
-        await axios.get("https://api.egymanga.me/authers/get-authers")
+        await axios.get(
+          `${process.env.NEXT_PUBLIC_HOSTURL}/authers/get-authers`
+        )
       ).data.sort((a, b) => compare(a.autherName, b.autherName));
       let categories = await (
-        await axios.get("https://api.egymanga.me/category/get-cat/")
+        await axios.get(`${process.env.NEXT_PUBLIC_HOSTURL}/category/get-cat/`)
       ).data.sort((a, b) => compare(a.category, b.category));
       let date = [];
       for (let i = 1950; i <= new Date().getFullYear(); i++) {

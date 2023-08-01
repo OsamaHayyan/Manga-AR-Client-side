@@ -46,9 +46,8 @@ export default function Signup() {
           valid.profileImageData.name
         );
       }
-
       axios
-        .post("https://api.egymanga.me/user/signup", formData)
+        .post(`${process.env.NEXT_PUBLIC_HOSTURL}/user/signup`, formData)
         .catch((error) => {
           if (error.response) {
             // The request was made and the server responded with a status code

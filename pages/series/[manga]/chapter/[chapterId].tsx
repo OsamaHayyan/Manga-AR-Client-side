@@ -103,7 +103,7 @@ export default function Chapter({
 export async function getServerSideProps({ query }: GetServerSidePropsContext) {
   try {
     const { data } = await axios.get<any, AxiosResponse<chapterType>>(
-      `https://api.egymanga.me/chapters/get-chapter/${query.chapterId}`,
+      `${process.env.NEXT_PUBLIC_HOSTURL}/chapters/get-chapter/${query.chapterId}`,
       { data: { mangaId: query.id } }
     );
     const { data: mangaData } = await axios.get<
@@ -112,7 +112,7 @@ export async function getServerSideProps({ query }: GetServerSidePropsContext) {
         manga: mangaType;
         recommendationManga: recommendationsType[];
       }>
-    >(`https://api.egymanga.me/mangas/manga/${query.id}`);
+    >(`${process.env.NEXT_PUBLIC_HOSTURL}/mangas/manga/${query.id}`);
     const allChapters = mangaData.manga.chapters.map((item) => item._id);
     const chapterPages = data.chapters[0].chapter;
     let newPagesOrder = [];
