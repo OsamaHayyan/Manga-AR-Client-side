@@ -17,6 +17,7 @@ export default function Navbar({ user }: Props) {
   const [results, setResults] = useState<searchMangaType[]>();
   const [userData, setUser] = useState<userType>(user);
   const [hideOptions, setHideOptions] = useState(true);
+  const [hideSearchResults, setHideSearchResults] = useState(true);
   let timer: NodeJS.Timeout;
   const handleSearch: React.ChangeEventHandler<HTMLInputElement> = async (
     e
@@ -29,10 +30,14 @@ export default function Navbar({ user }: Props) {
         if (input.length < 3) return setResults(null);
 
         const result: searchMangaType[] = await (
-          await axios.post("https://api.egymanga.me/mangas/search-manga/", {
-            query: input,
-          })
+          await axios.post(
+            `${process.env.NEXT_PUBLIC_HOSTURL}/mangas/search-manga/`,
+            {
+              query: input,
+            }
+          )
         ).data;
+        setHideSearchResults(false);
         return setResults(result);
       }, 300);
     } catch (error) {
@@ -45,6 +50,7 @@ export default function Navbar({ user }: Props) {
     e.preventDefault();
     e.target.value = null;
     setResults(null);
+    setHideSearchResults(true);
   };
   const handleNavigateToManga = (manga: searchMangaType) => {
     router.push(`/series/${manga.title}/${manga._id}`);
@@ -52,7 +58,7 @@ export default function Navbar({ user }: Props) {
   };
   const handleLogout = async () => {
     try {
-      await axios.get("https://api.egymanga.me/user/logout", {
+      await axios.get("${process.env.NEXT_PUBLIC_HOSTURL}/user/logout", {
         withCredentials: true,
       });
       setUser(null);
@@ -70,11 +76,8 @@ export default function Navbar({ user }: Props) {
   return (
     <div className={navbarStyle.container}>
       <section className={navbarStyle.section1}>
-        <div
-          className={navbarStyle.logoContainer}
-          style={{ background: "white" }}
-        >
-          <Image src={logo} alt="logo" className={navbarStyle.logo} fill />
+        <div className={navbarStyle.logoContainer}>
+          <Icon name="logo" className={navbarStyle.logo} />
         </div>
         <Link
           href="/"
@@ -104,10 +107,13 @@ export default function Navbar({ user }: Props) {
             onBlur={handleBlurSearch}
           />
           <div className={navbarStyle.searchIcon}>
-            <Icon name="search" size={25} />
+            <Icon name="search" size={24} />
           </div>
         </div>
-        <ul className={navbarStyle.searchResultsContainer}>
+        <ul
+          hidden={hideSearchResults}
+          className={navbarStyle.searchResultsContainer}
+        >
           {results?.map((item, i) => (
             <li
               key={i}
