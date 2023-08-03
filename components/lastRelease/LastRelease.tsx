@@ -31,8 +31,8 @@ const LastRelease = ({ lastRelease }: Props) => {
       <RemoteImage
         style={{ cursor: "pointer" }}
         src={lastRelease.image}
-        height={245}
-        width={160}
+        height={200}
+        width={130}
         onClick={() => handleNavigationToManga()}
       />
       <div className={styles.lastReleaseInfo}>
@@ -47,7 +47,7 @@ const LastRelease = ({ lastRelease }: Props) => {
           </div>
           <Rate
             rate={lastRelease.rate}
-            size={20}
+            size={16}
             style={{ marginTop: 5, marginBottom: 10 }}
           />
           {orderedChapters?.map((item, i) => {
@@ -58,7 +58,7 @@ const LastRelease = ({ lastRelease }: Props) => {
                 className={styles.chapter}
                 onClick={() => handleNavigationToChapter(item._id)}
               >
-                <Icon name="file" size={25} color="#D100B2" /> Chapter{" "}
+                <Icon name="file" size={16} color="#D100B2" /> Chapter{" "}
                 {item.chapterNum}{" "}
               </h2>
             );

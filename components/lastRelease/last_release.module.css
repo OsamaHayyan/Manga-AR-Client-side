@@ -2,12 +2,14 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding: 16px;
-  gap: 20px;
-  height: 277px;
-  background: #1e1e1e;
+  gap: 16px;
+  width: 332px;
+  height: 200px;
   border-radius: 5px;
-  width: calc(100% / 3 - 20px);
+}
+
+.container:last-child {
+  margin-right: auto;
 }
 
 .lastReleaseInfo {
@@ -16,14 +18,14 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 5px 0;
   height: 100%;
   justify-content: space-around;
 }
 
 .lastReleaseInfo > h2 {
-  font-weight: 600;
-  font-size: 24px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
   color: #ffffff;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -45,18 +47,20 @@
 }
 
 .categoryContainer > p {
-  font-weight: 500;
-  font-size: 20px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
   color: #ffffff;
 }
 
 .chapter {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  gap: 13px;
-  font-weight: 600;
+  align-items: center;
+  gap: 8px;
   font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
   color: #d100b2;
   cursor: pointer;
 }

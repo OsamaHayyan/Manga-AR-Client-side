@@ -25,8 +25,8 @@ const Recommendation = ({ recommendation, style, className }: Props) => {
     >
       <RemoteImage
         src={recommendation.image}
-        width={108}
-        height={108}
+        width={100}
+        height={72}
         className={styles.remoteImage}
       />
       <div className={styles.data}>

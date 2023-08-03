@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  gap: 40px;
+  gap: 70px;
   height: 100%;
   align-items: center;
   cursor: pointer;
@@ -18,11 +18,12 @@
 
 .newsBody > h2 {
   font-weight: 500;
-  font-size: 32px;
-  line-height: 48px;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
   color: #ffffff;
   max-width: 511px;
-  margin-bottom: 15px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -31,8 +32,10 @@
 }
 
 .newsBody > p {
-  font-weight: 300;
-  font-size: 24px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
   line-height: 36px;
   color: #ffffff;
   overflow: hidden;

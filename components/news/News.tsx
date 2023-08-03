@@ -15,9 +15,9 @@ const News = ({ news }: Props) => {
 
   return (
     <div className={styles.container}>
-      <RemoteImage src={news.poster} height={308} width={466} />
+      <RemoteImage src={news.poster} height={200} width={246} />
       <div className={styles.newsBody}>
-        <p>{date}</p>
+        <p>Posted on {date}</p>
         <h2>{news.title}</h2>
         <p>{news.topic}</p>
       </div>

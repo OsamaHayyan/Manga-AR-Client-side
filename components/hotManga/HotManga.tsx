@@ -22,18 +22,22 @@ const HotManga = ({ manga, className, style }: Props) => {
       className={`${styles.container} ${className}`}
       onClick={handleNavigationToManga}
     >
-      <RemoteImage src={manga.image} width={150} height={210} />
+      <RemoteImage src={manga.image} width={130} height={170} />
       <section className={styles.titleSection}>
         <div className={styles.categoryContainer}>
-          {manga.category.map((item, i) => {
-            if (i > 1) return null;
-            if (i > 0) return <p key={i}>{item.category}</p>;
-            return <p key={i}>{item.category},</p>;
-          })}
+          {manga.category.length > 0 ? (
+            manga.category.map((item, i) => {
+              if (i > 1) return null;
+              if (i > 0) return <p key={i}>{item.category}</p>;
+              return <p key={i}>{item.category},</p>;
+            })
+          ) : (
+            <p>action, drama</p>
+          )}
         </div>
         <h2>{manga.title}</h2>
       </section>
-      <Rate rate={manga.rate} size={20} className={styles.rate} />
+      <Rate rate={manga.rate} size={16} className={styles.rate} />
       <section className={styles.viewsSection}>
         <div>
           <p>{manga.views}</p>

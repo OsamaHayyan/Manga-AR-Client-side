@@ -19,6 +19,7 @@ import LastRelease from "../components/lastRelease/LastRelease";
 import TrendyManga from "../components/trendyManga/TrendyManga";
 import { useEffect, useState } from "react";
 import News from "../components/news/News";
+import Link from "next/link";
 
 type Props = {
   user: userType;
@@ -114,25 +115,13 @@ export default function Home({
             <div className={styles.recommendedContainer}>
               <h2>RECOMMENDED</h2>
               {recommendations.map((item, i) => {
-                return (
-                  <div
-                    key={i}
-                    className={styles.recommendation}
-                    style={i > 4 ? { border: "none" } : null}
-                  >
-                    <Recommendation
-                      recommendation={item}
-                      style={{ width: "100%" }}
-                    />
-                  </div>
-                );
+                return <Recommendation key={i} recommendation={item} />;
               })}
             </div>
           </div>
           <div className={styles.latestAddedContainer}>
             <div className={styles.latestAddedHeader}>
               <h2>RECENTLY ADDED</h2>
-              <p>Show More</p>
             </div>
             <div className={styles.latestAddedBody}>
               {lastRelease.map((item, i) => (
@@ -158,11 +147,12 @@ export default function Home({
           <div className={styles.newsContainer}>
             <div className={styles.newsHeader}>
               <h2>Recent News</h2>
-              <p>Show More</p>
             </div>
             <div className={styles.newsBody}>
               {news.map((item, i) => (
-                <News key={i} news={item} />
+                <Link key={i} href={"#"}>
+                  <News news={item} />
+                </Link>
               ))}
             </div>
           </div>
