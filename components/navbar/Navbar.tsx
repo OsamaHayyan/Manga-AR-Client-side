@@ -58,7 +58,7 @@ export default function Navbar({ user }: Props) {
   };
   const handleLogout = async () => {
     try {
-      await axios.get("${process.env.NEXT_PUBLIC_HOSTURL}/user/logout", {
+      await axios.get(`${process.env.NEXT_PUBLIC_HOSTURL}/user/logout`, {
         withCredentials: true,
       });
       setUser(null);
