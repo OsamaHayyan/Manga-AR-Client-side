@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .imageSide {
@@ -15,8 +15,9 @@
   object-position: right;
 }
 .formSide {
-  width: 884px;
+  width: 760px;
   padding-left: 11px;
+  height: 982px;
 }
 
 .selected {
@@ -55,8 +56,9 @@
 
 .textNotSelected {
   position: absolute;
-  font-weight: 600;
-  font-size: 40px;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
   color: #ffffff;
   z-index: 2;
 }
@@ -89,9 +91,9 @@
 
 .textSelected {
   z-index: 2;
+  font-size: 36px;
   font-style: normal;
-  font-weight: 600;
-  font-size: 40px;
+  font-weight: 400;
   color: #d100b2;
   position: relative;
 }

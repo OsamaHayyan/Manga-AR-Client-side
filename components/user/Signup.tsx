@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import validator from "validator";
-import userSignup from "../../styles/signup.module.css";
 import Input from "../Input";
 import InputUpload from "../Upload_input";
 import RegisterForm from "./RegisterForm";
@@ -125,7 +124,6 @@ export default function Signup() {
         ref={username}
         placeholder={"Username"}
         required={true}
-        style={{ width: "641px" }}
         validation={!valid.usernameValid}
         validationText={"Please type a valid username"}
       />
@@ -136,42 +134,37 @@ export default function Signup() {
         ref={email}
         placeholder={"Email"}
         required={true}
-        style={{ width: "641px" }}
         validation={!valid.emailValid}
         validationText={"Please type a valid email"}
       />
-      <div className={userSignup.passwordContainer}>
-        <Input
-          Icon={<Icon name="password" />}
-          lastIcon={{
-            icon: <Icon name="eyeSlash" size={32} />,
-            width: 32,
-          }}
-          type={"password"}
-          name={"password"}
-          ref={password}
-          placeholder={"Password"}
-          required={true}
-          validation={!valid.password}
-          validationText={"Required at least 8 numbers & letters & symbols"}
-          validationStyle={{ width: "278px" }}
-        />
-        <Input
-          Icon={<Icon name="password" />}
-          lastIcon={{
-            icon: <Icon name="eyeSlash" size={32} />,
-            width: 32,
-          }}
-          type={"password"}
-          name={"confirmPassword"}
-          ref={confirmPassword}
-          placeholder={"Confirm"}
-          required={true}
-          validation={!valid.confirmPassword}
-          validationText={"Password confirm doesn't equal you password"}
-          validationStyle={{ width: "278px" }}
-        />
-      </div>
+      <Input
+        Icon={<Icon name="password" />}
+        lastIcon={{
+          icon: <Icon name="eyeSlash" size={32} />,
+          width: 32,
+        }}
+        type={"password"}
+        name={"password"}
+        ref={password}
+        placeholder={"Password"}
+        required={true}
+        validation={!valid.password}
+        validationText={"Required at least 8 numbers & letters & symbols"}
+      />
+      <Input
+        Icon={<Icon name="password" />}
+        lastIcon={{
+          icon: <Icon name="eyeSlash" size={32} />,
+          width: 32,
+        }}
+        type={"password"}
+        name={"confirmPassword"}
+        ref={confirmPassword}
+        placeholder={"Confirm"}
+        required={true}
+        validation={!valid.confirmPassword}
+        validationText={"Password confirm doesn't equal you password"}
+      />
 
       <InputUpload
         icon={<Icon name="addPhoto" />}

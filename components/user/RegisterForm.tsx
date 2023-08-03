@@ -1,7 +1,5 @@
 import { Button } from "@mui/material";
-import Image from "next/image";
 import React, { PropsWithChildren } from "react";
-import Logo from "../../public/images/logo3.png";
 import userLogin from "../../styles/registerForm.module.css";
 import Icon from "../Icon";
 
@@ -27,14 +25,6 @@ export default function RegisterForm({
       style={style}
     >
       <div className={userLogin.container}>
-        <div style={{ height: "200px", width: "200px", position: "relative" }}>
-          <Image
-            src={Logo}
-            fill
-            style={{ objectFit: "contain" }}
-            alt="MangaAr"
-          />
-        </div>
         <h1 className={userLogin.loginHead}>{formName}</h1>
 
         <div className={userLogin.inputsContainer}>{children}</div>
@@ -65,11 +55,13 @@ export default function RegisterForm({
             borderTop: "5px solid #1e1e1e",
             marginTop: "101px",
             width: "100%",
+            position: "absolute",
+            bottom: 0,
           }}
         >
           <div className={userLogin.thirdPartyloginContainer}>
             <p
-              style={{ fontWeight: "300", fontSize: "24px", color: "#FFFFFF" }}
+              style={{ fontWeight: "400", fontSize: "20px", color: "#FFFFFF" }}
             >
               Or Login with
             </p>

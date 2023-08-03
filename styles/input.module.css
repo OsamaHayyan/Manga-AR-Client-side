@@ -1,8 +1,9 @@
 .validation {
   width: 598px;
   margin-top: 16px;
-  font-weight: 300;
-  font-size: 16px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
   color: #ff0f0f;
   position: absolute;
 }
@@ -28,13 +29,15 @@
   background-color: transparent;
   flex-grow: 1;
   font-style: normal;
-  font-weight: 300;
-  font-size: 24px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
   color: #ffffff;
 }
 .inputs::placeholder {
-  font-weight: 300;
-  font-size: 24px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
   color: #ffffff;
 }
 
