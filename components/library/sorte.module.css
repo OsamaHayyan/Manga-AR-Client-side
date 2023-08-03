@@ -17,9 +17,9 @@
 .catSection > p {
   width: 110px;
   height: 48px;
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 48px;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
   text-align: center;
   text-decoration-line: underline;
   color: #ffffff;
@@ -44,8 +44,9 @@
 
 .btnContainer > p {
   font-weight: 600;
-  font-size: 24px;
-  line-height: 48px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
   text-align: center;
   color: #ffffff;
 }
@@ -54,7 +55,7 @@
   background: #d100b2;
 }
 
-@media (max-width: 1368px) {
+/* @media (max-width: 1368px) {
   .btnContainer > p {
     font-size: 20px;
     line-height: 28px;
@@ -72,4 +73,4 @@
   .choices {
     column-gap: 16px;
   }
-}
+} */

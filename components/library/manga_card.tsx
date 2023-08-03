@@ -23,7 +23,7 @@ export default function MangaCard({ manga }: { manga: mangaType }) {
           <p className={card.category}>
             {manga.category.map((cat) => cat.category).join(", ")}
           </p>
-          <Rate rate={manga.rate} size={24} />
+          <Rate rate={manga.rate} size={16} />
           <div>
             <p className={card.story}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit.

@@ -1,18 +1,17 @@
 .container {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   padding: 24px;
   gap: 32px;
   width: calc(100% / 2 - 32px);
-  background: #1e1e1e;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .imageSection {
-  height: 319px !important;
-  width: unset !important;
+  height: 340px !important;
+  max-width: 230px !important;
 }
 
 .contentSection {
@@ -20,7 +19,7 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  gap: 32px;
+  gap: 16px;
   flex: 1 1 61%;
 }
 
@@ -29,15 +28,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 32px;
+  gap: 10px;
   width: inherit;
 }
 
 .title {
-  height: 54px;
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 54px;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
   text-align: start;
   color: #ffffff;
   overflow: hidden;
@@ -50,9 +48,9 @@
 
 .category {
   width: inherit;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 36px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
   color: #ffffff;
   overflow: hidden;
   display: -webkit-box;
@@ -64,13 +62,14 @@
 
 .story {
   font-weight: 600;
-  font-size: 24px;
-  line-height: 36px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
   color: #ffffff;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; /* start showing ellipsis when 3rd line is reached */
+  -webkit-line-clamp: 4; /* start showing ellipsis when 3rd line is reached */
   white-space: pre-wrap;
 }
 
