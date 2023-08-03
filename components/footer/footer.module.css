@@ -1,5 +1,5 @@
 .container {
-  height: 289px;
+  height: 235px;
   display: flex;
   position: relative;
   z-index: 1;
@@ -27,6 +27,7 @@
   align-items: flex-start;
   margin-left: 50px;
   gap: 35px;
+  height: 235px;
 }
 
 .footerNav {
@@ -45,8 +46,9 @@
   gap: 40px;
 }
 .navTabs > a {
-  font-weight: 300;
-  font-size: 24px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
   color: #ffffff;
 }
 
@@ -66,9 +68,10 @@
 }
 
 .policy > p,
-.termsContainer > p {
-  font-weight: 300;
-  font-size: 32px;
+.termsContainer > a > p {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
   color: #ffffff;
 }
 
@@ -86,12 +89,15 @@
 .socialMediaSection {
   display: flex;
   flex-direction: row;
-  width: calc(110px * 3 + 135px);
+  width: calc(93px * 4);
 }
 
 .socialMediaIconContainer {
-  width: 110px;
-  line-height: 289px;
+  width: 93px;
   text-align: center;
   border-right: 0.5px solid #c8c8c8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }

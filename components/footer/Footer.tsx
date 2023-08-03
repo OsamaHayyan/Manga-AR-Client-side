@@ -23,11 +23,17 @@ function Footer({}: Props) {
         <div className={footerStyle.policy}>
           <p>All rights reserved.</p>
           <div className={footerStyle.termsContainer}>
-            <p>Privacy Policy</p>
+            <Link href={"#"}>
+              <p>Privacy Policy</p>
+            </Link>
             <p>|</p>
-            <p>Terms of use</p>
+            <Link href={"#"}>
+              <p>Terms of use</p>
+            </Link>
             <p>|</p>
-            <p>Sitemap</p>
+            <Link href={"#"}>
+              <p>Sitemap</p>
+            </Link>
           </div>
         </div>
       </section>
