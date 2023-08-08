@@ -82,7 +82,7 @@ const Library: NextPage<Props> = ({
     <>
       <Navbar user={user} />
       <Head>
-        <title>MangaAR | Library</title>
+        <title>EgyManga | Library</title>
         <meta name="description" content="Manga Library Page" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

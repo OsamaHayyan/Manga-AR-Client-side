@@ -39,7 +39,7 @@ export default function Manga({
       {DataExist ? (
         <>
           <Head>
-            <title>MangaAR | {mangaData.title}</title>
+            <title>{`EgyManga | ${mangaData.title}`}</title>
             <meta name="description" content="Manga Page" />
             <link rel="icon" href="/favicon.ico" />
           </Head>
@@ -49,7 +49,7 @@ export default function Manga({
             </section>
             <section className={mangaStyle.chapterSection}>
               <Chapters
-                chapters={mangaData.chapters}
+                chapters={mangaData.chapters.reverse()}
                 mangaId={mangaData._id}
                 mangaTitle={mangaData.title}
               />

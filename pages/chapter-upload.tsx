@@ -111,7 +111,7 @@ const ChapterUpload: NextPage<Props> = ({ user }) => {
     <>
       <Navbar user={user} />
       <Head>
-        <title>MangaAR | Chapter Creation</title>
+        <title>EgyManga | Chapter Creation</title>
         <meta name="description" content="Chapter creation Page" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

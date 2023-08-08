@@ -10,7 +10,7 @@ function Login({}: Props) {
     <>
       <Navbar user={null} />
       <Head>
-        <title>MangaAR | Login</title>
+        <title>EgyManga | Login</title>
         <meta name="description" content="Login Page" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

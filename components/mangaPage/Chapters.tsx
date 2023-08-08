@@ -34,7 +34,7 @@ const Chapters = ({ chapters, mangaId, mangaTitle }: Props) => {
               onClick={() => navigateToChapter(chapter._id)}
             >
               <div className={chaptersStyle.chapterHeader}>
-                <Icon name="file" size={25} />
+                <Icon name="file" size={16} />
                 <p>
                   {chapter.chapterNum} | Lorem ipsum dolor sit, amet consectetur
                   adipisicing elit. Odio, ducimus? Excepturi debitis dolor
@@ -44,8 +44,8 @@ const Chapters = ({ chapters, mangaId, mangaTitle }: Props) => {
                 </p>
               </div>
               <div className={chaptersStyle.chapterFooter}>
-                <span style={{ fontWeight: 300 }}>{publisdTime}</span>
-                <span style={{ fontWeight: 300 }}>
+                <span>{publisdTime}</span>
+                <span>
                   <Icon name="eyeBold" size={14} />
                   {chapter.views}
                 </span>

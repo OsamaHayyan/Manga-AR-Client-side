@@ -128,7 +128,7 @@ const MangaUplouds: NextPage<Props> = ({ user }) => {
     <>
       <Navbar user={user} />
       <Head>
-        <title>MangaAR | Create Manga</title>
+        <title>EgyManga | Create Manga</title>
         <meta name="description" content="Manga Creation Page" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

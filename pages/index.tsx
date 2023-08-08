@@ -77,7 +77,7 @@ export default function Home({
     <>
       <Navbar user={user} />
       <Head>
-        <title>MangaAR | Home</title>
+        <title>EgyManga | Home</title>
         <meta name="description" content="Manga Home Page" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

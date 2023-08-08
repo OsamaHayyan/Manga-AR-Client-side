@@ -42,7 +42,7 @@ export default function Chapter({
   return (
     <>
       <Head>
-        <title>MangaAR | {title}</title>
+        <title>{`EgyManga | ${title}`}</title>
         <meta name="description" content="Chapter Page" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

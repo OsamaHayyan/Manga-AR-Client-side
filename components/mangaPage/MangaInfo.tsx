@@ -73,6 +73,8 @@ function MangaInfo({ mangaData, user }: Props) {
           className={mangainfoStyle.imageContainer}
           src={mangaData.image}
           priority={true}
+          width={207.391}
+          height={300}
         />
         <div className={mangainfoStyle.infoSection2}>
           <h2>{mangaData.title}</h2>
@@ -103,8 +105,8 @@ function MangaInfo({ mangaData, user }: Props) {
       </div>
       <div className={mangainfoStyle.btns}>
         <div style={{ alignSelf: "flex-start" }}>
-          <Icon name="filledStar" color="#FFC107" size={65} />
-          <p>
+          <Icon name="filledStar" color="#FFC107" size={40} />
+          <p className={mangainfoStyle.iconText}>
             {mangaData.rate}
             <span>/5</span>
           </p>
@@ -116,7 +118,7 @@ function MangaInfo({ mangaData, user }: Props) {
             !user && toast.error("please login first to rate this manga");
           }}
         >
-          <Icon name="star" size={65} />
+          <Icon name="star" size={40} />
           {user && showRate ? (
             <span
               style={{
@@ -129,23 +131,23 @@ function MangaInfo({ mangaData, user }: Props) {
               <Rate handleRate={sendRate} rate={null} size={24} />
             </span>
           ) : (
-            <p>Add rate</p>
+            <p className={mangainfoStyle.iconText}>Add rate</p>
           )}
         </div>
         <div>
-          <Icon name="eye" size={65} />
-          <p>{mangaData.views}</p>
+          <Icon name="eye" size={40} />
+          <p className={mangainfoStyle.iconText}>{mangaData.views}</p>
         </div>
         <div style={{ alignSelf: "flex-start" }} onClick={addToFavorit}>
           {user && showFavorit ? (
             <>
-              <Icon name="filledStar" color="#FFC107" size={65} />
-              <p>Added to favorite!</p>
+              <Icon name="filledStar" color="#FFC107" size={40} />
+              <p className={mangainfoStyle.iconText}>Added to favorite!</p>
             </>
           ) : (
             <>
-              <Icon name="heart" size={65} />
-              <p>Add to favorite</p>
+              <Icon name="heart" size={40} />
+              <p className={mangainfoStyle.iconText}>Add to favorite</p>
             </>
           )}
         </div>

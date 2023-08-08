@@ -12,7 +12,7 @@ function Login({ handleLoginState }) {
     <>
       <Navbar user={null} />
       <Head>
-        <title>MangaAR | Signup</title>
+        <title>EgyManga | Signup</title>
         <meta name="description" content="Signup Page" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
