@@ -1,11 +1,9 @@
 import Head from "next/head";
-import Image from "next/legacy/image";
 import styles from "../styles/Home.module.css";
 import Navbar from "../components/navbar/Navbar";
 import userParser from "../util/userParser";
 import { GetServerSidePropsContext } from "next";
 import {
-  lastReleaseType,
   mangaType,
   newsType,
   recommendationsType,

@@ -1,6 +1,6 @@
 import { ToastContainer } from "react-toastify";
-import { Poppins } from "@next/font/google";
-import { PropsWithChildren, SetStateAction } from "react";
+import { Poppins } from "next/font/google";
+import { PropsWithChildren } from "react";
 import Footer from "./footer/Footer";
 
 const poppins = Poppins({

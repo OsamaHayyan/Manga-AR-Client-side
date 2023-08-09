@@ -37,7 +37,6 @@ export default function Chapter({
   const [webtoon, setWebtoon] = useState(false);
   const [horizontalView, setHorizontalView] = useState(false);
   const [pageNum, setPageNum] = useState(0);
-  console.log(chapters);
 
   return (
     <>

@@ -21,8 +21,14 @@ export default function RemoteImage({
   priority = false,
   onClick,
 }: Props) {
+  let newSrc: string;
+  if (src) {
+    newSrc = src.includes("public")
+      ? `${process.env.NEXT_PUBLIC_HOSTURL}/${src}`
+      : src;
+  }
   const [imageSource, setImageSource] = useState<string | StaticImageData>(
-    `${process.env.NEXT_PUBLIC_HOSTURL}/${src}`
+    newSrc
   );
   return (
     <div
