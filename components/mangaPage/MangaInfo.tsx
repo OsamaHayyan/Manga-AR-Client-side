@@ -84,7 +84,10 @@ function MangaInfo({ mangaData, user }: Props) {
             ))}
           </div>
           <p>
-            Author: {mangaData.auther.map((auth) => auth.autherName).join(", ")}
+            Author:{" "}
+            {mangaData.auther
+              ? mangaData.auther.map((auth) => auth.autherName).join(", ")
+              : "No Auther Specified"}
           </p>
           <p>
             Published at: {mangaData.date ? mangaData.date : "Not Specified"}
