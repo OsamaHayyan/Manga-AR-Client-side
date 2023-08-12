@@ -40,6 +40,10 @@
   align-items: flex-start;
   gap: 12px;
 }
+
+.rateContainer {
+  margin: 5px 0 10px 0;
+}
 .categoryContainer {
   display: flex;
   justify-content: flex-start;
@@ -65,5 +69,46 @@
   cursor: pointer;
 }
 
-@media (max-width: 1299px) {
+@media (max-width: 770px) {
+  .container {
+    height: unset;
+  }
+
+  .image {
+    width: 95px !important;
+    height: 150px !important;
+    flex-shrink: 0;
+  }
+  .lastReleaseInfo {
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .lastReleaseInfo > h2 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .lastReleaseBody {
+    gap: 8px;
+  }
+
+  .rateContainer {
+    margin: 0;
+  }
+
+  .categoryContainer > p {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .chapter {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+  }
 }

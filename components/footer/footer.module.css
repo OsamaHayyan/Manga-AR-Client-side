@@ -35,7 +35,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 100px;
+  gap: 25px;
 }
 
 .navTabs {
@@ -61,29 +61,43 @@
 
 .termsContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
 }
 
 .policy > p,
-.termsContainer > a > p {
-  font-size: 24px;
+.termsContainer > a > p,
+.copyrightsContainer > a {
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   color: #ffffff;
 }
 
 .logoContainer {
-  width: 107px;
+  width: 150px;
   height: 48px;
+  margin-right: 24px;
   position: relative;
+  cursor: pointer;
 }
 
-.logoContainer > image {
-  object-fit: contain;
-  object-position: center;
+.logo {
+  width: 150px !important;
+  height: 48px !important;
+}
+
+.copyrightsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.devName {
+  color: #d100b2;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .socialMediaSection {
@@ -100,4 +114,63 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+@media (max-width: 770px) {
+  .container {
+    height: unset;
+    padding: 40px 24px;
+    gap: 5px;
+  }
+
+  .footerContent {
+    justify-content: space-between;
+    margin: 0;
+    height: unset;
+    gap: 56px;
+  }
+  .footerNav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .policy {
+    gap: 8px;
+  }
+  .termsContainer {
+    gap: 5px;
+  }
+  .termsContainer > a > p,
+  .termsContainer > p,
+  .copyrightsContainer > a,
+  .devName {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    color: #fff;
+    line-height: normal;
+  }
+
+  .devName {
+    color: #d100b2;
+  }
+
+  .socialMediaSection {
+    flex-direction: column;
+    justify-content: center;
+    width: unset;
+    gap: 24px;
+  }
+
+  .socialMediaIconContainer {
+    width: 24px;
+    border: 0;
+    background: transparent !important;
+  }
+
+  .socialIcon {
+    width: 24px !important;
+    height: 24px !important;
+  }
 }

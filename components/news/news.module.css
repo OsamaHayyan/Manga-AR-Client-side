@@ -36,11 +36,42 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  line-height: 36px;
   color: #ffffff;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   white-space: pre-wrap;
+}
+
+@media (max-width: 770px) {
+  .image {
+    width: 101px !important;
+    height: 88px !important;
+  }
+
+  .container {
+    gap: 24px;
+  }
+
+  .newsBody {
+    gap: 0;
+  }
+
+  .newsBody > h2 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .newsBody > p {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    -webkit-line-clamp: 1;
+  }
+
+  .newsBody > p:nth-child(3) {
+    font-size: 14px;
+  }
 }

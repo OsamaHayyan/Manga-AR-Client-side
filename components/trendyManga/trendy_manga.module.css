@@ -44,5 +44,26 @@
   color: #d100b2;
 }
 
-@media (max-width: 1299px) {
+@media (max-width: 770px) {
+  .image {
+    width: 95px !important;
+    height: 120px !important;
+  }
+
+  .container {
+    width: 126px;
+    height: unset;
+  }
+
+  .mangaBody {
+    width: 100%;
+  }
+
+  .title {
+    line-height: normal;
+  }
+
+  .views {
+    margin-top: 5px;
+  }
 }

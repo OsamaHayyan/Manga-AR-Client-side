@@ -39,6 +39,15 @@ export default function Home({
       manga: mangaType[];
     }[]
   >();
+  const [expandedCategory, setExpandedCategory] = useState("");
+
+  const expandCategory = (
+    e: React.MouseEvent<HTMLParagraphElement, MouseEvent>,
+    trendyCategory: string
+  ) => {
+    e.currentTarget.remove();
+    setExpandedCategory(trendyCategory);
+  };
 
   useEffect(() => {
     let ignore = false;
@@ -90,14 +99,14 @@ export default function Home({
                 MangaKingdom.com. Check out the complete series for free!
               </p>
             </div>
-            <p
+            <div
               className={styles.headerButton}
               onClick={() =>
-                router.push("/series/Naruto/63f6b43742387ee27a22093a")
+                router.push("/series/Naruto/63f6b3b042387ee27a21d0e4")
               }
             >
-              Read now
-            </p>
+              <p>Read now</p>
+            </div>
           </div>
         </div>
         <div className={styles.bodyContainer}>
@@ -112,9 +121,11 @@ export default function Home({
             </div>
             <div className={styles.recommendedContainer}>
               <h2>RECOMMENDED</h2>
-              {recommendations.map((item, i) => {
-                return <Recommendation key={i} recommendation={item} />;
-              })}
+              <div className={styles.recommendationBody}>
+                {recommendations.map((item, i) => {
+                  return <Recommendation key={i} recommendation={item} />;
+                })}
+              </div>
             </div>
           </div>
           <div className={styles.latestAddedContainer}>
@@ -134,11 +145,20 @@ export default function Home({
                   <h2>TRENDY IN {trendy.category?.toUpperCase()}</h2>
                   <p>Show More</p>
                 </div>
-                <div className={styles.trendyBody}>
+                <div
+                  className={`${styles.trendyBody} ${
+                    trendy.category === expandedCategory
+                      ? styles.showMoreManga
+                      : null
+                  }`}
+                >
                   {trendy.manga.map((item, i) => (
                     <TrendyManga key={i} manga={item} />
                   ))}
                 </div>
+                <p onClick={(e) => expandCategory(e, trendy.category)}>
+                  Show More
+                </p>
               </div>
             );
           })}

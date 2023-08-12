@@ -76,9 +76,9 @@ export default function Navbar({ user }: Props) {
   return (
     <div className={navbarStyle.container}>
       <section className={navbarStyle.section1}>
-        <div className={navbarStyle.logoContainer}>
+        <Link href={"/"} className={navbarStyle.logoContainer}>
           <Icon name="logo" className={navbarStyle.logo} />
-        </div>
+        </Link>
         <Link
           href="/"
           className={`${navbarStyle.pages} ${
@@ -190,6 +190,19 @@ export default function Navbar({ user }: Props) {
             </Link>
           </>
         )}
+      </section>
+      <section className={navbarStyle.mobileLogoSection}>
+        <Link href={"/"} className={navbarStyle.logoContainer}>
+          <Icon name="logo" className={navbarStyle.logo} />
+        </Link>
+      </section>
+      <section className={navbarStyle.mobileBtnSection}>
+        <div className={navbarStyle.btnContainer}>
+          <Icon name="search" size={12} />
+        </div>
+        <div className={navbarStyle.btnContainer}>
+          <Icon name="list" size={12} />
+        </div>
       </section>
     </div>
   );

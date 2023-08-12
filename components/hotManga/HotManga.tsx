@@ -22,7 +22,12 @@ const HotManga = ({ manga, className, style }: Props) => {
       className={`${styles.container} ${className}`}
       onClick={handleNavigationToManga}
     >
-      <RemoteImage src={manga.image} width={130} height={170} />
+      <RemoteImage
+        src={manga.image}
+        width={130}
+        height={170}
+        className={styles.image}
+      />
       <section className={styles.titleSection}>
         <div className={styles.categoryContainer}>
           {manga.category.length > 0 ? (

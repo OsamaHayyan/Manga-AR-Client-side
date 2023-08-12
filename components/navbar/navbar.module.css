@@ -73,7 +73,7 @@
 }
 .searchBox {
   flex: 1;
-  width: 300px;
+  width: inherit;
   height: 40px;
   padding: 10px;
   background: linear-gradient(94.01deg, #ffffff -62.99%, #000000 59.1%);
@@ -205,360 +205,46 @@
   font-size: 20px;
   color: #ffffff;
 }
-/* .navbarContainer {
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 20px;
-  padding-right: 20px;
-  height: 70px;
-  box-shadow: 0 2px 5px 3px rgb(0 0 0 / 39%);
-  -webkit-box-shadow: 0 2px 5px 3px rgb(0 0 0 / 39%);
-  -moz-box-shadow: 0 2px 5px 3px rgb(0 0 0 / 39%);
-  position: relative;
-  z-index: 1000;
-}
 
-.leftSide {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-}
-
-.logoName {
-  font-size: 30px;
-  font-weight: 500;
-  vertical-align: middle;
-  padding: 0 10px;
-}
-
-.logoImageWarpper {
-  width: 110px;
-  height: auto;
-  padding: 0 10px;
-  cursor: pointer;
-}
-
-.logoImageWarpper > span {
-  vertical-align: middle !important;
-}
-.navItemsContainer {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  height: 100%;
-}
-
-.navItem {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  cursor: pointer;
-  user-select: none;
-}
-
-.navItem::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 15px;
-  right: 15px;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-.navItem > a::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.navItem > a {
-  padding: 8px 10px;
-  font-weight: 500;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
-}
-
-.navItemActive > a {
-  color: #ff1d1d !important;
-}
-.navItemActive::after {
-  border-bottom: 2px solid #ff1d1d;
-}
-
-.rightSide {
-  height: 70%;
-  width: 10rem;
-  cursor: pointer;
-  border-radius: 3px;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.rightSide > img {
-  max-height: 40px;
-  border-radius: 50%;
-}
-
-.rightSide > p {
-  white-space: nowrap;
-  overflow: hidden !important;
-  text-overflow: ellipsis;
-  flex: 1;
-  margin-left: 5px;
-}
-
-.rightSide:hover,
-.rightSide:active {
-  box-shadow: 0 2px 3px 0px rgb(0 0 0 / 39%);
-  -webkit-box-shadow: 0 2px 3px 0px rgb(0 0 0 / 39%);
-  -moz-box-shadow: 0 2px 3px 0px rgb(0 0 0 / 39%);
-}
-
-.searchBar {
-  margin-left: 46px;
-  margin-right: 46px;
-  width: 30rem;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.searchInput {
-  width: 100%;
-  max-width: 25rem;
-  padding: 1px 5px 1px 15px;
-  border-radius: 8px 0 0 8px;
-  border: 1px solid;
-  border-right: 0;
-  outline: 0;
-  font-size: 14px;
-  height: 30px;
-  margin: 0;
-  margin-left: 0px;
-}
-
-.searchIcon {
-  height: 30px;
-  width: 30px;
-  display: flex;
-  border: 1px solid;
-  border-radius: 0 8px 8px 0;
-  align-items: center;
-  justify-content: center;
-}
-
-.resultsContainer {
-  position: absolute;
-  width: 27rem;
-  background: #ffffff;
-  top: 100%;
-  left: 0;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  border-radius: 8px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.result {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: row;
-  height: 48px;
-  width: 100%;
-  margin: 5px;
-  transition: background-color 0.2s ease-in-out;
-  border-radius: 8px;
-}
-
-.result:hover,
-.result:active {
-  background-color: #8b8b8b7c;
-  cursor: pointer;
-}
-.resultImg {
-  margin-right: 5px;
-  height: 100%;
-  width: 35px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.result > p {
-  white-space: nowrap;
-  overflow: hidden !important;
-  text-overflow: ellipsis;
-}
-.login {
-  background: #e50914;
-  color: white;
-  padding: 7px 17px;
-  width: auto;
-  height: auto;
-  cursor: pointer;
-  border-radius: 8px;
-  display: block;
-}
-
-.userOption {
-  list-style-type: none;
-  background-color: white;
-  width: 100%;
-  border-radius: 10px;
-  margin: 0;
-  padding: 8px 0;
-  position: absolute;
-  top: 110%;
-  box-shadow: 0 2px 3px 0px rgb(0 0 0 / 39%);
-  -webkit-box-shadow: 0 2px 3px 0px rgb(0 0 0 / 39%);
-  -moz-box-shadow: 0 2px 3px 0px rgb(0 0 0 / 39%);
-  opacity: 0;
-  visibility: hidden;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
-}
-
-.userOptionClicked {
-  opacity: 1;
-  visibility: visible;
-}
-
-.userOption > li {
-  padding: 6px 16px;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
-}
-
-.userOption > li:hover {
-  background-color: rgba(0, 0, 0, 0.04);
-}
-.userOption > li:active {
-  background-color: rgba(0, 0, 0, 0.329);
-}
-
-.navbarContainerMobile,
-.rightSideMobile,
-.searchMobileLogin,
-.lineLogin {
+.mobileBtnSection,
+.mobileLogoSection {
   display: none;
 }
 
-@media (max-width: 768px) {
-  .navbarContainer {
-    box-shadow: none;
-    height: 48px;
+@media (max-width: 770px) {
+  .section1,
+  .section2,
+  .section3 {
+    display: none;
   }
 
-  .navbarContainerMobile {
-    background-color: white;
+  .container {
+    height: 53px;
+    padding: 15px 18px;
+  }
+
+  .mobileBtnSection {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    padding-left: 10px;
-    padding-right: 20px;
-    height: 50px;
-    box-shadow: 0 8px 5px 0px rgb(0 0 0 / 39%);
-    -webkit-box-shadow: 0 8px 5px 0px rgb(0 0 0 / 39%);
-    -moz-box-shadow: 0 8px 5px 0px rgb(0 0 0 / 39%);
-    position: relative;
-    z-index: 1000;
+    justify-content: center;
+    gap: 10px;
   }
 
-  .navItemsContainerMobile {
-    padding-left: 0;
-    margin: 0;
-    display: flex;
+  .mobileLogoSection {
     height: 100%;
-  }
-  .navItemsContainer {
-    display: none;
-    padding-left: 0;
-  }
-
-  .navItem > a {
-    padding: 0;
-    margin: 0 10px;
-    transition: color 0.3s;
-  }
-
-  .navItemActiveMobile > a {
-    color: #ff1d1d !important;
-  }
-  .navItemActiveMobile::after {
-    border-bottom: 2px solid #ff1d1d;
-  }
-  .login {
-    background: #e50914;
-    color: white;
-    padding: 4px 15px;
-  }
-
-  .logoImageWarpper {
-    padding: 0;
-    width: 75px;
-  } */
-/* .rightSide {
-    justify-content: flex-end;
-  }
-  .rightSide > p {
-    display: none;
-  } */
-
-/* .rightSide {
-    display: none;
-  }
-
-  .rightSideMobile,
-  .rightSideMobileLogin {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
+    justify-content: center;
   }
 
-  .profileMobile {
-    border-radius: 3px;
-    width: 40px;
-    height: 40px;
+  .btnContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    background: #000;
   }
-
-  .profileMobile > img {
-    max-height: 40px;
-    border-radius: 50%;
-  }
-  .line,
-  .lineLogin {
-    display: block;
-    width: 0;
-    height: 32px;
-    border-right: 1px solid #303030;
-    margin: 0 8px;
-  }
-
-  .searchMobile,
-  .searchMobileLogin {
-    display: block;
-    width: 20px;
-    height: 20px;
-  }
-
-  .searchBar {
-    display: none;
-  }
-} */
+}

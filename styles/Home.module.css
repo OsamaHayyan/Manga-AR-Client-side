@@ -6,11 +6,10 @@
   gap: 80px;
   margin-top: 64px;
   margin-bottom: 160px;
-  padding: 0 20px;
 }
 
 .headerContainer {
-  width: 1210px;
+  width: calc(1210px - 40px);
   height: 531px;
   max-width: 100%;
   background-image: url("../public/images/headerImage.webp");
@@ -73,6 +72,9 @@
   padding: 20px 10px;
   background: #b80202;
   border-radius: 5px;
+}
+
+.headerButton > p {
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -93,7 +95,6 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 40px;
-  height: 946px;
   max-width: 1060px;
 }
 
@@ -129,7 +130,7 @@
   justify-content: center;
   align-items: center;
   gap: 24px;
-  padding: 24px;
+  padding: 40px 24px;
   width: 316px;
   background: #1e1e1e;
   border-radius: 5px;
@@ -141,6 +142,14 @@
   font-weight: 400;
   text-decoration-line: underline;
   color: #ffffff;
+}
+
+.recommendationBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
 }
 
 .latestAddedContainer,
@@ -197,6 +206,10 @@
   width: 100%;
 }
 
+.trendyContainer > p {
+  display: none;
+}
+
 .newsContainer {
   height: fit-content;
 }
@@ -207,8 +220,213 @@
   width: 100%;
 }
 
-@media (max-width: 1299px) {
-  .bodyContainer {
+@media (max-width: 770px) {
+  .container {
+    margin-top: 24px;
+    margin-bottom: 100px;
+  }
+  .headerContainer {
+    height: 248px;
+    width: calc(100% - 16px * 2);
+  }
+
+  .headerContent {
+    padding: 24px;
+    gap: 16px;
     width: fit-content;
+    height: auto;
+
+    top: 150px;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  .headerInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 252px;
+  }
+
+  .headerInfo > p:nth-child(1) {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .headerInfo > h2:nth-child(2) {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .headerInfo > p:nth-child(3) {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .headerButton {
+    width: 86px;
+    height: 25px;
+    padding: 15px 10px;
+  }
+  .headerButton > p {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .bodyContainer {
+    gap: 45px;
+    width: 100%;
+  }
+
+  .popularSection {
+    margin-top: 130px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    max-width: unset;
+    width: 100%;
+  }
+
+  .hotContainer {
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .hotContainer > h2 {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    align-self: center;
+  }
+
+  .hotMangas {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 0;
+    padding: 0 16px;
+  }
+
+  .recommendedContainer {
+    align-items: flex-start;
+    max-width: unset;
+    width: 100%;
+    display: flex;
+    padding: 24px 16px;
+    gap: 32px;
+    border-radius: 0;
+  }
+
+  .recommendedContainer > h2 {
+    margin: auto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .recommendationBody {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-right: 16px;
+    overflow-x: scroll;
+    gap: 24px;
+  }
+
+  .latestAddedContainer {
+    padding: 0 16px;
+  }
+
+  .latestAddedContainer,
+  .trendyContainer,
+  .newsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    width: 100%;
+  }
+  .latestAddedHeader,
+  .trendyHeader,
+  .newsHeader {
+    justify-content: center;
+  }
+
+  .latestAddedHeader > h2,
+  .trendyHeader > h2,
+  .newsHeader > h2 {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .latestAddedHeader > p,
+  .trendyHeader > p,
+  .newsHeader > p {
+    display: none;
+  }
+
+  .latestAddedBody {
+    display: flex;
+    flex-wrap: wrap;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .trendyBody {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .trendyContainer > p {
+    display: block;
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration-line: underline;
+  }
+
+  .trendyBody > div:nth-last-child(-n + 3) {
+    display: none;
+  }
+
+  .showMoreManga > div:nth-last-child(-n + 3) {
+    display: block;
+  }
+
+  .hideShowMoreBtn {
+    display: none;
+  }
+  .newsContainer {
+    height: fit-content;
+  }
+  .newsBody {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+    padding: 0 16px;
   }
 }

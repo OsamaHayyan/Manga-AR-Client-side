@@ -29,6 +29,7 @@ const LastRelease = ({ lastRelease }: Props) => {
   return (
     <div className={styles.container}>
       <RemoteImage
+        className={styles.image}
         style={{ cursor: "pointer" }}
         src={lastRelease.image}
         height={200}
@@ -46,9 +47,9 @@ const LastRelease = ({ lastRelease }: Props) => {
             })}
           </div>
           <Rate
+            className={styles.rateContainer}
             rate={lastRelease.rate}
             size={16}
-            style={{ marginTop: 5, marginBottom: 10 }}
           />
           {orderedChapters?.map((item, i) => {
             if (i > 2) return null;
@@ -58,7 +59,7 @@ const LastRelease = ({ lastRelease }: Props) => {
                 className={styles.chapter}
                 onClick={() => handleNavigationToChapter(item._id)}
               >
-                <Icon name="file" size={16} color="#D100B2" /> Chapter{" "}
+                <Icon name="file" size={12} color="#D100B2" /> Chapter{" "}
                 {item.chapterNum}{" "}
               </h2>
             );
