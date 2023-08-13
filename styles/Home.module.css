@@ -344,6 +344,12 @@
     padding-bottom: 10px;
     overflow-x: scroll;
     gap: 24px;
+    scrollbar-width: none; /* have effect on firefox only */
+  }
+
+  /* have effect on chrome and edge only */
+  .recommendationBody::-webkit-scrollbar {
+    display: none;
   }
 
   .latestAddedContainer {
