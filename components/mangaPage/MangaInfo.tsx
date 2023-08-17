@@ -108,7 +108,12 @@ function MangaInfo({ mangaData, user }: Props) {
       </div>
       <div className={mangainfoStyle.btns}>
         <div style={{ alignSelf: "flex-start" }}>
-          <Icon name="filledStar" color="#FFC107" size={40} />
+          <Icon
+            className={mangainfoStyle.icon}
+            name="filledStar"
+            color="#FFC107"
+            size={40}
+          />
           <p className={mangainfoStyle.iconText}>
             {mangaData.rate}
             <span>/5</span>
@@ -121,7 +126,7 @@ function MangaInfo({ mangaData, user }: Props) {
             !user && toast.error("please login first to rate this manga");
           }}
         >
-          <Icon name="star" size={40} />
+          <Icon className={mangainfoStyle.icon} name="star" size={40} />
           {user && showRate ? (
             <span
               style={{
@@ -131,25 +136,35 @@ function MangaInfo({ mangaData, user }: Props) {
                 justifyContent: "center",
               }}
             >
-              <Rate handleRate={sendRate} rate={null} size={24} />
+              <Rate
+                className={mangainfoStyle.rateContainer}
+                handleRate={sendRate}
+                rate={null}
+                size={24}
+              />
             </span>
           ) : (
             <p className={mangainfoStyle.iconText}>Add rate</p>
           )}
         </div>
         <div>
-          <Icon name="eye" size={40} />
+          <Icon className={mangainfoStyle.icon} name="eye" size={40} />
           <p className={mangainfoStyle.iconText}>{mangaData.views}</p>
         </div>
         <div style={{ alignSelf: "flex-start" }} onClick={addToFavorit}>
           {user && showFavorit ? (
             <>
-              <Icon name="filledStar" color="#FFC107" size={40} />
+              <Icon
+                className={mangainfoStyle.icon}
+                name="filledStar"
+                color="#FFC107"
+                size={40}
+              />
               <p className={mangainfoStyle.iconText}>Added to favorite!</p>
             </>
           ) : (
             <>
-              <Icon name="heart" size={40} />
+              <Icon className={mangainfoStyle.icon} name="heart" size={40} />
               <p className={mangainfoStyle.iconText}>Add to favorite</p>
             </>
           )}
@@ -160,27 +175,11 @@ function MangaInfo({ mangaData, user }: Props) {
         style={showMore ? { maxHeight: "fit-content" } : null}
       >
         <div className={mangainfoStyle.storyHeader}>
-          <p style={{ textDecorationLine: "underline", fontSize: "32px" }}>
-            Summary
-          </p>
+          <p>Summary</p>
           {showMore ? (
-            <p
-              style={{
-                textDecorationLine: "underline",
-              }}
-              onClick={() => setShowMore(false)}
-            >
-              Show less
-            </p>
+            <p onClick={() => setShowMore(false)}>Show less</p>
           ) : (
-            <p
-              style={{
-                textDecorationLine: "underline",
-              }}
-              onClick={() => setShowMore(true)}
-            >
-              Show more
-            </p>
+            <p onClick={() => setShowMore(true)}>Show more</p>
           )}
         </div>
 

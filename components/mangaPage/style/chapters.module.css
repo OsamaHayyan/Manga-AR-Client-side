@@ -110,23 +110,60 @@
   left: 93%;
 }
 
-/* @media (max-width: 1370px) {
-  .toggleBtn > p {
-    line-height: 50px;
-    font-size: 26px;
-  }
+.emptyChapters {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+}
 
-  .chapterBox {
-    width: 305px;
-    height: 141px;
+@media (max-width: 770px) {
+  .toggleBtn {
+    height: unset;
   }
-
   .showAllChapters {
-    width: 203px;
-    height: 70px;
+    width: unset;
+    height: unset;
+  }
+  .toggleBtn > p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    padding: 10px;
   }
 
   .showAllChapters > p {
-    font-size: 26px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
   }
-} */
+
+  .chaptersContainer {
+    padding: 0;
+    gap: 10px;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  }
+  .chapterBox {
+    padding: 10px 15px;
+    gap: 10px;
+    width: 185px;
+  }
+  .chapterHeader > p {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .chapterFooter > span {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .emptyChapters {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+  }
+}

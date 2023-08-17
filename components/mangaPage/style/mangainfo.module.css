@@ -4,7 +4,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  flex-wrap: wrap;
   max-width: 1120px;
   width: 100%;
   padding: 24px;
@@ -12,11 +11,6 @@
   background: #1e1e1e;
   border-radius: 5px;
 }
-
-/* .imageContainer {
-  width: unset !important;
-  height: 100% !important;
-} */
 
 .infoSection2 {
   display: flex;
@@ -125,7 +119,9 @@
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
+  text-decoration: underline;
 }
+
 .storyShowLess {
   overflow: hidden;
   display: -webkit-box;
@@ -135,42 +131,78 @@
   white-space: pre-wrap;
 }
 
-/* @media (max-width: 1370px) {
+@media screen and (max-width: 770px) {
+  .imageContainer {
+    width: 97px !important;
+    height: 131px !important;
+    flex-shrink: 0;
+  }
+
   .info {
-    height: 408px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .infoSection2 {
+    flex: 1;
+    min-width: 220px;
+  }
+  .infoSection2,
+  .catSection {
+    gap: 8px;
   }
 
   .infoSection2 > h2 {
-    font-size: 26px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
 
   .catSection > p,
+  .infoSection2 > p,
   .status,
-  .firstChapterBtn,
-  .infoSection2 > p {
-    font-size: 20px;
-  }
-
-  .info {
-    width: calc(100% - 140px * 2);
+  .firstChapterBtn {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
   }
 
   .btns {
-    width: calc(100% - 206px * 2);
+    width: 100%;
+    gap: 0;
+    justify-content: space-evenly;
   }
+
   .btns > div {
     gap: 16px;
   }
 
-  .story {
-    width: calc(100% - 54px * 2);
+  .iconText {
+    font-size: 16px;
+  }
+
+  .iconText > span {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .icon,
+  .rateContainer > span {
+    width: 16px !important;
+    height: 16px !important;
   }
 
   .storyHeader > p {
-    font-size: 26px !important;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
   }
 
-  .storyShowLess {
-    font-size: 20px;
+  .story > p {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
   }
-} */
+}

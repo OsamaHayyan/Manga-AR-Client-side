@@ -23,36 +23,40 @@ const Chapters = ({ chapters, mangaId, mangaTitle }: Props) => {
         <p>Comments</p>
       </div>
       <div className={chaptersStyle.chaptersContainer}>
-        {chapters.map((chapter, i) => {
-          if (!showAllChapters && i > 11) return null;
-          let publisdTime = moment(chapter.date).fromNow();
+        {chapters.length > 0 ? (
+          chapters.map((chapter, i) => {
+            if (!showAllChapters && i > 11) return null;
+            let publisdTime = moment(chapter.date).fromNow();
 
-          return (
-            <div
-              key={i}
-              className={chaptersStyle.chapterBox}
-              onClick={() => navigateToChapter(chapter._id)}
-            >
-              <div className={chaptersStyle.chapterHeader}>
-                <Icon name="file" size={16} />
-                <p>
-                  {chapter.chapterNum} | Lorem ipsum dolor sit, amet consectetur
-                  adipisicing elit. Odio, ducimus? Excepturi debitis dolor
-                  voluptates! Sunt numquam ex dolorem assumenda voluptate a,
-                  ratione fuga nostrum, incidunt quis sint, deserunt aliquam
-                  adipisci?
-                </p>
+            return (
+              <div
+                key={i}
+                className={chaptersStyle.chapterBox}
+                onClick={() => navigateToChapter(chapter._id)}
+              >
+                <div className={chaptersStyle.chapterHeader}>
+                  <Icon name="file" size={16} />
+                  <p>
+                    {chapter.chapterNum} | Lorem ipsum dolor sit, amet
+                    consectetur adipisicing elit. Odio, ducimus? Excepturi
+                    debitis dolor voluptates! Sunt numquam ex dolorem assumenda
+                    voluptate a, ratione fuga nostrum, incidunt quis sint,
+                    deserunt aliquam adipisci?
+                  </p>
+                </div>
+                <div className={chaptersStyle.chapterFooter}>
+                  <span>{publisdTime}</span>
+                  <span>
+                    <Icon name="eyeBold" size={14} />
+                    {chapter.views}
+                  </span>
+                </div>
               </div>
-              <div className={chaptersStyle.chapterFooter}>
-                <span>{publisdTime}</span>
-                <span>
-                  <Icon name="eyeBold" size={14} />
-                  {chapter.views}
-                </span>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })
+        ) : (
+          <p className={chaptersStyle.emptyChapters}>No Chapters Yet</p>
+        )}
       </div>
       {!showAllChapters && chapters.length > 0 && (
         <div

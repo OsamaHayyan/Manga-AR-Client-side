@@ -22,6 +22,7 @@
   align-items: center;
   gap: 40px;
   max-width: 1512px;
+  width: 100vw;
 }
 
 .recommendationSection {
@@ -30,4 +31,18 @@
   justify-content: center;
   max-width: 1408px;
   width: calc(100% - 52px * 2);
+}
+
+@media screen and (max-width: 770px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .chapterSection {
+    gap: 24px;
+  }
+
+  .recommendationSection {
+    width: 100%;
+  }
 }

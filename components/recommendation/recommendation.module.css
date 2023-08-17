@@ -45,3 +45,13 @@
   line-height: 24px;
   color: #d100b2;
 }
+
+@media screen and (max-width: 770px) {
+  .recommendation {
+    justify-content: flex-start;
+    flex: 1;
+  }
+  .data {
+    flex: 1;
+  }
+}
