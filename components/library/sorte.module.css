@@ -55,22 +55,27 @@
   background: #d100b2;
 }
 
-/* @media (max-width: 1368px) {
+@media (max-width: 770px) {
+  .container {
+    padding: 0;
+  }
   .btnContainer > p {
-    font-size: 20px;
-    line-height: 28px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
   }
 
   .sortSection > p,
   .catSection > p {
     width: unset;
     height: unset;
-    font-weight: 600;
     font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
     line-height: unset;
   }
 
   .choices {
     column-gap: 16px;
   }
-} */
+}

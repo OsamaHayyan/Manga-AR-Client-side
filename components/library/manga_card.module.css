@@ -12,6 +12,7 @@
 .imageSection {
   height: 340px !important;
   max-width: 230px !important;
+  flex-shrink: 0;
 }
 
 .contentSection {
@@ -73,30 +74,46 @@
   white-space: pre-wrap;
 }
 
-@media (max-width: 1368px) {
-  .imageSection {
-    height: 280px !important;
-  }
-
-  .title,
-  .category,
-  .story {
-    height: unset;
-  }
-  .title {
-    font-size: 24px;
-  }
-
-  .category,
-  .story {
-    font-size: 20px;
+@media (max-width: 770px) {
+  .container {
+    flex: 1;
+    width: 100%;
+    padding: 16px;
+    background: #1e1e1e;
+    gap: 16px;
   }
 
   .contentSection {
-    gap: 16px;
+    gap: 8px;
   }
 
   .contentSection > div {
-    gap: 16px;
+    gap: 4px;
+  }
+
+  .imageSection {
+    width: 97px !important;
+    height: 131px !important;
+  }
+
+  .title {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .category,
+  .story {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .story {
+    -webkit-line-clamp: 2;
+  }
+
+  .story:last-child {
+    display: none;
   }
 }

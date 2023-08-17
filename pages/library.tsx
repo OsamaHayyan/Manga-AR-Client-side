@@ -107,7 +107,7 @@ const Library: NextPage<Props> = ({
             />
           </section>
           <section className={library.mangaSection}>
-            {manga.map((m) => (
+            {manga?.map((m) => (
               <MangaCard key={m._id} manga={m} />
             ))}
           </section>
@@ -153,7 +153,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     if (error.response) {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx
-      error.response.data.data.forEach((d) => (errorMessage = d.msg));
+      error.response.data.data?.forEach((d) => (errorMessage = d.msg));
       return {
         props: { statusCode: error.response.status, errorMessage, DataExist },
       };
