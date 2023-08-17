@@ -136,6 +136,10 @@
     font-style: normal;
     font-weight: 400;
   }
+  .showAllChapters > span {
+    width: 48px !important;
+    height: 48px !important;
+  }
 
   .chaptersContainer {
     padding: 0;
