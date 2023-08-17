@@ -145,7 +145,6 @@
 
   .infoSection2 {
     flex: 1;
-    min-width: 220px;
   }
   .infoSection2,
   .catSection {
@@ -166,6 +165,7 @@
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
+    white-space: nowrap;
   }
 
   .btns {
