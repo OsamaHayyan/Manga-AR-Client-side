@@ -54,7 +54,7 @@ function Footer({}: Props) {
         >
           <Icon
             name="blankFacebook"
-            color="#000000"
+            color="#C8C8C8"
             size={33}
             className={footerStyle.socialIcon}
           />
