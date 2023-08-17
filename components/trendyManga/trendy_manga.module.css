@@ -44,7 +44,7 @@
   color: #d100b2;
 }
 
-@media (max-width: 770px) {
+@media (max-width: 1024px) {
   .image {
     width: 95px !important;
     height: 120px !important;

@@ -44,7 +44,7 @@
   white-space: pre-wrap;
 }
 
-@media (max-width: 770px) {
+@media (max-width: 1024px) {
   .image {
     width: 101px !important;
     height: 88px !important;
