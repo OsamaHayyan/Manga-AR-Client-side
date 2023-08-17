@@ -1,5 +1,5 @@
 import Image, { StaticImageData } from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import defaultImage from "../public/images/default_image.jpg";
 
 type Props = {
@@ -21,15 +21,10 @@ export default function RemoteImage({
   priority = false,
   onClick,
 }: Props) {
-  let newSrc: string;
-  if (src) {
-    newSrc = src.includes("public")
-      ? `${process.env.NEXT_PUBLIC_HOSTURL}/${src}`
-      : src;
-  }
-  const [imageSource, setImageSource] = useState<string | StaticImageData>(
-    newSrc
-  );
+  const [imageSource, setImageSource] = useState<string | StaticImageData>(src);
+  useEffect(() => {
+    setImageSource(src);
+  }, [src]);
   return (
     <div
       onClick={onClick}
