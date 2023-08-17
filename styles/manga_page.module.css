@@ -36,7 +36,7 @@
 @media screen and (max-width: 770px) {
   .container {
     padding: 0 20px;
-    margin: 25px;
+    margin: 25px 0;
   }
 
   .chapterSection {

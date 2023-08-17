@@ -101,7 +101,7 @@ function MangaInfo({ mangaData, user }: Props) {
                 navigateToChapter(mangaData.chapters[0]._id)
               }
             >
-              Go to first chapter
+              Read Ch. 1
             </p>
           </div>
         </div>
