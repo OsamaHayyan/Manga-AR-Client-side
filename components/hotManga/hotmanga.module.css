@@ -79,7 +79,7 @@
   color: #c8c8c8;
 }
 
-@media (max-width: 770px) {
+@media (max-width: 1024px) {
   .image {
     width: 95px !important;
     height: 120px !important;

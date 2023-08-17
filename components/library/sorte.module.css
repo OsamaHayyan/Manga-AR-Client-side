@@ -55,7 +55,7 @@
   background: #d100b2;
 }
 
-@media (max-width: 770px) {
+@media (max-width: 1024px) {
   .container {
     padding: 0;
   }

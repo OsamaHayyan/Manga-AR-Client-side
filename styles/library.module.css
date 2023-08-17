@@ -33,7 +33,7 @@
   width: 100%;
 }
 
-@media (max-width: 770px) {
+@media (max-width: 1024px) {
   .container {
     margin: 24px 24px 100px 24px;
   }
