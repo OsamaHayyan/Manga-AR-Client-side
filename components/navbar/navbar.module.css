@@ -158,7 +158,7 @@
 }
 
 .loginBtn,
-.signupBtn {
+.blackBtn {
   display: flex;
   width: 90px;
   height: 40px;
@@ -176,7 +176,7 @@
 .loginBtn {
   background: linear-gradient(107.32deg, #d100b2 19.21%, #0014ff 205.16%);
 }
-.signupBtn {
+.blackBtn {
   border-radius: 5px;
   background: #000;
 }
@@ -210,7 +210,9 @@
 .mobileLogoSection {
   display: none;
 }
-
+.sideBar {
+  display: none;
+}
 @media (max-width: 1024px) {
   .section1,
   .section2,
@@ -221,6 +223,7 @@
   .container {
     height: 53px;
     padding: 15px 18px;
+    border-bottom: 1px solid #5e5e5e54;
   }
 
   .mobileBtnSection {
@@ -246,5 +249,99 @@
     height: 24px;
     border-radius: 5px;
     background: #000;
+  }
+
+  .sideBar {
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 15px;
+
+    position: fixed;
+    padding: 25px;
+    background: #1e1e1e;
+    height: calc(100% - 53px);
+    top: 53px;
+    right: 0;
+    left: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in;
+  }
+
+  .visible {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mbLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .pages {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    width: 100%;
+    font-size: 20px;
+  }
+
+  .loginBtn,
+  .blackBtn {
+    width: 100%;
+    font-size: 20px;
+    height: fit-content;
+  }
+
+  .blackBtn {
+    gap: 15px;
+  }
+
+  .separator {
+    width: 100%;
+    border: 1px solid white;
+    margin: 0;
+  }
+
+  .userOptionsContainer {
+    position: unset;
+    padding: 0;
+  }
+
+  .userOption {
+    align-items: center;
+    gap: 15px;
+  }
+  .userOptionText,
+  .pages,
+  .loginBtn,
+  .blackBtn {
+    letter-spacing: 2px;
+  }
+  .searchBox {
+    background: #000000;
+  }
+  .searchResultsContainer {
+    width: 100%;
+    flex: 1;
+    gap: 15px;
+    position: unset;
+    background: unset;
+    max-height: unset;
+  }
+
+  .resultList {
+    gap: 10px;
+  }
+  .resultTitle {
+    font-size: 16px;
   }
 }
