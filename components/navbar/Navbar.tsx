@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import navbarStyle from "./navbar.module.css";
 import logo from "../../public/images/logo.png";
 import Image from "next/image";
@@ -14,9 +14,10 @@ type Props = {
 };
 export default function Navbar({ user }: Props) {
   const router = useRouter();
+  const textInputRef = useRef<HTMLInputElement>();
+
   const [results, setResults] = useState<searchMangaType[]>();
   const [userData, setUser] = useState<userType>(user);
-
   const [hideOptions, setHideOptions] = useState(true);
   const [hideSearchResults, setHideSearchResults] = useState(true);
   const [showSideBar, setShowSideBar] = useState(false);
@@ -91,6 +92,10 @@ export default function Navbar({ user }: Props) {
   const toggleSearchBar = () => {
     setShowSearchBar((prevState) => !prevState);
     if (!showSearchBar && showSideBar) setShowSideBar(false);
+  };
+
+  const dismissKeyboard = () => {
+    textInputRef.current.blur();
   };
 
   useEffect(() => {
@@ -226,9 +231,15 @@ export default function Navbar({ user }: Props) {
         </Link>
       </section>
       <section className={navbarStyle.mobileBtnSection}>
-        <div className={navbarStyle.btnContainer} onClick={toggleSearchBar}>
-          <Icon name="search" size={12} />
-        </div>
+        {!showSearchBar ? (
+          <div className={navbarStyle.btnContainer} onClick={toggleSearchBar}>
+            <Icon name="search" size={12} />
+          </div>
+        ) : (
+          <div className={navbarStyle.btnContainer} onClick={toggleSearchBar}>
+            <Icon name="cross" size={12} />
+          </div>
+        )}
         {!showSideBar ? (
           <div className={navbarStyle.btnContainer} onClick={toggleSideBar}>
             <Icon name="list" size={12} />
@@ -240,6 +251,7 @@ export default function Navbar({ user }: Props) {
         )}
       </section>
       <section
+        onTouchStart={dismissKeyboard}
         className={`${navbarStyle.sideBar} ${
           showSearchBar ? navbarStyle.visible : null
         }`}
@@ -251,12 +263,10 @@ export default function Navbar({ user }: Props) {
             placeholder="Search"
             onChange={handleSearch}
             onBlur={handleBlurSearch}
+            ref={textInputRef}
           />
         </div>
-        <ul
-          hidden={hideSearchResults}
-          className={navbarStyle.searchResultsContainer}
-        >
+        <ul className={navbarStyle.searchResultsContainer}>
           {results?.map((item, i) => (
             <li
               key={i}
