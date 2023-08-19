@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import navbarStyle from "./navbar.module.css";
 import logo from "../../public/images/logo.png";
 import Image from "next/image";
@@ -16,8 +16,13 @@ export default function Navbar({ user }: Props) {
   const router = useRouter();
   const [results, setResults] = useState<searchMangaType[]>();
   const [userData, setUser] = useState<userType>(user);
+
   const [hideOptions, setHideOptions] = useState(true);
   const [hideSearchResults, setHideSearchResults] = useState(true);
+  const [showSideBar, setShowSideBar] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState(false);
+
+  const [disable, setDisable] = useState(false);
   let timer: NodeJS.Timeout;
   const handleSearch: React.ChangeEventHandler<HTMLInputElement> = async (
     e
@@ -47,6 +52,8 @@ export default function Navbar({ user }: Props) {
   const handleBlurSearch: React.FocusEventHandler<HTMLInputElement> = async (
     e
   ) => {
+    console.log("test");
+
     e.preventDefault();
     e.target.value = null;
     setResults(null);
@@ -55,23 +62,46 @@ export default function Navbar({ user }: Props) {
   const handleNavigateToManga = (manga: searchMangaType) => {
     router.push(`/series/${manga.title}/${manga._id}`);
     setResults(null);
+    setShowSearchBar(false);
   };
   const handleLogout = async () => {
     try {
+      setDisable(true);
       await axios.get(`${process.env.NEXT_PUBLIC_HOSTURL}/user/logout`, {
         withCredentials: true,
       });
       setUser(null);
+      setShowSideBar(false);
       if (
         router.pathname.includes("manga-upload") ||
         router.pathname.includes("chapter-upload")
-      )
+      ) {
         router.replace("/");
+      }
+      setDisable(false);
     } catch (error) {
       console.log(error);
       setUser(user);
     }
   };
+  const toggleSideBar = () => {
+    setShowSideBar((prevState) => !prevState);
+    if (!showSideBar && showSearchBar) setShowSearchBar(false);
+  };
+  const toggleSearchBar = () => {
+    setShowSearchBar((prevState) => !prevState);
+    if (!showSearchBar && showSideBar) setShowSideBar(false);
+  };
+
+  useEffect(() => {
+    if (showSideBar || showSearchBar) {
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [showSideBar, showSearchBar]);
 
   return (
     <div className={navbarStyle.container}>
@@ -181,7 +211,6 @@ export default function Navbar({ user }: Props) {
           </>
         ) : (
           <>
-            {" "}
             <Link href="/user/login" className={navbarStyle.loginBtn}>
               Login
             </Link>
@@ -197,12 +226,109 @@ export default function Navbar({ user }: Props) {
         </Link>
       </section>
       <section className={navbarStyle.mobileBtnSection}>
-        <div className={navbarStyle.btnContainer}>
+        <div className={navbarStyle.btnContainer} onClick={toggleSearchBar}>
           <Icon name="search" size={12} />
         </div>
-        <div className={navbarStyle.btnContainer}>
-          <Icon name="list" size={12} />
+        {!showSideBar ? (
+          <div className={navbarStyle.btnContainer} onClick={toggleSideBar}>
+            <Icon name="list" size={12} />
+          </div>
+        ) : (
+          <div className={navbarStyle.btnContainer} onClick={toggleSideBar}>
+            <Icon name="cross" size={12} />
+          </div>
+        )}
+      </section>
+      <section
+        className={`${navbarStyle.sideBar} ${
+          showSearchBar ? navbarStyle.visible : null
+        }`}
+      >
+        <div className={navbarStyle.searchBoxContainer}>
+          <input
+            type="text"
+            className={navbarStyle.searchBox}
+            placeholder="Search"
+            onChange={handleSearch}
+            onBlur={handleBlurSearch}
+          />
         </div>
+        <ul
+          hidden={hideSearchResults}
+          className={navbarStyle.searchResultsContainer}
+        >
+          {results?.map((item, i) => (
+            <li
+              key={i}
+              className={navbarStyle.resultList}
+              onMouseDown={() => handleNavigateToManga(item)}
+            >
+              <RemoteImage src={item.image} height={32} width={32} />
+              <p className={navbarStyle.resultTitle}>{item.title}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section
+        className={`${navbarStyle.sideBar} ${
+          showSideBar ? navbarStyle.visible : null
+        }`}
+      >
+        <div className={navbarStyle.mbLinks}>
+          <Link href="/" className={navbarStyle.pages}>
+            <Icon name="home" size={20} />
+            Home
+          </Link>
+          <Link href="/library" className={navbarStyle.pages}>
+            <Icon name="book" size={20} />
+            Library
+          </Link>
+          {userData?.admin && (
+            <div className={navbarStyle.userOptionsContainer}>
+              <div
+                className={navbarStyle.userOption}
+                onClick={() => {
+                  router.push("/manga-upload");
+                  setHideOptions(true);
+                }}
+              >
+                <Icon name="add" size={20} />
+                <p className={navbarStyle.userOptionText}>Add Manga</p>
+              </div>
+              <div
+                className={navbarStyle.userOption}
+                onClick={() => {
+                  router.push("/chapter-upload");
+                  setHideOptions(true);
+                }}
+              >
+                <Icon name="add" size={20} />
+                <p className={navbarStyle.userOptionText}>Add Chapter</p>
+              </div>
+            </div>
+          )}
+        </div>
+        <hr className={navbarStyle.separator} />
+
+        {!userData ? (
+          <>
+            <Link href="/user/login" className={navbarStyle.loginBtn}>
+              Login
+            </Link>
+            <Link href="/user/signup" className={navbarStyle.blackBtn}>
+              Sign up
+            </Link>
+          </>
+        ) : (
+          <button
+            disabled={disable}
+            className={navbarStyle.blackBtn}
+            onClick={handleLogout}
+          >
+            <Icon name="logout" size={20} />
+            Logout
+          </button>
+        )}
       </section>
     </div>
   );

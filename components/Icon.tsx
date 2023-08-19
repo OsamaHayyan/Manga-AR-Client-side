@@ -25,7 +25,10 @@ type iconNames =
   | "settings"
   | "exclamationMark"
   | "logo"
-  | "list";
+  | "list"
+  | "book"
+  | "home"
+  | "cross";
 
 type Props = {
   name: iconNames;
@@ -46,6 +49,104 @@ export default function Icon({
 }: Props) {
   const sizeString = `${size}px`;
   switch (name) {
+    case "cross":
+      return (
+        <span
+          style={{
+            width: sizeString,
+            height: sizeString,
+            display: "inline-block",
+            ...style,
+          }}
+          onClick={onClick}
+          className={className}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="#000000"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M19 5L5 19M5 5L9.5 9.5M12 12L19 19"
+                stroke="#ffffff"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </g>
+          </svg>
+        </span>
+      );
+    case "home":
+      return (
+        <span
+          style={{
+            width: sizeString,
+            height: sizeString,
+            display: "inline-block",
+            ...style,
+          }}
+          onClick={onClick}
+          className={className}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="800px"
+            height="800px"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M5 9.77746V16.2C5 17.8802 5 18.7203 5.32698 19.362C5.6146 19.9265 6.07354 20.3854 6.63803 20.673C7.27976 21 8.11984 21 9.8 21H14.2C15.8802 21 16.7202 21 17.362 20.673C17.9265 20.3854 18.3854 19.9265 18.673 19.362C19 18.7203 19 17.8802 19 16.2V5.00002M21 12L15.5668 5.96399C14.3311 4.59122 13.7133 3.90484 12.9856 3.65144C12.3466 3.42888 11.651 3.42893 11.0119 3.65159C10.2843 3.90509 9.66661 4.59157 8.43114 5.96452L3 12"
+              stroke={color}
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      );
+    case "book":
+      return (
+        <span
+          style={{
+            width: sizeString,
+            height: sizeString,
+            display: "inline-block",
+            ...style,
+          }}
+          onClick={onClick}
+          className={className}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="800px"
+            height="800px"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <rect />
+            <path
+              d="M12 6.90909C10.8999 5.50893 9.20406 4.10877 5.00119 4.00602C4.72513 3.99928 4.5 4.22351 4.5 4.49965C4.5 6.54813 4.5 14.3034 4.5 16.597C4.5 16.8731 4.72515 17.09 5.00114 17.099C9.20405 17.2364 10.8999 19.0998 12 20.5M12 6.90909C13.1001 5.50893 14.7959 4.10877 18.9988 4.00602C19.2749 3.99928 19.5 4.21847 19.5 4.49461C19.5 6.78447 19.5 14.3064 19.5 16.5963C19.5 16.8724 19.2749 17.09 18.9989 17.099C14.796 17.2364 13.1001 19.0998 12 20.5M12 6.90909L12 20.5"
+              stroke={color}
+              strokeLinejoin="round"
+            />
+            <path
+              d="M19.2353 6H21.5C21.7761 6 22 6.22386 22 6.5V19.539C22 19.9436 21.5233 20.2124 21.1535 20.0481C20.3584 19.6948 19.0315 19.2632 17.2941 19.2632C14.3529 19.2632 12 21 12 21C12 21 9.64706 19.2632 6.70588 19.2632C4.96845 19.2632 3.64156 19.6948 2.84647 20.0481C2.47668 20.2124 2 19.9436 2 19.539V6.5C2 6.22386 2.22386 6 2.5 6H4.76471"
+              stroke={color}
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      );
     case "list":
       return (
         <span
