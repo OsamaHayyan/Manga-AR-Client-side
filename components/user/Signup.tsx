@@ -79,7 +79,7 @@ export default function Signup() {
     confirmPassword: string
   ) => {
     const dataValid = {
-      usernameValid: validator.isLength(username, { min: 4, max: 15 }),
+      usernameValid: validator.isLength(username, { min: 5, max: 15 }),
       emailValid: validator.isEmail(email),
       password: validator.isStrongPassword(password, { minUppercase: 0 }),
       confirmPassword: validator.equals(confirmPassword, password),
