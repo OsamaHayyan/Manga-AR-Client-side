@@ -96,6 +96,7 @@ export default function Navbar({ user }: Props) {
 
   const dismissKeyboard = () => {
     textInputRef.current.blur();
+    textInputRef.current.value = null;
   };
 
   useEffect(() => {
@@ -219,7 +220,7 @@ export default function Navbar({ user }: Props) {
             <Link href="/user/login" className={navbarStyle.loginBtn}>
               Login
             </Link>
-            <Link href="/user/signup" className={navbarStyle.signupBtn}>
+            <Link href="/user/signup" className={navbarStyle.blackBtn}>
               Sign up
             </Link>
           </>
@@ -262,7 +263,6 @@ export default function Navbar({ user }: Props) {
             className={navbarStyle.searchBox}
             placeholder="Search"
             onChange={handleSearch}
-            onBlur={handleBlurSearch}
             ref={textInputRef}
           />
         </div>
