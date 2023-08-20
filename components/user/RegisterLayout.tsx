@@ -11,17 +11,17 @@ export default function User({ children }: { children: React.ReactNode }) {
   return (
     <div className={userForm.container}>
       <div className={userForm.imageSide}>
-        <Image
+        {/* <Image
           src={backgroundImage}
           fill
           className={userForm.backgroundImage}
           alt="Background image"
-        />
+        /> */}
         <button
           className={
             route.pathname === "/user/login"
               ? `${userForm.selected} ${userForm.loginBtnPosition}`
-              : null
+              : userForm.loginBtnPosition
           }
           type="button"
           onClick={() => route.push("login", undefined, { scroll: false })}
@@ -40,7 +40,7 @@ export default function User({ children }: { children: React.ReactNode }) {
           className={
             route.pathname === "/user/signup"
               ? `${userForm.selected} ${userForm.signBtnPosition}`
-              : null
+              : userForm.signBtnPosition
           }
           type="button"
           onClick={() => route.push("signup", undefined, { scroll: false })}

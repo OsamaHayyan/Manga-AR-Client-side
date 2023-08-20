@@ -8,6 +8,7 @@ import validator from "validator";
 import Icon from "../Icon";
 import Input from "../Input";
 import RegisterForm from "./RegisterForm";
+import styles from "./user.module.css";
 
 type Props = {};
 export default function Login({}: Props) {
@@ -94,7 +95,7 @@ export default function Login({}: Props) {
       disable={disable}
     >
       <Input
-        Icon={<Icon name="person" />}
+        Icon={<Icon name="person" className={styles.icon} />}
         type={"email"}
         name={"email"}
         ref={email}
@@ -102,7 +103,7 @@ export default function Login({}: Props) {
         required={true}
       />
       <Input
-        Icon={<Icon name="password" />}
+        Icon={<Icon name="password" className={styles.icon} />}
         type={"password"}
         name={"password"}
         ref={password}

@@ -50,35 +50,21 @@ export default function RegisterForm({
 
       {/* third party login section */}
       {formName == "LOGIN" ? (
-        <div
-          style={{
-            borderTop: "5px solid #1e1e1e",
-            marginTop: "101px",
-            width: "100%",
-            position: "absolute",
-            bottom: 0,
-          }}
-        >
-          <div className={userLogin.thirdPartyloginContainer}>
-            <p
-              style={{ fontWeight: "400", fontSize: "20px", color: "#FFFFFF" }}
-            >
-              Or Login with
-            </p>
-            <div
-              className="d-flex flex-row justify-content-center align-items-center"
-              style={{ gap: "8px" }}
-            >
-              <Icon name="google" />
-              <p>Google</p>
-            </div>
-            <div
-              className="d-flex flex-row justify-content-center align-items-center"
-              style={{ gap: "8px" }}
-            >
-              <Icon name="facebook" />
-              <p>Facebook</p>
-            </div>
+        <div className={userLogin.thirdPartyloginContainer}>
+          <p>Login with</p>
+          <div
+            className="d-flex flex-row justify-content-center align-items-center"
+            style={{ gap: "8px" }}
+          >
+            <Icon name="google" size={24} />
+            <p>Google</p>
+          </div>
+          <div
+            className="d-flex flex-row justify-content-center align-items-center"
+            style={{ gap: "8px" }}
+          >
+            <Icon name="facebook" size={24} />
+            <p>Facebook</p>
           </div>
         </div>
       ) : null}

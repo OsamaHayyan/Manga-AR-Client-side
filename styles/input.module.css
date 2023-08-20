@@ -48,3 +48,16 @@
   transition: background-color 5000s ease-in-out 0s;
   -webkit-text-fill-color: #ffffff;
 }
+
+@media (max-width: 1024px) {
+  .inputs {
+    width: 100%;
+    font-size: 16px;
+  }
+  .inputs::placeholder {
+    font-size: 16px;
+  }
+  .validation {
+    width: 100%;
+  }
+}

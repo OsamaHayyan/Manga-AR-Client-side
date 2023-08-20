@@ -53,6 +53,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -89,6 +90,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -118,6 +120,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -151,6 +154,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -179,6 +183,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -229,6 +234,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -255,6 +261,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -295,6 +302,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -333,6 +341,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -386,6 +395,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -412,6 +422,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -448,6 +459,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -484,6 +496,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -510,6 +523,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -540,6 +554,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -566,6 +581,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -592,6 +608,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -618,6 +635,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -644,6 +662,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -670,6 +689,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -696,6 +716,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -722,6 +743,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -752,6 +774,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -778,6 +801,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -804,6 +828,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -832,6 +857,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -873,6 +899,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -903,6 +930,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",
@@ -931,6 +959,7 @@ export default function Icon({
       return (
         <span
           style={{
+            flexShrink: 0,
             width: sizeString,
             height: sizeString,
             display: "inline-block",

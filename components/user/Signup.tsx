@@ -6,6 +6,7 @@ import Input from "../Input";
 import InputUpload from "../Upload_input";
 import RegisterForm from "./RegisterForm";
 import Icon from "../Icon";
+import styles from "./user.module.css";
 export default function Signup() {
   const username = useRef<HTMLInputElement>();
   const email = useRef<HTMLInputElement>();
@@ -118,7 +119,7 @@ export default function Signup() {
       style={{ marginBottom: "50px" }}
     >
       <Input
-        Icon={<Icon name="person" />}
+        Icon={<Icon name="person" className={styles.icon} />}
         type={"text"}
         name={"username"}
         ref={username}
@@ -128,7 +129,7 @@ export default function Signup() {
         validationText={"Please type a valid username"}
       />
       <Input
-        Icon={<Icon name="person" />}
+        Icon={<Icon name="person" className={styles.icon} />}
         type={"email"}
         name={"email"}
         ref={email}
@@ -138,9 +139,9 @@ export default function Signup() {
         validationText={"Please type a valid email"}
       />
       <Input
-        Icon={<Icon name="password" />}
+        Icon={<Icon name="password" className={styles.icon} />}
         lastIcon={{
-          icon: <Icon name="eyeSlash" size={32} />,
+          icon: <Icon name="eyeSlash" size={32} className={styles.icon} />,
           width: 32,
         }}
         type={"password"}
@@ -152,9 +153,9 @@ export default function Signup() {
         validationText={"Required at least 8 numbers & letters & symbols"}
       />
       <Input
-        Icon={<Icon name="password" />}
+        Icon={<Icon name="password" className={styles.icon} />}
         lastIcon={{
-          icon: <Icon name="eyeSlash" size={32} />,
+          icon: <Icon name="eyeSlash" size={32} className={styles.icon} />,
           width: 32,
         }}
         type={"password"}
@@ -167,7 +168,7 @@ export default function Signup() {
       />
 
       <InputUpload
-        icon={<Icon name="addPhoto" />}
+        icon={<Icon name="addPhoto" className={styles.icon} />}
         handleFileInput={handleFileInput}
         fileName={fileName}
         errors={{ other: !valid.profileImage }}

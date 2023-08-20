@@ -19,6 +19,7 @@
   gap: 24px;
   height: 81.27px;
   border-bottom: 1px solid #ffffff;
+  padding-left: 8px;
 }
 .selectedFiles {
   overflow: hidden;
@@ -35,4 +36,10 @@
   font-weight: 300;
   font-size: 24px;
   color: #ffffff;
+}
+
+@media screen and (max-width: 1024px) {
+  .selectedFiles > p {
+    font-size: 16px;
+  }
 }

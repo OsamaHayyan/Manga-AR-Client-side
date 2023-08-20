@@ -8,6 +8,10 @@
   position: relative;
   height: 982px;
   flex-grow: 1;
+  background: url(/_next/static/media/userFormBackground.adc8e0a1.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .backgroundImage {
@@ -103,4 +107,57 @@
   inset: -5px;
   backdrop-filter: blur(7.5px);
   z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .imageSide {
+    height: 30vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .selected,
+  .loginBtnPosition,
+  .signBtnPosition {
+    position: unset;
+    height: fit-content;
+    padding: 5px 30px;
+    width: fit-content;
+    z-index: 2;
+    border-radius: 100px 0 0 100px;
+    background: #000000;
+  }
+
+  .selected::before,
+  .selected::after {
+    content: unset;
+  }
+
+  .textSelected,
+  .textNotSelected {
+    font-size: 24px;
+  }
+
+  .textNotSelected {
+    position: unset;
+  }
+
+  .formSide {
+    width: 100%;
+    padding: 50px 30px 0 30px;
+    max-width: 760px;
+    height: fit-content;
+  }
+
+  .background {
+    inset: 0;
+  }
 }
