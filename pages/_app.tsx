@@ -1,4 +1,3 @@
-import "bootstrap/dist/css/bootstrap.css";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/globals.css";
 import Layout from "../components/Layout";
