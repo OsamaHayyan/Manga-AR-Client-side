@@ -147,8 +147,9 @@ export default function Navbar({ user }: Props) {
           </div>
         </div>
         <ul
-          hidden={hideSearchResults}
-          className={navbarStyle.searchResultsContainer}
+          className={`${navbarStyle.searchResultsContainer} ${
+            hideSearchResults ? navbarStyle.hideSearchResults : null
+          }`}
         >
           {results?.map((item, i) => (
             <li
