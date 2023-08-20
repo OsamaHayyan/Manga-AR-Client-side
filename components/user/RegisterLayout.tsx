@@ -11,12 +11,6 @@ export default function User({ children }: { children: React.ReactNode }) {
   return (
     <div className={userForm.container}>
       <div className={userForm.imageSide}>
-        {/* <Image
-          src={backgroundImage}
-          fill
-          className={userForm.backgroundImage}
-          alt="Background image"
-        /> */}
         <button
           className={
             route.pathname === "/user/login"
