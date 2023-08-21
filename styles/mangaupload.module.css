@@ -19,28 +19,23 @@
   height: 56px !important;
   padding: 0px 0px 8px 8px !important;
 }
-.inputUploadStyle > div > p {
-  font-size: 32px !important;
-  font-weight: 400 !important;
-}
-.inputStyle > input,
-.inputStyle > input::placeholder {
-  font-size: 32px;
-  font-weight: 400;
-}
 
 .formStyle > div > h1 {
-  margin-bottom: 100px;
+  margin-bottom: 40px;
 }
 
 .formStyle > div > :nth-child(3) {
   margin-top: 100px;
 }
-.formStyle > div > div {
-  gap: 100px;
-}
 
 .formStyle > div > div > div > p {
   font-size: 14px;
   margin-top: 8px;
+}
+
+@media screen and (max-width: 1024px) {
+  .inputUploadStyle,
+  .inputStyle .inputUploadStyle::placeholder {
+    font-size: 16px;
+  }
 }

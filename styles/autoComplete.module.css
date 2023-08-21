@@ -1,10 +1,9 @@
 .validation {
-  width: 598px;
+  width: 100%;
   margin-top: 16px;
   font-weight: 300;
   font-size: 16px;
   color: #ff0f0f;
-  position: absolute;
 }
 
 .container {
@@ -36,18 +35,20 @@
 
 .inputs {
   max-height: 100%;
+  width: 100%;
   outline: 0;
   border: 0;
   background-color: transparent;
   flex-grow: 1;
+  font-size: 24px;
   font-style: normal;
   font-weight: 400;
-  font-size: 32px;
   color: #ffffff;
 }
 .inputs::placeholder {
+  font-size: 24px;
+  font-style: normal;
   font-weight: 400;
-  font-size: 32px;
   color: #ffffff;
 }
 
@@ -72,9 +73,6 @@
 }
 
 .selectedOption {
-  font-weight: 300;
-  font-size: 24px;
-  color: #ffffff;
   height: 40px;
   line-height: 40px;
   cursor: pointer;
@@ -84,9 +82,46 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100%;
+  max-width: fit-content;
+}
+
+.selectedOptionText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .removeIcon {
   background: black;
   border-radius: 50px;
+}
+
+.searchedOption {
+  font-weight: 400;
+  font-size: 24px;
+  color: #ffffff;
+  height: 48px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 1024px) {
+  .inputs,
+  .inputs::placeholder {
+    font-size: 16px;
+  }
+
+  .selectedOptionText {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .searchedOption {
+    font-size: 16px;
+    height: 34px;
+  }
 }

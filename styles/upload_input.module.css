@@ -1,10 +1,9 @@
 .validation {
-  width: 598px;
+  width: 100%;
   margin-top: 16px;
   font-weight: 300;
   font-size: 16px;
   color: #ff0f0f;
-  position: absolute;
 }
 
 .container {

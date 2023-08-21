@@ -116,7 +116,7 @@ const ChapterUpload: NextPage<Props> = ({ user }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MangaForm
-        formName={"Here you can add chapters of your manga"}
+        formName={"Add New Chapter"}
         disable={disable}
         onSubmit={handleSubmit(onSubmit)}
         className={chapterUploadStyle.formStyle}
@@ -138,8 +138,8 @@ const ChapterUpload: NextPage<Props> = ({ user }) => {
               error={errors.manga ? true : false}
               validationText={"Please select manga"}
               lastIcon={{
-                icon: <Icon name="downArrow" size={32} />,
-                width: 32,
+                icon: <Icon name="downArrow" size={20} />,
+                width: 20,
               }}
               options={results}
               accessedDataName={"title"}
@@ -170,9 +170,7 @@ const ChapterUpload: NextPage<Props> = ({ user }) => {
           type={"text"}
           placeholder={"Chapter number..."}
           validation={errors.chapterNum ? true : false}
-          validationText={
-            "Please type a valid  chapter number bigger  or equal zero"
-          }
+          validationText={"type chapter number bigger  or equal zero"}
           className={chapterUploadStyle.inputStyle}
         />
 
@@ -187,7 +185,7 @@ const ChapterUpload: NextPage<Props> = ({ user }) => {
           validationText={"Please add a valid images"}
           accept="image/*"
           calssName={chapterUploadStyle.inputUploadStyle}
-          lastIcon={<Icon name="downArrow" size={32} />}
+          lastIcon={<Icon name="downArrow" size={20} />}
         />
       </MangaForm>
     </>

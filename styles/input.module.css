@@ -1,11 +1,10 @@
 .validation {
-  width: 598px;
+  width: 100%;
   margin-top: 16px;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   color: #ff0f0f;
-  position: absolute;
 }
 
 .container {
@@ -29,13 +28,13 @@
   background-color: transparent;
   flex-grow: 1;
   font-style: normal;
-  font-size: 20px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 400;
   color: #ffffff;
 }
 .inputs::placeholder {
-  font-size: 20px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 400;
   color: #ffffff;

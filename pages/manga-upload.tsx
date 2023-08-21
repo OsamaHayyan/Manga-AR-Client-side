@@ -133,9 +133,7 @@ const MangaUplouds: NextPage<Props> = ({ user }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MangaForm
-        formName={
-          "Now you can add your favourite manga to make a new collection"
-        }
+        formName={"Create New Manga"}
         disable={disable}
         onSubmit={handleSubmit(onSubmit)}
         className={mangaUploadStyle.formStyle}
@@ -249,7 +247,7 @@ const MangaUplouds: NextPage<Props> = ({ user }) => {
           validationText={"Please add a valid Image"}
           accept="image/*"
           calssName={mangaUploadStyle.inputUploadStyle}
-          lastIcon={<Icon name="downArrow" size={32} />}
+          lastIcon={<Icon name="downArrow" size={20} />}
         />
 
         <InputUpload
@@ -261,7 +259,7 @@ const MangaUplouds: NextPage<Props> = ({ user }) => {
           validationText={"Please add a valid Image"}
           accept="image/*"
           calssName={mangaUploadStyle.inputUploadStyle}
-          lastIcon={<Icon name="downArrow" size={32} />}
+          lastIcon={<Icon name="downArrow" size={20} />}
         />
         <Input
           {...register("story", {

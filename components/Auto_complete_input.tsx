@@ -116,12 +116,12 @@ export default function AutoComplete({
               data-value={JSON.stringify(option)}
               ref={selectedRef}
             >
-              <span>
+              <span className={inputStyle.selectedOptionText}>
                 {accessedDataName ? option[accessedDataName] : option}
               </span>
               <IconComponent
                 name="downArrow"
-                size={24}
+                size={20}
                 className={inputStyle.removeIcon}
                 onClick={handleRemoveSelected}
               />
@@ -129,16 +129,11 @@ export default function AutoComplete({
           ))
         ) : (
           <li className={inputStyle.selectedOption}>
-            <span>
+            <span className={inputStyle.selectedOptionText}>
               {accessedDataName
                 ? selectedOption[accessedDataName]
                 : selectedOption}
             </span>
-            <IconComponent
-              name="downArrow"
-              size={24}
-              className={inputStyle.removeIcon}
-            />
           </li>
         )}
         <div
@@ -162,7 +157,7 @@ export default function AutoComplete({
           />
           <IconComponent
             name="downArrow"
-            size={32}
+            size={20}
             className={!listHide ? inputStyle.reflectArrow : null}
           />
         </div>
@@ -187,17 +182,7 @@ export default function AutoComplete({
             key={i}
             data-value={JSON.stringify(option)}
             onMouseDown={onClickOption}
-            style={{
-              fontWeight: "400",
-              fontSize: "32px",
-              color: "#FFFFFF",
-              height: "48px",
-              lineHeight: "48px",
-              cursor: "pointer",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
+            className={inputStyle.searchedOption}
           >
             {accessedDataName ? option[accessedDataName] : option}
           </li>
