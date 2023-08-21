@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Icon from "../Icon";
 import headerStyle from "./styles/header.module.css";
 import { useRouter } from "next/router";
@@ -48,10 +48,29 @@ function Header({
   const router = useRouter();
   const [showChapterList, setShowChapterList] = useState(false);
   const [hideSettings, setHideSettings] = useState(true);
+  const [screenWidth, setScreenWidth] = useState(null);
 
   const handleNavigateToChapter = (chapterId: string) => {
     router.push(`/series/${mangaId}/chapter/${chapterId}?id=${mangaId}`);
   };
+
+  useEffect(() => {
+    // Update the screen width on mount
+    const updateScreenWidth = () => {
+      setScreenWidth(window.outerWidth);
+    };
+
+    // Attach the event listener
+    window.addEventListener("resize", updateScreenWidth);
+
+    // Initialize the screen width
+    updateScreenWidth();
+
+    // Cleanup the event listener on unmount
+    return () => {
+      window.removeEventListener("resize", updateScreenWidth);
+    };
+  }, []);
 
   return (
     <>
@@ -67,15 +86,15 @@ function Header({
           className={headerStyle.chapterNumInput}
           onClick={() => setShowChapterList(!showChapterList)}
         >
-          <p>Chapter Number {chapters[0].chapterNum}</p>
+          <p>
+            {screenWidth <= 450 ? null : "Chapter Number"}{" "}
+            {chapters[0].chapterNum}
+          </p>
           <div
-            style={{
-              width: 15,
-              height: 15,
-              transform: showChapterList ? "rotate(0.5turn)" : null,
-            }}
+            className={headerStyle.chapterNumIcon}
+            style={{ transform: showChapterList ? "rotate(0.5turn)" : null }}
           >
-            <Icon name="downArrow" size={15} />
+            <Icon name="downArrow" size={10} />
           </div>
         </div>
         {showChapterList && (
@@ -89,7 +108,8 @@ function Header({
                     setShowChapterList(false);
                   }}
                 >
-                  Chapter Number {item.chapterNum}
+                  {screenWidth <= 450 ? null : "Chapter Number"}{" "}
+                  {item.chapterNum}
                 </li>
               );
             })}
