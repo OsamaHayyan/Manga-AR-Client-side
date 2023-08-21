@@ -37,6 +37,27 @@ export default function Chapter({
   const [webtoon, setWebtoon] = useState(false);
   const [horizontalView, setHorizontalView] = useState(false);
   const [pageNum, setPageNum] = useState(0);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      const isScrollingDown = currentScrollPos > prevScrollPos;
+
+      setPrevScrollPos(currentScrollPos);
+
+      if (isScrollingDown && !hideNav) {
+        setHideNav(true);
+      } else if (!isScrollingDown && hideNav) {
+        setHideNav(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos, hideNav]);
 
   return (
     <>
