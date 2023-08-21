@@ -23,6 +23,7 @@ const HorizontalNavigation = ({
           name="downArrow"
           size={16}
           style={{ transform: "rotate(90deg)" }}
+          className={horizontalNavigationStyle.navigatePageIcon}
         />
         <p>Previous</p>
       </div>
@@ -35,6 +36,7 @@ const HorizontalNavigation = ({
           name="downArrow"
           size={16}
           style={{ transform: "rotate(-90deg)" }}
+          className={horizontalNavigationStyle.navigatePageIcon}
         />
       </div>
     </>

@@ -1,35 +1,39 @@
 .logoContainer {
-  width: 107px;
+  width: 150px;
   height: 48px;
   margin-right: 24px;
   position: relative;
   cursor: pointer;
-  background-color: white;
 }
 .logo {
-  object-fit: contain;
+  width: 150px !important;
+  height: 48px !important;
 }
 
 .chapterNumContainer {
   position: relative;
   display: flex;
+  flex: 1;
+  max-width: 384px;
 }
 
 .chapterNumInput {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 24px;
   border-bottom: 1px solid #ffffff;
-  padding: 0 5px;
-  height: 56px;
-  width: 445px;
+  max-width: 384px;
+  width: 100%;
+  padding: 0px 0px 8px 8px;
   cursor: pointer;
 }
 
 .chapterNumInput > p,
 .chapterListContainer > li {
+  font-size: 16px;
+  font-style: normal;
   font-weight: 400;
-  font-size: 32px;
   color: #ffffff;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -60,8 +64,8 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 56px;
-  height: 56px;
+  width: 40px;
+  height: 40px;
   background: #d100b2;
   border-radius: 5px;
   cursor: pointer;
@@ -75,16 +79,20 @@
 }
 
 .settingsContainer {
-  width: 32px;
-  height: 32px;
+  width: 20px;
+  height: 20px;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .chapterOptionsContainer {
+  display: block;
   position: absolute;
-  top: 65px;
+  top: 35px;
   right: -10px;
-  width: 252px;
+  width: fit-content;
   background-color: #1e1e1e;
   padding: 15px;
   display: flex;
@@ -97,37 +105,48 @@
   width: 100%;
   cursor: pointer;
   display: flex;
+  align-items: center;
   gap: 7px;
 }
 .chapterOptionText {
+  font-size: 12px;
+  font-style: normal;
   font-weight: 400;
-  font-size: 20px;
-  color: #ffffff;
+  white-space: nowrap;
 }
 
-@media (max-width: 1370px) {
-  .chapterNumInput {
-    height: unset;
+@media screen and (max-width: 1024px) {
+  .logoContainer {
+    margin-right: auto;
   }
 
-  .chapterNumInput > p {
-    font-size: 20px;
-  }
-
-  .prevChapter,
-  .nextChapter {
-    width: 35px;
-    height: 35px;
+  .chapterNavigationButtonContainer,
+  .leftHeaderSection {
+    gap: 10px;
   }
 
   .settingsContainer,
   .settingsContainer > span,
-  .leftHeaderSection > span {
-    width: 26px !important;
-    height: 26px !important;
+  .leftHeaderSection > span,
+  .settingsAddIcon {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  .chapterNavigationButtonContainer > .prevChapter,
+  .nextChapter {
+    width: 24px;
+    height: 24px;
+  }
+
+  .chapterArrowIcon {
+    width: 8px !important;
+    height: 5px !important;
   }
 
   .chapterOptionsContainer {
-    top: 40px;
+    top: 25px;
+  }
+  .chapterNumContainer {
+    display: none;
   }
 }

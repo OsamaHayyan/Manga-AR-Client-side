@@ -1,10 +1,9 @@
-import Image from "next/image";
 import React, { useState } from "react";
 import Icon from "../Icon";
 import headerStyle from "./styles/header.module.css";
 import { useRouter } from "next/router";
-import logo from "../../public/images/logo.png";
 import { chapter } from "../../util/interfaces";
+import Link from "next/link";
 
 type Props = {
   mangaTitle: string;
@@ -56,12 +55,9 @@ function Header({
 
   return (
     <>
-      <div
-        className={headerStyle.logoContainer}
-        onClick={() => router.push("/")}
-      >
-        <Image src={logo} alt="logo" className={headerStyle.logo} fill />
-      </div>
+      <Link href={"/"} className={headerStyle.logoContainer}>
+        <Icon name="logo" className={headerStyle.logo} />
+      </Link>
       <div
         tabIndex={-1}
         className={headerStyle.chapterNumContainer}
@@ -102,26 +98,39 @@ function Header({
       </div>
 
       <div className={headerStyle.chapterNavigationButtonContainer}>
-        <div
-          className={headerStyle.prevChapter}
-          onClick={() =>
-            router.push(
-              `/series/${mangaTitle}/chapter/${prevChapter}?id=${mangaId}`
-            )
-          }
-        >
-          <Icon name="downArrow" size={16} />
-        </div>
-        <div
-          className={headerStyle.nextChapter}
-          onClick={() =>
-            router.push(
-              `/series/${mangaTitle}/chapter/${nextChapter}?id=${mangaId}`
-            )
-          }
-        >
-          <Icon name="downArrow" size={16} />
-        </div>
+        {prevChapter && (
+          <div
+            className={headerStyle.prevChapter}
+            onClick={() =>
+              router.push(
+                `/series/${mangaTitle}/chapter/${prevChapter}?id=${mangaId}`
+              )
+            }
+          >
+            <Icon
+              name="downArrow"
+              className={headerStyle.chapterArrowIcon}
+              size={12}
+            />
+          </div>
+        )}
+
+        {nextChapter && (
+          <div
+            className={headerStyle.nextChapter}
+            onClick={() =>
+              router.push(
+                `/series/${mangaTitle}/chapter/${nextChapter}?id=${mangaId}`
+              )
+            }
+          >
+            <Icon
+              name="downArrow"
+              className={headerStyle.chapterArrowIcon}
+              size={12}
+            />
+          </div>
+        )}
       </div>
       <div className={headerStyle.leftHeaderSection}>
         <div
@@ -131,7 +140,7 @@ function Header({
         >
           <Icon
             name="settings"
-            size={32}
+            size={20}
             onClick={() => setHideSettings(!hideSettings)}
             style={{ cursor: "pointer" }}
           />
@@ -146,7 +155,11 @@ function Header({
                 setHorizontalView(false);
               }}
             >
-              <Icon name="add" size={25} />
+              <Icon
+                name="add"
+                className={headerStyle.settingsAddIcon}
+                size={25}
+              />
               <p className={headerStyle.chapterOptionText}>Vertical read</p>
             </div>
             <div
@@ -156,7 +169,11 @@ function Header({
                 setHorizontalView(true);
               }}
             >
-              <Icon name="add" size={25} />
+              <Icon
+                name="add"
+                className={headerStyle.settingsAddIcon}
+                size={25}
+              />
               <p className={headerStyle.chapterOptionText}>Horizontal read</p>
             </div>
             <div
@@ -166,14 +183,18 @@ function Header({
                 setWebtoon(!webtoon);
               }}
             >
-              <Icon name="add" size={25} />
+              <Icon
+                name="add"
+                className={headerStyle.settingsAddIcon}
+                size={25}
+              />
               <p className={headerStyle.chapterOptionText}>Webtoon mode</p>
             </div>
           </div>
         </div>
         <Icon
           name="exclamationMark"
-          size={32}
+          size={20}
           style={{ cursor: "pointer" }}
           onClick={() => router.push(`/series/${mangaTitle}/${mangaId}`)}
         />

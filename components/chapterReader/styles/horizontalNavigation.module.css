@@ -10,4 +10,20 @@
   font-weight: 400;
   font-size: 24px;
   color: #ffffff;
+  font-style: normal;
+}
+
+@media screen and (max-width: 1024px) {
+  .footerButton {
+    gap: 16px;
+  }
+
+  .footerButton > p {
+    font-size: 16px;
+  }
+
+  .navigatePageIcon {
+    width: 12px !important;
+    height: 12px !important;
+  }
 }

@@ -74,7 +74,7 @@ export default function Chapter({
           onClick={() => setHideNav(!hideNav)}
           style={webtoon ? { gap: 0 } : null}
         >
-          {chapters[0].chapter.map((page, i) => {
+          {chapters[0]?.chapter.map((page, i) => {
             if (horizontalView && i !== pageNum) return null;
             return <Pages key={i} page={page} />;
           })}
