@@ -23,53 +23,57 @@ export default function Signup() {
     profileImage: true,
     profileImageData: null,
   });
-  const handleSubmet: React.FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmet: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    setDisable(true);
-    let checkValidation = validation(
-      username.current.value,
-      email.current.value,
-      password.current.value,
-      confirmPassword.current.value
-    );
+    try {
+      setDisable(true);
+      let checkValidation = validation(
+        username.current.value,
+        email.current.value,
+        password.current.value,
+        confirmPassword.current.value
+      );
 
-    if (!checkValidation) {
-      const formData = new FormData();
-      formData.append("username", username.current.value);
-      formData.append("email", email.current.value);
-      formData.append("password", password.current.value);
-      formData.append("confirm", confirmPassword.current.value);
-      if (valid.profileImageData) {
-        formData.append(
-          "profile_photo",
-          valid.profileImageData,
-          valid.profileImageData.name
+      if (!checkValidation) {
+        const formData = new FormData();
+        formData.append("username", username.current.value);
+        formData.append("email", email.current.value);
+        formData.append("password", password.current.value);
+        formData.append("confirm", confirmPassword.current.value);
+        if (valid.profileImageData) {
+          formData.append(
+            "profile_photo",
+            valid.profileImageData,
+            valid.profileImageData.name
+          );
+        }
+        await axios.post(
+          `${process.env.NEXT_PUBLIC_HOSTURL}/user/signup`,
+          formData
         );
+        console.log("submeted");
+      } else {
+        console.log("not submitted");
       }
-      axios
-        .post(`${process.env.NEXT_PUBLIC_HOSTURL}/user/signup`, formData)
-        .catch((error) => {
-          if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            error.response.data.data.forEach((data) => {
-              toast.error(data.msg);
-            });
-          } else if (error.request) {
-            // The request was made but no response was received
-            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-            // http.ClientRequest in node.js
-            toast.error("Can't Signup try again, please!");
-          } else {
-            // Something happened in setting up the request that triggered an Error
-            toast.error("Can't Signup try again, please!");
-          }
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        error.response.data.data.forEach((data) => {
+          toast.error(data.msg);
         });
-      console.log("submeted");
-    } else {
-      console.log("not submitted");
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        toast.error("Can't Signup try again, please!");
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        toast.error("Can't Signup try again, please!");
+      }
+    } finally {
+      setDisable(false);
     }
-    setDisable(false);
   };
 
   const validation = (
