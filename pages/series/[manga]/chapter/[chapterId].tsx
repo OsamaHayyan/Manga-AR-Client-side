@@ -100,14 +100,8 @@ export default function Chapter({
             return <Pages key={i} page={page} />;
           })}
         </section>
-        <section className={chapterStyle.recommendationContainer}>
-          <Recommender recommendations={recommendations} />
-        </section>
         {horizontalView && (
-          <section
-            className={chapterStyle.footer}
-            style={hideNav ? { opacity: 0, pointerEvents: "none" } : null}
-          >
+          <section className={chapterStyle.footer}>
             <HorizontalNavigation
               pageNumber={pageNum}
               setPageNumber={setPageNum}
@@ -115,6 +109,9 @@ export default function Chapter({
             />
           </section>
         )}
+        <section className={chapterStyle.recommendationContainer}>
+          <Recommender recommendations={recommendations} />
+        </section>
       </div>
     </>
   );
