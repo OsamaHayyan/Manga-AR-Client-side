@@ -49,7 +49,9 @@ export default function Manga({
             </section>
             <section className={mangaStyle.chapterSection}>
               <Chapters
-                chapters={mangaData.chapters.reverse()}
+                chapters={mangaData.chapters.sort(
+                  (a, b) => Number(b.chapterNum) - Number(a.chapterNum)
+                )}
                 mangaId={mangaData._id}
                 mangaTitle={mangaData.title}
               />

@@ -12,11 +12,7 @@ function Pages({ page }: Props) {
         return (
           <React.Fragment key={i}>
             {" "}
-            <img
-              src={`${process.env.NEXT_PUBLIC_HOSTURL}/${image}`}
-              alt="image"
-              className={pagesStyle.image}
-            />
+            <img src={image} alt="image" className={pagesStyle.image} />
           </React.Fragment>
         );
       })}
