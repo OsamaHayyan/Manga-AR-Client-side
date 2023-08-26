@@ -32,7 +32,6 @@ const LastRelease = ({ lastRelease }: Props) => {
         className={styles.image}
         style={{ cursor: "pointer" }}
         src={lastRelease.image}
-        height={200}
         width={130}
         onClick={() => handleNavigationToManga()}
       />
